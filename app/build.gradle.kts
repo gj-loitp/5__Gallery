@@ -49,10 +49,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             if (keystorePropertiesFile.exists()) {
                 signingConfig = signingConfigs.getByName("release")
             }
@@ -80,10 +77,10 @@ android {
     }
 
     tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = project.libs.versions.app.build.kotlinJVMTarget.get()
+        kotlinOptions.jvmTarget = "17"
     }
 
-    namespace = libs.versions.app.version.appId.get()
+    namespace = "org.fossify.gallery"
 
     lint {
         checkReleaseBuilds = false
@@ -98,28 +95,28 @@ android {
 }
 
 dependencies {
-    implementation(libs.fossify.commons)
-    implementation(libs.android.image.cropper)
-    implementation(libs.exif)
-    implementation(libs.android.gif.drawable)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.media3.exoplayer)
-    implementation(libs.sanselan)
-    implementation(libs.imagefilters)
-    implementation(libs.androidsvg.aar)
-    implementation(libs.gestureviews)
-    implementation(libs.subsamplingscaleimageview)
-    implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.awebp)
-    implementation(libs.apng)
-    implementation(libs.avif.integration)
-    implementation(libs.okio)
-    implementation(libs.picasso) {
+    api(libs.fossify.commons)
+    api(libs.android.image.cropper)
+    api(libs.exif)
+    api(libs.android.gif.drawable)
+    api(libs.androidx.constraintlayout)
+    api(libs.androidx.media3.exoplayer)
+    api(libs.sanselan)
+    api(libs.imagefilters)
+    api(libs.androidsvg.aar)
+    api(libs.gestureviews)
+    api(libs.subsamplingscaleimageview)
+    api(libs.androidx.swiperefreshlayout)
+    api(libs.awebp)
+    api(libs.apng)
+    api(libs.avif.integration)
+    api(libs.okio)
+    api(libs.picasso) {
         exclude(group = "com.squareup.okhttp3", module = "okhttp")
     }
     compileOnly(libs.okhttp)
     ksp(libs.glide.compiler)
-    implementation(libs.zjupure.webpdecoder)
-    implementation(libs.bundles.room)
+    api(libs.zjupure.webpdecoder)
+    api(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
 }
