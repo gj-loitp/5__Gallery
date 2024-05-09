@@ -70,7 +70,7 @@ android {
     }
 
     compileOptions {
-        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get().toString())
+        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get())
         sourceCompatibility = currentJavaVersionFromLibs
         targetCompatibility = currentJavaVersionFromLibs
     }
@@ -118,10 +118,8 @@ dependencies {
         exclude(group = "com.squareup.okhttp3", module = "okhttp")
     }
     compileOnly(libs.okhttp)
-
     ksp(libs.glide.compiler)
     implementation(libs.zjupure.webpdecoder)
-
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
 }
