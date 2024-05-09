@@ -32,8 +32,8 @@
         tools:node="remove" />
 
     <queries>
-        <package android:name="org.fossify.gallery.debug" />
-        <package android:name="org.fossify.gallery" />
+        <package android:name="com.mckimquyen.gallery.debug" />
+        <package android:name="com.mckimquyen.gallery" />
     </queries>
 
     <uses-feature
@@ -41,7 +41,7 @@
         android:required="false" />
 
     <application
-        android:name="org.fossify.gallery.App"
+        android:name=".App"
         android:allowBackup="true"
         android:appCategory="image"
         android:icon="@mipmap/ic_launcher"
@@ -120,14 +120,14 @@
         </activity>
 
         <activity
-            android:name="org.fossify.commons.activities.AboutActivity"
+            android:name=".commons.activities.AboutActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/about"
             android:parentActivityName=".activities.MainActivity" />
 
         <activity
-            android:name="org.fossify.commons.activities.CustomizationActivity"
+            android:name=".commons.activities.CustomizationActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/customize_colors"
@@ -209,7 +209,7 @@
         </activity>
 
         <activity
-            android:name="org.fossify.gallery.activities.EditActivity"
+            android:name=".activities.EditActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:label="@string/basic_editor">
@@ -280,7 +280,7 @@
             android:name=".receivers.RefreshMediaReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="org.fossify.REFRESH_MEDIA" />
+                <action android:name="com.mckimquyen.REFRESH_MEDIA" />
             </intent-filter>
         </receiver>
 

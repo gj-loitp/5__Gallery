@@ -37,7 +37,7 @@ app-build-minimumSDK = "23"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
-app-version-appId = "org.fossify.gallery"
+app-version-appId = "com.mckimquyen.gallery"
 app-version-versionCode = "7"
 app-version-versionName = "1.1.3"
 [libraries]

@@ -18,7 +18,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "org.fossify.galler"
+        applicationId = "com.mckimquyen.gallery"
         minSdk = 23
         targetSdk = 34
         versionName = "2024.05.09"
@@ -80,7 +80,7 @@ android {
         kotlinOptions.jvmTarget = "17"
     }
 
-    namespace = "org.fossify.gallery"
+    namespace = "com.mckimquyen.gallery"
 
     lint {
         checkReleaseBuilds = false
