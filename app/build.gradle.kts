@@ -15,14 +15,14 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdk = project.libs.versions.app.build.compileSDKVersion.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = libs.versions.app.version.appId.get()
-        minSdk = project.libs.versions.app.build.minimumSDK.get().toInt()
-        targetSdk = project.libs.versions.app.build.targetSDK.get().toInt()
-        versionName = project.libs.versions.app.version.versionName.get()
-        versionCode = project.libs.versions.app.version.versionCode.get().toInt()
+        applicationId = "org.fossify.galler"
+        minSdk = 23
+        targetSdk = 34
+        versionName = "2024.05.09"
+        versionCode = 20240509
         setProperty("archivesBaseName", "gallery-$versionCode")
     }
 
