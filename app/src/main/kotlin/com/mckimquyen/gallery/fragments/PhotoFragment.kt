@@ -51,7 +51,7 @@ import com.mckimquyen.gallery.activities.PhotoActivity
 import com.mckimquyen.gallery.activities.PhotoVideoActivity
 import com.mckimquyen.gallery.activities.ViewPagerActivity
 import com.mckimquyen.gallery.adapters.PortraitPhotosAdapter
-import com.mckimquyen.gallery.databinding.PagerPhotoItemBinding
+import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.saveRotatedImageToFile
 import com.mckimquyen.gallery.extensions.sendFakeClick
@@ -97,7 +97,7 @@ class PhotoFragment : ViewPagerFragment() {
     private var mStoredExtendedDetails = 0
 
     private lateinit var mView: ViewGroup
-    private lateinit var binding: PagerPhotoItemBinding
+    private lateinit var binding: VPagerPhotoItemBinding
     private lateinit var mMedium: Medium
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -105,7 +105,7 @@ class PhotoFragment : ViewPagerFragment() {
         val activity = requireActivity()
         val arguments = requireArguments()
 
-        binding = PagerPhotoItemBinding.inflate(inflater, container, false)
+        binding = VPagerPhotoItemBinding.inflate(inflater, container, false)
         mView = binding.root
         if (!arguments.getBoolean(SHOULD_INIT_FRAGMENT, true)) {
             return mView
@@ -115,7 +115,7 @@ class PhotoFragment : ViewPagerFragment() {
         mOriginalPath = mMedium.path
 
         binding.apply {
-            subsamplingView.setOnClickListener { photoClicked() }
+            subSamplingView.setOnClickListener { photoClicked() }
             gesturesView.setOnClickListener { photoClicked() }
             gifView.setOnClickListener { photoClicked() }
             instantPrevItem.setOnClickListener { listener?.goToPrevItem() }
@@ -127,8 +127,8 @@ class PhotoFragment : ViewPagerFragment() {
 
             photoBrightnessController.initialize(activity, slideInfo, true, container, singleTap = { x, y ->
                 mView.apply {
-                    if (subsamplingView.isVisible()) {
-                        subsamplingView.sendFakeClick(x, y)
+                    if (subSamplingView.isVisible()) {
+                        subSamplingView.sendFakeClick(x, y)
                     } else {
                         gesturesView.sendFakeClick(x, y)
                     }
@@ -156,8 +156,8 @@ class PhotoFragment : ViewPagerFragment() {
                     false
                 }
 
-                subsamplingView.setOnTouchListener { v, event ->
-                    if (subsamplingView.isZoomedOut()) {
+                subSamplingView.setOnTouchListener { v, event ->
+                    if (subSamplingView.isZoomedOut()) {
                         handleEvent(event)
                     }
                     false
@@ -233,13 +233,13 @@ class PhotoFragment : ViewPagerFragment() {
         if (mWasInit) {
             if (config.allowZoomingImages != mStoredAllowDeepZoomableImages || config.showHighestQuality != mStoredShowHighestQuality) {
                 mIsSubsamplingVisible = false
-                binding.subsamplingView.beGone()
+                binding.subSamplingView.beGone()
                 loadImage()
             } else if (mMedium.isGIF()) {
                 loadGif()
             } else if (mIsSubsamplingVisible && mShouldResetImage) {
-                binding.subsamplingView.onGlobalLayout {
-                    binding.subsamplingView.resetView()
+                binding.subSamplingView.onGlobalLayout {
+                    binding.subSamplingView.resetView()
                 }
             }
             mShouldResetImage = false
@@ -260,7 +260,7 @@ class PhotoFragment : ViewPagerFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         if (activity?.isDestroyed == false) {
-            binding.subsamplingView.recycle()
+            binding.subSamplingView.recycle()
 
             try {
                 if (context != null) {
@@ -674,7 +674,7 @@ class PhotoFragment : ViewPagerFragment() {
             newOrientation += 360
         }
 
-        binding.subsamplingView.apply {
+        binding.subSamplingView.apply {
             setMaxTileSize(if (showHighestQuality) Integer.MAX_VALUE else 4096)
             setMinimumTileDpi(minTileDpi)
             background = ColorDrawable(Color.TRANSPARENT)
@@ -819,7 +819,7 @@ class PhotoFragment : ViewPagerFragment() {
 
     fun rotateImageViewBy(degrees: Int) {
         if (mIsSubsamplingVisible) {
-            binding.subsamplingView.rotateBy(degrees)
+            binding.subSamplingView.rotateBy(degrees)
         } else {
             mCurrentRotationDegrees = (mCurrentRotationDegrees + degrees) % 360
             mLoadZoomableViewHandler.removeCallbacksAndMessages(null)
@@ -852,8 +852,8 @@ class PhotoFragment : ViewPagerFragment() {
     private fun hideZoomableView() {
         if (context?.config?.allowZoomingImages == true) {
             mIsSubsamplingVisible = false
-            binding.subsamplingView.recycle()
-            binding.subsamplingView.beGone()
+            binding.subSamplingView.recycle()
+            binding.subSamplingView.beGone()
             mLoadZoomableViewHandler.removeCallbacksAndMessages(null)
         }
     }

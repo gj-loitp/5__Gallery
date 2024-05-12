@@ -29,7 +29,7 @@ import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.VideoActivity
-import com.mckimquyen.gallery.databinding.PagerVideoItemBinding
+import com.mckimquyen.gallery.databinding.VPagerVideoItemBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.hasNavBar
 import com.mckimquyen.gallery.extensions.parseFileChannel
@@ -72,7 +72,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
     private lateinit var mTimeHolder: View
     private lateinit var mBrightnessSideScroll: MediaSideScroll
     private lateinit var mVolumeSideScroll: MediaSideScroll
-    private lateinit var binding: PagerVideoItemBinding
+    private lateinit var binding: VPagerVideoItemBinding
     private lateinit var mView: View
     private lateinit var mMedium: Medium
     private lateinit var mConfig: Config
@@ -88,7 +88,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
 
         mMedium = arguments.getSerializable(MEDIUM) as Medium
         mConfig = context.config
-        binding = PagerVideoItemBinding.inflate(inflater, container, false).apply {
+        binding = VPagerVideoItemBinding.inflate(inflater, container, false).apply {
             panoramaOutline.setOnClickListener { openPanorama() }
             bottomVideoTimeHolder.videoCurrTime.setOnClickListener { skip(false) }
             bottomVideoTimeHolder.tvVideoDuration.setOnClickListener { skip(true) }
