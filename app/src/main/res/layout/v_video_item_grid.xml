@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/media_item_holder"
+    android:id="@+id/mediaItemHolder"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true">
 
     <org.fossify.commons.views.MySquareImageView
-        android:id="@+id/medium_thumbnail"
+        android:id="@+id/mediumThumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/favorite"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
@@ -26,7 +26,7 @@
         android:visibility="gone" />
 
     <RelativeLayout
-        android:id="@+id/play_icon_holder"
+        android:id="@+id/rlPlayIconHolder"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/selection_check_size"
         android:layout_alignParentStart="true"
@@ -35,8 +35,8 @@
         android:layout_marginTop="@dimen/small_margin"
         android:background="@drawable/darkened_automatic_circle_background">
 
-        <ImageView
-            android:id="@+id/play_portrait_outline"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPlayPortraitOutline"
             android:layout_width="@dimen/selection_check_size"
             android:layout_height="@dimen/selection_check_size"
             android:layout_alignParentStart="true"
@@ -44,12 +44,12 @@
             android:layout_margin="0dp"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/video_duration"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVideoDuration"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/play_portrait_outline"
+            android:layout_toEndOf="@id/ivPlayPortraitOutline"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
@@ -60,11 +60,11 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/medium_check"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mediumCheck"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
-        android:layout_alignEnd="@+id/medium_name"
+        android:layout_alignEnd="@+id/tvMediumName"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/medium_margin"
@@ -74,12 +74,12 @@
         android:src="@drawable/ic_check_vector"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/medium_name"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMediumName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/medium_thumbnail"
-        android:layout_alignEnd="@+id/medium_thumbnail"
+        android:layout_alignStart="@+id/mediumThumbnail"
+        android:layout_alignEnd="@+id/mediumThumbnail"
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_background"
         android:ellipsize="end"

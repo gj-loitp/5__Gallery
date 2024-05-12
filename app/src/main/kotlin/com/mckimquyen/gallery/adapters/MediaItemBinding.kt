@@ -3,11 +3,8 @@ package com.mckimquyen.gallery.adapters
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.mckimquyen.gallery.databinding.*
 import org.fossify.commons.views.MySquareImageView
-import com.mckimquyen.gallery.databinding.PhotoItemGridBinding
-import com.mckimquyen.gallery.databinding.PhotoItemListBinding
-import com.mckimquyen.gallery.databinding.VideoItemGridBinding
-import com.mckimquyen.gallery.databinding.VideoItemListBinding
 
 interface MediaItemBinding {
     val root: ViewGroup
@@ -27,7 +24,7 @@ class PhotoListMediaItemBinding(val binding: PhotoItemListBinding) : MediaItemBi
     override val favorite: ImageView = binding.favorite
     override val playPortraitOutline: ImageView? = null
     override val fileType: TextView = binding.fileType
-    override val mediumName: TextView = binding.mediumName
+    override val mediumName: TextView = binding.tvMediumName
     override val videoDuration: TextView? = null
     override val mediumCheck: ImageView = binding.mediumCheck
     override val mediumThumbnail: MySquareImageView = binding.mediumThumbnail
@@ -41,7 +38,7 @@ class PhotoGridMediaItemBinding(val binding: PhotoItemGridBinding) : MediaItemBi
     override val favorite: ImageView = binding.favorite
     override val playPortraitOutline: ImageView? = null
     override val fileType: TextView = binding.fileType
-    override val mediumName: TextView = binding.mediumName
+    override val mediumName: TextView = binding.tvMediumName
     override val videoDuration: TextView? = null
     override val mediumCheck: ImageView = binding.mediumCheck
     override val mediumThumbnail: MySquareImageView = binding.mediumThumbnail
@@ -49,30 +46,30 @@ class PhotoGridMediaItemBinding(val binding: PhotoItemGridBinding) : MediaItemBi
 
 fun PhotoItemGridBinding.toMediaItemBinding() = PhotoGridMediaItemBinding(this)
 
-class VideoListMediaItemBinding(val binding: VideoItemListBinding) : MediaItemBinding {
+class VideoListMediaItemBinding(val binding: VVideoItemListBinding) : MediaItemBinding {
     override val root: ViewGroup = binding.root
     override val mediaItemHolder: ViewGroup = binding.mediaItemHolder
     override val favorite: ImageView = binding.favorite
-    override val playPortraitOutline: ImageView = binding.playPortraitOutline
+    override val playPortraitOutline: ImageView = binding.ivPlayPortraitOutline
     override val fileType: TextView? = null
-    override val mediumName: TextView = binding.mediumName
-    override val videoDuration: TextView = binding.videoDuration
+    override val mediumName: TextView = binding.tvMediumName
+    override val videoDuration: TextView = binding.tvVideoDuration
     override val mediumCheck: ImageView = binding.mediumCheck
     override val mediumThumbnail: MySquareImageView = binding.mediumThumbnail
 }
 
-fun VideoItemListBinding.toMediaItemBinding() = VideoListMediaItemBinding(this)
+fun VVideoItemListBinding.toMediaItemBinding() = VideoListMediaItemBinding(this)
 
-class VideoGridMediaItemBinding(val binding: VideoItemGridBinding) : MediaItemBinding {
+class VideoGridMediaItemBinding(val binding: VVideoItemGridBinding) : MediaItemBinding {
     override val root: ViewGroup = binding.root
     override val mediaItemHolder: ViewGroup = binding.mediaItemHolder
     override val favorite: ImageView = binding.favorite
-    override val playPortraitOutline: ImageView = binding.playPortraitOutline
+    override val playPortraitOutline: ImageView = binding.ivPlayPortraitOutline
     override val fileType: TextView? = null
-    override val mediumName: TextView = binding.mediumName
-    override val videoDuration: TextView = binding.videoDuration
+    override val mediumName: TextView = binding.tvMediumName
+    override val videoDuration: TextView = binding.tvVideoDuration
     override val mediumCheck: ImageView = binding.mediumCheck
     override val mediumThumbnail: MySquareImageView = binding.mediumThumbnail
 }
 
-fun VideoItemGridBinding.toMediaItemBinding() = VideoGridMediaItemBinding(this)
+fun VVideoItemGridBinding.toMediaItemBinding() = VideoGridMediaItemBinding(this)

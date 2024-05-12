@@ -91,7 +91,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
         binding = PagerVideoItemBinding.inflate(inflater, container, false).apply {
             panoramaOutline.setOnClickListener { openPanorama() }
             bottomVideoTimeHolder.videoCurrTime.setOnClickListener { skip(false) }
-            bottomVideoTimeHolder.videoDuration.setOnClickListener { skip(true) }
+            bottomVideoTimeHolder.tvVideoDuration.setOnClickListener { skip(true) }
             videoHolder.setOnClickListener { toggleFullscreen() }
             videoPreview.setOnClickListener { toggleFullscreen() }
             videoSurfaceFrame.controller.settings.swallowDoubleTaps = true
@@ -328,7 +328,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
 
     private fun setupTimeHolder() {
         mSeekBar.max = mDuration
-        binding.bottomVideoTimeHolder.videoDuration.text = mDuration.getFormattedDuration()
+        binding.bottomVideoTimeHolder.tvVideoDuration.text = mDuration.getFormattedDuration()
         setupTimer()
     }
 
@@ -520,7 +520,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
         mSeekBar.setOnSeekBarChangeListener(if (mIsFullscreen) null else this)
         arrayOf(
             binding.bottomVideoTimeHolder.videoCurrTime,
-            binding.bottomVideoTimeHolder.videoDuration,
+            binding.bottomVideoTimeHolder.tvVideoDuration,
             binding.bottomVideoTimeHolder.videoTogglePlayPause
         ).forEach {
             it.isClickable = !mIsFullscreen

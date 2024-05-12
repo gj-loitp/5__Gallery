@@ -80,13 +80,13 @@ class MediaAdapter(
                 if (viewType == ITEM_MEDIUM_PHOTO) {
                     PhotoItemListBinding.inflate(layoutInflater, parent, false)
                 } else {
-                    VideoItemListBinding.inflate(layoutInflater, parent, false)
+                    VVideoItemListBinding.inflate(layoutInflater, parent, false)
                 }
             } else {
                 if (viewType == ITEM_MEDIUM_PHOTO) {
                     PhotoItemGridBinding.inflate(layoutInflater, parent, false)
                 } else {
-                    VideoItemGridBinding.inflate(layoutInflater, parent, false)
+                    VVideoItemGridBinding.inflate(layoutInflater, parent, false)
                 }
             }
         }
@@ -195,8 +195,8 @@ class MediaAdapter(
         super.onViewRecycled(holder)
         if (!activity.isDestroyed) {
             val itemView = holder.itemView
-            visibleItemPaths.remove(itemView.allViews.firstOrNull { it.id == R.id.medium_name }?.tag)
-            val tmb = itemView.allViews.firstOrNull { it.id == R.id.medium_thumbnail }
+            visibleItemPaths.remove(itemView.allViews.firstOrNull { it.id == R.id.tvMediumName }?.tag)
+            val tmb = itemView.allViews.firstOrNull { it.id == R.id.mediumThumbnail }
             if (tmb != null) {
                 Glide.with(activity).clear(tmb)
             }
@@ -716,13 +716,13 @@ class MediaAdapter(
             if (!medium.isVideo() && !medium.isPortrait()) {
                 PhotoItemListBinding.bind(view).toMediaItemBinding()
             } else {
-                VideoItemListBinding.bind(view).toMediaItemBinding()
+                VVideoItemListBinding.bind(view).toMediaItemBinding()
             }
         } else {
             if (!medium.isVideo() && !medium.isPortrait()) {
                 PhotoItemGridBinding.bind(view).toMediaItemBinding()
             } else {
-                VideoItemGridBinding.bind(view).toMediaItemBinding()
+                VVideoItemGridBinding.bind(view).toMediaItemBinding()
             }
         }
     }

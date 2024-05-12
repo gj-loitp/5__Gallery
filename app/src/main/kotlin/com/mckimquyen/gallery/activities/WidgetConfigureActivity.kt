@@ -97,7 +97,7 @@ class WidgetConfigureActivity : SimpleActivity() {
 
     private fun saveConfig() {
         val views = RemoteViews(packageName, R.layout.widget)
-        views.setBackgroundColor(R.id.widget_holder, mBgColor)
+        views.setBackgroundColor(R.id.widgetHolder, mBgColor)
         AppWidgetManager.getInstance(this)?.updateAppWidget(mWidgetId, views) ?: return
         config.showWidgetFolderName = binding.folderPickerShowFolderName.isChecked
         val widget = Widget(null, mWidgetId, mFolderPath)

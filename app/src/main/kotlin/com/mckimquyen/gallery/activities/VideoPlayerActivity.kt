@@ -179,7 +179,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
         }
 
         binding.bottomVideoTimeHolder.videoCurrTime.setOnClickListener { doSkip(false) }
-        binding.bottomVideoTimeHolder.videoDuration.setOnClickListener { doSkip(true) }
+        binding.bottomVideoTimeHolder.tvVideoDuration.setOnClickListener { doSkip(true) }
         binding.bottomVideoTimeHolder.videoTogglePlayPause.setOnClickListener { togglePlayPause() }
         binding.videoSurfaceFrame.setOnClickListener { toggleFullscreen() }
         binding.videoSurfaceFrame.controller.settings.swallowDoubleTaps = true
@@ -301,7 +301,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             binding.bottomVideoTimeHolder.videoTogglePlayPause.beVisible()
             mDuration = (mExoPlayer!!.duration / 1000).toInt()
             binding.bottomVideoTimeHolder.videoSeekbar.max = mDuration
-            binding.bottomVideoTimeHolder.videoDuration.text = mDuration.getFormattedDuration()
+            binding.bottomVideoTimeHolder.tvVideoDuration.text = mDuration.getFormattedDuration()
             setPosition(mCurrTime)
 
             if (config.rememberLastVideoPosition) {
@@ -470,7 +470,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             binding.bottomVideoTimeHolder.videoNextFile,
             binding.bottomVideoTimeHolder.videoCurrTime,
             binding.bottomVideoTimeHolder.videoSeekbar,
-            binding.bottomVideoTimeHolder.videoDuration,
+            binding.bottomVideoTimeHolder.tvVideoDuration,
             binding.topShadow,
             binding.videoBottomGradient
         ).forEach {
@@ -481,7 +481,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
             binding.bottomVideoTimeHolder.videoPrevFile,
             binding.bottomVideoTimeHolder.videoNextFile,
             binding.bottomVideoTimeHolder.videoCurrTime,
-            binding.bottomVideoTimeHolder.videoDuration,
+            binding.bottomVideoTimeHolder.tvVideoDuration,
         ).forEach {
             it.isClickable = !mIsFullscreen
         }
@@ -509,7 +509,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
         binding.bottomVideoTimeHolder.videoTimeHolder.setPadding(0, 0, right, bottom)
         binding.bottomVideoTimeHolder.videoSeekbar.setOnSeekBarChangeListener(this)
         binding.bottomVideoTimeHolder.videoSeekbar.max = mDuration
-        binding.bottomVideoTimeHolder.videoDuration.text = mDuration.getFormattedDuration()
+        binding.bottomVideoTimeHolder.tvVideoDuration.text = mDuration.getFormattedDuration()
         binding.bottomVideoTimeHolder.videoCurrTime.text = mCurrTime.getFormattedDuration()
         setupTimer()
     }
@@ -562,7 +562,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                         arrayOf(
                             binding.bottomVideoTimeHolder.videoCurrTime,
                             binding.bottomVideoTimeHolder.videoSeekbar,
-                            binding.bottomVideoTimeHolder.videoDuration,
+                            binding.bottomVideoTimeHolder.tvVideoDuration,
                         ).forEach {
                             it.animate().alpha(1f).start()
                         }
@@ -599,7 +599,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
                         arrayOf(
                             binding.bottomVideoTimeHolder.videoCurrTime,
                             binding.bottomVideoTimeHolder.videoSeekbar,
-                            binding.bottomVideoTimeHolder.videoDuration,
+                            binding.bottomVideoTimeHolder.tvVideoDuration,
                         ).forEach {
                             it.animate().alpha(0f).start()
                         }

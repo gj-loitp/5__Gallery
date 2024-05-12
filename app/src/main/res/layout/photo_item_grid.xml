@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/media_item_holder"
+    android:id="@+id/mediaItemHolder"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true">
 
     <org.fossify.commons.views.MySquareImageView
-        android:id="@+id/medium_thumbnail"
+        android:id="@+id/mediumThumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -41,10 +41,10 @@
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/medium_check"
+        android:id="@+id/mediumCheck"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
-        android:layout_alignEnd="@+id/medium_name"
+        android:layout_alignEnd="@+id/tvMediumName"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/medium_margin"
@@ -55,11 +55,11 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/medium_name"
+        android:id="@+id/tvMediumName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/medium_thumbnail"
-        android:layout_alignEnd="@+id/medium_thumbnail"
+        android:layout_alignStart="@+id/mediumThumbnail"
+        android:layout_alignEnd="@+id/mediumThumbnail"
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_background"
         android:ellipsize="end"

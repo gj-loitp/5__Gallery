@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/widget_holder"
+    android:id="@+id/widgetHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/widget_background"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/widgetBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/widget_round_background" />
 
-    <ImageView
-        android:id="@+id/widget_imageview"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/widgetImageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/widget_folder_name"
+        android:layout_above="@+id/widgetFolderName"
         android:layout_centerInParent="true"
         android:paddingLeft="@dimen/tiny_margin"
         android:paddingTop="@dimen/small_margin"
@@ -23,8 +23,8 @@
         android:paddingBottom="@dimen/small_margin"
         tools:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/widget_folder_name"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/widgetFolderName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
