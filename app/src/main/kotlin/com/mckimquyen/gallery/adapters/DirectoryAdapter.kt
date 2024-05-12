@@ -31,9 +31,9 @@ import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.MediaActivity
-import com.mckimquyen.gallery.databinding.DirectoryItemGridRoundedCornersBinding
-import com.mckimquyen.gallery.databinding.DirectoryItemGridSquareBinding
-import com.mckimquyen.gallery.databinding.DirectoryItemListBinding
+import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
+import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
+import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
 import com.mckimquyen.gallery.dialogs.ConfirmDeleteFolderDialog
 import com.mckimquyen.gallery.dialogs.ExcludeFolderDialog
 import com.mckimquyen.gallery.dialogs.PickMediumDialog
@@ -79,9 +79,9 @@ class DirectoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = when {
-            isListViewType -> DirectoryItemListBinding.inflate(layoutInflater, parent, false)
-            folderStyle == FOLDER_STYLE_SQUARE -> DirectoryItemGridSquareBinding.inflate(layoutInflater, parent, false)
-            else -> DirectoryItemGridRoundedCornersBinding.inflate(layoutInflater, parent, false)
+            isListViewType -> VDirectoryItemListBinding.inflate(layoutInflater, parent, false)
+            folderStyle == FOLDER_STYLE_SQUARE -> VDirectoryItemGridSquareBinding.inflate(layoutInflater, parent, false)
+            else -> VDirectoryItemGridRoundedCornersBinding.inflate(layoutInflater, parent, false)
         }
 
         return createViewHolder(binding.root)
@@ -911,9 +911,9 @@ class DirectoryAdapter(
 
     private fun bindItem(view: View): DirectoryItemBinding {
         return when {
-            isListViewType -> DirectoryItemListBinding.bind(view).toItemBinding()
-            folderStyle == FOLDER_STYLE_SQUARE -> DirectoryItemGridSquareBinding.bind(view).toItemBinding()
-            else -> DirectoryItemGridRoundedCornersBinding.bind(view).toItemBinding()
+            isListViewType -> VDirectoryItemListBinding.bind(view).toItemBinding()
+            folderStyle == FOLDER_STYLE_SQUARE -> VDirectoryItemGridSquareBinding.bind(view).toItemBinding()
+            else -> VDirectoryItemGridRoundedCornersBinding.bind(view).toItemBinding()
         }
     }
 }

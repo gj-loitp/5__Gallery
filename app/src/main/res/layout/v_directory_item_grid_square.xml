@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dir_holder"
+    android:id="@+id/dirHolder"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -9,18 +9,18 @@
     android:padding="1px">
 
     <org.fossify.commons.views.MySquareImageView
-        android:id="@+id/dir_thumbnail"
+        android:id="@+id/dirThumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/dir_lock"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dirLock"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignStart="@+id/dir_thumbnail"
-        android:layout_alignTop="@+id/dir_thumbnail"
-        android:layout_alignEnd="@+id/dir_thumbnail"
-        android:layout_alignBottom="@+id/dir_thumbnail"
+        android:layout_alignStart="@+id/dirThumbnail"
+        android:layout_alignTop="@+id/dirThumbnail"
+        android:layout_alignEnd="@+id/dirThumbnail"
+        android:layout_alignBottom="@+id/dirThumbnail"
         android:layout_centerInParent="true"
         android:background="@color/default_background_color"
         android:contentDescription="@string/lock_folder"
@@ -28,11 +28,11 @@
         android:src="@drawable/ic_lock_vector"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/dir_check"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dirCheck"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
-        android:layout_alignEnd="@+id/dir_shadow_holder"
+        android:layout_alignEnd="@+id/dirShadowHolder"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/medium_margin"
@@ -42,8 +42,8 @@
         android:src="@drawable/ic_check_vector"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/dir_pin"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dirPin"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
         android:layout_alignParentStart="true"
@@ -56,15 +56,15 @@
         android:visibility="gone" />
 
     <RelativeLayout
-        android:id="@+id/dir_drag_handle_wrapper"
+        android:id="@+id/dirDragHandleWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dir_shadow_holder"
-        android:layout_alignEnd="@+id/dir_shadow_holder"
+        android:layout_alignStart="@+id/dirShadowHolder"
+        android:layout_alignEnd="@+id/dirShadowHolder"
         android:visibility="gone">
 
-        <ImageView
-            android:id="@+id/dir_drag_handle"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dirDragHandle"
             android:layout_width="@dimen/drag_handle_size"
             android:layout_height="@dimen/drag_handle_size"
             android:layout_alignParentTop="true"
@@ -77,22 +77,22 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/dir_shadow_holder"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dirShadowHolder"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tmb_shadow_height"
-        android:layout_alignStart="@+id/dir_bottom_holder"
-        android:layout_alignEnd="@+id/dir_bottom_holder"
+        android:layout_alignStart="@+id/dirBottomHolder"
+        android:layout_alignEnd="@+id/dirBottomHolder"
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_background"
         android:contentDescription="@null" />
 
     <LinearLayout
-        android:id="@+id/dir_bottom_holder"
+        android:id="@+id/dirBottomHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/dir_thumbnail"
-        android:layout_alignEnd="@+id/dir_thumbnail"
+        android:layout_alignStart="@+id/dirThumbnail"
+        android:layout_alignEnd="@+id/dirThumbnail"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
         android:orientation="vertical"
@@ -101,8 +101,8 @@
         android:paddingRight="@dimen/medium_margin"
         android:paddingBottom="@dimen/small_margin">
 
-        <TextView
-            android:id="@+id/dir_name"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dirName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/small_margin"
@@ -112,8 +112,8 @@
             android:textSize="@dimen/normal_text_size"
             tools:src="Camera" />
 
-        <TextView
-            android:id="@+id/photo_cnt"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/photoCnt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
@@ -122,11 +122,11 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/dir_location"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dirLocation"
         android:layout_width="@dimen/sd_card_icon_size"
         android:layout_height="@dimen/sd_card_icon_size"
-        android:layout_alignEnd="@+id/dir_bottom_holder"
+        android:layout_alignEnd="@+id/dirBottomHolder"
         android:layout_alignParentBottom="true"
         android:alpha="0.8"
         android:contentDescription="@null"

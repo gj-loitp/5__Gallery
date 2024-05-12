@@ -11,8 +11,8 @@ import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.toItemBinding
 import com.mckimquyen.gallery.databinding.DialogChangeFolderThumbnailStyleBinding
-import com.mckimquyen.gallery.databinding.DirectoryItemGridRoundedCornersBinding
-import com.mckimquyen.gallery.databinding.DirectoryItemGridSquareBinding
+import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
+import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.helpers.*
 
@@ -72,9 +72,9 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
             binding.dialogFolderSampleHolder.removeAllViews()
 
             val sampleBinding = if (useRoundedCornersLayout) {
-                DirectoryItemGridRoundedCornersBinding.inflate(activity.layoutInflater).toItemBinding()
+                VDirectoryItemGridRoundedCornersBinding.inflate(activity.layoutInflater).toItemBinding()
             } else {
-                DirectoryItemGridSquareBinding.inflate(activity.layoutInflater).toItemBinding()
+                VDirectoryItemGridSquareBinding.inflate(activity.layoutInflater).toItemBinding()
             }
             val sampleView = sampleBinding.root
             binding.dialogFolderSampleHolder.addView(sampleView)
