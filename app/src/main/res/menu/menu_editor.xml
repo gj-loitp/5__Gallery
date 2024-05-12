@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/save_as"
+        android:id="@+id/saveAs"
         android:icon="@drawable/ic_check_vector"
         android:title="@string/save_as"
         app:showAsAction="always" />
@@ -15,5 +15,5 @@
         android:id="@+id/share"
         android:icon="@drawable/ic_share_vector"
         android:title="@string/share"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

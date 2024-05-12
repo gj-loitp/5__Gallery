@@ -4,114 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource,AlwaysShowAction">
     <item
-        android:id="@+id/cab_delete"
+        android:id="@+id/cabDelete"
         android:icon="@drawable/ic_delete_vector"
         android:showAsAction="always"
         android:title="@string/delete"
         app:showAsAction="always" />
     <item
-        android:id="@+id/cab_properties"
+        android:id="@+id/cabProperties"
         android:icon="@drawable/ic_info_vector"
         android:showAsAction="always"
         android:title="@string/properties"
         app:showAsAction="always" />
     <item
-        android:id="@+id/cab_pin"
+        android:id="@+id/cabPin"
         android:icon="@drawable/ic_pin_filled_vector"
         android:showAsAction="always"
         android:title="@string/pin_to_the_top"
         app:showAsAction="always" />
     <item
-        android:id="@+id/cab_unpin"
+        android:id="@+id/cabUnpin"
         android:icon="@drawable/ic_pin_vector"
         android:title="@string/unpin_folder"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_move_to_top"
+        android:id="@+id/cabMoveToTop"
         android:icon="@drawable/ic_move_to_top_vector"
         android:title="@string/move_to_top"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_move_to_bottom"
+        android:id="@+id/cabMoveToBottom"
         android:icon="@drawable/ic_move_to_bottom_vector"
         android:title="@string/move_to_bottom"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_change_order"
+        android:id="@+id/cabChangeOrder"
         android:icon="@drawable/ic_drag_handle_vector"
         android:title="@string/reorder_by_dragging"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_rename"
+        android:id="@+id/cabRename"
         android:icon="@drawable/ic_rename_vector"
         android:title="@string/rename"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_hide"
+        android:id="@+id/cabHide"
         android:icon="@drawable/ic_hide_vector"
         android:title="@string/hide_folder"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_unhide"
+        android:id="@+id/cabUnhide"
         android:icon="@drawable/ic_unhide_vector"
         android:title="@string/unhide_folder"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/cab_copy_to"
+        android:id="@+id/cabCopyTo"
         android:showAsAction="never"
         android:title="@string/copy_to"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_move_to"
+        android:id="@+id/cabMoveTo"
         android:showAsAction="never"
         android:title="@string/move_to"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_create_shortcut"
+        android:id="@+id/cabCreateShortcut"
         android:showAsAction="never"
         android:title="@string/create_shortcut"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_empty_recycle_bin"
+        android:id="@+id/cabEmptyRecycleBin"
         android:showAsAction="never"
         android:title="@string/empty_recycle_bin"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_empty_disable_recycle_bin"
+        android:id="@+id/cabEmptyDisableRecycleBin"
         android:showAsAction="never"
         android:title="@string/empty_and_disable_recycle_bin"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_exclude"
+        android:id="@+id/cabExclude"
         android:showAsAction="never"
         android:title="@string/exclude"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_lock"
+        android:id="@+id/cabLock"
         android:showAsAction="never"
         android:title="@string/lock_folder"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_unlock"
+        android:id="@+id/cabUnlock"
         android:showAsAction="never"
         android:title="@string/unlock_folder"
         app:showAsAction="never" />
     <item
-        android:id="@+id/cab_change_cover_image"
+        android:id="@+id/cabChangeCoverImage"
         android:showAsAction="never"
         android:title="@string/change_cover_image"
         app:showAsAction="never">
         <menu>
             <item
-                android:id="@+id/cab_select_photo"
+                android:id="@+id/cabSelectPhoto"
                 android:title="@string/select_photo" />
             <item
-                android:id="@+id/cab_use_default"
+                android:id="@+id/cabUseDefault"
                 android:title="@string/use_default" />
         </menu>
     </item>
     <item
-        android:id="@+id/cab_select_all"
+        android:id="@+id/cabSelectAll"
         android:icon="@drawable/ic_select_all_vector"
         android:title="@string/select_all"
         app:showAsAction="ifRoom" />

@@ -53,7 +53,7 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     private fun setupOptionsMenu() {
         binding.manageFoldersToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.add_folder -> addFolder()
+                R.id.addFolder -> addFolder()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true

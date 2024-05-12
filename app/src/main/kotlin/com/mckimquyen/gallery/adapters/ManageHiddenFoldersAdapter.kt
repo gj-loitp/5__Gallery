@@ -23,13 +23,13 @@ class ManageHiddenFoldersAdapter(
         setupDragListener(true)
     }
 
-    override fun getActionMenuId() = R.menu.cab_hidden_folders
+    override fun getActionMenuId() = R.menu.menu_cab_hidden_folders
 
     override fun prepareActionMode(menu: Menu) {}
 
     override fun actionItemPressed(id: Int) {
         when (id) {
-            R.id.cab_unhide -> tryUnhideFolders()
+            R.id.cabUnhide -> tryUnhideFolders()
         }
     }
 
