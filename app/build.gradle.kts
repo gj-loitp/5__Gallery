@@ -95,7 +95,7 @@ android {
 
 dependencies {
 //    api(libs.fossify.commons)
-    ("com.github.gj-loitp:lib_Commons:1.0.0")
+    api("com.github.gj-loitp:lib_Commons:1.0.0")
     api(libs.android.image.cropper)
     api(libs.exif)
     api(libs.android.gif.drawable)
