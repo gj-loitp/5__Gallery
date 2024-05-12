@@ -6,11 +6,11 @@ import androidx.appcompat.app.AlertDialog
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogResizeImageBinding
+import com.mckimquyen.gallery.databinding.DlgResizeImageBinding
 
 class ResizeDialog(val activity: BaseSimpleActivity, val size: Point, val callback: (newSize: Point) -> Unit) {
     init {
-        val binding = DialogResizeImageBinding.inflate(activity.layoutInflater)
+        val binding = DlgResizeImageBinding.inflate(activity.layoutInflater)
         val widthView = binding.resizeImageWidth
         val heightView = binding.resizeImageHeight
 

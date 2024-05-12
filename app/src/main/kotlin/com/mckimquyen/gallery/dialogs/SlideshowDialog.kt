@@ -9,7 +9,7 @@ import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.extensions.value
 import org.fossify.commons.models.RadioItem
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogSlideshowBinding
+import com.mckimquyen.gallery.databinding.DlgSlideshowBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.helpers.SLIDESHOW_ANIMATION_FADE
 import com.mckimquyen.gallery.helpers.SLIDESHOW_ANIMATION_NONE
@@ -17,10 +17,10 @@ import com.mckimquyen.gallery.helpers.SLIDESHOW_ANIMATION_SLIDE
 import com.mckimquyen.gallery.helpers.SLIDESHOW_DEFAULT_INTERVAL
 
 class SlideshowDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) {
-    private val binding: DialogSlideshowBinding
+    private val binding: DlgSlideshowBinding
 
     init {
-        binding = DialogSlideshowBinding.inflate(activity.layoutInflater).apply {
+        binding = DlgSlideshowBinding.inflate(activity.layoutInflater).apply {
             intervalHint.hint = activity.getString(org.fossify.commons.R.string.seconds_raw).replaceFirstChar { it.uppercaseChar() }
             intervalValue.setOnClickListener {
                 intervalValue.selectAll()

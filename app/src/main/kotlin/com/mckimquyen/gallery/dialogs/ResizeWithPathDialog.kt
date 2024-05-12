@@ -8,13 +8,13 @@ import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogResizeImageWithPathBinding
+import com.mckimquyen.gallery.databinding.DlgResizeImageWithPathBinding
 import com.mckimquyen.gallery.extensions.config
 
 class ResizeWithPathDialog(val activity: BaseSimpleActivity, val size: Point, val path: String, val callback: (newSize: Point, newPath: String) -> Unit) {
     init {
         var realPath = path.getParentPath()
-        val binding = DialogResizeImageWithPathBinding.inflate(activity.layoutInflater).apply {
+        val binding = DlgResizeImageWithPathBinding.inflate(activity.layoutInflater).apply {
             folder.setText("${activity.humanizePath(realPath).trimEnd('/')}/")
 
             val fullName = path.getFilenameFromPath()
@@ -27,7 +27,7 @@ class ResizeWithPathDialog(val activity: BaseSimpleActivity, val size: Point, va
                 extensionValue.setText(extension)
             }
 
-            filenameValue.setText(name)
+            fileNameValue.setText(name)
             folder.setOnClickListener {
                 FilePickerDialog(activity, realPath, false, activity.config.shouldShowHidden, true, true) {
                     folder.setText(activity.humanizePath(it))
@@ -84,7 +84,7 @@ class ResizeWithPathDialog(val activity: BaseSimpleActivity, val size: Point, va
 
                         val newSize = Point(getViewValue(widthView), getViewValue(heightView))
 
-                        val filename = binding.filenameValue.value
+                        val filename = binding.fileNameValue.value
                         val extension = binding.extensionValue.value
                         if (filename.isEmpty()) {
                             activity.toast(org.fossify.commons.R.string.filename_cannot_be_empty)

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/save_as_holder"
+    android:id="@+id/saveAsHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
     <org.fossify.commons.views.MyTextInputLayout
-        android:id="@+id/folder_hint"
+        android:id="@+id/folderHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_margin"
         android:hint="@string/path">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/folder_value"
+            android:id="@+id/folderValue"
             style="@style/UnclickableEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -22,14 +22,14 @@
     </org.fossify.commons.views.MyTextInputLayout>
 
     <org.fossify.commons.views.MyTextInputLayout
-        android:id="@+id/filename_hint"
+        android:id="@+id/fileNameHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_margin"
         android:hint="@string/filename">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/filename_value"
+            android:id="@+id/fileNameValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapSentences"
@@ -40,13 +40,13 @@
     </org.fossify.commons.views.MyTextInputLayout>
 
     <org.fossify.commons.views.MyTextInputLayout
-        android:id="@+id/extension_hint"
+        android:id="@+id/extensionHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/extension">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/extension_value"
+            android:id="@+id/extensionValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"

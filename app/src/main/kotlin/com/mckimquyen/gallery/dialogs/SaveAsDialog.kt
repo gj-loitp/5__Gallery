@@ -6,7 +6,7 @@ import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.isRPlus
-import com.mckimquyen.gallery.databinding.DialogSaveAsBinding
+import com.mckimquyen.gallery.databinding.DlgSaveAsBinding
 import java.io.File
 
 class SaveAsDialog(
@@ -19,7 +19,7 @@ class SaveAsDialog(
             realPath = activity.getPicturesDirectoryPath(realPath)
         }
 
-        val binding = DialogSaveAsBinding.inflate(activity.layoutInflater).apply {
+        val binding = DlgSaveAsBinding.inflate(activity.layoutInflater).apply {
             folderValue.setText("${activity.humanizePath(realPath).trimEnd('/')}/")
 
             val fullName = path.getFilenameFromPath()
@@ -36,7 +36,7 @@ class SaveAsDialog(
                 name += "_1"
             }
 
-            filenameValue.setText(name)
+            fileNameValue.setText(name)
             folderValue.setOnClickListener {
                 activity.hideKeyboard(folderValue)
                 FilePickerDialog(activity, realPath, false, false, true, true) {
@@ -52,9 +52,9 @@ class SaveAsDialog(
             .setOnCancelListener { cancelCallback?.invoke() }
             .apply {
                 activity.setupDialogStuff(binding.root, this, org.fossify.commons.R.string.save_as) { alertDialog ->
-                    alertDialog.showKeyboard(binding.filenameValue)
+                    alertDialog.showKeyboard(binding.fileNameValue)
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                        val filename = binding.filenameValue.value
+                        val filename = binding.fileNameValue.value
                         val extension = binding.extensionValue.value
 
                         if (filename.isEmpty()) {

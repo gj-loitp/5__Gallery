@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/slideshow_scrollview"
+    android:id="@+id/slideshowScrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/slideshow_holder"
+        android:id="@+id/slideshowHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <org.fossify.commons.views.MyTextView
-            android:id="@+id/interval_label"
+            android:id="@+id/intervalLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/interval_hint"
-            android:layout_alignBottom="@+id/interval_hint"
+            android:layout_alignTop="@+id/intervalHint"
+            android:layout_alignBottom="@+id/intervalHint"
             android:layout_marginTop="@dimen/medium_margin"
             android:paddingStart="@dimen/big_margin"
             android:paddingTop="@dimen/bigger_margin"
+            android:paddingEnd="0dp"
             android:paddingBottom="@dimen/activity_margin"
-            android:text="@string/interval" />
+            android:text="@string/interval"
+            tools:ignore="RelativeOverlap" />
 
         <org.fossify.commons.views.MyTextInputLayout
-            android:id="@+id/interval_hint"
+            android:id="@+id/intervalHint"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -33,7 +35,7 @@
             android:hint="@string/seconds_raw">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/interval_value"
+                android:id="@+id/intervalValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -46,10 +48,10 @@
         </org.fossify.commons.views.MyTextInputLayout>
 
         <RelativeLayout
-            android:id="@+id/animation_holder"
+            android:id="@+id/animationHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/interval_label"
+            android:layout_below="@+id/intervalLabel"
             android:layout_marginTop="@dimen/medium_margin"
             android:background="?attr/selectableItemBackground"
             android:paddingStart="@dimen/activity_margin"
@@ -58,17 +60,17 @@
             android:paddingBottom="@dimen/bigger_margin">
 
             <org.fossify.commons.views.MyTextView
-                android:id="@+id/animation_label"
+                android:id="@+id/animationLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/animation_value"
+                android:layout_toStartOf="@+id/animationValue"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingRight="@dimen/medium_margin"
                 android:text="@string/animation" />
 
             <org.fossify.commons.views.MyTextView
-                android:id="@+id/animation_value"
+                android:id="@+id/animationValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -80,15 +82,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/include_videos_holder"
+            android:id="@+id/includeVideosHolder"
             style="@style/SettingsHolderCheckboxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/animation_holder"
+            android:layout_below="@+id/animationHolder"
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/include_videos"
+                android:id="@+id/includeVideos"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,15 +99,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/include_gifs_holder"
+            android:id="@+id/includeGifsHolder"
             style="@style/SettingsHolderCheckboxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/include_videos_holder"
+            android:layout_below="@+id/includeVideosHolder"
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/include_gifs"
+                android:id="@+id/includeGifs"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,15 +116,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/random_order_holder"
+            android:id="@+id/randomOrderHolder"
             style="@style/SettingsHolderCheckboxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/include_gifs_holder"
+            android:layout_below="@+id/includeGifsHolder"
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/random_order"
+                android:id="@+id/randomOrder"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,15 +133,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/move_backwards_holder"
+            android:id="@+id/moveBackwardsHolder"
             style="@style/SettingsHolderCheckboxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/random_order_holder"
+            android:layout_below="@+id/randomOrderHolder"
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/move_backwards"
+                android:id="@+id/moveBackwards"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,15 +150,15 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/loop_slideshow_holder"
+            android:id="@+id/loopSlideshowHolder"
             style="@style/SettingsHolderCheckboxStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/move_backwards_holder"
+            android:layout_below="@+id/moveBackwardsHolder"
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/loop_slideshow"
+                android:id="@+id/loopSlideshow"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

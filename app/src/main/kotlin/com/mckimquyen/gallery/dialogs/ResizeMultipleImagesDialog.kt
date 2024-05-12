@@ -6,7 +6,7 @@ import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogResizeMultipleImagesBinding
+import com.mckimquyen.gallery.databinding.DlgResizeMultipleImagesBinding
 import com.mckimquyen.gallery.extensions.ensureWriteAccess
 import com.mckimquyen.gallery.extensions.rescanPathsAndUpdateLastModified
 import com.mckimquyen.gallery.extensions.resizeImage
@@ -23,7 +23,7 @@ class ResizeMultipleImagesDialog(
 ) {
 
     private var dialog: AlertDialog? = null
-    private val binding = DialogResizeMultipleImagesBinding.inflate(activity.layoutInflater)
+    private val binding = DlgResizeMultipleImagesBinding.inflate(activity.layoutInflater)
     private val progressView = binding.resizeProgress
     private val resizeFactorEditText = binding.resizeFactorEditText
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/resize_image_holder"
+    android:id="@+id/resizeImageHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,14 +9,14 @@
     android:paddingRight="@dimen/activity_margin">
 
     <org.fossify.commons.views.MyTextInputLayout
-        android:id="@+id/resize_image_width_hint"
+        android:id="@+id/resizeImageWidthHint"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_margin"
         android:hint="@string/width">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/resize_image_width"
+            android:id="@+id/resizeImageWidth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -28,29 +28,29 @@
     </org.fossify.commons.views.MyTextInputLayout>
 
     <org.fossify.commons.views.MyTextView
-        android:id="@+id/resize_image_colon"
+        android:id="@+id/resizeImageColon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/resize_image_width_hint"
-        android:layout_alignBottom="@+id/resize_image_width_hint"
+        android:layout_alignTop="@+id/resizeImageWidthHint"
+        android:layout_alignBottom="@+id/resizeImageWidthHint"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_toEndOf="@+id/resize_image_width_hint"
+        android:layout_toEndOf="@+id/resizeImageWidthHint"
         android:gravity="center"
-        android:text=":"
+        android:text="@string/___"
         android:textStyle="bold" />
 
     <org.fossify.commons.views.MyTextInputLayout
-        android:id="@+id/resize_image_height_hint"
+        android:id="@+id/resizeImageHeightHint"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/resize_image_width_hint"
-        android:layout_alignBottom="@+id/resize_image_width_hint"
-        android:layout_toEndOf="@+id/resize_image_colon"
+        android:layout_alignTop="@+id/resizeImageWidthHint"
+        android:layout_alignBottom="@+id/resizeImageWidthHint"
+        android:layout_toEndOf="@+id/resizeImageColon"
         android:hint="@string/height">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/resize_image_height"
+            android:id="@+id/resizeImageHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -62,10 +62,10 @@
     </org.fossify.commons.views.MyTextInputLayout>
 
     <org.fossify.commons.views.MyAppCompatCheckbox
-        android:id="@+id/keep_aspect_ratio"
+        android:id="@+id/keepAspectRatio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/resize_image_width_hint"
+        android:layout_below="@+id/resizeImageWidthHint"
         android:checked="true"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin"
