@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 import org.fossify.commons.extensions.getFileKey
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.PortraitPhotoItemBinding
+import com.mckimquyen.gallery.databinding.VPortraitPhotoItemBinding
 
 class PortraitPhotosAdapter(val context: Context, val photos: ArrayList<String>, val sideElementWidth: Int, val itemClick: (Int, Int) -> Unit) :
     RecyclerView.Adapter<PortraitPhotosAdapter.ViewHolder>() {
@@ -27,7 +27,7 @@ class PortraitPhotosAdapter(val context: Context, val photos: ArrayList<String>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = PortraitPhotoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = VPortraitPhotoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding.root)
     }
 
@@ -46,14 +46,14 @@ class PortraitPhotosAdapter(val context: Context, val photos: ArrayList<String>,
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(photo: String, position: Int): View {
-            PortraitPhotoItemBinding.bind(itemView).apply {
-                portraitPhotoItemThumbnail.layoutParams.width = if (position == 0 || position == photos.lastIndex) {
+            VPortraitPhotoItemBinding.bind(itemView).apply {
+                ivPortraitPhotoItemThumbnail.layoutParams.width = if (position == 0 || position == photos.lastIndex) {
                     sideElementWidth
                 } else {
                     itemWidth
                 }
 
-                portraitPhotoItemThumbnail.background = if (photo.isEmpty() || position != currentSelectionIndex) {
+                ivPortraitPhotoItemThumbnail.background = if (photo.isEmpty() || position != currentSelectionIndex) {
                     null
                 } else {
                     strokeBackground
@@ -68,7 +68,7 @@ class PortraitPhotosAdapter(val context: Context, val photos: ArrayList<String>,
                     .load(photo)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .apply(options)
-                    .into(portraitPhotoItemThumbnail)
+                    .into(ivPortraitPhotoItemThumbnail)
 
                 if (photo.isNotEmpty()) {
                     root.isClickable = true

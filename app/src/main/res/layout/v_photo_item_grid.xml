@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <TextView
-        android:id="@+id/file_type"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFileType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -27,7 +27,7 @@
         android:textSize="@dimen/bigger_text_size"
         android:visibility="gone" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/favorite"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
@@ -40,7 +40,7 @@
         android:src="@drawable/ic_star_vector"
         android:visibility="gone" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/mediumCheck"
         android:layout_width="@dimen/selection_check_size"
         android:layout_height="@dimen/selection_check_size"
@@ -54,7 +54,7 @@
         android:src="@drawable/ic_check_vector"
         android:visibility="gone" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMediumName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

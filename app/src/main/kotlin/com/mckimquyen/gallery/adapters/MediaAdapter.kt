@@ -74,17 +74,17 @@ class MediaAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = if (viewType == ITEM_SECTION) {
-            ThumbnailSectionBinding.inflate(layoutInflater, parent, false)
+            VThumbnailSectionBinding.inflate(layoutInflater, parent, false)
         } else {
             if (isListViewType) {
                 if (viewType == ITEM_MEDIUM_PHOTO) {
-                    PhotoItemListBinding.inflate(layoutInflater, parent, false)
+                    VPhotoItemListBinding.inflate(layoutInflater, parent, false)
                 } else {
                     VVideoItemListBinding.inflate(layoutInflater, parent, false)
                 }
             } else {
                 if (viewType == ITEM_MEDIUM_PHOTO) {
-                    PhotoItemGridBinding.inflate(layoutInflater, parent, false)
+                    VPhotoItemGridBinding.inflate(layoutInflater, parent, false)
                 } else {
                     VVideoItemGridBinding.inflate(layoutInflater, parent, false)
                 }
@@ -696,9 +696,9 @@ class MediaAdapter(
     }
 
     private fun setupSection(view: View, section: ThumbnailSection) {
-        ThumbnailSectionBinding.bind(view).apply {
-            thumbnailSection.text = section.title
-            thumbnailSection.setTextColor(textColor)
+        VThumbnailSectionBinding.bind(view).apply {
+            tvThumbnailSection.text = section.title
+            tvThumbnailSection.setTextColor(textColor)
         }
     }
 
@@ -714,13 +714,13 @@ class MediaAdapter(
     private fun bindItem(view: View, medium: Medium): MediaItemBinding {
         return if (isListViewType) {
             if (!medium.isVideo() && !medium.isPortrait()) {
-                PhotoItemListBinding.bind(view).toMediaItemBinding()
+                VPhotoItemListBinding.bind(view).toMediaItemBinding()
             } else {
                 VVideoItemListBinding.bind(view).toMediaItemBinding()
             }
         } else {
             if (!medium.isVideo() && !medium.isPortrait()) {
-                PhotoItemGridBinding.bind(view).toMediaItemBinding()
+                VPhotoItemGridBinding.bind(view).toMediaItemBinding()
             } else {
                 VVideoItemGridBinding.bind(view).toMediaItemBinding()
             }

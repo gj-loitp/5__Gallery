@@ -18,33 +18,33 @@ interface MediaItemBinding {
     val mediumThumbnail: MySquareImageView
 }
 
-class PhotoListMediaItemBinding(val binding: PhotoItemListBinding) : MediaItemBinding {
+class PhotoListMediaItemBinding(val binding: VPhotoItemListBinding) : MediaItemBinding {
     override val root: ViewGroup = binding.root
     override val mediaItemHolder: ViewGroup = binding.mediaItemHolder
     override val favorite: ImageView = binding.favorite
     override val playPortraitOutline: ImageView? = null
-    override val fileType: TextView = binding.fileType
+    override val fileType: TextView = binding.tvFileType
     override val mediumName: TextView = binding.tvMediumName
     override val videoDuration: TextView? = null
     override val mediumCheck: ImageView = binding.mediumCheck
     override val mediumThumbnail: MySquareImageView = binding.mediumThumbnail
 }
 
-fun PhotoItemListBinding.toMediaItemBinding() = PhotoListMediaItemBinding(this)
+fun VPhotoItemListBinding.toMediaItemBinding() = PhotoListMediaItemBinding(this)
 
-class PhotoGridMediaItemBinding(val binding: PhotoItemGridBinding) : MediaItemBinding {
+class PhotoGridMediaItemBinding(val binding: VPhotoItemGridBinding) : MediaItemBinding {
     override val root: ViewGroup = binding.root
     override val mediaItemHolder: ViewGroup = binding.mediaItemHolder
     override val favorite: ImageView = binding.favorite
     override val playPortraitOutline: ImageView? = null
-    override val fileType: TextView = binding.fileType
+    override val fileType: TextView = binding.tvFileType
     override val mediumName: TextView = binding.tvMediumName
     override val videoDuration: TextView? = null
     override val mediumCheck: ImageView = binding.mediumCheck
     override val mediumThumbnail: MySquareImageView = binding.mediumThumbnail
 }
 
-fun PhotoItemGridBinding.toMediaItemBinding() = PhotoGridMediaItemBinding(this)
+fun VPhotoItemGridBinding.toMediaItemBinding() = PhotoGridMediaItemBinding(this)
 
 class VideoListMediaItemBinding(val binding: VVideoItemListBinding) : MediaItemBinding {
     override val root: ViewGroup = binding.root
