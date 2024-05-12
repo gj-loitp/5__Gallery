@@ -15,15 +15,16 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
+    namespace = "com.mckimquyen.gallery"
     compileSdk = 34
 
     defaultConfig {
         applicationId = "com.mckimquyen.gallery"
         minSdk = 23
         targetSdk = 34
-        versionName = "2024.05.09"
-        versionCode = 20240509
-        setProperty("archivesBaseName", "gallery-$versionCode")
+        versionName = "2024.05.12"
+        versionCode = 20240512
+        setProperty("archivesBaseName", "Cat Gallery-$versionCode")
     }
 
     signingConfigs {
@@ -43,9 +44,9 @@ android {
     }
 
     buildTypes {
-        debug {
-            applicationIdSuffix = ".debug"
-        }
+//        debug {
+//            applicationIdSuffix = ".debug"
+//        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -79,8 +80,6 @@ android {
     tasks.withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
     }
-
-    namespace = "com.mckimquyen.gallery"
 
     lint {
         checkReleaseBuilds = false

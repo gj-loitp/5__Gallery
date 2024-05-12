@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_launcher_name">Gallery</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_launcher_name">Cat Gallery</string>
     <string name="edit">Edit</string>
     <string name="open_camera">Open camera</string>
     <string name="hidden">(hidden)</string>
