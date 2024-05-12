@@ -11,7 +11,7 @@ import org.fossify.commons.views.MyGridLayoutManager
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
-import com.mckimquyen.gallery.databinding.DialogMediumPickerBinding
+import com.mckimquyen.gallery.databinding.DlgMediumPickerBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.getCachedMedia
 import com.mckimquyen.gallery.helpers.GridSpacingItemDecoration
@@ -23,7 +23,7 @@ import com.mckimquyen.gallery.models.ThumbnailSection
 class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val callback: (path: String) -> Unit) {
     private var dialog: AlertDialog? = null
     private var shownMedia = ArrayList<ThumbnailItem>()
-    private val binding = DialogMediumPickerBinding.inflate(activity.layoutInflater)
+    private val binding = DlgMediumPickerBinding.inflate(activity.layoutInflater)
     private val config = activity.config
     private val viewType = config.getFolderViewType(if (config.showAll) SHOW_ALL else path)
     private var isGridViewType = viewType == VIEW_TYPE_GRID

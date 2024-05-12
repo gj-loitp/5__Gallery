@@ -4,17 +4,17 @@ import androidx.appcompat.app.AlertDialog
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
-import com.mckimquyen.gallery.databinding.DialogOtherAspectRatioBinding
+import com.mckimquyen.gallery.databinding.DlgOtherAspectRatioBinding
 
 class OtherAspectRatioDialog(
     val activity: BaseSimpleActivity,
     val lastOtherAspectRatio: Pair<Float, Float>?,
-    val callback: (aspectRatio: Pair<Float, Float>) -> Unit
+    val callback: (aspectRatio: Pair<Float, Float>) -> Unit,
 ) {
     private var dialog: AlertDialog? = null
 
     init {
-        val binding = DialogOtherAspectRatioBinding.inflate(activity.layoutInflater).apply {
+        val binding = DlgOtherAspectRatioBinding.inflate(activity.layoutInflater).apply {
             otherAspectRatio21.setOnClickListener { ratioPicked(Pair(2f, 1f)) }
             otherAspectRatio32.setOnClickListener { ratioPicked(Pair(3f, 2f)) }
             otherAspectRatio43.setOnClickListener { ratioPicked(Pair(4f, 3f)) }

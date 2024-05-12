@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/manage_extended_details_scrollview"
+    android:id="@+id/manageExtendedDetailsScrollview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,7 +14,7 @@
         android:paddingRight="@dimen/activity_margin">
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_name"
+            android:id="@+id/manageExtendedDetailsName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -22,7 +22,7 @@
             android:text="@string/filename" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_path"
+            android:id="@+id/manageExtendedDetailsPath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -30,7 +30,7 @@
             android:text="@string/path" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_size"
+            android:id="@+id/manageExtendedDetailsSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -38,7 +38,7 @@
             android:text="@string/size" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_resolution"
+            android:id="@+id/manageExtendedDetailsResolution"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -46,7 +46,7 @@
             android:text="@string/resolution" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_last_modified"
+            android:id="@+id/manageExtendedDetailsLastModified"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -54,7 +54,7 @@
             android:text="@string/last_modified" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_date_taken"
+            android:id="@+id/manageExtendedDetailsDateTaken"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -62,7 +62,7 @@
             android:text="@string/date_taken" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_camera"
+            android:id="@+id/manageExtendedDetailsCamera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -70,7 +70,7 @@
             android:text="@string/camera" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_exif"
+            android:id="@+id/manageExtendedDetailsExif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -78,7 +78,7 @@
             android:text="@string/exif" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/manage_extended_details_gps_coordinates"
+            android:id="@+id/manageExtendedDetailsGpsCoordinates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
