@@ -127,9 +127,9 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
         updateMenuItemColors(binding.videoToolbar.menu, forceWhiteIcons = true)
         binding.videoToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.menu_change_orientation -> changeOrientation()
-                R.id.menu_open_with -> openPath(mUri!!.toString(), true)
-                R.id.menu_share -> shareMediumPath(mUri!!.toString())
+                R.id.menuChangeOrientation -> changeOrientation()
+                R.id.menuOpenWith -> openPath(mUri!!.toString(), true)
+                R.id.menuShare -> shareMediumPath(mUri!!.toString())
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true

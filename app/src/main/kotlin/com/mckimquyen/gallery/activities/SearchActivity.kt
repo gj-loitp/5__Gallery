@@ -77,7 +77,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
 
         binding.searchMenu.getToolbar().setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.toggle_filename -> toggleFilenameVisibility()
+                R.id.toggleFilename -> toggleFilenameVisibility()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true

@@ -73,7 +73,7 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
         binding.setWallpaperToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.save -> confirmWallpaper()
-                R.id.allow_changing_aspect_ratio -> binding.cropImageView.clearAspectRatio()
+                R.id.allowChangingAspectRatio -> binding.cropImageView.clearAspectRatio()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true

@@ -87,11 +87,11 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         val visibleBottomActions = if (config.bottomActions) config.visibleBottomActions else 0
 
         binding.fragmentViewerToolbar.menu.apply {
-            findItem(R.id.menu_set_as).isVisible = mMedium?.isImage() == true && visibleBottomActions and BOTTOM_ACTION_SET_AS == 0
-            findItem(R.id.menu_edit).isVisible = mMedium?.isImage() == true && mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_EDIT == 0
-            findItem(R.id.menu_properties).isVisible = mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_PROPERTIES == 0
-            findItem(R.id.menu_share).isVisible = visibleBottomActions and BOTTOM_ACTION_SHARE == 0
-            findItem(R.id.menu_show_on_map).isVisible = visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP == 0
+            findItem(R.id.menuSetAs).isVisible = mMedium?.isImage() == true && visibleBottomActions and BOTTOM_ACTION_SET_AS == 0
+            findItem(R.id.menuEdit).isVisible = mMedium?.isImage() == true && mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_EDIT == 0
+            findItem(R.id.menuProperties).isVisible = mUri?.scheme == "file" && visibleBottomActions and BOTTOM_ACTION_PROPERTIES == 0
+            findItem(R.id.menuShare).isVisible = visibleBottomActions and BOTTOM_ACTION_SHARE == 0
+            findItem(R.id.menuShowOnMap).isVisible = visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP == 0
         }
     }
 
@@ -110,12 +110,12 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
             }
 
             when (menuItem.itemId) {
-                R.id.menu_set_as -> setAs(mUri!!.toString())
-                R.id.menu_open_with -> openPath(mUri!!.toString(), true)
-                R.id.menu_share -> sharePath(mUri!!.toString())
-                R.id.menu_edit -> openEditor(mUri!!.toString())
-                R.id.menu_properties -> showProperties()
-                R.id.menu_show_on_map -> showFileOnMap(mUri!!.toString())
+                R.id.menuSetAs -> setAs(mUri!!.toString())
+                R.id.menuOpenWith -> openPath(mUri!!.toString(), true)
+                R.id.menuShare -> sharePath(mUri!!.toString())
+                R.id.menuEdit -> openEditor(mUri!!.toString())
+                R.id.menuProperties -> showProperties()
+                R.id.menuShowOnMap -> showFileOnMap(mUri!!.toString())
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true

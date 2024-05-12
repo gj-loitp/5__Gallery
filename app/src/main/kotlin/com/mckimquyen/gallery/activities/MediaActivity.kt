@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.dialogs.CreateNewFolderDialog
 import org.fossify.commons.dialogs.RadioGroupDialog
 import org.fossify.commons.extensions.*
@@ -250,25 +249,25 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
         binding.mediaMenu.getToolbar().menu.apply {
             findItem(R.id.group).isVisible = !config.scrollHorizontally
 
-            findItem(R.id.empty_recycle_bin).isVisible = mPath == RECYCLE_BIN
-            findItem(R.id.empty_disable_recycle_bin).isVisible = mPath == RECYCLE_BIN
-            findItem(R.id.restore_all_files).isVisible = mPath == RECYCLE_BIN
+            findItem(R.id.emptyRecycleBin).isVisible = mPath == RECYCLE_BIN
+            findItem(R.id.emptyDisableRecycleBin).isVisible = mPath == RECYCLE_BIN
+            findItem(R.id.restoreAllFiles).isVisible = mPath == RECYCLE_BIN
 
-            findItem(R.id.folder_view).isVisible = mShowAll
-            findItem(R.id.open_camera).isVisible = mShowAll
+            findItem(R.id.folderView).isVisible = mShowAll
+            findItem(R.id.openCamera).isVisible = mShowAll
             findItem(R.id.about).isVisible = mShowAll
-            findItem(R.id.create_new_folder).isVisible = !mShowAll && mPath != RECYCLE_BIN && mPath != FAVORITES
-            findItem(R.id.open_recycle_bin).isVisible = config.useRecycleBin && mPath != RECYCLE_BIN
+            findItem(R.id.createNewFolder).isVisible = !mShowAll && mPath != RECYCLE_BIN && mPath != FAVORITES
+            findItem(R.id.openRecycleBin).isVisible = config.useRecycleBin && mPath != RECYCLE_BIN
 
-            findItem(R.id.temporarily_show_hidden).isVisible = !config.shouldShowHidden
-            findItem(R.id.stop_showing_hidden).isVisible = (!isRPlus() || isExternalStorageManager()) && config.temporarilyShowHidden
+            findItem(R.id.temporarilyShowHidden).isVisible = !config.shouldShowHidden
+            findItem(R.id.stopShowingHidden).isVisible = (!isRPlus() || isExternalStorageManager()) && config.temporarilyShowHidden
 
-            findItem(R.id.set_as_default_folder).isVisible = !isDefaultFolder
-            findItem(R.id.unset_as_default_folder).isVisible = isDefaultFolder
+            findItem(R.id.setAsDefaultFolder).isVisible = !isDefaultFolder
+            findItem(R.id.unsetAsDefaultFolder).isVisible = isDefaultFolder
 
             val viewType = config.getFolderViewType(if (mShowAll) SHOW_ALL else mPath)
-            findItem(R.id.column_count).isVisible = viewType == VIEW_TYPE_GRID
-            findItem(R.id.toggle_filename).isVisible = viewType == VIEW_TYPE_GRID
+            findItem(R.id.columnCount).isVisible = viewType == VIEW_TYPE_GRID
+            findItem(R.id.toggleFilename).isVisible = viewType == VIEW_TYPE_GRID
         }
     }
 
@@ -287,21 +286,21 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
             when (menuItem.itemId) {
                 R.id.sort -> showSortingDialog()
                 R.id.filter -> showFilterMediaDialog()
-                R.id.empty_recycle_bin -> emptyRecycleBin()
-                R.id.empty_disable_recycle_bin -> emptyAndDisableRecycleBin()
-                R.id.restore_all_files -> restoreAllFiles()
-                R.id.toggle_filename -> toggleFilenameVisibility()
-                R.id.open_camera -> launchCamera()
-                R.id.folder_view -> switchToFolderView()
-                R.id.change_view_type -> changeViewType()
+                R.id.emptyRecycleBin -> emptyRecycleBin()
+                R.id.emptyDisableRecycleBin -> emptyAndDisableRecycleBin()
+                R.id.restoreAllFiles -> restoreAllFiles()
+                R.id.toggleFilename -> toggleFilenameVisibility()
+                R.id.openCamera -> launchCamera()
+                R.id.folderView -> switchToFolderView()
+                R.id.changeViewType -> changeViewType()
                 R.id.group -> showGroupByDialog()
-                R.id.create_new_folder -> createNewFolder()
-                R.id.open_recycle_bin -> openRecycleBin()
-                R.id.temporarily_show_hidden -> tryToggleTemporarilyShowHidden()
-                R.id.stop_showing_hidden -> tryToggleTemporarilyShowHidden()
-                R.id.column_count -> changeColumnCount()
-                R.id.set_as_default_folder -> setAsDefaultFolder()
-                R.id.unset_as_default_folder -> unsetAsDefaultFolder()
+                R.id.createNewFolder -> createNewFolder()
+                R.id.openRecycleBin -> openRecycleBin()
+                R.id.temporarilyShowHidden -> tryToggleTemporarilyShowHidden()
+                R.id.stopShowingHidden -> tryToggleTemporarilyShowHidden()
+                R.id.columnCount -> changeColumnCount()
+                R.id.setAsDefaultFolder -> setAsDefaultFolder()
+                R.id.unsetAsDefaultFolder -> unsetAsDefaultFolder()
                 R.id.slideshow -> startSlideshow()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
