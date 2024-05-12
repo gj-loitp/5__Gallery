@@ -11,7 +11,7 @@ import org.fossify.commons.extensions.setupViewBackground
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.ItemManageFolderBinding
+import com.mckimquyen.gallery.databinding.VItemManageFolderBinding
 import com.mckimquyen.gallery.extensions.removeNoMedia
 
 class ManageHiddenFoldersAdapter(
@@ -46,7 +46,7 @@ class ManageHiddenFoldersAdapter(
     override fun onActionModeDestroyed() {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return createViewHolder(ItemManageFolderBinding.inflate(layoutInflater, parent, false).root)
+        return createViewHolder(VItemManageFolderBinding.inflate(layoutInflater, parent, false).root)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -62,7 +62,7 @@ class ManageHiddenFoldersAdapter(
     private fun getSelectedItems() = folders.filter { selectedKeys.contains(it.hashCode()) } as ArrayList<String>
 
     private fun setupView(view: View, folder: String) {
-        ItemManageFolderBinding.bind(view).apply {
+        VItemManageFolderBinding.bind(view).apply {
             root.setupViewBackground(activity)
             manageFolderHolder.isSelected = selectedKeys.contains(folder.hashCode())
             manageFolderTitle.apply {

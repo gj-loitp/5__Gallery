@@ -15,7 +15,7 @@ import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.FragmentHolderBinding
+import com.mckimquyen.gallery.databinding.FrmHolderBinding
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.fragments.PhotoFragment
 import com.mckimquyen.gallery.fragments.VideoFragment
@@ -33,7 +33,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
 
     var mIsVideo = false
 
-    private val binding by viewBinding(FragmentHolderBinding::inflate)
+    private val binding by viewBinding(FrmHolderBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true
@@ -229,7 +229,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
             mFragment = if (mIsVideo) VideoFragment() else PhotoFragment()
             mFragment!!.listener = this
             mFragment!!.arguments = bundle
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_placeholder, mFragment!!).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentPlaceholder, mFragment!!).commit()
         }
 
         if (config.blackBackground) {

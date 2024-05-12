@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.EditorFilterItemBinding
+import com.mckimquyen.gallery.databinding.VEditorFilterItemBinding
 import com.mckimquyen.gallery.models.FilterItem
 
 class FiltersAdapter(val context: Context, val filterItems: ArrayList<FilterItem>, val itemClick: (Int) -> Unit) :
@@ -20,7 +20,7 @@ class FiltersAdapter(val context: Context, val filterItems: ArrayList<FilterItem
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = EditorFilterItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = VEditorFilterItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -37,7 +37,7 @@ class FiltersAdapter(val context: Context, val filterItems: ArrayList<FilterItem
         }
     }
 
-    inner class ViewHolder(private val binding: EditorFilterItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: VEditorFilterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindView(filterItem: FilterItem): View {
             binding.apply {
                 editorFilterItemLabel.text = filterItem.filter.name

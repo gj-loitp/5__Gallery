@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/manage_folder_holder"
+    android:id="@+id/manageFolderHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/tiny_margin"
@@ -10,16 +10,16 @@
     android:paddingStart="@dimen/activity_margin">
 
     <org.fossify.commons.views.MyTextView
-        android:id="@+id/manage_folder_title"
+        android:id="@+id/manageFolderTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginTop="@dimen/medium_margin"
-        android:layout_toStartOf="@+id/overflow_menu_icon"
+        android:layout_toStartOf="@+id/overflowMenuIcon"
         tools:text="/Internal/DCIM" />
 
-    <ImageView
-        android:id="@+id/overflow_menu_icon"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/overflowMenuIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -30,7 +30,7 @@
         android:src="@drawable/ic_three_dots_vector" />
 
     <View
-        android:id="@+id/overflow_menu_anchor"
+        android:id="@+id/overflowMenuAnchor"
         style="@style/OverflowMenuAnchorStyle"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true" />
