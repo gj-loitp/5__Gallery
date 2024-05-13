@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dialog_scrollview"
+    android:id="@+id/dialogScrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/dialog_holder"
+        android:id="@+id/dialogHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/dialog_file_style_spacing_holder"
+            android:id="@+id/dialogFileStyleSpacingHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/ripple_top_corners"
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/dialog_file_style_spacing"
+                android:layout_toStartOf="@+id/dialogFileStyleSpacing"
                 android:ellipsize="end"
                 android:lines="1"
                 android:paddingStart="@dimen/small_margin"
@@ -34,7 +34,7 @@
                 android:text="@string/thumbnail_spacing" />
 
             <org.fossify.commons.views.MyTextView
-                android:id="@+id/dialog_file_style_spacing"
+                android:id="@+id/dialogFileStyleSpacing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -53,7 +53,7 @@
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/dialog_file_style_rounded_corners"
+                android:id="@+id/dialogFileStyleRoundedCorners"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/dialog_file_style_show_thumbnail_video_duration"
+                android:id="@+id/dialogFileStyleShowThumbnailVideoDuration"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/dialog_file_style_show_thumbnail_file_types"
+                android:id="@+id/dialogFileStyleShowThumbnailFileTypes"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:background="?attr/selectableItemBackground">
 
             <org.fossify.commons.views.MyAppCompatCheckbox
-                android:id="@+id/dialog_file_style_mark_favorite_items"
+                android:id="@+id/dialogFileStyleMarkFavoriteItems"
                 style="@style/SettingsCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

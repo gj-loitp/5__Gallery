@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/sorting_dialog_scrollview"
+    android:id="@+id/groupingDialogScrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/sorting_dialog_holder"
+        android:id="@+id/grouping_dialog_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -14,105 +14,103 @@
         android:paddingRight="@dimen/activity_margin">
 
         <RadioGroup
-            android:id="@+id/sorting_dialog_radio_sorting"
+            android:id="@+id/grouping_dialog_radio_grouping"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/medium_margin">
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_name"
+                android:id="@+id/grouping_dialog_radio_none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name" />
+                android:text="@string/do_not_group_files" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_path"
+                android:id="@+id/groupingDialogRadioLastModifiedDaily"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/path" />
+                android:text="@string/by_last_modified_daily" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_size"
+                android:id="@+id/grouping_dialog_radio_last_modified_monthly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/size" />
+                android:text="@string/by_last_modified_monthly" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_last_modified"
+                android:id="@+id/grouping_dialog_radio_date_taken_daily"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/last_modified" />
+                android:text="@string/by_date_taken_daily" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_date_taken"
+                android:id="@+id/groupingDialogRadioDateTakenMonthly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/date_taken" />
+                android:text="@string/by_date_taken_monthly" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_random"
+                android:id="@+id/grouping_dialog_radio_file_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/random" />
+                android:text="@string/by_file_type" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_custom"
+                android:id="@+id/grouping_dialog_radio_extension"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/custom" />
+                android:text="@string/by_extension" />
+
+            <org.fossify.commons.views.MyCompatRadioButton
+                android:id="@+id/grouping_dialog_radio_folder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/by_folder" />
 
         </RadioGroup>
 
-        <ImageView
-            android:id="@+id/sorting_dialog_sorting_divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/divider_height"
-            android:background="@color/divider_grey"
-            android:importantForAccessibility="no" />
+        <include layout="@layout/divider" />
 
         <RadioGroup
-            android:id="@+id/sorting_dialog_radio_order"
+            android:id="@+id/groupingDialogRadioOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:paddingBottom="@dimen/medium_margin">
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_ascending"
+                android:id="@+id/grouping_dialog_radio_ascending"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ascending" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/sorting_dialog_radio_descending"
+                android:id="@+id/grouping_dialog_radio_descending"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/descending" />
         </RadioGroup>
 
-        <ImageView
-            android:id="@+id/sorting_dialog_order_divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/divider_height"
-            android:background="@color/divider_grey"
-            android:importantForAccessibility="no" />
+        <include
+            android:id="@+id/useForThisFolderDivider"
+            layout="@layout/divider" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/sorting_dialog_numeric_sorting"
+            android:id="@+id/grouping_dialog_show_file_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/min_radio_checkbox_height"
-            android:text="@string/sort_numeric_parts" />
+            android:text="@string/show_file_count_section_header" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/sorting_dialog_use_for_this_folder"
+            android:id="@+id/groupingDialogUseForThisFolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/min_radio_checkbox_height"
             android:text="@string/use_for_this_folder" />
 
         <org.fossify.commons.views.MyTextView
-            android:id="@+id/sorting_dialog_bottom_note"
+            android:id="@+id/groupingDialogBottomNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/small_margin"

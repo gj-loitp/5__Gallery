@@ -6,12 +6,12 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.helpers.VIEW_TYPE_GRID
 import org.fossify.commons.helpers.VIEW_TYPE_LIST
-import com.mckimquyen.gallery.databinding.DialogChangeViewTypeBinding
+import com.mckimquyen.gallery.databinding.DlgChangeViewTypeBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.helpers.SHOW_ALL
 
 class ChangeViewTypeDialog(val activity: BaseSimpleActivity, val fromFoldersView: Boolean, val path: String = "", val callback: () -> Unit) {
-    private val binding = DialogChangeViewTypeBinding.inflate(activity.layoutInflater)
+    private val binding = DlgChangeViewTypeBinding.inflate(activity.layoutInflater)
     private var config = activity.config
     private var pathToUse = if (path.isEmpty()) SHOW_ALL else path
 

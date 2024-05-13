@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/change_view_type_dialog_scrollview"
+    android:id="@+id/changeViewTypeDialogScrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/change_view_type_dialog_holder"
+        android:id="@+id/changeViewTypeDialogHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -14,19 +14,19 @@
         android:paddingRight="@dimen/activity_margin">
 
         <RadioGroup
-            android:id="@+id/change_view_type_dialog_radio"
+            android:id="@+id/changeViewTypeDialogRadio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/medium_margin">
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/change_view_type_dialog_radio_grid"
+                android:id="@+id/changeViewTypeDialogRadioGrid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/grid" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/change_view_type_dialog_radio_list"
+                android:id="@+id/changeViewTypeDialogRadioList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/list" />
@@ -34,11 +34,11 @@
         </RadioGroup>
 
         <include
-            android:id="@+id/group_direct_subfolders_divider"
+            android:id="@+id/groupDirectSubfoldersDivider"
             layout="@layout/divider" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/change_view_type_dialog_group_direct_subfolders"
+            android:id="@+id/changeViewTypeDialogGroupDirectSubfolders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -46,7 +46,7 @@
             android:text="@string/group_direct_subfolders" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/change_view_type_dialog_use_for_this_folder"
+            android:id="@+id/changeViewTypeDialogUseForThisFolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"

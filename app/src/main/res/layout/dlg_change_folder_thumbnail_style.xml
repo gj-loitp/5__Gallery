@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dialog_scrollview"
+    android:id="@+id/dialogScrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/dialog_holder"
+        android:id="@+id/dialogHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -14,7 +14,7 @@
         android:paddingRight="@dimen/activity_margin">
 
         <RelativeLayout
-            android:id="@+id/dialog_folder_sample_holder"
+            android:id="@+id/dialogFolderSampleHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -34,7 +34,7 @@
                 android:text="@string/square" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/dialog_radio_folder_rounded_corners"
+                android:id="@+id/dialogRadioFolderRoundedCorners"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/medium_margin"
@@ -46,7 +46,7 @@
         <include layout="@layout/divider" />
 
         <RadioGroup
-            android:id="@+id/dialog_radio_folder_count_holder"
+            android:id="@+id/dialogRadioFolderCountHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
@@ -69,7 +69,7 @@
                 android:text="@string/show_file_count_brackets" />
 
             <org.fossify.commons.views.MyCompatRadioButton
-                android:id="@+id/dialog_radio_folder_count_none"
+                android:id="@+id/dialogRadioFolderCountNone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/medium_margin"
@@ -80,7 +80,7 @@
         <include layout="@layout/divider" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/dialog_folder_limit_title"
+            android:id="@+id/dialogFolderLimitTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"

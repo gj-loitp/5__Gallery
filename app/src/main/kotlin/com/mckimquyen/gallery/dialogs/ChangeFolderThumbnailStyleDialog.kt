@@ -10,7 +10,7 @@ import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.toItemBinding
-import com.mckimquyen.gallery.databinding.DialogChangeFolderThumbnailStyleBinding
+import com.mckimquyen.gallery.databinding.DlgChangeFolderThumbnailStyleBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.extensions.config
@@ -18,7 +18,7 @@ import com.mckimquyen.gallery.helpers.*
 
 class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) : DialogInterface.OnClickListener {
     private var config = activity.config
-    private val binding = DialogChangeFolderThumbnailStyleBinding.inflate(activity.layoutInflater).apply {
+    private val binding = DlgChangeFolderThumbnailStyleBinding.inflate(activity.layoutInflater).apply {
         dialogFolderLimitTitle.isChecked = config.limitFolderTitle
     }
 
@@ -68,7 +68,7 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
         val photoCount = 36
         val folderName = "Camera"
         binding.apply {
-            val useRoundedCornersLayout = binding.dialogRadioFolderStyle.checkedRadioButtonId == R.id.dialog_radio_folder_rounded_corners
+            val useRoundedCornersLayout = binding.dialogRadioFolderStyle.checkedRadioButtonId == R.id.dialogRadioFolderRoundedCorners
             binding.dialogFolderSampleHolder.removeAllViews()
 
             val sampleBinding = if (useRoundedCornersLayout) {

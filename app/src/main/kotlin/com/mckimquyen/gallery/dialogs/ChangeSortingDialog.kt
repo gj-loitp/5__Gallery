@@ -5,7 +5,7 @@ import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogChangeSortingBinding
+import com.mckimquyen.gallery.databinding.DlgChangeSortingBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.helpers.SHOW_ALL
 
@@ -17,11 +17,11 @@ class ChangeSortingDialog(
     private var currSorting = 0
     private var config = activity.config
     private var pathToUse = if (!isDirectorySorting && path.isEmpty()) SHOW_ALL else path
-    private val binding: DialogChangeSortingBinding
+    private val binding: DlgChangeSortingBinding
 
     init {
         currSorting = if (isDirectorySorting) config.directorySorting else config.getFolderSorting(pathToUse)
-        binding = DialogChangeSortingBinding.inflate(activity.layoutInflater).apply {
+        binding = DlgChangeSortingBinding.inflate(activity.layoutInflater).apply {
             sortingDialogOrderDivider.beVisibleIf(showFolderCheckbox || (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
 
             sortingDialogNumericSorting.beVisibleIf(showFolderCheckbox && (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
@@ -80,16 +80,16 @@ class ChangeSortingDialog(
     override fun onClick(dialog: DialogInterface, which: Int) {
         val sortingRadio = binding.sortingDialogRadioSorting
         var sorting = when (sortingRadio.checkedRadioButtonId) {
-            R.id.sorting_dialog_radio_name -> SORT_BY_NAME
-            R.id.sorting_dialog_radio_path -> SORT_BY_PATH
-            R.id.sorting_dialog_radio_size -> SORT_BY_SIZE
-            R.id.sorting_dialog_radio_last_modified -> SORT_BY_DATE_MODIFIED
-            R.id.sorting_dialog_radio_random -> SORT_BY_RANDOM
-            R.id.sorting_dialog_radio_custom -> SORT_BY_CUSTOM
+            R.id.sortingDialogRadioName -> SORT_BY_NAME
+            R.id.sortingDialogRadioPath -> SORT_BY_PATH
+            R.id.sortingDialogRadioSize -> SORT_BY_SIZE
+            R.id.sortingDialogRadioLastModified -> SORT_BY_DATE_MODIFIED
+            R.id.sortingDialogRadioRandom -> SORT_BY_RANDOM
+            R.id.sortingDialogRadioCustom -> SORT_BY_CUSTOM
             else -> SORT_BY_DATE_TAKEN
         }
 
-        if (binding.sortingDialogRadioOrder.checkedRadioButtonId == R.id.sorting_dialog_radio_descending) {
+        if (binding.sortingDialogRadioOrder.checkedRadioButtonId == R.id.sortingDialogRadioDescending) {
             sorting = sorting or SORT_DESCENDING
         }
 

@@ -6,7 +6,7 @@ import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogChangeGroupingBinding
+import com.mckimquyen.gallery.databinding.DlgChangeGroupingBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.helpers.*
 
@@ -15,11 +15,11 @@ class ChangeGroupingDialog(val activity: BaseSimpleActivity, val path: String = 
     private var currGrouping = 0
     private var config = activity.config
     private val pathToUse = if (path.isEmpty()) SHOW_ALL else path
-    private val binding: DialogChangeGroupingBinding
+    private val binding: DlgChangeGroupingBinding
 
     init {
         currGrouping = config.getFolderGrouping(pathToUse)
-        binding = DialogChangeGroupingBinding.inflate(activity.layoutInflater).apply {
+        binding = DlgChangeGroupingBinding.inflate(activity.layoutInflater).apply {
             groupingDialogUseForThisFolder.isChecked = config.hasCustomGrouping(pathToUse)
             groupingDialogRadioFolder.beVisibleIf(path.isEmpty())
         }
@@ -63,10 +63,10 @@ class ChangeGroupingDialog(val activity: BaseSimpleActivity, val path: String = 
         val groupingRadio = binding.groupingDialogRadioGrouping
         var grouping = when (groupingRadio.checkedRadioButtonId) {
             R.id.grouping_dialog_radio_none -> GROUP_BY_NONE
-            R.id.grouping_dialog_radio_last_modified_daily -> GROUP_BY_LAST_MODIFIED_DAILY
+            R.id.groupingDialogRadioLastModifiedDaily -> GROUP_BY_LAST_MODIFIED_DAILY
             R.id.grouping_dialog_radio_last_modified_monthly -> GROUP_BY_LAST_MODIFIED_MONTHLY
             R.id.grouping_dialog_radio_date_taken_daily -> GROUP_BY_DATE_TAKEN_DAILY
-            R.id.grouping_dialog_radio_date_taken_monthly -> GROUP_BY_DATE_TAKEN_MONTHLY
+            R.id.groupingDialogRadioDateTakenMonthly -> GROUP_BY_DATE_TAKEN_MONTHLY
             R.id.grouping_dialog_radio_file_type -> GROUP_BY_FILE_TYPE
             R.id.grouping_dialog_radio_extension -> GROUP_BY_EXTENSION
             else -> GROUP_BY_FOLDER

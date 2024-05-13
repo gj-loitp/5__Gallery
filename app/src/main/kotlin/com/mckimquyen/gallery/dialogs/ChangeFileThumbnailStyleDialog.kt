@@ -6,16 +6,16 @@ import org.fossify.commons.dialogs.RadioGroupDialog
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.models.RadioItem
-import com.mckimquyen.gallery.databinding.DialogChangeFileThumbnailStyleBinding
+import com.mckimquyen.gallery.databinding.DlgChangeFileThumbnailStyleBinding
 import com.mckimquyen.gallery.extensions.config
 
 class ChangeFileThumbnailStyleDialog(val activity: BaseSimpleActivity) : DialogInterface.OnClickListener {
     private var config = activity.config
-    private val binding: DialogChangeFileThumbnailStyleBinding
+    private val binding: DlgChangeFileThumbnailStyleBinding
     private var thumbnailSpacing = config.thumbnailSpacing
 
     init {
-        binding = DialogChangeFileThumbnailStyleBinding.inflate(activity.layoutInflater).apply {
+        binding = DlgChangeFileThumbnailStyleBinding.inflate(activity.layoutInflater).apply {
             dialogFileStyleRoundedCorners.isChecked = config.fileRoundedCorners
             dialogFileStyleShowThumbnailVideoDuration.isChecked = config.showThumbnailVideoDuration
             dialogFileStyleShowThumbnailFileTypes.isChecked = config.showThumbnailFileTypes
