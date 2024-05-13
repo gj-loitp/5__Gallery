@@ -4,13 +4,13 @@ import android.app.Activity
 import androidx.appcompat.app.AlertDialog
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
-import com.mckimquyen.gallery.databinding.DialogConfirmDeleteFolderBinding
+import com.mckimquyen.gallery.databinding.DlgConfirmDeleteFolderBinding
 
 class ConfirmDeleteFolderDialog(activity: Activity, message: String, warningMessage: String, val callback: () -> Unit) {
     private var dialog: AlertDialog? = null
 
     init {
-        val binding = DialogConfirmDeleteFolderBinding.inflate(activity.layoutInflater)
+        val binding = DlgConfirmDeleteFolderBinding.inflate(activity.layoutInflater)
         binding.message.text = message
         binding.messageWarning.text = warningMessage
 

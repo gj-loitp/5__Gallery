@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/aspect_ratio_holder"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/aspectRatioHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,14 +10,14 @@
     android:paddingRight="@dimen/activity_margin">
 
     <org.fossify.commons.views.MyTextInputLayout
-        android:id="@+id/aspect_ratio_width_hint"
+        android:id="@+id/aspectRatioWidthHint"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_margin"
         android:hint="@string/width">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/aspect_ratio_width"
+            android:id="@+id/aspectRatioWidth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -28,29 +29,30 @@
     </org.fossify.commons.views.MyTextInputLayout>
 
     <org.fossify.commons.views.MyTextView
-        android:id="@+id/aspect_ratio_colon"
+        android:id="@+id/aspectRatioColon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/aspect_ratio_width_hint"
-        android:layout_alignBottom="@+id/aspect_ratio_width_hint"
+        android:layout_alignTop="@+id/aspectRatioWidthHint"
+        android:layout_alignBottom="@+id/aspectRatioWidthHint"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_toEndOf="@+id/aspect_ratio_width_hint"
+        android:layout_toEndOf="@+id/aspectRatioWidthHint"
         android:gravity="center"
         android:text=":"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
     <org.fossify.commons.views.MyTextInputLayout
-        android:id="@+id/aspect_ratio_height_hint"
+        android:id="@+id/aspectRatioHeightHint"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/aspect_ratio_width_hint"
-        android:layout_alignBottom="@+id/aspect_ratio_width_hint"
-        android:layout_toEndOf="@+id/aspect_ratio_colon"
+        android:layout_alignTop="@+id/aspectRatioWidthHint"
+        android:layout_alignBottom="@+id/aspectRatioWidthHint"
+        android:layout_toEndOf="@+id/aspectRatioColon"
         android:hint="@string/height">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/aspect_ratio_height"
+            android:id="@+id/aspectRatioHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"

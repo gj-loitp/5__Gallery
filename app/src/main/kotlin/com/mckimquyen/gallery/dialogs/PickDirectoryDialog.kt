@@ -14,7 +14,7 @@ import org.fossify.commons.views.MyGridLayoutManager
 import org.fossify.commons.views.MySearchMenu
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.DirectoryAdapter
-import com.mckimquyen.gallery.databinding.DialogDirectoryPickerBinding
+import com.mckimquyen.gallery.databinding.DlgDirectoryPickerBinding
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.models.Directory
 
@@ -31,7 +31,7 @@ class PickDirectoryDialog(
     private var shownDirectories = ArrayList<Directory>()
     private var allDirectories = ArrayList<Directory>()
     private var openedSubfolders = arrayListOf("")
-    private var binding = DialogDirectoryPickerBinding.inflate(activity.layoutInflater)
+    private var binding = DlgDirectoryPickerBinding.inflate(activity.layoutInflater)
     private var isGridViewType = activity.config.viewTypeFolders == VIEW_TYPE_GRID
     private var showHidden = activity.config.shouldShowHidden
     private var currentPathPrefix = ""

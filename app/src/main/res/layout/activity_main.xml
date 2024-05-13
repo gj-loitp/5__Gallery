@@ -11,7 +11,7 @@
         android:layout_height="wrap_content" />
 
     <RelativeLayout
-        android:id="@+id/directories_holder"
+        android:id="@+id/directoriesHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -27,7 +27,7 @@
             android:visibility="gone" />
 
         <org.fossify.commons.views.MyTextView
-            android:id="@+id/directories_empty_placeholder"
+            android:id="@+id/directoriesEmptyPlaceholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/directories_switch_searching"
@@ -45,7 +45,7 @@
             android:id="@+id/directories_empty_placeholder_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/directories_empty_placeholder"
+            android:layout_below="@+id/directoriesEmptyPlaceholder"
             android:layout_centerHorizontal="true"
             android:background="@drawable/ripple_all_corners"
             android:padding="@dimen/activity_margin"
@@ -60,13 +60,13 @@
             android:layout_below="@+id/directories_switch_searching">
 
             <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-                android:id="@+id/directories_fastscroller"
+                android:id="@+id/directoriesFastscroller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:supportSwipeToRefresh="true">
 
                 <org.fossify.commons.views.MyRecyclerView
-                    android:id="@+id/directories_grid"
+                    android:id="@+id/directoriesGrid"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layoutAnimation="@anim/layout_animation"

@@ -8,7 +8,7 @@ import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.getBasePath
 import org.fossify.commons.extensions.setupDialogStuff
-import com.mckimquyen.gallery.databinding.DialogExcludeFolderBinding
+import com.mckimquyen.gallery.databinding.DlgExcludeFolderBinding
 import com.mckimquyen.gallery.extensions.config
 
 class ExcludeFolderDialog(val activity: BaseSimpleActivity, val selectedPaths: List<String>, val callback: () -> Unit) {
@@ -16,7 +16,7 @@ class ExcludeFolderDialog(val activity: BaseSimpleActivity, val selectedPaths: L
     private var radioGroup: RadioGroup? = null
 
     init {
-        val binding = DialogExcludeFolderBinding.inflate(activity.layoutInflater).apply {
+        val binding = DlgExcludeFolderBinding.inflate(activity.layoutInflater).apply {
             excludeFolderParent.beVisibleIf(alternativePaths.size > 1)
 
             radioGroup = excludeFolderRadioGroup

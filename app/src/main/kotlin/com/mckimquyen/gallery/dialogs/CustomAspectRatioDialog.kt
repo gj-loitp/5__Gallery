@@ -7,13 +7,13 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.extensions.showKeyboard
 import org.fossify.commons.extensions.value
-import com.mckimquyen.gallery.databinding.DialogCustomAspectRatioBinding
+import com.mckimquyen.gallery.databinding.DlgCustomAspectRatioBinding
 
 class CustomAspectRatioDialog(
     val activity: BaseSimpleActivity, val defaultCustomAspectRatio: Pair<Float, Float>?, val callback: (aspectRatio: Pair<Float, Float>) -> Unit
 ) {
     init {
-        val binding = DialogCustomAspectRatioBinding.inflate(activity.layoutInflater).apply {
+        val binding = DlgCustomAspectRatioBinding.inflate(activity.layoutInflater).apply {
             aspectRatioWidth.setText(defaultCustomAspectRatio?.first?.toInt()?.toString() ?: "")
             aspectRatioHeight.setText(defaultCustomAspectRatio?.second?.toInt()?.toString() ?: "")
         }
