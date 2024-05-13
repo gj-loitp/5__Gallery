@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/filter_media_dialog_holder"
+        android:id="@+id/filterMediaDialogHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -13,7 +13,7 @@
         android:paddingRight="@dimen/activity_margin">
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/filter_media_images"
+            android:id="@+id/filterMediaImages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -21,7 +21,7 @@
             android:text="@string/images" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/filter_media_videos"
+            android:id="@+id/filterMediaVideos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -29,7 +29,7 @@
             android:text="@string/videos" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/filter_media_gifs"
+            android:id="@+id/filterMediaGifs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -37,7 +37,7 @@
             android:text="@string/gifs" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/filter_media_raws"
+            android:id="@+id/filterMediaRaws"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -45,7 +45,7 @@
             android:text="@string/raw_images" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/filter_media_svgs"
+            android:id="@+id/filterMediaSvgs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"
@@ -53,7 +53,7 @@
             android:text="@string/svgs" />
 
         <org.fossify.commons.views.MyAppCompatCheckbox
-            android:id="@+id/filter_media_portraits"
+            android:id="@+id/filterMediaPortraits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_margin"

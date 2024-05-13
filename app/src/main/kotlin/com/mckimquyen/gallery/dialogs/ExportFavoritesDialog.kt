@@ -6,7 +6,7 @@ import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogExportFavoritesBinding
+import com.mckimquyen.gallery.databinding.DlgExportFavoritesBinding
 import com.mckimquyen.gallery.extensions.config
 
 class ExportFavoritesDialog(
@@ -21,7 +21,7 @@ class ExportFavoritesDialog(
             activity.internalStoragePath
         }
 
-        val binding = DialogExportFavoritesBinding.inflate(activity.layoutInflater).apply {
+        val binding = DlgExportFavoritesBinding.inflate(activity.layoutInflater).apply {
             exportFavoritesFilename.setText(defaultFilename.removeSuffix(".txt"))
 
             if (hidePath) {

@@ -5,12 +5,12 @@ import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.setupDialogStuff
-import com.mckimquyen.gallery.databinding.DialogGrantAllFilesBinding
+import com.mckimquyen.gallery.databinding.DlgGrantAllFilesBinding
 import com.mckimquyen.gallery.extensions.launchGrantAllFilesIntent
 
 class GrantAllFilesDialog(val activity: BaseSimpleActivity) {
     init {
-        val binding = DialogGrantAllFilesBinding.inflate(activity.layoutInflater)
+        val binding = DlgGrantAllFilesBinding.inflate(activity.layoutInflater)
         binding.grantAllFilesImage.applyColorFilter(activity.getProperTextColor())
 
         activity.getAlertDialogBuilder()

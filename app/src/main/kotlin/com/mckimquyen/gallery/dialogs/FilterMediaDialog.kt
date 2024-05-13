@@ -4,12 +4,12 @@ import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.DialogFilterMediaBinding
+import com.mckimquyen.gallery.databinding.DlgFilterMediaBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.helpers.*
 
 class FilterMediaDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
-    private val binding = DialogFilterMediaBinding.inflate(activity.layoutInflater)
+    private val binding = DlgFilterMediaBinding.inflate(activity.layoutInflater)
 
     init {
         val filterMedia = activity.config.filterMedia
