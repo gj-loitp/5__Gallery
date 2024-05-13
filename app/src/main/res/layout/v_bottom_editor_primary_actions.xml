@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_editor_primary_actions_wrapper"
+    android:id="@+id/bottomEditorPrimaryActionsWrapper"
     android:layout_width="match_parent"
     android:layout_height="@dimen/bottom_actions_height"
     android:layout_alignParentBottom="true">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bottom_primary_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,12 +15,12 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_photo_filter_vector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bottom_primary_crop_rotate"
+        app:layout_constraintEnd_toStartOf="@+id/bottomPrimaryCropRotate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bottom_primary_crop_rotate"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bottomPrimaryCropRotate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -28,12 +28,12 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_crop_rotate_vector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bottom_primary_draw"
+        app:layout_constraintEnd_toStartOf="@+id/bottomPrimaryDraw"
         app:layout_constraintStart_toEndOf="@+id/bottom_primary_filter"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bottom_primary_draw"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bottomPrimaryDraw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -42,7 +42,7 @@
         android:src="@drawable/ic_draw_vector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bottom_primary_crop_rotate"
+        app:layout_constraintStart_toEndOf="@+id/bottomPrimaryCropRotate"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

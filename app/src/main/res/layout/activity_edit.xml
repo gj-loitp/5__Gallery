@@ -61,7 +61,7 @@
 
         <include
             android:id="@+id/bottom_editor_primary_actions"
-            layout="@layout/bottom_editor_primary_actions" />
+            layout="@layout/v_bottom_editor_primary_actions" />
 
         <include
             android:id="@+id/bottom_aspect_ratios"
@@ -89,7 +89,7 @@
 
         <include
             android:id="@+id/bottom_editor_draw_actions"
-            layout="@layout/bottom_editor_draw_actions"
+            layout="@layout/v_bottom_editor_draw_actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/bottom_editor_primary_actions"

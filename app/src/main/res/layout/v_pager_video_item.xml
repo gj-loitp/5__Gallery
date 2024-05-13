@@ -68,7 +68,7 @@
 
     <include
         android:id="@+id/bottomVideoTimeHolder"
-        layout="@layout/bottom_video_time_holder" />
+        layout="@layout/v_bottom_video_time_holder" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/slideInfo"

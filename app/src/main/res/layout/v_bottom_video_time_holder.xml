@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/video_time_holder"
+    android:id="@+id/videoTimeHolder"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true">
 
-    <ImageView
-        android:id="@+id/video_prev_file"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/videoPrevFile"
         android:layout_width="@dimen/video_player_play_pause_size"
         android:layout_height="@dimen/video_player_play_pause_size"
         android:layout_alignParentStart="true"
@@ -18,7 +18,7 @@
         android:src="@drawable/ic_prev_outline_vector"
         android:visibility="invisible" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/video_toggle_play_pause"
         android:layout_width="@dimen/video_player_play_pause_size"
         android:layout_height="@dimen/video_player_play_pause_size"
@@ -29,8 +29,8 @@
         android:src="@drawable/ic_pause_outline_vector"
         android:visibility="invisible" />
 
-    <ImageView
-        android:id="@+id/video_next_file"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/videoNextFile"
         android:layout_width="@dimen/video_player_play_pause_size"
         android:layout_height="@dimen/video_player_play_pause_size"
         android:layout_alignParentEnd="true"
@@ -41,13 +41,13 @@
         android:src="@drawable/ic_next_outline_vector"
         android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/video_curr_time"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/videoCurrTime"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_below="@+id/video_toggle_play_pause"
-        android:layout_alignTop="@+id/video_seekbar"
-        android:layout_alignBottom="@+id/video_seekbar"
+        android:layout_alignTop="@+id/videoSeekbar"
+        android:layout_alignBottom="@+id/videoSeekbar"
         android:layout_alignParentStart="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
@@ -59,22 +59,22 @@
         tools:text="00:00" />
 
     <org.fossify.commons.views.MySeekBar
-        android:id="@+id/video_seekbar"
+        android:id="@+id/videoSeekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video_toggle_play_pause"
         android:layout_toStartOf="@+id/tvVideoDuration"
-        android:layout_toEndOf="@+id/video_curr_time"
+        android:layout_toEndOf="@+id/videoCurrTime"
         android:paddingTop="@dimen/activity_margin"
         android:paddingBottom="@dimen/activity_margin" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvVideoDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video_toggle_play_pause"
-        android:layout_alignTop="@+id/video_seekbar"
-        android:layout_alignBottom="@+id/video_seekbar"
+        android:layout_alignTop="@+id/videoSeekbar"
+        android:layout_alignBottom="@+id/videoSeekbar"
         android:layout_alignParentEnd="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
