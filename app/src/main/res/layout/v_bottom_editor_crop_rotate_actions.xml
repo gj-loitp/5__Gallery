@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_editor_actions_wrapper"
+    android:id="@+id/bottomEditorActionsWrapper"
     android:layout_width="match_parent"
     android:layout_height="@dimen/bottom_actions_height"
     android:layout_alignParentBottom="true">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bottom_rotate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,13 +15,13 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_rotate_right_vector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bottom_resize"
+        app:layout_constraintEnd_toStartOf="@+id/bottomResize"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bottom_resize"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bottomResize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -30,13 +29,13 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_minimize_vector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bottom_aspect_ratio"
+        app:layout_constraintEnd_toStartOf="@+id/bottomAspectRatio"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/bottom_rotate"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bottom_aspect_ratio"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bottomAspectRatio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -44,13 +43,13 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_aspect_ratio_vector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bottom_flip_horizontally"
+        app:layout_constraintEnd_toStartOf="@+id/bottomFlipHorizontally"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bottom_resize"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/bottomResize"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bottom_flip_horizontally"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bottomFlipHorizontally"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -58,13 +57,13 @@
         android:padding="@dimen/normal_margin"
         android:src="@drawable/ic_flip_horizontally_vector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bottom_flip_vertically"
+        app:layout_constraintEnd_toStartOf="@+id/bottomFlipVertically"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bottom_aspect_ratio"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/bottomAspectRatio"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/bottom_flip_vertically"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bottomFlipVertically"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -74,7 +73,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bottom_flip_horizontally"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/bottomFlipHorizontally"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

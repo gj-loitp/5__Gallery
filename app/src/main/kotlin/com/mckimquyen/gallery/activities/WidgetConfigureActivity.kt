@@ -13,7 +13,7 @@ import org.fossify.commons.dialogs.ColorPickerDialog
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.ActivityWidgetConfigBinding
+import com.mckimquyen.gallery.databinding.AWidgetConfigBinding
 import com.mckimquyen.gallery.dialogs.PickDirectoryDialog
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.MyWidgetProvider
@@ -30,7 +30,7 @@ class WidgetConfigureActivity : SimpleActivity() {
     private var mFolderPath = ""
     private var mDirectories = ArrayList<Directory>()
 
-    private val binding by viewBinding(ActivityWidgetConfigBinding::inflate)
+    private val binding by viewBinding(AWidgetConfigBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false

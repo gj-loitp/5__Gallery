@@ -30,15 +30,15 @@
         android:layout_width="@dimen/media_side_slider_width"
         android:layout_height="match_parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/topShadow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_status_action_height"
         android:background="@drawable/gradient_background_flipped"
         android:contentDescription="@null" />
 
-    <TextView
-        android:id="@+id/video_bottom_gradient"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/videoBottomGradient"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/videoTimeHolder"
@@ -50,7 +50,7 @@
         android:id="@+id/bottomVideoTimeHolder"
         layout="@layout/v_bottom_video_time_holder" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/slideInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:textSize="@dimen/extra_big_text_size" />
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/video_appbar"
+        android:id="@+id/videoAppbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -77,7 +77,7 @@
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/video_toolbar"
+            android:id="@+id/videoToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/menu_video_player"

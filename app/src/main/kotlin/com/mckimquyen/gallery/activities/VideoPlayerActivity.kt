@@ -28,7 +28,7 @@ import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.ActivityVideoPlayerBinding
+import com.mckimquyen.gallery.databinding.AVideoPlayerBinding
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
 
@@ -59,7 +59,7 @@ open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListen
 
     private var mIgnoreCloseDown = false
 
-    private val binding by viewBinding(ActivityVideoPlayerBinding::inflate)
+    private val binding by viewBinding(AVideoPlayerBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true
