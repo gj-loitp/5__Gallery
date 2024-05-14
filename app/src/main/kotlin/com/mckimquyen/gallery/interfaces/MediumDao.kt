@@ -1,7 +1,7 @@
 package com.mckimquyen.gallery.interfaces
 
 import androidx.room.*
-import com.mckimquyen.gallery.models.Medium
+import com.mckimquyen.gallery.model.Medium
 
 @Dao
 interface MediumDao {

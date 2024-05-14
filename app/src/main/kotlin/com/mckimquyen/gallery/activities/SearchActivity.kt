@@ -21,8 +21,8 @@ import com.mckimquyen.gallery.helpers.MediaFetcher
 import com.mckimquyen.gallery.helpers.PATH
 import com.mckimquyen.gallery.helpers.SHOW_ALL
 import com.mckimquyen.gallery.interfaces.MediaOperationsListener
-import com.mckimquyen.gallery.models.Medium
-import com.mckimquyen.gallery.models.ThumbnailItem
+import com.mckimquyen.gallery.model.Medium
+import com.mckimquyen.gallery.model.ThumbnailItem
 import java.io.File
 
 class SearchActivity : SimpleActivity(), MediaOperationsListener {

@@ -40,8 +40,8 @@ import com.mckimquyen.gallery.dialogs.PickMediumDialog
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
 import com.mckimquyen.gallery.interfaces.DirectoryOperationsListener
-import com.mckimquyen.gallery.models.AlbumCover
-import com.mckimquyen.gallery.models.Directory
+import com.mckimquyen.gallery.model.AlbumCover
+import com.mckimquyen.gallery.model.Directory
 import java.io.File
 import java.util.Collections
 

@@ -8,7 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import org.fossify.commons.extensions.getProperPrimaryColor
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.models.PaintOptions
+import com.mckimquyen.gallery.model.PaintOptions
 
 class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var mCurX = 0f

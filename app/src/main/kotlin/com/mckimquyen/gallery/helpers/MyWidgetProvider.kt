@@ -21,7 +21,7 @@ import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.directoryDB
 import com.mckimquyen.gallery.extensions.getFolderNameFromPath
 import com.mckimquyen.gallery.extensions.widgetsDB
-import com.mckimquyen.gallery.models.Widget
+import com.mckimquyen.gallery.model.Widget
 
 class MyWidgetProvider : AppWidgetProvider() {
     private fun setupAppOpenIntent(context: Context, views: RemoteViews, id: Int, widget: Widget) {

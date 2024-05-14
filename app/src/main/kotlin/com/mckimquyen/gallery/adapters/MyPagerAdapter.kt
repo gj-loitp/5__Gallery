@@ -13,7 +13,7 @@ import com.mckimquyen.gallery.fragments.VideoFragment
 import com.mckimquyen.gallery.fragments.ViewPagerFragment
 import com.mckimquyen.gallery.helpers.MEDIUM
 import com.mckimquyen.gallery.helpers.SHOULD_INIT_FRAGMENT
-import com.mckimquyen.gallery.models.Medium
+import com.mckimquyen.gallery.model.Medium
 
 class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val media: MutableList<Medium>) : FragmentStatePagerAdapter(fm) {
     private val fragments = HashMap<Int, ViewPagerFragment>()

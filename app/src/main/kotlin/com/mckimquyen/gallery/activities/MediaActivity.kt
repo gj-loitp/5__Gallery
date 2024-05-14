@@ -32,9 +32,9 @@ import com.mckimquyen.gallery.dialogs.*
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
 import com.mckimquyen.gallery.interfaces.MediaOperationsListener
-import com.mckimquyen.gallery.models.Medium
-import com.mckimquyen.gallery.models.ThumbnailItem
-import com.mckimquyen.gallery.models.ThumbnailSection
+import com.mckimquyen.gallery.model.Medium
+import com.mckimquyen.gallery.model.ThumbnailItem
+import com.mckimquyen.gallery.model.ThumbnailSection
 import java.io.File
 import java.io.IOException
 

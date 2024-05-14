@@ -7,7 +7,7 @@ import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.favoritesDB
 import com.mckimquyen.gallery.extensions.getFavoriteFromPath
 import com.mckimquyen.gallery.extensions.mediaDB
-import com.mckimquyen.gallery.models.Favorite
+import com.mckimquyen.gallery.model.Favorite
 
 class SplashActivity : BaseSplashActivity() {
     override fun initActivity() {

@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.models
+package com.mckimquyen.gallery.model
 
 import android.content.Context
 import androidx.annotation.Keep
@@ -10,7 +10,10 @@ import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.helpers.RECYCLE_BIN
 
 @Keep
-@Entity(tableName = "directories", indices = [Index(value = ["path"], unique = true)])
+@Entity(
+    tableName = "directories",
+    indices = [Index(value = ["path"], unique = true)]
+)
 data class Directory(
     @PrimaryKey(autoGenerate = true) var id: Long?,
     @ColumnInfo(name = "path") var path: String,
@@ -30,13 +33,36 @@ data class Directory(
     @Ignore var containsMediaFilesDirectly: Boolean = true
 ) {
 
-    constructor() : this(null, "", "", "", 0, 0L, 0L, 0L, 0, 0, "", 0, 0)
+    constructor() : this(
+        id = null,
+        path = "",
+        tmb = "",
+        name = "",
+        mediaCnt = 0,
+        modified = 0L,
+        taken = 0L,
+        size = 0L,
+        location = 0,
+        types = 0,
+        sortValue = "",
+        subfoldersCount = 0,
+        subfoldersMediaCount = 0
+    )
 
-    fun getBubbleText(sorting: Int, context: Context, dateFormat: String? = null, timeFormat: String? = null) = when {
+    fun getBubbleText(
+        sorting: Int,
+        context: Context,
+        dateFormat: String? = null,
+        timeFormat: String? = null,
+    ) = when {
         sorting and SORT_BY_NAME != 0 -> name
         sorting and SORT_BY_PATH != 0 -> path
         sorting and SORT_BY_SIZE != 0 -> size.formatSize()
-        sorting and SORT_BY_DATE_MODIFIED != 0 -> modified.formatDate(context, dateFormat, timeFormat)
+        sorting and SORT_BY_DATE_MODIFIED != 0 -> modified.formatDate(
+            context = context,
+            dateFormat = dateFormat,
+            timeFormat = timeFormat
+        )
         sorting and SORT_BY_RANDOM != 0 -> name
         else -> taken.formatDate(context)
     }

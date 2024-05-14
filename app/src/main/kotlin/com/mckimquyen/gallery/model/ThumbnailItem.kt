@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.models
+package com.mckimquyen.gallery.model
 
 import androidx.annotation.Keep
 

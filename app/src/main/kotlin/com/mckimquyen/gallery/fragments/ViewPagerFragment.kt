@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.models.Medium
+import com.mckimquyen.gallery.model.Medium
 import java.io.File
 
 abstract class ViewPagerFragment : Fragment() {

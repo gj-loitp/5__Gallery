@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.mckimquyen.gallery.helpers.RECYCLE_BIN
-import com.mckimquyen.gallery.models.Directory
+import com.mckimquyen.gallery.model.Directory
 
 @Dao
 interface DirectoryDao {

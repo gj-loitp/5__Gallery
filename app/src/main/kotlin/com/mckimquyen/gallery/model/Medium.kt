@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.models
+package com.mckimquyen.gallery.model
 
 import android.content.Context
 import androidx.annotation.Keep
@@ -14,7 +14,10 @@ import java.util.Calendar
 import java.util.Locale
 
 @Keep
-@Entity(tableName = "media", indices = [(Index(value = ["full_path"], unique = true))])
+@Entity(
+    tableName = "media",
+    indices = [(Index(value = ["full_path"], unique = true))]
+)
 data class Medium(
     @PrimaryKey(autoGenerate = true) var id: Long?,
     @ColumnInfo(name = "filename") var name: String,
@@ -32,7 +35,21 @@ data class Medium(
     @Ignore var gridPosition: Int = 0   // used at grid view decoration at Grouping enabled
 ) : Serializable, ThumbnailItem() {
 
-    constructor() : this(null, "", "", "", 0L, 0L, 0L, 0, 0, false, 0L, 0L, 0)
+    constructor() : this(
+        id = null,
+        name = "",
+        path = "",
+        parentPath = "",
+        modified = 0L,
+        taken = 0L,
+        size = 0L,
+        type = 0,
+        videoDuration = 0,
+        isFavorite = false,
+        deletedTS = 0L,
+        mediaStoreId = 0L,
+        gridPosition = 0
+    )
 
     companion object {
         private const val serialVersionUID = -6553149366975655L
@@ -58,7 +75,12 @@ data class Medium(
 
     fun isHeic() = name.lowercase(Locale.getDefault()).endsWith(".heic") || name.lowercase(Locale.getDefault()).endsWith(".heif")
 
-    fun getBubbleText(sorting: Int, context: Context, dateFormat: String, timeFormat: String) = when {
+    fun getBubbleText(
+        sorting: Int,
+        context: Context,
+        dateFormat: String,
+        timeFormat: String,
+    ) = when {
         sorting and SORT_BY_NAME != 0 -> name
         sorting and SORT_BY_PATH != 0 -> path
         sorting and SORT_BY_SIZE != 0 -> size.formatSize()
@@ -110,5 +132,13 @@ data class Medium(
 
     fun getKey() = ObjectKey(getSignature())
 
-    fun toFileDirItem() = FileDirItem(path, name, false, 0, size, modified, mediaStoreId)
+    fun toFileDirItem() = FileDirItem(
+        path = path,
+        name = name,
+        isDirectory = false,
+        children = 0,
+        size = size,
+        modified = modified,
+        mediaStoreId = mediaStoreId
+    )
 }

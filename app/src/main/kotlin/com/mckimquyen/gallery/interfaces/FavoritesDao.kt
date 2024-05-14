@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mckimquyen.gallery.models.Favorite
+import com.mckimquyen.gallery.model.Favorite
 
 @Dao
 interface FavoritesDao {

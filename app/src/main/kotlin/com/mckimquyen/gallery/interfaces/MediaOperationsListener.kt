@@ -1,7 +1,7 @@
 package com.mckimquyen.gallery.interfaces
 
 import org.fossify.commons.models.FileDirItem
-import com.mckimquyen.gallery.models.ThumbnailItem
+import com.mckimquyen.gallery.model.ThumbnailItem
 
 interface MediaOperationsListener {
     fun refreshItems()

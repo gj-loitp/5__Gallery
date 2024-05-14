@@ -45,7 +45,7 @@ import com.mckimquyen.gallery.dialogs.ResizeMultipleImagesDialog
 import com.mckimquyen.gallery.dialogs.ResizeWithPathDialog
 import com.mckimquyen.gallery.helpers.DIRECTORY
 import com.mckimquyen.gallery.helpers.RECYCLE_BIN
-import com.mckimquyen.gallery.models.DateTaken
+import com.mckimquyen.gallery.model.DateTaken
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.Locale

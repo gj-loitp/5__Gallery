@@ -21,7 +21,7 @@ import com.mckimquyen.gallery.fragments.PhotoFragment
 import com.mckimquyen.gallery.fragments.VideoFragment
 import com.mckimquyen.gallery.fragments.ViewPagerFragment
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.models.Medium
+import com.mckimquyen.gallery.model.Medium
 import java.io.File
 
 open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentListener {

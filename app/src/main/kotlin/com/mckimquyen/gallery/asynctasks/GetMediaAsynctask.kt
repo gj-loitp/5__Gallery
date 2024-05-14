@@ -9,8 +9,8 @@ import org.fossify.commons.helpers.SORT_BY_SIZE
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.getFavoritePaths
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.models.Medium
-import com.mckimquyen.gallery.models.ThumbnailItem
+import com.mckimquyen.gallery.model.Medium
+import com.mckimquyen.gallery.model.ThumbnailItem
 
 class GetMediaAsynctask(
     val context: Context, val mPath: String, val isPickImage: Boolean = false, val isPickVideo: Boolean = false,

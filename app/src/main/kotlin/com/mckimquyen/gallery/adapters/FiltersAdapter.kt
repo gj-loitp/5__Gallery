@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.VEditorFilterItemBinding
-import com.mckimquyen.gallery.models.FilterItem
+import com.mckimquyen.gallery.model.FilterItem
 
 class FiltersAdapter(val context: Context, val filterItems: ArrayList<FilterItem>, val itemClick: (Int) -> Unit) :
     RecyclerView.Adapter<FiltersAdapter.ViewHolder>() {

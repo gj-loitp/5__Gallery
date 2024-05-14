@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.mckimquyen.gallery.interfaces.*
-import com.mckimquyen.gallery.models.*
+import com.mckimquyen.gallery.model.*
 
 @Database(entities = [Directory::class, Medium::class, Widget::class, DateTaken::class, Favorite::class], version = 10)
 abstract class GalleryDatabase : RoomDatabase() {

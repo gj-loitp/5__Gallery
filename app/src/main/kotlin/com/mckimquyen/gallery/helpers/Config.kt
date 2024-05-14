@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.models.AlbumCover
+import com.mckimquyen.gallery.model.AlbumCover
 import java.util.Arrays
 import java.util.Locale
 

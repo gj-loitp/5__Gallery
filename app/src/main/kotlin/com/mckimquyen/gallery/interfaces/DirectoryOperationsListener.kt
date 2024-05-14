@@ -1,6 +1,6 @@
 package com.mckimquyen.gallery.interfaces
 
-import com.mckimquyen.gallery.models.Directory
+import com.mckimquyen.gallery.model.Directory
 import java.io.File
 
 interface DirectoryOperationsListener {

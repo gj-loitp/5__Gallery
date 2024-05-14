@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mckimquyen.gallery.models.DateTaken
+import com.mckimquyen.gallery.model.DateTaken
 
 @Dao
 interface DateTakensDao {

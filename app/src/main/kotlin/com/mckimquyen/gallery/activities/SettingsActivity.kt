@@ -17,7 +17,7 @@ import com.mckimquyen.gallery.databinding.ASettingsBinding
 import com.mckimquyen.gallery.dialogs.*
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.models.AlbumCover
+import com.mckimquyen.gallery.model.AlbumCover
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream

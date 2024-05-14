@@ -16,9 +16,9 @@ import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.getCachedMedia
 import com.mckimquyen.gallery.helpers.GridSpacingItemDecoration
 import com.mckimquyen.gallery.helpers.SHOW_ALL
-import com.mckimquyen.gallery.models.Medium
-import com.mckimquyen.gallery.models.ThumbnailItem
-import com.mckimquyen.gallery.models.ThumbnailSection
+import com.mckimquyen.gallery.model.Medium
+import com.mckimquyen.gallery.model.ThumbnailItem
+import com.mckimquyen.gallery.model.ThumbnailSection
 
 class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val callback: (path: String) -> Unit) {
     private var dialog: AlertDialog? = null

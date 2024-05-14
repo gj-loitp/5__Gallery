@@ -3,8 +3,8 @@ package com.mckimquyen.gallery.helpers
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.mckimquyen.gallery.models.Medium
-import com.mckimquyen.gallery.models.ThumbnailItem
+import com.mckimquyen.gallery.model.Medium
+import com.mckimquyen.gallery.model.ThumbnailItem
 
 class GridSpacingItemDecoration(
     val spanCount: Int, val spacing: Int, val isScrollingHorizontally: Boolean, val addSideSpacing: Boolean,
