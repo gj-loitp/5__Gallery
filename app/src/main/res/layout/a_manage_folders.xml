@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/manage_folders_coordinator"
+    android:id="@+id/manageFoldersCoordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,13 +14,13 @@
         app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
 
     <RelativeLayout
-        android:id="@+id/manage_folders_holder"
+        android:id="@+id/manageFoldersHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize">
 
         <org.fossify.commons.views.MyRecyclerView
-            android:id="@+id/manage_folders_list"
+            android:id="@+id/manageFoldersList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -28,7 +28,7 @@
             app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager" />
 
         <org.fossify.commons.views.MyTextView
-            android:id="@+id/manage_folders_placeholder"
+            android:id="@+id/manageFoldersPlaceholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

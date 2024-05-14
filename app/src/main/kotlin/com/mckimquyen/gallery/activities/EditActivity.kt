@@ -37,7 +37,7 @@ import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.FiltersAdapter
-import com.mckimquyen.gallery.databinding.ActivityEditBinding
+import com.mckimquyen.gallery.databinding.AEditBinding
 import com.mckimquyen.gallery.dialogs.OtherAspectRatioDialog
 import com.mckimquyen.gallery.dialogs.ResizeDialog
 import com.mckimquyen.gallery.dialogs.SaveAsDialog
@@ -90,7 +90,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
     private var oldExif: ExifInterface? = null
     private var filterInitialBitmap: Bitmap? = null
     private var originalUri: Uri? = null
-    private val binding by viewBinding(ActivityEditBinding::inflate)
+    private val binding by viewBinding(AEditBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

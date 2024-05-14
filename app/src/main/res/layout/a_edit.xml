@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/editor_coordinator"
+    android:id="@+id/editorCoordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/editor_app_bar_layout"
+        android:id="@+id/editorAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/editor_toolbar"
+            android:id="@+id/editorToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/color_primary"
@@ -22,16 +22,16 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/activity_edit_holder"
+        android:id="@+id/activityEditHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize">
 
-        <ImageView
-            android:id="@+id/default_image_view"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/defaultImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_editor_crop_rotate_actions"
+            android:layout_above="@+id/bottomEditorCropRotateActions"
             android:layout_marginBottom="@dimen/bottom_filters_height_with_margin" />
 
         <com.canhub.cropper.CropImageView
@@ -44,7 +44,7 @@
             app:cropInitialCropWindowPaddingRatio="0" />
 
         <com.mckimquyen.gallery.views.EditorDrawCanvas
-            android:id="@+id/editor_draw_canvas"
+            android:id="@+id/editorDrawCanvas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
@@ -53,46 +53,46 @@
             android:visibility="gone" />
 
         <RelativeLayout
-            android:id="@+id/bottom_editor_actions_background"
+            android:id="@+id/bottomEditorActionsBackground"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_editor_actions_shadow_height"
             android:layout_alignParentBottom="true"
             android:background="@drawable/gradient_background" />
 
         <include
-            android:id="@+id/bottom_editor_primary_actions"
+            android:id="@+id/bottomEditorPrimaryActions"
             layout="@layout/v_bottom_editor_primary_actions" />
 
         <include
-            android:id="@+id/bottom_aspect_ratios"
+            android:id="@+id/bottomAspectRatios"
             layout="@layout/v_bottom_actions_aspect_ratio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/bottom_editor_crop_rotate_actions"
+            android:layout_above="@+id/bottomEditorCropRotateActions"
             android:visibility="gone" />
 
         <include
-            android:id="@+id/bottom_editor_filter_actions"
+            android:id="@+id/bottomEditorFilterActions"
             layout="@layout/v_bottom_editor_actions_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/bottom_editor_primary_actions"
+            android:layout_above="@+id/bottomEditorPrimaryActions"
             android:visibility="gone" />
 
         <include
-            android:id="@+id/bottom_editor_crop_rotate_actions"
+            android:id="@+id/bottomEditorCropRotateActions"
             layout="@layout/v_bottom_editor_crop_rotate_actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/bottom_editor_primary_actions"
+            android:layout_above="@+id/bottomEditorPrimaryActions"
             android:visibility="gone" />
 
         <include
-            android:id="@+id/bottom_editor_draw_actions"
+            android:id="@+id/bottomEditorDrawActions"
             layout="@layout/v_bottom_editor_draw_actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/bottom_editor_primary_actions"
+            android:layout_above="@+id/bottomEditorPrimaryActions"
             android:visibility="gone" />
 
     </RelativeLayout>

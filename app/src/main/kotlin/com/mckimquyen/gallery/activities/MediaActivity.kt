@@ -27,7 +27,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databases.GalleryDatabase
-import com.mckimquyen.gallery.databinding.ActivityMediaBinding
+import com.mckimquyen.gallery.databinding.AMediaBinding
 import com.mckimquyen.gallery.dialogs.*
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
@@ -69,7 +69,7 @@ class MediaActivity : SimpleActivity(), MediaOperationsListener {
     private var mStoredPrimaryColor = 0
     private var mStoredThumbnailSpacing = 0
 
-    private val binding by viewBinding(ActivityMediaBinding::inflate)
+    private val binding by viewBinding(AMediaBinding::inflate)
 
     companion object {
         var mMedia = ArrayList<ThumbnailItem>()

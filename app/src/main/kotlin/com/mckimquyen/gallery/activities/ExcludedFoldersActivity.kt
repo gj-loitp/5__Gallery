@@ -8,12 +8,12 @@ import org.fossify.commons.helpers.isRPlus
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.ManageFoldersAdapter
-import com.mckimquyen.gallery.databinding.ActivityManageFoldersBinding
+import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.extensions.config
 
 class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
 
-    private val binding by viewBinding(ActivityManageFoldersBinding::inflate)
+    private val binding by viewBinding(AManageFoldersBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true

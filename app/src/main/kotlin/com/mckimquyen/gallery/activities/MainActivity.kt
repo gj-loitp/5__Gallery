@@ -27,7 +27,7 @@ import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.DirectoryAdapter
 import com.mckimquyen.gallery.databases.GalleryDatabase
-import com.mckimquyen.gallery.databinding.ActivityMainBinding
+import com.mckimquyen.gallery.databinding.AMainBinding
 import com.mckimquyen.gallery.dialogs.ChangeSortingDialog
 import com.mckimquyen.gallery.dialogs.ChangeViewTypeDialog
 import com.mckimquyen.gallery.dialogs.FilterMediaDialog
@@ -82,7 +82,7 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
     private var mStoredTextColor = 0
     private var mStoredPrimaryColor = 0
     private var mStoredStyleString = ""
-    private val binding by viewBinding(ActivityMainBinding::inflate)
+    private val binding by viewBinding(AMainBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -721,7 +721,7 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
             setupListLayoutManager()
         }
 
-        (binding.directoriesRefreshLayout.layoutParams as RelativeLayout.LayoutParams).addRule(RelativeLayout.BELOW, R.id.directories_switch_searching)
+        (binding.directoriesRefreshLayout.layoutParams as RelativeLayout.LayoutParams).addRule(RelativeLayout.BELOW, R.id.directoriesSwitchSearching)
     }
 
     private fun setupGridLayoutManager() {

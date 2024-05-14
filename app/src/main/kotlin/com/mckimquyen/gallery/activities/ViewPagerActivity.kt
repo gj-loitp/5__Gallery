@@ -41,7 +41,7 @@ import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MyPagerAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
-import com.mckimquyen.gallery.databinding.ActivityMediumBinding
+import com.mckimquyen.gallery.databinding.AMediumBinding
 import com.mckimquyen.gallery.dialogs.DeleteWithRememberDialog
 import com.mckimquyen.gallery.dialogs.SaveAsDialog
 import com.mckimquyen.gallery.dialogs.SlideshowDialog
@@ -83,7 +83,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
     private var mFavoritePaths = ArrayList<String>()
     private var mIgnoredPaths = ArrayList<String>()
 
-    private val binding by viewBinding(ActivityMediumBinding::inflate)
+    private val binding by viewBinding(AMediumBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true

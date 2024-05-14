@@ -8,12 +8,12 @@ import org.fossify.commons.helpers.NavigationIcon
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.ManageFoldersAdapter
-import com.mckimquyen.gallery.databinding.ActivityManageFoldersBinding
+import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.extensions.config
 
 class IncludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
 
-    private val binding by viewBinding(ActivityManageFoldersBinding::inflate)
+    private val binding by viewBinding(AManageFoldersBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true

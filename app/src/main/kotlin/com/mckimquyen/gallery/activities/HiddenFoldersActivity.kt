@@ -10,14 +10,14 @@ import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.ManageHiddenFoldersAdapter
-import com.mckimquyen.gallery.databinding.ActivityManageFoldersBinding
+import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.extensions.addNoMedia
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.getNoMediaFolders
 
 class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
 
-    private val binding by viewBinding(ActivityManageFoldersBinding::inflate)
+    private val binding by viewBinding(AManageFoldersBinding::inflate)
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)

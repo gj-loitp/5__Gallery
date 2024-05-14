@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <org.fossify.commons.views.MyViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -14,7 +14,7 @@
         android:id="@+id/bottomActions"
         layout="@layout/v_bottom_actions" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/topShadow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_status_action_height"
@@ -22,7 +22,7 @@
         android:contentDescription="@null" />
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/medium_viewer_appbar"
+        android:id="@+id/mediumViewerAppbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -31,7 +31,7 @@
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/medium_viewer_toolbar"
+            android:id="@+id/mediumViewerToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/menu_viewpager"
