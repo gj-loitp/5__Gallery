@@ -34,8 +34,8 @@ import com.mckimquyen.gallery.dialogs.FilterMediaDialog
 import com.mckimquyen.gallery.dialogs.GrantAllFilesDialog
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.interfaces.DirectoryOperationsListener
-import com.mckimquyen.gallery.jobs.NewPhotoFetcher
+import com.mckimquyen.gallery.itf.DirectoryOperationsListener
+import com.mckimquyen.gallery.job.NewPhotoFetcher
 import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Medium
 import java.io.*

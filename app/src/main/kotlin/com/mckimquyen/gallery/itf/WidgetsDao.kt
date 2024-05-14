@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.interfaces
+package com.mckimquyen.gallery.itf
 
 import androidx.room.Dao
 import androidx.room.Insert

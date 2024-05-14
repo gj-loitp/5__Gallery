@@ -31,7 +31,7 @@ import com.mckimquyen.gallery.databinding.AMediaBinding
 import com.mckimquyen.gallery.dialogs.*
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.interfaces.MediaOperationsListener
+import com.mckimquyen.gallery.itf.MediaOperationsListener
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 import com.mckimquyen.gallery.model.ThumbnailSection

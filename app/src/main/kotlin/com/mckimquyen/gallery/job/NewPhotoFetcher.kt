@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.jobs
+package com.mckimquyen.gallery.job
 
 import android.annotation.TargetApi
 import android.app.job.JobInfo
@@ -12,6 +12,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
 import android.provider.MediaStore.Video
@@ -31,7 +32,7 @@ class NewPhotoFetcher : JobService() {
         private val VIDEO_PATH_SEGMENTS = Video.Media.EXTERNAL_CONTENT_URI.pathSegments
     }
 
-    private val mHandler = Handler()
+    private val mHandler = Handler(Looper.getMainLooper())
     private val mWorker = Runnable {
         scheduleJob(this@NewPhotoFetcher)
         jobFinished(mRunningParams, false)
@@ -44,13 +45,23 @@ class NewPhotoFetcher : JobService() {
         val photoUri = Images.Media.EXTERNAL_CONTENT_URI
         val videoUri = Video.Media.EXTERNAL_CONTENT_URI
         JobInfo.Builder(PHOTO_VIDEO_CONTENT_JOB, componentName).apply {
-            addTriggerContentUri(TriggerContentUri(photoUri, TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS))
-            addTriggerContentUri(TriggerContentUri(videoUri, TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS))
-            addTriggerContentUri(TriggerContentUri(MEDIA_URI, 0))
+            addTriggerContentUri(TriggerContentUri(
+                /* uri = */ photoUri,
+                /* flags = */ TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS
+            ))
+            addTriggerContentUri(TriggerContentUri(
+                /* uri = */ videoUri,
+                /* flags = */ TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS
+            ))
+            addTriggerContentUri(TriggerContentUri(
+                /* uri = */ MEDIA_URI,
+                /* flags = */ 0
+            ))
 
             try {
                 context.getSystemService(JobScheduler::class.java)?.schedule(build())
             } catch (ignored: Exception) {
+                ignored.printStackTrace()
             }
         }
     }
@@ -88,7 +99,13 @@ class NewPhotoFetcher : JobService() {
                         val projection = arrayOf(Images.ImageColumns.DATA)
                         val uris = arrayListOf(Images.Media.EXTERNAL_CONTENT_URI, Video.Media.EXTERNAL_CONTENT_URI)
                         uris.forEach {
-                            cursor = contentResolver.query(it, projection, selection.toString(), null, null)
+                            cursor = contentResolver.query(
+                                /* uri = */ it,
+                                /* projection = */ projection,
+                                /* selection = */ selection.toString(),
+                                /* selectionArgs = */ null,
+                                /* sortOrder = */ null
+                            )
                             while (cursor!!.moveToNext()) {
                                 val path = cursor!!.getStringValue(Images.ImageColumns.DATA)
                                 affectedFolderPaths.add(path.getParentPath())

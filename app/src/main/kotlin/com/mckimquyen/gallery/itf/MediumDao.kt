@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.interfaces
+package com.mckimquyen.gallery.itf
 
 import androidx.room.*
 import com.mckimquyen.gallery.model.Medium

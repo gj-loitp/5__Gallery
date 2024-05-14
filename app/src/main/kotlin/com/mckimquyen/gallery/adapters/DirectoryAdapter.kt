@@ -39,7 +39,7 @@ import com.mckimquyen.gallery.dialogs.ExcludeFolderDialog
 import com.mckimquyen.gallery.dialogs.PickMediumDialog
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.interfaces.DirectoryOperationsListener
+import com.mckimquyen.gallery.itf.DirectoryOperationsListener
 import com.mckimquyen.gallery.model.AlbumCover
 import com.mckimquyen.gallery.model.Directory
 import java.io.File
