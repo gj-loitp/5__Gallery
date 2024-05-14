@@ -11,8 +11,8 @@ import com.mckimquyen.gallery.activities.ViewPagerActivity
 import com.mckimquyen.gallery.fragments.PhotoFragment
 import com.mckimquyen.gallery.fragments.VideoFragment
 import com.mckimquyen.gallery.fragments.ViewPagerFragment
-import com.mckimquyen.gallery.helpers.MEDIUM
-import com.mckimquyen.gallery.helpers.SHOULD_INIT_FRAGMENT
+import com.mckimquyen.gallery.helper.MEDIUM
+import com.mckimquyen.gallery.helper.SHOULD_INIT_FRAGMENT
 import com.mckimquyen.gallery.model.Medium
 
 class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val media: MutableList<Medium>) : FragmentStatePagerAdapter(fm) {

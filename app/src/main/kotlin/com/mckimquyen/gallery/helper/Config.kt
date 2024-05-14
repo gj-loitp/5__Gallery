@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.helpers
+package com.mckimquyen.gallery.helper
 
 import android.content.Context
 import android.content.res.Configuration
@@ -144,7 +144,9 @@ class Config(context: Context) : BaseConfig(context) {
     fun addIncludedFolders(paths: Set<String>) {
         val currIncludedFolders = HashSet<String>(includedFolders)
         currIncludedFolders.addAll(paths)
-        includedFolders = currIncludedFolders.filter { it.isNotEmpty() }.toHashSet()
+        includedFolders = currIncludedFolders.filter {
+            it.isNotEmpty()
+        }.toHashSet()
     }
 
     fun removeIncludedFolder(path: String) {
@@ -251,7 +253,7 @@ class Config(context: Context) : BaseConfig(context) {
     )
 
     var mediaColumnCnt: Int
-        get() = prefs.getInt(getMediaColumnsField(), getDefaultMediaColumnCount())
+        get() = prefs.getInt(/* key = */ getMediaColumnsField(), /* defValue = */ getDefaultMediaColumnCount())
         set(mediaColumnCnt) = prefs.edit().putInt(getMediaColumnsField(), mediaColumnCnt).apply()
 
     private fun getMediaColumnsField(): String {

@@ -16,8 +16,8 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.AWidgetConfigBinding
 import com.mckimquyen.gallery.dialogs.PickDirectoryDialog
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.helpers.MyWidgetProvider
-import com.mckimquyen.gallery.helpers.ROUNDED_CORNERS_NONE
+import com.mckimquyen.gallery.helper.MyWidgetProvider
+import com.mckimquyen.gallery.helper.ROUNDED_CORNERS_NONE
 import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Widget
 

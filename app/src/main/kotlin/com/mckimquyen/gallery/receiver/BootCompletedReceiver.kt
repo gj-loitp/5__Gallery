@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.extensions.updateDirectoryPath
-import com.mckimquyen.gallery.helpers.MediaFetcher
+import com.mckimquyen.gallery.helper.MediaFetcher
 
 class BootCompletedReceiver : BroadcastReceiver() {
     @SuppressLint("UnsafeProtectedBroadcastReceiver")

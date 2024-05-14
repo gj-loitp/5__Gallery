@@ -14,7 +14,7 @@ import com.mckimquyen.gallery.databinding.DlgChangeFolderThumbnailStyleBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 
 class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) : DialogInterface.OnClickListener {
     private var config = activity.config

@@ -16,7 +16,7 @@ import android.widget.TextView
 import org.fossify.commons.extensions.onGlobalLayout
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.extensions.audioManager
-import com.mckimquyen.gallery.helpers.DRAG_THRESHOLD
+import com.mckimquyen.gallery.helper.DRAG_THRESHOLD
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

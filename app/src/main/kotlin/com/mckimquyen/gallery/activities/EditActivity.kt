@@ -45,7 +45,7 @@ import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.copyNonDimensionAttributesTo
 import com.mckimquyen.gallery.extensions.fixDateTaken
 import com.mckimquyen.gallery.extensions.openEditor
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.FilterItem
 import java.io.*
 import kotlin.math.max

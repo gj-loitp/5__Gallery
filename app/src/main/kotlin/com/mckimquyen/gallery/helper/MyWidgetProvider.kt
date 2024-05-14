@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.helpers
+package com.mckimquyen.gallery.helper
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent

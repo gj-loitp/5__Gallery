@@ -7,7 +7,7 @@ import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgChangeSortingBinding
 import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.helpers.SHOW_ALL
+import com.mckimquyen.gallery.helper.SHOW_ALL
 
 class ChangeSortingDialog(
     val activity: BaseSimpleActivity, val isDirectorySorting: Boolean, val showFolderCheckbox: Boolean,

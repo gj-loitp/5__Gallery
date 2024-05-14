@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.helpers
+package com.mckimquyen.gallery.helper
 
 import android.content.Context
 import android.graphics.*

@@ -20,7 +20,7 @@ import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.fragments.PhotoFragment
 import com.mckimquyen.gallery.fragments.VideoFragment
 import com.mckimquyen.gallery.fragments.ViewPagerFragment
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import java.io.File
 

@@ -16,10 +16,10 @@ import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.ASearchBinding
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.helpers.GridSpacingItemDecoration
-import com.mckimquyen.gallery.helpers.MediaFetcher
-import com.mckimquyen.gallery.helpers.PATH
-import com.mckimquyen.gallery.helpers.SHOW_ALL
+import com.mckimquyen.gallery.helper.GridSpacingItemDecoration
+import com.mckimquyen.gallery.helper.MediaFetcher
+import com.mckimquyen.gallery.helper.PATH
+import com.mckimquyen.gallery.helper.SHOW_ALL
 import com.mckimquyen.gallery.itf.ListenerMediaOperations
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem

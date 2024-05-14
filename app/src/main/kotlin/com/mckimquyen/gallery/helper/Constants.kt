@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.helpers
+package com.mckimquyen.gallery.helper
 
 import org.fossify.commons.helpers.*
 
@@ -53,7 +53,7 @@ const val HIDE_EXTENDED_DETAILS = "hide_extended_details"
 const val ALLOW_INSTANT_CHANGE = "allow_instant_change"
 const val WAS_NEW_APP_SHOWN = "was_new_app_shown_clock"
 const val LAST_FILEPICKER_PATH = "last_filepicker_path"
-const val LAST_COPY_PATH = "last_copy_path"
+//const val LAST_COPY_PATH = "last_copy_path"
 const val TEMP_SKIP_DELETE_CONFIRMATION = "temp_skip_delete_confirmation"
 const val TEMP_SKIP_RECYCLE_BIN = "temp_skip_recycle_bin"
 const val BOTTOM_ACTIONS = "bottom_actions"
@@ -172,9 +172,9 @@ const val EXT_LAST_MODIFIED = 16
 const val EXT_DATE_TAKEN = 32
 const val EXT_CAMERA_MODEL = 64
 const val EXT_EXIF_PROPERTIES = 128
-const val EXT_DURATION = 256
-const val EXT_ARTIST = 512
-const val EXT_ALBUM = 1024
+//const val EXT_DURATION = 256
+//const val EXT_ARTIST = 512
+//const val EXT_ALBUM = 1024
 const val EXT_GPS = 2048
 
 // media types

@@ -5,7 +5,7 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgManageExtendedDetailsBinding
 import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 
 class ManageExtendedDetailsDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
     private val binding = DlgManageExtendedDetailsBinding.inflate(activity.layoutInflater)

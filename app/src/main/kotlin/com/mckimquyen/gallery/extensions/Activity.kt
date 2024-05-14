@@ -43,8 +43,8 @@ import com.mckimquyen.gallery.dialogs.AllFilesPermissionDialog
 import com.mckimquyen.gallery.dialogs.PickDirectoryDialog
 import com.mckimquyen.gallery.dialogs.ResizeMultipleImagesDialog
 import com.mckimquyen.gallery.dialogs.ResizeWithPathDialog
-import com.mckimquyen.gallery.helpers.DIRECTORY
-import com.mckimquyen.gallery.helpers.RECYCLE_BIN
+import com.mckimquyen.gallery.helper.DIRECTORY
+import com.mckimquyen.gallery.helper.RECYCLE_BIN
 import com.mckimquyen.gallery.model.DateTaken
 import java.io.*
 import java.text.SimpleDateFormat

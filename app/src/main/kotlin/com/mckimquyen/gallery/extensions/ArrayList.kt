@@ -1,6 +1,6 @@
 package com.mckimquyen.gallery.extensions
 
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 
 fun ArrayList<Medium>.getDirMediaTypes(): Int {

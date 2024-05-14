@@ -55,7 +55,7 @@ import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.saveRotatedImageToFile
 import com.mckimquyen.gallery.extensions.sendFakeClick
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.svg.SvgSoftwareLayerSetter
 import pl.droidsonroids.gif.InputSource

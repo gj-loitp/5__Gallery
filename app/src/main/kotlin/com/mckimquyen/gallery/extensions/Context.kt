@@ -40,7 +40,7 @@ import org.fossify.commons.views.MySquareImageView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databases.GalleryDatabase
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.*
 import com.mckimquyen.gallery.model.*
 import com.mckimquyen.gallery.svg.SvgSoftwareLayerSetter

@@ -7,7 +7,7 @@ import com.bumptech.glide.signature.ObjectKey
 import org.fossify.commons.extensions.formatDate
 import org.fossify.commons.extensions.formatSize
 import org.fossify.commons.helpers.*
-import com.mckimquyen.gallery.helpers.RECYCLE_BIN
+import com.mckimquyen.gallery.helper.RECYCLE_BIN
 
 @Keep
 @Entity(

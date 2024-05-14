@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.helpers
+package com.mckimquyen.gallery.helper
 
 import android.graphics.*
 import com.squareup.picasso.Transformation

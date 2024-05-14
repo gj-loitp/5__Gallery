@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.helpers
+package com.mckimquyen.gallery.helper
 
 import android.view.View
 import androidx.viewpager.widget.ViewPager

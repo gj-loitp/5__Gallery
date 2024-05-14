@@ -38,7 +38,7 @@ import com.mckimquyen.gallery.dialogs.ConfirmDeleteFolderDialog
 import com.mckimquyen.gallery.dialogs.ExcludeFolderDialog
 import com.mckimquyen.gallery.dialogs.PickMediumDialog
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
 import com.mckimquyen.gallery.model.AlbumCover
 import com.mckimquyen.gallery.model.Directory

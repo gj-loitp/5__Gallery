@@ -7,7 +7,7 @@ import com.bumptech.glide.signature.ObjectKey
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import org.fossify.commons.models.FileDirItem
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import java.io.File
 import java.io.Serializable
 import java.util.Calendar

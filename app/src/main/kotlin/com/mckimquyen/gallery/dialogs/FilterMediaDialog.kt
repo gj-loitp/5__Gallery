@@ -6,7 +6,7 @@ import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgFilterMediaBinding
 import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 
 class FilterMediaDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
     private val binding = DlgFilterMediaBinding.inflate(activity.layoutInflater)

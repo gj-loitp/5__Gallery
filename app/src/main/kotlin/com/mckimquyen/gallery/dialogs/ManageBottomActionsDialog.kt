@@ -5,7 +5,7 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgManageBottomActionsBinding
 import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 
 class ManageBottomActionsDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
     private val binding = DlgManageBottomActionsBinding.inflate(activity.layoutInflater)

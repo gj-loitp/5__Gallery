@@ -30,7 +30,7 @@ import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.AVideoPlayerBinding
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 
 @UnstableApi
 open class VideoPlayerActivity : SimpleActivity(), SeekBar.OnSeekBarChangeListener, TextureView.SurfaceTextureListener {

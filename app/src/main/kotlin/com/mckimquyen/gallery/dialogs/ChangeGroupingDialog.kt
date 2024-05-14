@@ -8,7 +8,7 @@ import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgChangeGroupingBinding
 import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 
 class ChangeGroupingDialog(val activity: BaseSimpleActivity, val path: String = "", val callback: () -> Unit) :
     DialogInterface.OnClickListener {

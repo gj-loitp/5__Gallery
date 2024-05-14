@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.helpers
+package com.mckimquyen.gallery.helper
 
 import java.io.UnsupportedEncodingException
 import java.nio.ByteBuffer

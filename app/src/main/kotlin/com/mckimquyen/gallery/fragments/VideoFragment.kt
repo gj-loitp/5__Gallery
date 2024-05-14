@@ -33,7 +33,7 @@ import com.mckimquyen.gallery.databinding.VPagerVideoItemBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.hasNavBar
 import com.mckimquyen.gallery.extensions.parseFileChannel
-import com.mckimquyen.gallery.helpers.*
+import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.view.MediaSideScroll
 import java.io.File
