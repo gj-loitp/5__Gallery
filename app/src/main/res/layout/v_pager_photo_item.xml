@@ -56,7 +56,7 @@
         android:visibility="gone"
         tools:text="My image\nAnother line" />
 
-    <com.mckimquyen.gallery.views.MediaSideScroll
+    <com.mckimquyen.gallery.view.MediaSideScroll
         android:id="@+id/photoBrightnessController"
         android:layout_width="@dimen/media_side_slider_width"
         android:layout_height="match_parent"
@@ -96,12 +96,12 @@
 
     </RelativeLayout>
 
-    <com.mckimquyen.gallery.views.InstantItemSwitch
+    <com.mckimquyen.gallery.view.InstantItemSwitch
         android:id="@+id/instantPrevItem"
         android:layout_width="1dp"
         android:layout_height="match_parent" />
 
-    <com.mckimquyen.gallery.views.InstantItemSwitch
+    <com.mckimquyen.gallery.view.InstantItemSwitch
         android:id="@+id/instantNextItem"
         android:layout_width="1dp"
         android:layout_height="match_parent"

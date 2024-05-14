@@ -35,7 +35,7 @@ import com.mckimquyen.gallery.extensions.hasNavBar
 import com.mckimquyen.gallery.extensions.parseFileChannel
 import com.mckimquyen.gallery.helpers.*
 import com.mckimquyen.gallery.models.Medium
-import com.mckimquyen.gallery.views.MediaSideScroll
+import com.mckimquyen.gallery.view.MediaSideScroll
 import java.io.File
 import java.io.FileInputStream
 

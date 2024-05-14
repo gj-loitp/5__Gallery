@@ -19,13 +19,13 @@
 
     </com.alexvasilkov.gestures.GestureFrameLayout>
 
-    <com.mckimquyen.gallery.views.MediaSideScroll
+    <com.mckimquyen.gallery.view.MediaSideScroll
         android:id="@+id/videoVolumeController"
         android:layout_width="@dimen/media_side_slider_width"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true" />
 
-    <com.mckimquyen.gallery.views.MediaSideScroll
+    <com.mckimquyen.gallery.view.MediaSideScroll
         android:id="@+id/videoBrightnessController"
         android:layout_width="@dimen/media_side_slider_width"
         android:layout_height="match_parent" />

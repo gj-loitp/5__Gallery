@@ -1,10 +1,12 @@
 package com.mckimquyen.gallery.models
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+@Keep
 @Entity(tableName = "favorites", indices = [Index(value = ["full_path"], unique = true)])
 data class Favorite(
     @PrimaryKey(autoGenerate = true) var id: Int?,

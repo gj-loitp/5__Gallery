@@ -1,5 +1,6 @@
-package com.mckimquyen.gallery.receivers
+package com.mckimquyen.gallery.receiver
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -8,7 +9,11 @@ import com.mckimquyen.gallery.extensions.updateDirectoryPath
 import com.mckimquyen.gallery.helpers.MediaFetcher
 
 class BootCompletedReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
         ensureBackgroundThread {
             MediaFetcher(context).getFoldersToScan().forEach {
                 context.updateDirectoryPath(it)

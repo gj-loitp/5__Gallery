@@ -1,6 +1,7 @@
 package com.mckimquyen.gallery.models
 
 import android.content.Context
+import androidx.annotation.Keep
 import androidx.room.*
 import com.bumptech.glide.signature.ObjectKey
 import org.fossify.commons.extensions.*
@@ -12,6 +13,7 @@ import java.io.Serializable
 import java.util.Calendar
 import java.util.Locale
 
+@Keep
 @Entity(tableName = "media", indices = [(Index(value = ["full_path"], unique = true))])
 data class Medium(
     @PrimaryKey(autoGenerate = true) var id: Long?,

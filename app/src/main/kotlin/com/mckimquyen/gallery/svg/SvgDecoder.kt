@@ -12,10 +12,18 @@ import java.io.InputStream
 
 class SvgDecoder : ResourceDecoder<InputStream, SVG> {
 
-    override fun handles(source: InputStream, options: Options) = true
+    override fun handles(
+        source: InputStream,
+        options: Options,
+    ) = true
 
     @Throws(IOException::class)
-    override fun decode(source: InputStream, width: Int, height: Int, options: Options): Resource<SVG> {
+    override fun decode(
+        source: InputStream,
+        width: Int,
+        height: Int,
+        options: Options,
+    ): Resource<SVG> {
         try {
             val svg = SVG.getFromInputStream(source)
             return SimpleResource(svg)

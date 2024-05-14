@@ -1,6 +1,7 @@
 package com.mckimquyen.gallery.models
 
 import android.content.Context
+import androidx.annotation.Keep
 import androidx.room.*
 import com.bumptech.glide.signature.ObjectKey
 import org.fossify.commons.extensions.formatDate
@@ -8,6 +9,7 @@ import org.fossify.commons.extensions.formatSize
 import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.helpers.RECYCLE_BIN
 
+@Keep
 @Entity(tableName = "directories", indices = [Index(value = ["path"], unique = true)])
 data class Directory(
     @PrimaryKey(autoGenerate = true) var id: Long?,

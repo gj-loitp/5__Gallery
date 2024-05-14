@@ -289,7 +289,7 @@
         </provider>
 
         <receiver
-            android:name=".receivers.RefreshMediaReceiver"
+            android:name=".receiver.RefreshMediaReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.mckimquyen.REFRESH_MEDIA" />
@@ -311,7 +311,7 @@
         </receiver>
 
         <receiver
-            android:name=".receivers.BootCompletedReceiver"
+            android:name=".receiver.BootCompletedReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

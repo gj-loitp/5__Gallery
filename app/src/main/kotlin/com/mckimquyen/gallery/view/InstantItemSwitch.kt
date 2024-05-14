@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.views
+package com.mckimquyen.gallery.view
 
 import android.annotation.SuppressLint
 import android.content.Context

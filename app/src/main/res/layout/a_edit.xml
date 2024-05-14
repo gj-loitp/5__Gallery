@@ -43,7 +43,7 @@
             app:cropBackgroundColor="@color/crop_image_view_background"
             app:cropInitialCropWindowPaddingRatio="0" />
 
-        <com.mckimquyen.gallery.views.EditorDrawCanvas
+        <com.mckimquyen.gallery.view.EditorDrawCanvas
             android:id="@+id/editorDrawCanvas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
