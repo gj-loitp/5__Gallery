@@ -640,7 +640,7 @@ fun Context.tryLoadingWithPicasso(path: String, view: MySquareImageView, cropThu
             val cornerSize =
                 if (roundCorners == ROUNDED_CORNERS_SMALL) org.fossify.commons.R.dimen.rounded_corner_radius_small else org.fossify.commons.R.dimen.rounded_corner_radius_big
             val cornerRadius = resources.getDimension(cornerSize).toInt()
-            builder = builder.transform(PicassoRoundedCornersTransformation(cornerRadius.toFloat()))
+            builder = builder.transform(TransformationPicassoRoundedCorners(cornerRadius.toFloat()))
         }
 
         builder.into(view)

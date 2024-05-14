@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 
-class GridSpacingItemDecoration(
+class DecorationGridSpacingItem(
     val spanCount: Int,
     val spacing: Int,
     val isScrollingHorizontally: Boolean,

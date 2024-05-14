@@ -5,7 +5,7 @@ import android.graphics.*
 import android.net.Uri
 import com.davemorrissey.labs.subscaleview.ImageRegionDecoder
 
-class PicassoRegionDecoder(
+class DecoderPicassoRegion(
     private val showHighestQuality: Boolean,
     private val screenWidth: Int,
     private val screenHeight: Int,

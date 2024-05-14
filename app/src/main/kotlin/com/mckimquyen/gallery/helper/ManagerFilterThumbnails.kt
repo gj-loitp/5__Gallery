@@ -3,7 +3,7 @@ package com.mckimquyen.gallery.helper
 import android.graphics.Bitmap
 import com.mckimquyen.gallery.model.FilterItem
 
-class FilterThumbnailsManager {
+class ManagerFilterThumbnails {
     private var filterThumbnails = ArrayList<FilterItem>(10)
     private var processedThumbnails = ArrayList<FilterItem>(10)
 

@@ -656,18 +656,18 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                 }
 
                 runOnUiThread {
-                    val filterThumbnailsManager = FilterThumbnailsManager()
-                    filterThumbnailsManager.clearThumbs()
+                    val managerFilterThumbnails = ManagerFilterThumbnails()
+                    managerFilterThumbnails.clearThumbs()
 
                     val noFilter = Filter(getString(org.fossify.commons.R.string.none))
-                    filterThumbnailsManager.addThumb(FilterItem(bitmap, noFilter))
+                    managerFilterThumbnails.addThumb(FilterItem(bitmap, noFilter))
 
                     FilterPack.getFilterPack(this).forEach {
                         val filterItem = FilterItem(bitmap, it)
-                        filterThumbnailsManager.addThumb(filterItem)
+                        managerFilterThumbnails.addThumb(filterItem)
                     }
 
-                    val filterItems = filterThumbnailsManager.processThumbs()
+                    val filterItems = managerFilterThumbnails.processThumbs()
                     val adapter = FiltersAdapter(applicationContext, filterItems) {
                         val layoutManager = binding.bottomEditorFilterActions.bottomActionsFilterList.layoutManager as LinearLayoutManager
                         applyFilter(filterItems[it])

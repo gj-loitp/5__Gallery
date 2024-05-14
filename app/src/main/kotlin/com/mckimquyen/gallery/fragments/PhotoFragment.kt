@@ -662,11 +662,11 @@ class PhotoFragment : ViewPagerFragment() {
         val minTileDpi = if (showHighestQuality) -1 else getMinTileDpi()
 
         val bitmapDecoder = object : DecoderFactory<ImageDecoder> {
-            override fun make() = MyGlideImageDecoder(rotation, mMedium.getKey())
+            override fun make() = DecoderMyGlideImage(rotation, mMedium.getKey())
         }
 
         val regionDecoder = object : DecoderFactory<ImageRegionDecoder> {
-            override fun make() = PicassoRegionDecoder(showHighestQuality, mScreenWidth, mScreenHeight, minTileDpi)
+            override fun make() = DecoderPicassoRegion(showHighestQuality, mScreenWidth, mScreenHeight, minTileDpi)
         }
 
         var newOrientation = (rotation + mCurrentRotationDegrees) % 360

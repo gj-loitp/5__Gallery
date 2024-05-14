@@ -14,7 +14,7 @@ import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.DlgMediumPickerBinding
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.getCachedMedia
-import com.mckimquyen.gallery.helper.GridSpacingItemDecoration
+import com.mckimquyen.gallery.helper.DecorationGridSpacingItem
 import com.mckimquyen.gallery.helper.SHOW_ALL
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
@@ -93,13 +93,13 @@ class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val c
             val spacing = config.thumbnailSpacing
             val useGridPosition = media.firstOrNull() is ThumbnailSection
 
-            var currentGridDecoration: GridSpacingItemDecoration? = null
+            var currentGridDecoration: DecorationGridSpacingItem? = null
             if (binding.mediaGrid.itemDecorationCount > 0) {
-                currentGridDecoration = binding.mediaGrid.getItemDecorationAt(0) as GridSpacingItemDecoration
+                currentGridDecoration = binding.mediaGrid.getItemDecorationAt(0) as DecorationGridSpacingItem
                 currentGridDecoration.items = media
             }
 
-            val newGridDecoration = GridSpacingItemDecoration(spanCount, spacing, config.scrollHorizontally, config.fileRoundedCorners, media, useGridPosition)
+            val newGridDecoration = DecorationGridSpacingItem(spanCount, spacing, config.scrollHorizontally, config.fileRoundedCorners, media, useGridPosition)
             if (currentGridDecoration.toString() != newGridDecoration.toString()) {
                 if (currentGridDecoration != null) {
                     binding.mediaGrid.removeItemDecoration(currentGridDecoration)

@@ -3,7 +3,7 @@ package com.mckimquyen.gallery.helper
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 
-class FadePageTransformer : ViewPager.PageTransformer {
+class TransformerFadePage : ViewPager.PageTransformer {
     override fun transformPage(view: View, position: Float) {
         view.translationX = view.width * -position
 

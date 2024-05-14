@@ -499,7 +499,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
             binding.viewPager.onGlobalLayout {
                 if (!isDestroyed) {
                     if (config.slideshowAnimation == SLIDESHOW_ANIMATION_FADE) {
-                        binding.viewPager.setPageTransformer(false, FadePageTransformer())
+                        binding.viewPager.setPageTransformer(false, TransformerFadePage())
                     }
 
                     hideSystemUI(true)
@@ -593,7 +593,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
 
     private fun stopSlideshow() {
         if (mIsSlideshowActive) {
-            binding.viewPager.setPageTransformer(false, DefaultPageTransformer())
+            binding.viewPager.setPageTransformer(false, TransformerDefaultPage())
             mIsSlideshowActive = false
             showSystemUI(true)
             mSlideshowHandler.removeCallbacksAndMessages(null)

@@ -16,7 +16,7 @@ import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.ASearchBinding
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.helper.GridSpacingItemDecoration
+import com.mckimquyen.gallery.helper.DecorationGridSpacingItem
 import com.mckimquyen.gallery.helper.MediaFetcher
 import com.mckimquyen.gallery.helper.PATH
 import com.mckimquyen.gallery.helper.SHOW_ALL
@@ -142,7 +142,7 @@ class SearchActivity : SimpleActivity(), ListenerMediaOperations {
 
             val spanCount = config.mediaColumnCnt
             val spacing = config.thumbnailSpacing
-            val decoration = GridSpacingItemDecoration(spanCount, spacing, config.scrollHorizontally, config.fileRoundedCorners, media, true)
+            val decoration = DecorationGridSpacingItem(spanCount, spacing, config.scrollHorizontally, config.fileRoundedCorners, media, true)
             binding.searchGrid.addItemDecoration(decoration)
         }
     }
