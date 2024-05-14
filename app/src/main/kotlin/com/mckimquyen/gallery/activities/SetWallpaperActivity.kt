@@ -16,7 +16,7 @@ import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.helpers.isNougatPlus
 import org.fossify.commons.models.RadioItem
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.ActivitySetWallpaperBinding
+import com.mckimquyen.gallery.databinding.ASetWallpaperBinding
 
 class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener {
     private val RATIO_PORTRAIT = 0
@@ -30,7 +30,7 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
     lateinit var uri: Uri
     lateinit var wallpaperManager: WallpaperManager
 
-    private val binding by viewBinding(ActivitySetWallpaperBinding::inflate)
+    private val binding by viewBinding(ASetWallpaperBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

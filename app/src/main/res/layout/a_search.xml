@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/search_coordinator"
+    android:id="@+id/searchCoordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <org.fossify.commons.views.MySearchMenu
-        android:id="@+id/search_menu"
+        android:id="@+id/searchMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -17,7 +17,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <org.fossify.commons.views.MyTextView
-            android:id="@+id/search_empty_text_placeholder"
+            android:id="@+id/searchEmptyTextPlaceholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.8"
@@ -31,12 +31,12 @@
             android:visibility="gone" />
 
         <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-            android:id="@+id/search_fastscroller"
+            android:id="@+id/searchFastscroller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <org.fossify.commons.views.MyRecyclerView
-                android:id="@+id/search_grid"
+                android:id="@+id/searchGrid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none"

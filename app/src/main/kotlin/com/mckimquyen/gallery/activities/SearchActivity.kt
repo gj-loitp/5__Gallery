@@ -14,7 +14,7 @@ import org.fossify.commons.views.MyGridLayoutManager
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
-import com.mckimquyen.gallery.databinding.ActivitySearchBinding
+import com.mckimquyen.gallery.databinding.ASearchBinding
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.GridSpacingItemDecoration
 import com.mckimquyen.gallery.helpers.MediaFetcher
@@ -31,7 +31,7 @@ class SearchActivity : SimpleActivity(), MediaOperationsListener {
     private var mCurrAsyncTask: GetMediaAsynctask? = null
     private var mAllMedia = ArrayList<ThumbnailItem>()
 
-    private val binding by viewBinding(ActivitySearchBinding::inflate)
+    private val binding by viewBinding(ASearchBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
