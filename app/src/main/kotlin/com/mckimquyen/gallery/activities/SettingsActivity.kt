@@ -13,7 +13,7 @@ import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import org.fossify.commons.models.RadioItem
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.databinding.ActivitySettingsBinding
+import com.mckimquyen.gallery.databinding.ASettingsBinding
 import com.mckimquyen.gallery.dialogs.*
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
@@ -32,7 +32,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private var mRecycleBinContentSize = 0L
-    private val binding by viewBinding(ActivitySettingsBinding::inflate)
+    private val binding by viewBinding(ASettingsBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true

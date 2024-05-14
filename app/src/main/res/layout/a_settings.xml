@@ -528,7 +528,7 @@
                 android:layout_height="wrap_content">
 
                 <org.fossify.commons.views.MyAppCompatCheckbox
-                    android:id="@+id/settings_show_notch"
+                    android:id="@+id/settingsShowNotch"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -550,7 +550,7 @@
                     android:text="@string/screen_rotation_by" />
 
                 <org.fossify.commons.views.MyTextView
-                    android:id="@+id/settings_screen_rotation"
+                    android:id="@+id/settingsScreenRotation"
                     style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -571,10 +571,11 @@
                 android:text="@string/deep_zoomable_images" />
 
             <RelativeLayout
-                android:id="@+id/settings_allow_zooming_images_holder"
+                android:id="@+id/settingsAllowZoomingImagesHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:ignore="TooManyViews">
 
                 <org.fossify.commons.views.MyAppCompatCheckbox
                     android:id="@+id/settings_allow_zooming_images"
@@ -592,7 +593,7 @@
                 android:layout_height="wrap_content">
 
                 <org.fossify.commons.views.MyAppCompatCheckbox
-                    android:id="@+id/settings_allow_rotating_with_gestures"
+                    android:id="@+id/settingsAllowRotatingWithGestures"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -622,7 +623,7 @@
                 android:layout_height="wrap_content">
 
                 <org.fossify.commons.views.MyAppCompatCheckbox
-                    android:id="@+id/settings_allow_one_to_one_zoom"
+                    android:id="@+id/settingsAllowOneToOneZoom"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -648,7 +649,7 @@
                 android:layout_height="wrap_content">
 
                 <org.fossify.commons.views.MyAppCompatCheckbox
-                    android:id="@+id/settings_show_extended_details"
+                    android:id="@+id/settingsShowExtendedDetails"
                     style="@style/SettingsCheckboxStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -672,7 +673,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/settings_manage_extended_details_holder"
+                android:id="@+id/settingsManageExtendedDetailsHolder"
                 style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -687,10 +688,10 @@
             </RelativeLayout>
 
             <include
-                android:id="@+id/settings_extended_details_divider"
+                android:id="@+id/settingsExtendedDetailsDivider"
                 layout="@layout/divider" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/settings_security_label"
                 style="@style/SettingsSectionLabelStyle"
                 android:layout_width="match_parent"
@@ -698,7 +699,7 @@
                 android:text="@string/security" />
 
             <RelativeLayout
-                android:id="@+id/settings_app_password_protection_holder"
+                android:id="@+id/settingsAppPasswordProtectionHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -713,7 +714,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/settings_hidden_item_password_protection_holder"
+                android:id="@+id/settingsHiddenItemPasswordProtectionHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -743,7 +744,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/settings_file_deletion_password_protection_holder"
+                android:id="@+id/settingsFileDeletionPasswordProtectionHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -758,11 +759,11 @@
             </RelativeLayout>
 
             <include
-                android:id="@+id/settings_security_divider"
+                android:id="@+id/settingsSecurityDivider"
                 layout="@layout/divider" />
 
-            <TextView
-                android:id="@+id/settings_file_operations_label"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settingsFileOperationsLabel"
                 style="@style/SettingsSectionLabelStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -784,7 +785,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/settings_keep_last_modified_holder"
+                android:id="@+id/settingsKeepLastModifiedHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -817,7 +818,7 @@
                 android:id="@+id/settings_file_operations_divider"
                 layout="@layout/divider" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/settings_bottom_actions_label"
                 style="@style/SettingsSectionLabelStyle"
                 android:layout_width="match_parent"
@@ -825,7 +826,7 @@
                 android:text="@string/bottom_actions" />
 
             <RelativeLayout
-                android:id="@+id/settings_bottom_actions_checkbox_holder"
+                android:id="@+id/settingsBottomActionsCheckboxHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -855,10 +856,10 @@
             </RelativeLayout>
 
             <include
-                android:id="@+id/settings_bottom_actions_divider"
+                android:id="@+id/settingsBottomActionsDivider"
                 layout="@layout/divider" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/settings_recycle_bin_label"
                 style="@style/SettingsSectionLabelStyle"
                 android:layout_width="match_parent"
@@ -866,7 +867,7 @@
                 android:text="@string/recycle_bin" />
 
             <RelativeLayout
-                android:id="@+id/settings_use_recycle_bin_holder"
+                android:id="@+id/settingsUseRecycleBinHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -896,7 +897,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/settings_show_recycle_bin_last_holder"
+                android:id="@+id/settingsShowRecycleBinLastHolder"
                 style="@style/SettingsHolderCheckboxStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -917,7 +918,7 @@
                 android:layout_height="wrap_content">
 
                 <org.fossify.commons.views.MyTextView
-                    android:id="@+id/settings_empty_recycle_bin_label"
+                    android:id="@+id/settingsEmptyRecycleBinLabel"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -928,7 +929,7 @@
                     style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/settings_empty_recycle_bin_label"
+                    android:layout_below="@+id/settingsEmptyRecycleBinLabel"
                     tools:text="0 B" />
 
             </RelativeLayout>
@@ -937,8 +938,8 @@
                 android:id="@+id/settings_recycle_bin_divider"
                 layout="@layout/divider" />
 
-            <TextView
-                android:id="@+id/settings_migrating_label"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settingsMigratingLabel"
                 style="@style/SettingsSectionLabelStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -968,7 +969,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/settings_export_favorites_holder"
+                android:id="@+id/settingsExportFavoritesHolder"
                 style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -1004,7 +1005,7 @@
                 android:layout_height="wrap_content">
 
                 <org.fossify.commons.views.MyTextView
-                    android:id="@+id/settings_export"
+                    android:id="@+id/settingsExport"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1013,7 +1014,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/settings_import_holder"
+                android:id="@+id/settingsImportHolder"
                 style="@style/SettingsHolderTextViewOneLinerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
