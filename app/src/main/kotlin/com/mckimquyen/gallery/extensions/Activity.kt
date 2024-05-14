@@ -36,7 +36,7 @@ import org.fossify.commons.models.FAQItem
 import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.MediaActivity
+import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.activities.SettingsActivity
 import com.mckimquyen.gallery.activities.SimpleActivity
 import com.mckimquyen.gallery.dialogs.AllFilesPermissionDialog
@@ -941,7 +941,7 @@ fun Activity.handleExcludedFolderPasswordProtection(callback: () -> Unit) {
 }
 
 fun Activity.openRecycleBin() {
-    Intent(this, MediaActivity::class.java).apply {
+    Intent(this, MediaActivityMediaOperations::class.java).apply {
         putExtra(DIRECTORY, RECYCLE_BIN)
         startActivity(this)
     }

@@ -8,7 +8,7 @@ import com.mckimquyen.gallery.helpers.RECYCLE_BIN
 import com.mckimquyen.gallery.model.Directory
 
 @Dao
-interface DirectoryDao {
+interface DaoDirectory {
     @Query("SELECT path, thumbnail, filename, media_count, last_modified, date_taken, size, location, media_types, sort_value FROM directories")
     fun getAll(): List<Directory>
 

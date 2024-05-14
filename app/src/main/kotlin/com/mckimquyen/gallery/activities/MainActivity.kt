@@ -34,13 +34,13 @@ import com.mckimquyen.gallery.dialogs.FilterMediaDialog
 import com.mckimquyen.gallery.dialogs.GrantAllFilesDialog
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.itf.DirectoryOperationsListener
+import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
 import com.mckimquyen.gallery.job.NewPhotoFetcher
 import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Medium
 import java.io.*
 
-class MainActivity : SimpleActivity(), DirectoryOperationsListener {
+class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
     companion object {
         private const val PICK_MEDIA = 2
         private const val PICK_WALLPAPER = 3
@@ -578,7 +578,7 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
 
     private fun showAllMedia() {
         config.showAll = true
-        Intent(this, MediaActivity::class.java).apply {
+        Intent(this, MediaActivityMediaOperations::class.java).apply {
             putExtra(DIRECTORY, "")
 
             if (mIsThirdPartyIntent) {
@@ -889,7 +889,7 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
     private fun itemClicked(path: String) {
         handleLockedFolderOpening(path) { success ->
             if (success) {
-                Intent(this, MediaActivity::class.java).apply {
+                Intent(this, MediaActivityMediaOperations::class.java).apply {
                     putExtra(SKIP_AUTHENTICATION, true)
                     putExtra(DIRECTORY, path)
                     handleMediaIntent(this)
@@ -1197,7 +1197,7 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener {
             return
         }
 
-        Intent(this, MediaActivity::class.java).apply {
+        Intent(this, MediaActivityMediaOperations::class.java).apply {
             putExtra(DIRECTORY, config.defaultFolder)
             handleMediaIntent(this)
         }

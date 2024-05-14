@@ -12,15 +12,15 @@ import com.mckimquyen.gallery.model.*
 @Database(entities = [Directory::class, Medium::class, Widget::class, DateTaken::class, Favorite::class], version = 10)
 abstract class GalleryDatabase : RoomDatabase() {
 
-    abstract fun DirectoryDao(): DirectoryDao
+    abstract fun DirectoryDao(): DaoDirectory
 
-    abstract fun MediumDao(): MediumDao
+    abstract fun MediumDao(): DaoMedium
 
-    abstract fun WidgetsDao(): WidgetsDao
+    abstract fun WidgetsDao(): DaoWidgets
 
-    abstract fun DateTakensDao(): DateTakensDao
+    abstract fun DateTakensDao(): DaoDateTakens
 
-    abstract fun FavoritesDao(): FavoritesDao
+    abstract fun FavoritesDao(): DaoFavorites
 
     companion object {
         private var db: GalleryDatabase? = null

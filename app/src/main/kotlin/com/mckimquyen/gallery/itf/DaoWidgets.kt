@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.mckimquyen.gallery.model.Widget
 
 @Dao
-interface WidgetsDao {
+interface DaoWidgets {
     @Query("SELECT * FROM widgets")
     fun getWidgets(): List<Widget>
 

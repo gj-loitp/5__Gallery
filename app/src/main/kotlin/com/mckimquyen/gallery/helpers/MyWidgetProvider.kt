@@ -16,7 +16,7 @@ import org.fossify.commons.extensions.setText
 import org.fossify.commons.extensions.setVisibleIf
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.MediaActivity
+import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.extensions.config
 import com.mckimquyen.gallery.extensions.directoryDB
 import com.mckimquyen.gallery.extensions.getFolderNameFromPath
@@ -25,7 +25,7 @@ import com.mckimquyen.gallery.model.Widget
 
 class MyWidgetProvider : AppWidgetProvider() {
     private fun setupAppOpenIntent(context: Context, views: RemoteViews, id: Int, widget: Widget) {
-        val intent = Intent(context, MediaActivity::class.java).apply {
+        val intent = Intent(context, MediaActivityMediaOperations::class.java).apply {
             putExtra(DIRECTORY, widget.folderPath)
         }
 

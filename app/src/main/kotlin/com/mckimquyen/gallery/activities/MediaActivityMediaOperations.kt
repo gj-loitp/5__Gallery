@@ -31,14 +31,14 @@ import com.mckimquyen.gallery.databinding.AMediaBinding
 import com.mckimquyen.gallery.dialogs.*
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.itf.MediaOperationsListener
+import com.mckimquyen.gallery.itf.ListenerMediaOperations
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 import com.mckimquyen.gallery.model.ThumbnailSection
 import java.io.File
 import java.io.IOException
 
-class MediaActivity : SimpleActivity(), MediaOperationsListener {
+class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
     private val LAST_MEDIA_CHECK_PERIOD = 3000L
 
     private var mPath = ""

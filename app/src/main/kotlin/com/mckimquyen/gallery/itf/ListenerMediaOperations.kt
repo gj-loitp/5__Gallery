@@ -3,7 +3,7 @@ package com.mckimquyen.gallery.itf
 import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.model.ThumbnailItem
 
-interface MediaOperationsListener {
+interface ListenerMediaOperations {
     fun refreshItems()
 
     fun tryDeleteFiles(

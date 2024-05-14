@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.mckimquyen.gallery.model.DateTaken
 
 @Dao
-interface DateTakensDao {
+interface DaoDateTakens {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(dateTakens: List<DateTaken>)
 

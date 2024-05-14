@@ -61,15 +61,15 @@ fun Context.getHumanizedFilename(path: String): String {
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
-val Context.widgetsDB: WidgetsDao get() = GalleryDatabase.getInstance(applicationContext).WidgetsDao()
+val Context.widgetsDB: DaoWidgets get() = GalleryDatabase.getInstance(applicationContext).WidgetsDao()
 
-val Context.mediaDB: MediumDao get() = GalleryDatabase.getInstance(applicationContext).MediumDao()
+val Context.mediaDB: DaoMedium get() = GalleryDatabase.getInstance(applicationContext).MediumDao()
 
-val Context.directoryDB: DirectoryDao get() = GalleryDatabase.getInstance(applicationContext).DirectoryDao()
+val Context.directoryDB: DaoDirectory get() = GalleryDatabase.getInstance(applicationContext).DirectoryDao()
 
-val Context.favoritesDB: FavoritesDao get() = GalleryDatabase.getInstance(applicationContext).FavoritesDao()
+val Context.favoritesDB: DaoFavorites get() = GalleryDatabase.getInstance(applicationContext).FavoritesDao()
 
-val Context.dateTakensDB: DateTakensDao get() = GalleryDatabase.getInstance(applicationContext).DateTakensDao()
+val Context.dateTakensDB: DaoDateTakens get() = GalleryDatabase.getInstance(applicationContext).DateTakensDao()
 
 val Context.recycleBin: File get() = filesDir
 

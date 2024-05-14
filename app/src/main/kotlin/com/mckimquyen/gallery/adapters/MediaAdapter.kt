@@ -28,13 +28,13 @@ import com.mckimquyen.gallery.databinding.*
 import com.mckimquyen.gallery.dialogs.DeleteWithRememberDialog
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.itf.MediaOperationsListener
+import com.mckimquyen.gallery.itf.ListenerMediaOperations
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 import com.mckimquyen.gallery.model.ThumbnailSection
 
 class MediaAdapter(
-    activity: BaseSimpleActivity, var media: ArrayList<ThumbnailItem>, val listener: MediaOperationsListener?, val isAGetIntent: Boolean,
+    activity: BaseSimpleActivity, var media: ArrayList<ThumbnailItem>, val listener: ListenerMediaOperations?, val isAGetIntent: Boolean,
     val allowMultiplePicks: Boolean, val path: String, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit
 ) :
     MyRecyclerViewAdapter(activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {

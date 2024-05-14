@@ -30,7 +30,7 @@ import org.fossify.commons.interfaces.StartReorderDragListener
 import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.MediaActivity
+import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
@@ -39,14 +39,14 @@ import com.mckimquyen.gallery.dialogs.ExcludeFolderDialog
 import com.mckimquyen.gallery.dialogs.PickMediumDialog
 import com.mckimquyen.gallery.extensions.*
 import com.mckimquyen.gallery.helpers.*
-import com.mckimquyen.gallery.itf.DirectoryOperationsListener
+import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
 import com.mckimquyen.gallery.model.AlbumCover
 import com.mckimquyen.gallery.model.Directory
 import java.io.File
 import java.util.Collections
 
 class DirectoryAdapter(
-    activity: BaseSimpleActivity, var dirs: ArrayList<Directory>, val listener: DirectoryOperationsListener?, recyclerView: MyRecyclerView,
+    activity: BaseSimpleActivity, var dirs: ArrayList<Directory>, val listener: ListenerDirectoryOperations?, recyclerView: MyRecyclerView,
     val isPickIntent: Boolean, val swipeRefreshLayout: SwipeRefreshLayout? = null, itemClick: (Any) -> Unit
 ) :
     MyRecyclerViewAdapter(activity, recyclerView, itemClick), ItemTouchHelperContract, RecyclerViewFastScroller.OnPopupTextUpdate {
@@ -567,7 +567,7 @@ class DirectoryAdapter(
             val drawable = resources.getDrawable(R.drawable.layer_list_shortcut_image).mutate()
             val coverThumbnail = config.parseAlbumCovers().firstOrNull { it.tmb == dir.path }?.tmb ?: dir.tmb
             activity.getShortcutImage(coverThumbnail, drawable) {
-                val intent = Intent(activity, MediaActivity::class.java)
+                val intent = Intent(activity, MediaActivityMediaOperations::class.java)
                 intent.action = Intent.ACTION_VIEW
                 intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 intent.putExtra(DIRECTORY, path)

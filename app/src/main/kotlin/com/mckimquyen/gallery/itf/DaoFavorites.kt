@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.mckimquyen.gallery.model.Favorite
 
 @Dao
-interface FavoritesDao {
+interface DaoFavorites {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(favorite: Favorite)
 
