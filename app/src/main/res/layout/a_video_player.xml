@@ -34,7 +34,7 @@
         android:id="@+id/topShadow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_status_action_height"
-        android:background="@drawable/gradient_background_flipped"
+        android:background="@drawable/shape_gradient_background_flipped"
         android:contentDescription="@null" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -43,7 +43,7 @@
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/videoTimeHolder"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/gradient_background"
+        android:background="@drawable/shape_gradient_background"
         tools:ignore="UnknownIdInLayout" />
 
     <include
@@ -58,7 +58,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="200dp"
         android:alpha="0"
-        android:background="@drawable/black_rounded_background"
+        android:background="@drawable/shape_black_rounded_background"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_margin"
         android:paddingTop="@dimen/medium_margin"

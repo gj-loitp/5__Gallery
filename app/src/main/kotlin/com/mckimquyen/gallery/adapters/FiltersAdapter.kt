@@ -13,7 +13,7 @@ class FiltersAdapter(val context: Context, val filterItems: ArrayList<FilterItem
     RecyclerView.Adapter<FiltersAdapter.ViewHolder>() {
 
     private var currentSelection = filterItems.first()
-    private var strokeBackground = context.resources.getDrawable(R.drawable.stroke_background)
+    private var strokeBackground = context.resources.getDrawable(R.drawable.selector_stroke_background)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindView(filterItems[position])

@@ -19,7 +19,7 @@ class PortraitPhotosAdapter(val context: Context, val photos: ArrayList<String>,
 
     var currentSelectionIndex = -1
     var views = HashMap<Int, View>()
-    private var strokeBackground = context.resources.getDrawable(R.drawable.stroke_background)
+    private var strokeBackground = context.resources.getDrawable(R.drawable.selector_stroke_background)
     private val itemWidth = context.resources.getDimension(R.dimen.portrait_photos_stripe_height).toInt()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

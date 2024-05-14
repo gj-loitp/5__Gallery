@@ -564,7 +564,7 @@ class DirectoryAdapter(
         if (manager.isRequestPinShortcutSupported) {
             val dir = getFirstSelectedItem() ?: return
             val path = dir.path
-            val drawable = resources.getDrawable(R.drawable.shortcut_image).mutate()
+            val drawable = resources.getDrawable(R.drawable.layer_list_shortcut_image).mutate()
             val coverThumbnail = config.parseAlbumCovers().firstOrNull { it.tmb == dir.path }?.tmb ?: dir.tmb
             activity.getShortcutImage(coverThumbnail, drawable) {
                 val intent = Intent(activity, MediaActivity::class.java)

@@ -36,7 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/medium_margin"
-        android:background="@drawable/circle_background"
+        android:background="@drawable/shape_circle_background"
         android:contentDescription="@null"
         android:padding="@dimen/tiny_margin"
         android:src="@drawable/ic_check_vector"
@@ -49,7 +49,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_margin="@dimen/small_margin"
-        android:background="@drawable/circle_black_background"
+        android:background="@drawable/shape_circle_black_background"
         android:contentDescription="@string/pin"
         android:padding="@dimen/small_margin"
         android:src="@drawable/ic_pin_filled_vector"
@@ -70,7 +70,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/medium_margin"
-            android:background="@drawable/circle_black_background"
+            android:background="@drawable/shape_circle_black_background"
             android:contentDescription="@string/reorder_by_dragging"
             android:padding="@dimen/small_margin"
             android:src="@drawable/ic_drag_handle_vector" />
@@ -84,7 +84,7 @@
         android:layout_alignStart="@+id/dirBottomHolder"
         android:layout_alignEnd="@+id/dirBottomHolder"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/gradient_background"
+        android:background="@drawable/shape_gradient_background"
         android:contentDescription="@null" />
 
     <LinearLayout

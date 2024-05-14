@@ -438,7 +438,7 @@ class MediaAdapter(
         val manager = activity.getSystemService(ShortcutManager::class.java)
         if (manager.isRequestPinShortcutSupported) {
             val path = getSelectedPaths().first()
-            val drawable = resources.getDrawable(R.drawable.shortcut_image).mutate()
+            val drawable = resources.getDrawable(R.drawable.layer_list_shortcut_image).mutate()
             activity.getShortcutImage(path, drawable) {
                 val intent = Intent(activity, ViewPagerActivity::class.java).apply {
                     putExtra(PATH, path)

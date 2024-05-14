@@ -10,7 +10,7 @@
         android:layout_width="@dimen/bottom_filters_thumbnail_size"
         android:layout_height="@dimen/bottom_filters_thumbnail_size"
         android:layout_above="@+id/editorFilterItemLabel"
-        android:background="@drawable/stroke_background"
+        android:background="@drawable/selector_stroke_background"
         android:contentDescription="@null"
         android:padding="1dp" />
 

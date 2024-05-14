@@ -769,7 +769,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         if (manager.isRequestPinShortcutSupported) {
             val medium = getCurrentMedium() ?: return
             val path = medium.path
-            val drawable = resources.getDrawable(R.drawable.shortcut_image).mutate()
+            val drawable = resources.getDrawable(R.drawable.layer_list_shortcut_image).mutate()
             getShortcutImage(path, drawable) {
                 val intent = Intent(this, ViewPagerActivity::class.java).apply {
                     putExtra(PATH, path)
