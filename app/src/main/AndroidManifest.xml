@@ -44,7 +44,7 @@
         android:required="false" />
 
     <application
-        android:name=".App"
+        android:name=".RApp"
         android:allowBackup="true"
         android:appCategory="image"
         android:icon="@mipmap/ic_launcher"

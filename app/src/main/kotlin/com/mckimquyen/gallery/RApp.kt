@@ -8,9 +8,13 @@ import okhttp3.Request
 import okhttp3.Response
 import org.fossify.commons.extensions.checkUseEnglish
 
-class App : Application() {
+class RApp : Application() {
     override fun onCreate() {
         super.onCreate()
+        setupApp()
+    }
+
+    private fun setupApp() {
         checkUseEnglish()
         Reprint.initialize(this)
         Picasso.setSingletonInstance(Picasso.Builder(this).downloader(object : Downloader {

@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
@@ -16,12 +17,10 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
     private var mStartY = 0f
     private var mColor = 0
     private var mWasMultitouch = false
-
     private var mPaths = LinkedHashMap<Path, PaintOptions>()
     private var mPaint = Paint()
     private var mPath = Path()
     private var mPaintOptions = PaintOptions()
-
     private var backgroundBitmap: Bitmap? = null
 
     init {
@@ -39,21 +38,20 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.save()
-
-        if (backgroundBitmap != null) {
-            canvas.drawBitmap(backgroundBitmap!!, 0f, 0f, null)
+        backgroundBitmap?.let {
+            canvas.drawBitmap(it, 0f, 0f, null)
         }
-
         for ((key, value) in mPaths) {
             changePaint(value)
-            canvas.drawPath(key, mPaint)
+            canvas.drawPath(/* path = */ key, /* paint = */ mPaint)
         }
 
         changePaint(mPaintOptions)
-        canvas.drawPath(mPath, mPaint)
+        canvas.drawPath(/* path = */ mPath, /* paint = */ mPaint)
         canvas.restore()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val x = event.x
         val y = event.y
@@ -99,15 +97,15 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
 
             // draw a dot on click
             if (mStartX == mCurX && mStartY == mCurY) {
-                mPath.lineTo(mCurX, mCurY + 2)
-                mPath.lineTo(mCurX + 1, mCurY + 2)
-                mPath.lineTo(mCurX + 1, mCurY)
+                mPath.lineTo(/* x = */ mCurX, /* y = */ mCurY + 2)
+                mPath.lineTo(/* x = */ mCurX + 1, /* y = */ mCurY + 2)
+                mPath.lineTo(/* x = */ mCurX + 1, /* y = */ mCurY)
             }
         }
 
         mPaths[mPath] = mPaintOptions
         mPath = Path()
-        mPaintOptions = PaintOptions(mPaintOptions.color, mPaintOptions.strokeWidth)
+        mPaintOptions = PaintOptions(color = mPaintOptions.color, strokeWidth = mPaintOptions.strokeWidth)
     }
 
     private fun changePaint(paintOptions: PaintOptions) {
@@ -129,7 +127,7 @@ class EditorDrawCanvas(context: Context, attrs: AttributeSet) : View(context, at
     }
 
     fun getBitmap(): Bitmap {
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val bitmap = Bitmap.createBitmap(/* width = */ width, /* height = */ height, /* config = */ Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         canvas.drawColor(Color.WHITE)
         draw(canvas)
