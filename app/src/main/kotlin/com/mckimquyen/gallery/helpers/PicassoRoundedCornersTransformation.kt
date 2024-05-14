@@ -15,15 +15,33 @@ class PicassoRoundedCornersTransformation(private val radius: Float) : Transform
             source.recycle()
         }
 
-        val bitmap = Bitmap.createBitmap(size, size, source.config)
+        val bitmap = Bitmap.createBitmap(
+            /* width = */ size,
+            /* height = */ size,
+            /* config = */ source.config
+        )
         val canvas = Canvas(bitmap)
         val paint = Paint()
-        val shader = BitmapShader(squaredBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+        val shader = BitmapShader(
+            /* bitmap = */ squaredBitmap,
+            /* tileX = */ Shader.TileMode.CLAMP,
+            /* tileY = */ Shader.TileMode.CLAMP
+        )
         paint.shader = shader
         paint.isAntiAlias = true
 
-        val rect = RectF(0f, 0f, source.width.toFloat(), source.height.toFloat())
-        canvas.drawRoundRect(rect, radius, radius, paint)
+        val rect = RectF(
+            /* left = */ 0f,
+            /* top = */ 0f,
+            /* right = */ source.width.toFloat(),
+            /* bottom = */ source.height.toFloat()
+        )
+        canvas.drawRoundRect(
+            /* rect = */ rect,
+            /* rx = */ radius,
+            /* ry = */ radius,
+            /* paint = */ paint
+        )
         squaredBitmap.recycle()
         return bitmap
     }

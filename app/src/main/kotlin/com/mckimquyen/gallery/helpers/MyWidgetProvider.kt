@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.helpers
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -22,22 +23,43 @@ import com.mckimquyen.gallery.extensions.directoryDB
 import com.mckimquyen.gallery.extensions.getFolderNameFromPath
 import com.mckimquyen.gallery.extensions.widgetsDB
 import com.mckimquyen.gallery.model.Widget
+import kotlin.math.max
 
 class MyWidgetProvider : AppWidgetProvider() {
-    private fun setupAppOpenIntent(context: Context, views: RemoteViews, id: Int, widget: Widget) {
+    private fun setupAppOpenIntent(
+        context: Context,
+        views: RemoteViews,
+        id: Int,
+        widget: Widget,
+    ) {
         val intent = Intent(context, MediaActivityMediaOperations::class.java).apply {
-            putExtra(DIRECTORY, widget.folderPath)
+            putExtra(
+                /* name = */ DIRECTORY,
+                /* value = */ widget.folderPath
+            )
         }
 
-        val pendingIntent = PendingIntent.getActivity(context, widget.widgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent = PendingIntent.getActivity(
+            /* context = */ context,
+            /* requestCode = */ widget.widgetId,
+            /* intent = */ intent,
+            /* flags = */ PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
         views.setOnClickPendingIntent(id, pendingIntent)
     }
 
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+    @SuppressLint("RemoteViewLayout", "CheckResult")
+    override fun onUpdate(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray,
+    ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
         ensureBackgroundThread {
             val config = context.config
-            context.widgetsDB.getWidgets().filter { appWidgetIds.contains(it.widgetId) }.forEach {
+            context.widgetsDB.getWidgets().filter {
+                appWidgetIds.contains(it.widgetId)
+            }.forEach {
                 val views = RemoteViews(context.packageName, R.layout.widget).apply {
                     applyColorFilter(R.id.widgetBackground, config.widgetBgColor)
                     setVisibleIf(R.id.widgetFolderName, config.showWidgetFolderName)
@@ -61,7 +83,7 @@ class MyWidgetProvider : AppWidgetProvider() {
                 val width = appWidgetOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH)
                 val height = appWidgetOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT)
 
-                val widgetSize = (Math.max(width, height) * density).toInt()
+                val widgetSize = (max(width, height) * density).toInt()
                 try {
                     val image = Glide.with(context)
                         .asBitmap()
@@ -71,24 +93,48 @@ class MyWidgetProvider : AppWidgetProvider() {
                         .get()
                     views.setImageViewBitmap(R.id.widgetImageview, image)
                 } catch (e: Exception) {
+                    e.printStackTrace()
                 }
 
-                setupAppOpenIntent(context, views, R.id.widgetHolder, it)
+                setupAppOpenIntent(
+                    context = context,
+                    views = views,
+                    id = R.id.widgetHolder,
+                    widget = it
+                )
 
                 try {
-                    appWidgetManager.updateAppWidget(it.widgetId, views)
+                    appWidgetManager.updateAppWidget(/* appWidgetId = */ it.widgetId, /* views = */ views)
                 } catch (ignored: Exception) {
+                    ignored.printStackTrace()
                 }
             }
         }
     }
 
-    override fun onAppWidgetOptionsChanged(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, newOptions: Bundle) {
-        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
-        onUpdate(context, appWidgetManager, intArrayOf(appWidgetId))
+    override fun onAppWidgetOptionsChanged(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int,
+        newOptions: Bundle,
+    ) {
+        super.onAppWidgetOptionsChanged(
+            /* context = */ context,
+            /* appWidgetManager = */ appWidgetManager,
+            /* appWidgetId = */ appWidgetId,
+            /* newOptions = */ newOptions
+        )
+        onUpdate(
+            context = context,
+            appWidgetManager = appWidgetManager,
+            appWidgetIds = intArrayOf(appWidgetId)
+        )
     }
 
-    override fun onDeleted(context: Context, appWidgetIds: IntArray) {
+    override fun onDeleted(
+        context: Context,
+        appWidgetIds: IntArray,
+    ) {
         super.onDeleted(context, appWidgetIds)
         ensureBackgroundThread {
             appWidgetIds.forEach {

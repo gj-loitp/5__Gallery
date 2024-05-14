@@ -6,10 +6,10 @@ import android.net.Uri
 import com.davemorrissey.labs.subscaleview.ImageRegionDecoder
 
 class PicassoRegionDecoder(
-    val showHighestQuality: Boolean,
-    val screenWidth: Int,
-    val screenHeight: Int,
-    val minTileDpi: Int
+    private val showHighestQuality: Boolean,
+    private val screenWidth: Int,
+    private val screenHeight: Int,
+    private val minTileDpi: Int,
 ) : ImageRegionDecoder {
     private var decoder: BitmapRegionDecoder? = null
     private val decoderLock = Any()
@@ -17,8 +17,14 @@ class PicassoRegionDecoder(
     override fun init(context: Context, uri: Uri): Point {
         val newUri = Uri.parse(uri.toString().replace("%", "%25").replace("#", "%23"))
         val inputStream = context.contentResolver.openInputStream(newUri)
-        decoder = BitmapRegionDecoder.newInstance(inputStream!!, false)
-        return Point(decoder!!.width, decoder!!.height)
+        decoder = BitmapRegionDecoder.newInstance(
+            /* is = */ inputStream!!,
+            /* isShareable = */ false
+        )
+        return Point(
+            /* x = */ decoder!!.width,
+            /* y = */ decoder!!.height
+        )
     }
 
     override fun decodeRegion(rect: Rect, sampleSize: Int): Bitmap {
@@ -35,7 +41,7 @@ class PicassoRegionDecoder(
             val options = BitmapFactory.Options()
             options.inSampleSize = newSampleSize
             options.inPreferredConfig = Bitmap.Config.ARGB_8888
-            val bitmap = decoder!!.decodeRegion(rect, options)
+            val bitmap = decoder!!.decodeRegion(/* rect = */ rect, /* options = */ options)
             return bitmap ?: throw RuntimeException("Region decoder returned null bitmap - image format may not be supported")
         }
     }
@@ -43,6 +49,6 @@ class PicassoRegionDecoder(
     override fun isReady() = decoder != null && !decoder!!.isRecycled
 
     override fun recycle() {
-        decoder!!.recycle()
+        decoder?.recycle()
     }
 }
