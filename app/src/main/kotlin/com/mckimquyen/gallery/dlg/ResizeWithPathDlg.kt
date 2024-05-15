@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.dlg
 
+import android.annotation.SuppressLint
 import android.graphics.Point
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
@@ -11,7 +12,13 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgResizeImageWithPathBinding
 import com.mckimquyen.gallery.ext.config
 
-class ResizeWithPathDialog(val activity: BaseSimpleActivity, val size: Point, val path: String, val callback: (newSize: Point, newPath: String) -> Unit) {
+@SuppressLint("SetTextI18n")
+class ResizeWithPathDlg(
+    val activity: BaseSimpleActivity,
+    val size: Point,
+    val path: String,
+    val callback: (newSize: Point, newPath: String) -> Unit,
+) {
     init {
         var realPath = path.getParentPath()
         val binding = DlgResizeImageWithPathBinding.inflate(activity.layoutInflater).apply {
@@ -29,7 +36,14 @@ class ResizeWithPathDialog(val activity: BaseSimpleActivity, val size: Point, va
 
             fileNameValue.setText(name)
             folder.setOnClickListener {
-                FilePickerDialog(activity, realPath, false, activity.config.shouldShowHidden, true, true) {
+                FilePickerDialog(
+                    activity = activity,
+                    currPath = realPath,
+                    pickFile = false,
+                    showHidden = activity.config.shouldShowHidden,
+                    showFAB = true,
+                    canAddShowHiddenButton = true
+                ) {
                     folder.setText(activity.humanizePath(it))
                     realPath = it
                 }

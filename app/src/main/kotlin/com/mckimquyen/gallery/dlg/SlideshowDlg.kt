@@ -16,7 +16,10 @@ import com.mckimquyen.gallery.helper.SLIDESHOW_ANIMATION_NONE
 import com.mckimquyen.gallery.helper.SLIDESHOW_ANIMATION_SLIDE
 import com.mckimquyen.gallery.helper.SLIDESHOW_DEFAULT_INTERVAL
 
-class SlideshowDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) {
+class SlideshowDlg(
+    val activity: BaseSimpleActivity,
+    val callback: () -> Unit,
+) {
     private val binding: DlgSlideshowBinding
 
     init {

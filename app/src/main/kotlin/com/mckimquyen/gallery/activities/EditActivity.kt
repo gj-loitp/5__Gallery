@@ -40,7 +40,7 @@ import com.mckimquyen.gallery.adapters.FiltersAdapter
 import com.mckimquyen.gallery.databinding.AEditBinding
 import com.mckimquyen.gallery.dlg.OtherAspectRatioDialog
 import com.mckimquyen.gallery.dlg.ResizeDialog
-import com.mckimquyen.gallery.dlg.SaveAsDialog
+import com.mckimquyen.gallery.dlg.SaveAsDlg
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.copyNonDimensionAttributesTo
 import com.mckimquyen.gallery.ext.fixDateTaken
@@ -321,19 +321,19 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         } else if (binding.editorDrawCanvas.isVisible()) {
             val bitmap = binding.editorDrawCanvas.getBitmap()
             if (saveUri.scheme == "file") {
-                SaveAsDialog(this, saveUri.path!!, true) {
+                SaveAsDlg(this, saveUri.path!!, true) {
                     saveBitmapToFile(bitmap, it, true)
                 }
             } else if (saveUri.scheme == "content") {
                 val filePathGetter = getNewFilePath()
-                SaveAsDialog(this, filePathGetter.first, filePathGetter.second) {
+                SaveAsDlg(this, filePathGetter.first, filePathGetter.second) {
                     saveBitmapToFile(bitmap, it, true)
                 }
             }
         } else {
             val currentFilter = getFiltersAdapter()?.getCurrentFilter() ?: return
             val filePathGetter = getNewFilePath()
-            SaveAsDialog(this, filePathGetter.first, filePathGetter.second) {
+            SaveAsDlg(this, filePathGetter.first, filePathGetter.second) {
                 toast(org.fossify.commons.R.string.saving)
 
                 // clean up everything to free as much memory as possible
@@ -838,12 +838,12 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                     finish()
                 }
             } else if (saveUri.scheme == "file") {
-                SaveAsDialog(this, saveUri.path!!, true) {
+                SaveAsDlg(this, saveUri.path!!, true) {
                     saveBitmapToFile(bitmap, it, true)
                 }
             } else if (saveUri.scheme == "content") {
                 val filePathGetter = getNewFilePath()
-                SaveAsDialog(this, filePathGetter.first, filePathGetter.second) {
+                SaveAsDlg(this, filePathGetter.first, filePathGetter.second) {
                     saveBitmapToFile(bitmap, it, true)
                 }
             } else {

@@ -42,7 +42,7 @@ import com.mckimquyen.gallery.activities.SimpleActivity
 import com.mckimquyen.gallery.dlg.AllFilesPermissionDialog
 import com.mckimquyen.gallery.dlg.PickDirectoryDialog
 import com.mckimquyen.gallery.dlg.ResizeMultipleImagesDialog
-import com.mckimquyen.gallery.dlg.ResizeWithPathDialog
+import com.mckimquyen.gallery.dlg.ResizeWithPathDlg
 import com.mckimquyen.gallery.helper.DIRECTORY
 import com.mckimquyen.gallery.helper.RECYCLE_BIN
 import com.mckimquyen.gallery.model.DateTaken
@@ -895,7 +895,7 @@ fun BaseSimpleActivity.launchResizeMultipleImagesDialog(
 
 fun BaseSimpleActivity.launchResizeImageDialog(path: String, callback: (() -> Unit)? = null) {
     val originalSize = path.getImageResolution(this) ?: return
-    ResizeWithPathDialog(activity = this, size = originalSize, path = path) { newSize, newPath ->
+    ResizeWithPathDlg(activity = this, size = originalSize, path = path) { newSize, newPath ->
         ensureBackgroundThread {
             val file = File(newPath)
             val pathLastModifiedMap = mapOf(file.absolutePath to file.lastModified())

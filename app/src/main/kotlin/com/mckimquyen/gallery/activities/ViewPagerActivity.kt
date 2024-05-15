@@ -43,8 +43,8 @@ import com.mckimquyen.gallery.adapters.MyPagerAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.AMediumBinding
 import com.mckimquyen.gallery.dlg.DeleteWithRememberDialog
-import com.mckimquyen.gallery.dlg.SaveAsDialog
-import com.mckimquyen.gallery.dlg.SlideshowDialog
+import com.mckimquyen.gallery.dlg.SaveAsDlg
+import com.mckimquyen.gallery.dlg.SlideshowDlg
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.frm.PhotoFrm
 import com.mckimquyen.gallery.frm.VideoFrm
@@ -489,7 +489,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
     }
 
     private fun initSlideshow() {
-        SlideshowDialog(this) {
+        SlideshowDlg(this) {
             startSlideshow()
         }
     }
@@ -740,7 +740,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
 
     private fun saveImageAs() {
         val currPath = getCurrentPath()
-        SaveAsDialog(this, currPath, false) {
+        SaveAsDlg(this, currPath, false) {
             val newPath = it
             handleSAFDialog(it) {
                 if (!it) {

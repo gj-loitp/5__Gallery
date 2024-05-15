@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.dlg
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AlertDialog
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.dialogs.ConfirmationDialog
@@ -9,9 +10,13 @@ import org.fossify.commons.helpers.isRPlus
 import com.mckimquyen.gallery.databinding.DlgSaveAsBinding
 import java.io.File
 
-class SaveAsDialog(
-    val activity: BaseSimpleActivity, val path: String, val appendFilename: Boolean, val cancelCallback: (() -> Unit)? = null,
-    val callback: (savePath: String) -> Unit
+@SuppressLint("SetTextI18n")
+class SaveAsDlg(
+    val activity: BaseSimpleActivity,
+    val path: String,
+    private val appendFilename: Boolean,
+    private val cancelCallback: (() -> Unit)? = null,
+    val callback: (savePath: String) -> Unit,
 ) {
     init {
         var realPath = path.getParentPath()
@@ -39,7 +44,14 @@ class SaveAsDialog(
             fileNameValue.setText(name)
             folderValue.setOnClickListener {
                 activity.hideKeyboard(folderValue)
-                FilePickerDialog(activity, realPath, false, false, true, true) {
+                FilePickerDialog(
+                    activity = activity,
+                    currPath = realPath,
+                    pickFile = false,
+                    showHidden = false,
+                    showFAB = true,
+                    canAddShowHiddenButton = true
+                ) {
                     folderValue.setText(activity.humanizePath(it))
                     realPath = it
                 }
@@ -48,7 +60,7 @@ class SaveAsDialog(
 
         activity.getAlertDialogBuilder()
             .setPositiveButton(org.fossify.commons.R.string.ok, null)
-            .setNegativeButton(org.fossify.commons.R.string.cancel) { dialog, which -> cancelCallback?.invoke() }
+            .setNegativeButton(org.fossify.commons.R.string.cancel) { _, _ -> cancelCallback?.invoke() }
             .setOnCancelListener { cancelCallback?.invoke() }
             .apply {
                 activity.setupDialogStuff(binding.root, this, org.fossify.commons.R.string.save_as) { alertDialog ->
@@ -82,22 +94,25 @@ class SaveAsDialog(
                                     val fileUris = activity.getFileUrisFromFileDirItems(fileDirItem)
                                     activity.updateSDK30Uris(fileUris) { success ->
                                         if (success) {
-                                            selectPath(alertDialog, newPath)
+                                            selectPath(alertDialog = alertDialog, newPath = newPath)
                                         }
                                     }
                                 } else {
-                                    selectPath(alertDialog, newPath)
+                                    selectPath(alertDialog = alertDialog, newPath = newPath)
                                 }
                             }
                         } else {
-                            selectPath(alertDialog, newPath)
+                            selectPath(alertDialog = alertDialog, newPath = newPath)
                         }
                     }
                 }
             }
     }
 
-    private fun selectPath(alertDialog: AlertDialog, newPath: String) {
+    private fun selectPath(
+        alertDialog: AlertDialog,
+        newPath: String,
+    ) {
         activity.handleSAFDialogSdk30(newPath) {
             if (!it) {
                 return@handleSAFDialogSdk30
