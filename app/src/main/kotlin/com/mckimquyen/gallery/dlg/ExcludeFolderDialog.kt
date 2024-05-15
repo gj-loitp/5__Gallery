@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.dialogs
+package com.mckimquyen.gallery.dlg
 
 import android.view.ViewGroup
 import android.widget.RadioGroup

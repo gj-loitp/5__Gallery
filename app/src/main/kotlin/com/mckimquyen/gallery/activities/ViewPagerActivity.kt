@@ -42,9 +42,9 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MyPagerAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.AMediumBinding
-import com.mckimquyen.gallery.dialogs.DeleteWithRememberDialog
-import com.mckimquyen.gallery.dialogs.SaveAsDialog
-import com.mckimquyen.gallery.dialogs.SlideshowDialog
+import com.mckimquyen.gallery.dlg.DeleteWithRememberDialog
+import com.mckimquyen.gallery.dlg.SaveAsDialog
+import com.mckimquyen.gallery.dlg.SlideshowDialog
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.frm.PhotoFrm
 import com.mckimquyen.gallery.frm.VideoFrm

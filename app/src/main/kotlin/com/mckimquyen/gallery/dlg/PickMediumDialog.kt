@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.dialogs
+package com.mckimquyen.gallery.dlg
 
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView

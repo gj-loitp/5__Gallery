@@ -39,10 +39,10 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.activities.SettingsActivity
 import com.mckimquyen.gallery.activities.SimpleActivity
-import com.mckimquyen.gallery.dialogs.AllFilesPermissionDialog
-import com.mckimquyen.gallery.dialogs.PickDirectoryDialog
-import com.mckimquyen.gallery.dialogs.ResizeMultipleImagesDialog
-import com.mckimquyen.gallery.dialogs.ResizeWithPathDialog
+import com.mckimquyen.gallery.dlg.AllFilesPermissionDialog
+import com.mckimquyen.gallery.dlg.PickDirectoryDialog
+import com.mckimquyen.gallery.dlg.ResizeMultipleImagesDialog
+import com.mckimquyen.gallery.dlg.ResizeWithPathDialog
 import com.mckimquyen.gallery.helper.DIRECTORY
 import com.mckimquyen.gallery.helper.RECYCLE_BIN
 import com.mckimquyen.gallery.model.DateTaken

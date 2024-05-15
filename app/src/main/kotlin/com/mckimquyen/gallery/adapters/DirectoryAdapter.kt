@@ -34,9 +34,9 @@ import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
-import com.mckimquyen.gallery.dialogs.ConfirmDeleteFolderDialog
-import com.mckimquyen.gallery.dialogs.ExcludeFolderDialog
-import com.mckimquyen.gallery.dialogs.PickMediumDialog
+import com.mckimquyen.gallery.dlg.ConfirmDeleteFolderDialog
+import com.mckimquyen.gallery.dlg.ExcludeFolderDialog
+import com.mckimquyen.gallery.dlg.PickMediumDialog
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerDirectoryOperations

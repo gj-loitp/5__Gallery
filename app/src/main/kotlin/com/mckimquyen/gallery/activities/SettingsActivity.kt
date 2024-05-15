@@ -14,7 +14,7 @@ import org.fossify.commons.helpers.*
 import org.fossify.commons.models.RadioItem
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.ASettingsBinding
-import com.mckimquyen.gallery.dialogs.*
+import com.mckimquyen.gallery.dlg.*
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.AlbumCover

@@ -28,7 +28,7 @@ import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databases.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMediaBinding
-import com.mckimquyen.gallery.dialogs.*
+import com.mckimquyen.gallery.dlg.*
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerMediaOperations

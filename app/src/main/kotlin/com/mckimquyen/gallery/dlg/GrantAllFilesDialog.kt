@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.dialogs
+package com.mckimquyen.gallery.dlg
 
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.applyColorFilter

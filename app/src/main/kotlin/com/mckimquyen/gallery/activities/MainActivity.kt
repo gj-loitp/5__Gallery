@@ -28,10 +28,10 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.DirectoryAdapter
 import com.mckimquyen.gallery.databases.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMainBinding
-import com.mckimquyen.gallery.dialogs.ChangeSortingDialog
-import com.mckimquyen.gallery.dialogs.ChangeViewTypeDialog
-import com.mckimquyen.gallery.dialogs.FilterMediaDialog
-import com.mckimquyen.gallery.dialogs.GrantAllFilesDialog
+import com.mckimquyen.gallery.dlg.ChangeSortingDialog
+import com.mckimquyen.gallery.dlg.ChangeViewTypeDialog
+import com.mckimquyen.gallery.dlg.FilterMediaDialog
+import com.mckimquyen.gallery.dlg.GrantAllFilesDialog
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
