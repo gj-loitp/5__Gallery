@@ -40,8 +40,8 @@ import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.activities.SettingsActivity
 import com.mckimquyen.gallery.activities.SimpleActivity
 import com.mckimquyen.gallery.dlg.AllFilesPermissionDialog
-import com.mckimquyen.gallery.dlg.PickDirectoryDialog
-import com.mckimquyen.gallery.dlg.ResizeMultipleImagesDialog
+import com.mckimquyen.gallery.dlg.PickDirectoryDlg
+import com.mckimquyen.gallery.dlg.ResizeMultipleImagesDlg
 import com.mckimquyen.gallery.dlg.ResizeWithPathDlg
 import com.mckimquyen.gallery.helper.DIRECTORY
 import com.mckimquyen.gallery.helper.RECYCLE_BIN
@@ -337,7 +337,7 @@ fun BaseSimpleActivity.tryCopyMoveFilesTo(
     }
 
     val source = fileDirItems[0].getParentPath()
-    PickDirectoryDialog(
+    PickDirectoryDlg(
         activity = this,
         sourcePath = source,
         showOtherFolderButton = true,
@@ -882,7 +882,7 @@ fun BaseSimpleActivity.launchResizeMultipleImagesDialog(
         }
 
         runOnUiThread {
-            ResizeMultipleImagesDialog(
+            ResizeMultipleImagesDlg(
                 activity = this,
                 imagePaths = imagePaths,
                 imageSizes = imageSizes

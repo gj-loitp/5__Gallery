@@ -15,11 +15,11 @@ import kotlin.math.roundToInt
 
 private const val DEFAULT_RESIZE_FACTOR = "75"
 
-class ResizeMultipleImagesDialog(
+class ResizeMultipleImagesDlg(
     private val activity: BaseSimpleActivity,
     private val imagePaths: List<String>,
     private val imageSizes: List<Point>,
-    private val callback: () -> Unit
+    private val callback: () -> Unit,
 ) {
 
     private var dialog: AlertDialog? = null
@@ -38,7 +38,11 @@ class ResizeMultipleImagesDialog(
             .setPositiveButton(org.fossify.commons.R.string.ok, null)
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this, R.string.resize_multiple_images) { alertDialog ->
+                activity.setupDialogStuff(
+                    view = binding.root,
+                    dialog = this,
+                    titleId = R.string.resize_multiple_images
+                ) { alertDialog ->
                     dialog = alertDialog
                     alertDialog.showKeyboard(resizeFactorEditText)
 
@@ -54,7 +58,11 @@ class ResizeMultipleImagesDialog(
                         val resizeFactor = resizeFactorText.toFloat().div(100)
 
                         alertDialog.setCanceledOnTouchOutside(false)
-                        arrayOf(binding.resizeFactorInputLayout, positiveButton, negativeButton).forEach {
+                        arrayOf(
+                            binding.resizeFactorInputLayout,
+                            positiveButton,
+                            negativeButton
+                        ).forEach {
                             it.isEnabled = false
                             it.alpha = 0.6f
                         }
@@ -85,7 +93,7 @@ class ResizeMultipleImagesDialog(
                         val lastModified = File(path).lastModified()
 
                         try {
-                            resizeImage(path, path, size) {
+                            resizeImage(oldPath = path, newPath = path, size = size) {
                                 if (it) {
                                     pathsToRescan.add(path)
                                     pathLastModifiedMap[path] = lastModified

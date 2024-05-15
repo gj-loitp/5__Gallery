@@ -36,7 +36,7 @@ import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
 import com.mckimquyen.gallery.dlg.ConfirmDeleteFolderDialog
 import com.mckimquyen.gallery.dlg.ExcludeFolderDialog
-import com.mckimquyen.gallery.dlg.PickMediumDialog
+import com.mckimquyen.gallery.dlg.PickMediumDlg
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
@@ -709,7 +709,7 @@ class DirectoryAdapter(
     }
 
     private fun pickMediumFrom(targetFolder: String, path: String) {
-        PickMediumDialog(activity, path) {
+        PickMediumDlg(activity, path) {
             if (File(it).isDirectory) {
                 pickMediumFrom(targetFolder, it)
             } else {

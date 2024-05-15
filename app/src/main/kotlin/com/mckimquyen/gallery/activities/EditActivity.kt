@@ -39,7 +39,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.FiltersAdapter
 import com.mckimquyen.gallery.databinding.AEditBinding
 import com.mckimquyen.gallery.dlg.OtherAspectRatioDialog
-import com.mckimquyen.gallery.dlg.ResizeDialog
+import com.mckimquyen.gallery.dlg.ResizeDlg
 import com.mckimquyen.gallery.dlg.SaveAsDlg
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.copyNonDimensionAttributesTo
@@ -768,7 +768,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
             return
         }
 
-        ResizeDialog(this, point) {
+        ResizeDlg(this, point) {
             resizeWidth = it.x
             resizeHeight = it.y
             binding.cropImageView.croppedImageAsync()

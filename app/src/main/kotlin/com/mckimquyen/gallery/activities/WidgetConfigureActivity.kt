@@ -14,7 +14,7 @@ import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.AWidgetConfigBinding
-import com.mckimquyen.gallery.dlg.PickDirectoryDialog
+import com.mckimquyen.gallery.dlg.PickDirectoryDlg
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.MyWidgetProvider
 import com.mckimquyen.gallery.helper.ROUNDED_CORNERS_NONE
@@ -161,7 +161,7 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun changeSelectedFolder() {
-        PickDirectoryDialog(this, "", false, true, false, true) {
+        PickDirectoryDlg(this, "", false, true, false, true) {
             updateFolderImage(it)
         }
     }

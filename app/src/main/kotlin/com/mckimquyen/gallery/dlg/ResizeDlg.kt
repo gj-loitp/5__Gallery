@@ -8,7 +8,11 @@ import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgResizeImageBinding
 
-class ResizeDialog(val activity: BaseSimpleActivity, val size: Point, val callback: (newSize: Point) -> Unit) {
+class ResizeDlg(
+    val activity: BaseSimpleActivity,
+    val size: Point,
+    val callback: (newSize: Point) -> Unit,
+) {
     init {
         val binding = DlgResizeImageBinding.inflate(activity.layoutInflater)
         val widthView = binding.resizeImageWidth

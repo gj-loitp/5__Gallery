@@ -20,7 +20,11 @@ import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 import com.mckimquyen.gallery.model.ThumbnailSection
 
-class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val callback: (path: String) -> Unit) {
+class PickMediumDlg(
+    val activity: BaseSimpleActivity,
+    val path: String,
+    val callback: (path: String) -> Unit,
+) {
     private var dialog: AlertDialog? = null
     private var shownMedia = ArrayList<ThumbnailItem>()
     private val binding = DlgMediumPickerBinding.inflate(activity.layoutInflater)
@@ -39,9 +43,13 @@ class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val c
         activity.getAlertDialogBuilder()
             .setPositiveButton(org.fossify.commons.R.string.ok, null)
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
-            .setNeutralButton(R.string.other_folder) { dialogInterface, i -> showOtherFolder() }
+            .setNeutralButton(R.string.other_folder) { _, i -> showOtherFolder() }
             .apply {
-                activity.setupDialogStuff(binding.root, this, org.fossify.commons.R.string.select_photo) { alertDialog ->
+                activity.setupDialogStuff(
+                    view = binding.root,
+                    dialog = this,
+                    titleId = org.fossify.commons.R.string.select_photo
+                ) { alertDialog ->
                     dialog = alertDialog
                 }
             }
@@ -55,13 +63,26 @@ class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val c
             }
         }
 
-        GetMediaAsynctask(activity, path, false, false, false) {
+        GetMediaAsynctask(
+            context = activity,
+            mPath = path,
+            isPickImage = false,
+            isPickVideo = false,
+            showAll = false
+        ) {
             gotMedia(it)
         }.execute()
     }
 
     private fun showOtherFolder() {
-        PickDirectoryDialog(activity, path, true, true, false, false) {
+        PickDirectoryDlg(
+            activity = activity,
+            sourcePath = path,
+            showOtherFolderButton = true,
+            showFavoritesBin = true,
+            isPickingCopyMoveDestination = false,
+            isPickingFolderForWidget = false
+        ) {
             callback(it)
             dialog?.dismiss()
         }
@@ -72,7 +93,15 @@ class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val c
             return
 
         shownMedia = media
-        val adapter = MediaAdapter(activity, shownMedia.clone() as ArrayList<ThumbnailItem>, null, true, false, path, binding.mediaGrid) {
+        val adapter = MediaAdapter(
+            activity = activity,
+            media = shownMedia.clone() as ArrayList<ThumbnailItem>,
+            listener = null,
+            isAGetIntent = true,
+            allowMultiplePicks = false,
+            path = path,
+            recyclerView = binding.mediaGrid
+        ) {
             if (it is Medium) {
                 callback(it.path)
                 dialog?.dismiss()
@@ -99,7 +128,14 @@ class PickMediumDialog(val activity: BaseSimpleActivity, val path: String, val c
                 currentGridDecoration.items = media
             }
 
-            val newGridDecoration = DecorationGridSpacingItem(spanCount, spacing, config.scrollHorizontally, config.fileRoundedCorners, media, useGridPosition)
+            val newGridDecoration = DecorationGridSpacingItem(
+                spanCount = spanCount,
+                spacing = spacing,
+                isScrollingHorizontally = config.scrollHorizontally,
+                addSideSpacing = config.fileRoundedCorners,
+                items = media,
+                useGridPosition = useGridPosition
+            )
             if (currentGridDecoration.toString() != newGridDecoration.toString()) {
                 if (currentGridDecoration != null) {
                     binding.mediaGrid.removeItemDecoration(currentGridDecoration)

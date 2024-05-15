@@ -18,14 +18,14 @@ import com.mckimquyen.gallery.databinding.DlgDirectoryPickerBinding
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.model.Directory
 
-class PickDirectoryDialog(
+class PickDirectoryDlg(
     val activity: BaseSimpleActivity,
     val sourcePath: String,
     showOtherFolderButton: Boolean,
     val showFavoritesBin: Boolean,
     val isPickingCopyMoveDestination: Boolean,
     val isPickingFolderForWidget: Boolean,
-    val callback: (path: String) -> Unit
+    val callback: (path: String) -> Unit,
 ) {
     private var dialog: AlertDialog? = null
     private var shownDirectories = ArrayList<Directory>()
@@ -61,11 +61,15 @@ class PickDirectoryDialog(
             }
 
         if (showOtherFolderButton) {
-            builder.setNeutralButton(R.string.other_folder) { dialogInterface, i -> showOtherFolder() }
+            builder.setNeutralButton(R.string.other_folder) { _, i -> showOtherFolder() }
         }
 
         builder.apply {
-            activity.setupDialogStuff(binding.root, this, org.fossify.commons.R.string.select_destination) { alertDialog ->
+            activity.setupDialogStuff(
+                view = binding.root,
+                dialog = this,
+                titleId = org.fossify.commons.R.string.select_destination
+            ) { alertDialog ->
                 dialog = alertDialog
                 binding.directoriesShowHidden.beVisibleIf(!context.config.shouldShowHidden)
                 binding.directoriesShowHidden.setOnClickListener {
@@ -124,7 +128,9 @@ class PickDirectoryDialog(
         val adapter = binding.directoriesGrid.adapter as? DirectoryAdapter
         var dirsToShow = allDirectories
         if (query.isNotEmpty()) {
-            dirsToShow = dirsToShow.filter { it.name.contains(query, true) }.toMutableList() as ArrayList
+            dirsToShow = dirsToShow.filter {
+                it.name.contains(query, true)
+            }.toMutableList() as ArrayList
         }
         dirsToShow = activity.getSortedDirectories(dirsToShow)
         checkPlaceholderVisibility(dirsToShow)
@@ -152,7 +158,10 @@ class PickDirectoryDialog(
     }
 
     private fun fetchDirectories(forceShowHiddenAndExcluded: Boolean) {
-        activity.getCachedDirectories(forceShowHidden = forceShowHiddenAndExcluded, forceShowExcluded = forceShowHiddenAndExcluded) {
+        activity.getCachedDirectories(
+            forceShowHidden = forceShowHiddenAndExcluded,
+            forceShowExcluded = forceShowHiddenAndExcluded
+        ) {
             if (it.isNotEmpty()) {
                 it.forEach {
                     it.subfoldersMediaCount = it.mediaCnt
@@ -169,12 +178,12 @@ class PickDirectoryDialog(
     private fun showOtherFolder() {
         activity.hideKeyboard(searchEditText)
         FilePickerDialog(
-            activity,
-            activity.getDefaultCopyDestinationPath(showHidden, sourcePath),
-            !isPickingCopyMoveDestination && !isPickingFolderForWidget,
-            showHidden,
-            true,
-            true
+            activity = activity,
+            currPath = activity.getDefaultCopyDestinationPath(showHidden, sourcePath),
+            pickFile = !isPickingCopyMoveDestination && !isPickingFolderForWidget,
+            showHidden = showHidden,
+            showFAB = true,
+            canAddShowHiddenButton = true
         ) {
             config.lastCopyPath = it
             activity.handleLockedFolderOpening(it) { success ->
@@ -193,7 +202,11 @@ class PickDirectoryDialog(
         val distinctDirs = newDirs.filter { showFavoritesBin || (!it.isRecycleBin() && !it.areFavorites()) }.distinctBy { it.path.getDistinctPath() }
             .toMutableList() as ArrayList<Directory>
         val sortedDirs = activity.getSortedDirectories(distinctDirs)
-        val dirs = activity.getDirsToShow(sortedDirs, allDirectories, currentPathPrefix).clone() as ArrayList<Directory>
+        val dirs = activity.getDirsToShow(
+            dirs = sortedDirs,
+            allDirs = allDirectories,
+            currentPathPrefix = currentPathPrefix
+        ).clone() as ArrayList<Directory>
         if (dirs.hashCode() == shownDirectories.hashCode()) {
             return
         }
