@@ -121,11 +121,13 @@ fun Context.getSortedDirectories(source: ArrayList<Directory>): ArrayList<Direct
             }
         }
 
-        dirs.mapTo(newDirsOrdered, { it })
+        dirs.mapTo(newDirsOrdered) {
+            it
+        }
         return newDirsOrdered
     }
 
-    dirs.sortWith(Comparator { o1, o2 ->
+    dirs.sortWith { o1, o2 ->
         o1 as Directory
         o2 as Directory
 
@@ -179,12 +181,16 @@ fun Context.getSortedDirectories(source: ArrayList<Directory>): ArrayList<Direct
             result *= -1
         }
         result
-    })
+    }
 
     return movePinnedDirectoriesToFront(dirs)
 }
 
-fun Context.getDirsToShow(dirs: ArrayList<Directory>, allDirs: ArrayList<Directory>, currentPathPrefix: String): ArrayList<Directory> {
+fun Context.getDirsToShow(
+    dirs: ArrayList<Directory>,
+    allDirs: ArrayList<Directory>,
+    currentPathPrefix: String,
+): ArrayList<Directory> {
     return if (config.groupDirectSubfolders) {
         dirs.forEach {
             it.subfoldersCount = 0
@@ -198,7 +204,11 @@ fun Context.getDirsToShow(dirs: ArrayList<Directory>, allDirs: ArrayList<Directo
         // show the current folder as an available option too, not just subfolders
         if (currentPathPrefix.isNotEmpty()) {
             val currentFolder =
-                allDirs.firstOrNull { parentDirs.firstOrNull { it.path.equals(currentPathPrefix, true) } == null && it.path.equals(currentPathPrefix, true) }
+                allDirs.firstOrNull {
+                    parentDirs.firstOrNull {
+                        it.path.equals(currentPathPrefix, true)
+                    } == null && it.path.equals(currentPathPrefix, true)
+                }
             currentFolder?.apply {
                 subfoldersCount = 1
                 parentDirs.add(this)
@@ -214,19 +224,32 @@ fun Context.getDirsToShow(dirs: ArrayList<Directory>, allDirs: ArrayList<Directo
 
 private fun Context.addParentWithoutMediaFiles(into: ArrayList<Directory>, path: String): Boolean {
     val isSortingAscending = config.sorting.isSortingAscending()
-    val subDirs = into.filter { File(it.path).parent.equals(path, true) } as ArrayList<Directory>
-    val newDirId = max(1000L, into.maxOf { it.id ?: 0L })
+    val subDirs = into.filter {
+        File(it.path).parent.equals(path, true)
+    } as ArrayList<Directory>
+    val newDirId = max(1000L, into.maxOf {
+        it.id ?: 0L
+    })
     if (subDirs.isNotEmpty()) {
+
         val lastModified = if (isSortingAscending) {
-            subDirs.minByOrNull { it.modified }?.modified
+            subDirs.minByOrNull {
+                it.modified
+            }?.modified
         } else {
-            subDirs.maxByOrNull { it.modified }?.modified
+            subDirs.maxByOrNull {
+                it.modified
+            }?.modified
         } ?: 0
 
         val dateTaken = if (isSortingAscending) {
-            subDirs.minByOrNull { it.taken }?.taken
+            subDirs.minByOrNull {
+                it.taken
+            }?.taken
         } else {
-            subDirs.maxByOrNull { it.taken }?.taken
+            subDirs.maxByOrNull {
+                it.taken
+            }?.taken
         } ?: 0
 
         var mediaTypes = 0
@@ -235,17 +258,17 @@ private fun Context.addParentWithoutMediaFiles(into: ArrayList<Directory>, path:
         }
 
         val directory = Directory(
-            newDirId + 1,
-            path,
-            subDirs.first().tmb,
-            getFolderNameFromPath(path),
-            subDirs.sumOf { it.mediaCnt },
-            lastModified,
-            dateTaken,
-            subDirs.sumByLong { it.size },
-            getPathLocation(path),
-            mediaTypes,
-            ""
+            id = newDirId + 1,
+            path = path,
+            tmb = subDirs.first().tmb,
+            name = getFolderNameFromPath(path),
+            mediaCnt = subDirs.sumOf { it.mediaCnt },
+            modified = lastModified,
+            taken = dateTaken,
+            size = subDirs.sumByLong { it.size },
+            location = getPathLocation(path),
+            types = mediaTypes,
+            sortValue = ""
         )
 
         directory.containsMediaFilesDirectly = false
@@ -261,12 +284,16 @@ fun Context.fillWithSharedDirectParents(dirs: ArrayList<Directory>): ArrayList<D
     for (dir in dirs) {
         File(dir.path).parent?.let {
             val current = childCounts[it] ?: 0
-            childCounts.put(it, current + 1)
+            childCounts.put(key = it, value = current + 1)
         }
     }
 
     childCounts
-        .filter { dir -> dir.value > 1 && dirs.none { it.path.equals(dir.key, true) } }
+        .filter { dir ->
+            dir.value > 1 && dirs.none {
+                it.path.equals(dir.key, true)
+            }
+        }
         .toList()
         .sortedByDescending { it.first.length }
         .forEach { (parent, _) ->
@@ -275,7 +302,10 @@ fun Context.fillWithSharedDirectParents(dirs: ArrayList<Directory>): ArrayList<D
     return allDirs
 }
 
-fun Context.getDirectParentSubfolders(dirs: ArrayList<Directory>, currentPathPrefix: String): ArrayList<Directory> {
+fun Context.getDirectParentSubfolders(
+    dirs: ArrayList<Directory>,
+    currentPathPrefix: String,
+): ArrayList<Directory> {
     val folders = dirs.map { it.path }.sorted().toMutableSet() as HashSet<String>
     val currentPaths = LinkedHashSet<String>()
     val foldersWithoutMediaFiles = ArrayList<String>()
@@ -286,16 +316,16 @@ fun Context.getDirectParentSubfolders(dirs: ArrayList<Directory>, currentPathPre
         }
 
         if (currentPathPrefix.isNotEmpty()) {
-            if (!path.startsWith(currentPathPrefix, true)) {
+            if (!path.startsWith(prefix = currentPathPrefix, ignoreCase = true)) {
                 continue
             }
 
-            if (!File(path).parent.equals(currentPathPrefix, true)) {
+            if (!File(path).parent.equals(other = currentPathPrefix, ignoreCase = true)) {
                 continue
             }
         }
 
-        if (currentPathPrefix.isNotEmpty() && path.equals(currentPathPrefix, true) || File(path).parent.equals(currentPathPrefix, true)) {
+        if (currentPathPrefix.isNotEmpty() && path.equals(other = currentPathPrefix, ignoreCase = true) || File(path).parent.equals(currentPathPrefix, true)) {
             currentPaths.add(path)
         } else if (folders.any { !it.equals(path, true) && (File(path).parent.equals(it, true) || File(it).parent.equals(File(path).parent, true)) }) {
             // if we have folders like
@@ -303,7 +333,9 @@ fun Context.getDirectParentSubfolders(dirs: ArrayList<Directory>, currentPathPre
             // /storage/emulated/0/Pictures/Screenshots,
             // but /storage/emulated/0/Pictures is empty, still Pictures with the first folders thumbnails and proper other info
             val parent = File(path).parent
-            if (parent != null && !folders.contains(parent) && dirs.none { it.path.equals(parent, true) }) {
+            if (parent != null && !folders.contains(parent) && dirs.none {
+                    it.path.equals(parent, true)
+                }) {
                 currentPaths.add(parent)
                 if (addParentWithoutMediaFiles(dirs, parent)) {
                     foldersWithoutMediaFiles.add(parent)
@@ -347,7 +379,10 @@ fun Context.getDirectParentSubfolders(dirs: ArrayList<Directory>, currentPathPre
     }
 }
 
-fun Context.updateSubfolderCounts(children: ArrayList<Directory>, parentDirs: ArrayList<Directory>) {
+fun Context.updateSubfolderCounts(
+    children: ArrayList<Directory>,
+    parentDirs: ArrayList<Directory>,
+) {
     for (child in children) {
         var longestSharedPath = ""
         for (parentDir in parentDirs) {
@@ -400,7 +435,9 @@ fun Context.getNoMediaFoldersSync(): ArrayList<String> {
                 val path = cursor.getStringValue(Files.FileColumns.DATA) ?: continue
                 val noMediaFile = File(path)
                 if (getDoesFilePathExist(noMediaFile.absolutePath, OTGPath) && noMediaFile.name == NOMEDIA) {
-                    folders.add(noMediaFile.parent)
+                    noMediaFile.parent?.let {
+                        folders.add(it)
+                    }
                 }
             } while (cursor.moveToNext())
         }
@@ -420,7 +457,13 @@ fun Context.rescanFolderMedia(path: String) {
 
 fun Context.rescanFolderMediaSync(path: String) {
     getCachedMedia(path) { cached ->
-        GetMediaAsynctask(applicationContext, path, isPickImage = false, isPickVideo = false, showAll = false) { newMedia ->
+        GetMediaAsynctask(
+            context = applicationContext,
+            mPath = path,
+            isPickImage = false,
+            isPickVideo = false,
+            showAll = false
+        ) { newMedia ->
             ensureBackgroundThread {
                 val media = newMedia.filterIsInstance<Medium>() as ArrayList<Medium>
                 try {
@@ -447,7 +490,12 @@ fun Context.storeDirectoryItems(items: ArrayList<Directory>) {
     }
 }
 
-fun Context.checkAppendingHidden(path: String, hidden: String, includedFolders: MutableSet<String>, noMediaFolders: ArrayList<String>): String {
+fun Context.checkAppendingHidden(
+    path: String,
+    hidden: String,
+    includedFolders: MutableSet<String>,
+    noMediaFolders: ArrayList<String>,
+): String {
     val dirName = getFolderNameFromPath(path)
     val folderNoMediaStatuses = HashMap<String, Boolean>()
     noMediaFolders.forEach { folder ->
@@ -485,10 +533,25 @@ fun Context.loadImage(
 ) {
     target.isHorizontalScrolling = horizontalScroll
     if (type == TYPE_SVGS) {
-        loadSVG(path, target, cropThumbnails, roundCorners, signature)
+        loadSVG(
+            path = path,
+            target = target,
+            cropThumbnails = cropThumbnails,
+            roundCorners = roundCorners,
+            signature = signature
+        )
     } else {
         val tryLoadingWithPicasso = type == TYPE_IMAGES && path.isPng()
-        loadImageBase(path, target, cropThumbnails, roundCorners, signature, skipMemoryCacheAtPaths, animateGifs, tryLoadingWithPicasso)
+        loadImageBase(
+            path = path,
+            target = target,
+            cropThumbnails = cropThumbnails,
+            roundCorners = roundCorners,
+            signature = signature,
+            skipMemoryCacheAtPaths = skipMemoryCacheAtPaths,
+            animate = animateGifs,
+            tryLoadingWithPicasso = tryLoadingWithPicasso
+        )
     }
 }
 
@@ -558,8 +621,8 @@ fun Context.loadImageBase(
         val roundedCornersTransform = RoundedCorners(cornerRadius)
         options.optionalTransform(MultiTransformation(CenterCrop(), roundedCornersTransform))
         options.optionalTransform(
-            WebpDrawable::class.java,
-            MultiTransformation(WebpDrawableTransformation(CenterCrop()), WebpDrawableTransformation(roundedCornersTransform))
+            /* resourceClass = */ WebpDrawable::class.java,
+            /* transformation = */ MultiTransformation(WebpDrawableTransformation(CenterCrop()), WebpDrawableTransformation(roundedCornersTransform))
         )
     }
 
@@ -572,8 +635,19 @@ fun Context.loadImageBase(
 
     if (tryLoadingWithPicasso) {
         builder = builder.listener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(e: GlideException?, model: Any?, targetBitmap: Target<Drawable>, isFirstResource: Boolean): Boolean {
-                tryLoadingWithPicasso(path, target, cropThumbnails, roundCorners, signature)
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                targetBitmap: Target<Drawable>,
+                isFirstResource: Boolean,
+            ): Boolean {
+                tryLoadingWithPicasso(
+                    path = path,
+                    view = target,
+                    cropThumbnails = cropThumbnails,
+                    roundCorners = roundCorners,
+                    signature = signature
+                )
                 return true
             }
 
@@ -621,7 +695,13 @@ fun Context.loadSVG(
 }
 
 // intended mostly for Android 11 issues, that fail loading PNG files bigger than 10 MB
-fun Context.tryLoadingWithPicasso(path: String, view: MySquareImageView, cropThumbnails: Boolean, roundCorners: Int, signature: ObjectKey) {
+fun Context.tryLoadingWithPicasso(
+    path: String,
+    view: MySquareImageView,
+    cropThumbnails: Boolean,
+    roundCorners: Int,
+    signature: ObjectKey,
+) {
     var pathToLoad = "file://$path"
     pathToLoad = pathToLoad.replace("%", "%25").replace("#", "%23")
 
@@ -645,6 +725,7 @@ fun Context.tryLoadingWithPicasso(path: String, view: MySquareImageView, cropThu
 
         builder.into(view)
     } catch (e: Exception) {
+        e.printStackTrace()
     }
 }
 
@@ -687,15 +768,26 @@ fun Context.getCachedDirectories(
         }
 
         var filteredDirectories = directories.filter {
-            it.path.shouldFolderBeVisible(excludedPaths, includedPaths, shouldShowHidden, folderNoMediaStatuses) { path, hasNoMedia ->
+            it.path.shouldFolderBeVisible(
+                excludedPaths = excludedPaths,
+                includedPaths = includedPaths,
+                showHidden = shouldShowHidden,
+                folderNoMediaStatuses = folderNoMediaStatuses
+            ) { path, hasNoMedia ->
                 folderNoMediaStatuses[path] = hasNoMedia
             }
         } as ArrayList<Directory>
         val filterMedia = config.filterMedia
 
         filteredDirectories = (when {
-            getVideosOnly -> filteredDirectories.filter { it.types and TYPE_VIDEOS != 0 }
-            getImagesOnly -> filteredDirectories.filter { it.types and TYPE_IMAGES != 0 }
+            getVideosOnly -> filteredDirectories.filter {
+                it.types and TYPE_VIDEOS != 0
+            }
+
+            getImagesOnly -> filteredDirectories.filter {
+                it.types and TYPE_IMAGES != 0
+            }
+
             else -> filteredDirectories.filter {
                 (filterMedia and TYPE_IMAGES != 0 && it.types and TYPE_IMAGES != 0) ||
                     (filterMedia and TYPE_VIDEOS != 0 && it.types and TYPE_VIDEOS != 0) ||
@@ -733,7 +825,12 @@ fun Context.getCachedDirectories(
     }
 }
 
-fun Context.getCachedMedia(path: String, getVideosOnly: Boolean = false, getImagesOnly: Boolean = false, callback: (ArrayList<ThumbnailItem>) -> Unit) {
+fun Context.getCachedMedia(
+    path: String,
+    getVideosOnly: Boolean = false,
+    getImagesOnly: Boolean = false,
+    callback: (ArrayList<ThumbnailItem>) -> Unit,
+) {
     ensureBackgroundThread {
         val mediaFetcher = MediaFetcher(this)
         val foldersToScan = if (path.isEmpty()) mediaFetcher.getFoldersToScan() else arrayListOf(path)
@@ -772,8 +869,14 @@ fun Context.getCachedMedia(path: String, getVideosOnly: Boolean = false, getImag
 
         val filterMedia = config.filterMedia
         media = (when {
-            getVideosOnly -> media.filter { it.type == TYPE_VIDEOS }
-            getImagesOnly -> media.filter { it.type == TYPE_IMAGES }
+            getVideosOnly -> media.filter {
+                it.type == TYPE_VIDEOS
+            }
+
+            getImagesOnly -> media.filter {
+                it.type == TYPE_IMAGES
+            }
+
             else -> media.filter {
                 (filterMedia and TYPE_IMAGES != 0 && it.type == TYPE_IMAGES) ||
                     (filterMedia and TYPE_VIDEOS != 0 && it.type == TYPE_VIDEOS) ||
@@ -829,12 +932,25 @@ fun Context.removeInvalidDBDirectories(dirs: ArrayList<Directory>? = null) {
     }
 }
 
-fun Context.updateDBMediaPath(oldPath: String, newPath: String) {
+fun Context.updateDBMediaPath(
+    oldPath: String,
+    newPath: String,
+) {
     val newFilename = newPath.getFilenameFromPath()
     val newParentPath = newPath.getParentPath()
     try {
-        mediaDB.updateMedium(newFilename, newPath, newParentPath, oldPath)
-        favoritesDB.updateFavorite(newFilename, newPath, newParentPath, oldPath)
+        mediaDB.updateMedium(
+            oldPath = newFilename,
+            newParentPath = newPath,
+            newFilename = newParentPath,
+            newFullPath = oldPath
+        )
+        favoritesDB.updateFavorite(
+            newFilename = newFilename,
+            newFullPath = newPath,
+            newParentPath = newParentPath,
+            oldPath = oldPath
+        )
     } catch (ignored: Exception) {
     }
 }
@@ -842,14 +958,14 @@ fun Context.updateDBMediaPath(oldPath: String, newPath: String) {
 fun Context.updateDBDirectory(directory: Directory) {
     try {
         directoryDB.updateDirectory(
-            directory.path,
-            directory.tmb,
-            directory.mediaCnt,
-            directory.modified,
-            directory.taken,
-            directory.size,
-            directory.types,
-            directory.sortValue
+            path = directory.path,
+            thumbnail = directory.tmb,
+            mediaCnt = directory.mediaCnt,
+            lastModified = directory.modified,
+            dateTaken = directory.taken,
+            size = directory.size,
+            mediaTypes = directory.types,
+            sortValue = directory.sortValue
         )
     } catch (ignored: Exception) {
     }
@@ -867,7 +983,12 @@ fun Context.getFavoritePaths(): ArrayList<String> {
     }
 }
 
-fun Context.getFavoriteFromPath(path: String) = Favorite(null, path, path.getFilenameFromPath(), path.getParentPath())
+fun Context.getFavoriteFromPath(path: String) = Favorite(
+    id = null,
+    fullPath = path,
+    filename = path.getFilenameFromPath(),
+    parentPath = path.getParentPath()
+)
 
 fun Context.updateFavorite(path: String, isFavorite: Boolean) {
     try {
@@ -919,7 +1040,14 @@ fun Context.updateWidgets() {
 }
 
 // based on https://github.com/sannies/mp4parser/blob/master/examples/src/main/java/com/google/code/mp4parser/example/PrintStructure.java
-fun Context.parseFileChannel(path: String, fc: FileChannel, level: Int, start: Long, end: Long, callback: () -> Unit) {
+fun Context.parseFileChannel(
+    path: String,
+    fc: FileChannel,
+    level: Int,
+    start: Long,
+    end: Long,
+    callback: () -> Unit,
+) {
     val FILE_CHANNEL_CONTAINERS = arrayListOf("moov", "trak", "mdia", "minf", "udta", "stbl")
     try {
         var iteration = 0
@@ -966,7 +1094,14 @@ fun Context.parseFileChannel(path: String, fc: FileChannel, level: Int, start: L
             }
 
             if (FILE_CHANNEL_CONTAINERS.contains(type)) {
-                parseFileChannel(path, fc, level + 1, begin + 8, newEnd, callback)
+                parseFileChannel(
+                    path = path,
+                    fc = fc,
+                    level = level + 1,
+                    start = begin + 8,
+                    end = newEnd,
+                    callback = callback
+                )
             }
 
             fc.position(newEnd)
@@ -994,8 +1129,18 @@ fun Context.addPathToDB(path: String) {
             val isFavorite = favoritesDB.isFavorite(path)
             val videoDuration = if (type == TYPE_VIDEOS) getDuration(path) ?: 0 else 0
             val medium = Medium(
-                null, path.getFilenameFromPath(), path, path.getParentPath(), System.currentTimeMillis(), System.currentTimeMillis(),
-                File(path).length(), type, videoDuration, isFavorite, 0L, 0L
+                id = null,
+                name = path.getFilenameFromPath(),
+                path = path,
+                parentPath = path.getParentPath(),
+                modified = System.currentTimeMillis(),
+                taken = System.currentTimeMillis(),
+                size = File(path).length(),
+                type = type,
+                videoDuration = videoDuration,
+                isFavorite = isFavorite,
+                deletedTS = 0L,
+                mediaStoreId = 0L
             )
 
             mediaDB.insert(medium)
@@ -1024,8 +1169,12 @@ fun Context.createDirectoryFromMedia(
     }
 
     if (thumbnail == null) {
-        val sortedMedia = grouped.filter { it is Medium }.toMutableList() as ArrayList<Medium>
-        thumbnail = sortedMedia.firstOrNull { getDoesFilePathExist(it.path, OTGPath) }?.path ?: ""
+        val sortedMedia = grouped.filter {
+            it is Medium
+        }.toMutableList() as ArrayList<Medium>
+        thumbnail = sortedMedia.firstOrNull {
+            getDoesFilePathExist(it.path, OTGPath)
+        }?.path ?: ""
     }
 
     if (config.OTGPath.isNotEmpty() && thumbnail!!.startsWith(config.OTGPath)) {
@@ -1033,19 +1182,62 @@ fun Context.createDirectoryFromMedia(
     }
 
     val isSortingAscending = config.directorySorting.isSortingAscending()
-    val defaultMedium = Medium(0, "", "", "", 0L, 0L, 0L, 0, 0, false, 0L, 0L)
+    val defaultMedium = Medium(
+        id = 0,
+        name = "",
+        path = "",
+        parentPath = "",
+        modified = 0L,
+        taken = 0L,
+        size = 0L,
+        type = 0,
+        videoDuration = 0,
+        isFavorite = false,
+        deletedTS = 0L,
+        mediaStoreId = 0L
+    )
     val firstItem = curMedia.firstOrNull() ?: defaultMedium
     val lastItem = curMedia.lastOrNull() ?: defaultMedium
-    val dirName = checkAppendingHidden(path, hiddenString, includedFolders, noMediaFolders)
-    val lastModified = if (isSortingAscending) Math.min(firstItem.modified, lastItem.modified) else Math.max(firstItem.modified, lastItem.modified)
+    val dirName = checkAppendingHidden(
+        path = path,
+        hidden = hiddenString,
+        includedFolders = includedFolders,
+        noMediaFolders = noMediaFolders
+    )
+    val lastModified = if (isSortingAscending) Math.min(
+        /* a = */ firstItem.modified,
+        /* b = */ lastItem.modified
+    ) else Math.max(firstItem.modified, lastItem.modified)
     val dateTaken = if (isSortingAscending) Math.min(firstItem.taken, lastItem.taken) else Math.max(firstItem.taken, lastItem.taken)
     val size = if (getProperFileSize) curMedia.sumByLong { it.size } else 0L
     val mediaTypes = curMedia.getDirMediaTypes()
-    val sortValue = getDirectorySortingValue(curMedia, path, dirName, size)
-    return Directory(null, path, thumbnail!!, dirName, curMedia.size, lastModified, dateTaken, size, getPathLocation(path), mediaTypes, sortValue)
+    val sortValue = getDirectorySortingValue(
+        media = curMedia,
+        path = path,
+        name = dirName,
+        size = size
+    )
+    return Directory(
+        id = null,
+        path = path,
+        tmb = thumbnail!!,
+        name = dirName,
+        mediaCnt = curMedia.size,
+        modified = lastModified,
+        taken = dateTaken,
+        size = size,
+        location = getPathLocation(path),
+        types = mediaTypes,
+        sortValue = sortValue
+    )
 }
 
-fun Context.getDirectorySortingValue(media: ArrayList<Medium>, path: String, name: String, size: Long): String {
+fun Context.getDirectorySortingValue(
+    media: ArrayList<Medium>,
+    path: String,
+    name: String,
+    size: Long,
+): String {
     val sorting = config.directorySorting
     val sorted = when {
         sorting and SORT_BY_NAME != 0 -> return name
@@ -1098,10 +1290,27 @@ fun Context.updateDirectoryPath(path: String) {
     val dateTakens = mediaFetcher.getFolderDateTakens(path)
     val favoritePaths = getFavoritePaths()
     val curMedia = mediaFetcher.getFilesFrom(
-        path, getImagesOnly, getVideosOnly, getProperDateTaken, getProperLastModified, getProperFileSize,
-        favoritePaths, false, lastModifieds, dateTakens, null
+        curPath = path,
+        isPickImage = getImagesOnly,
+        isPickVideo = getVideosOnly,
+        getProperDateTaken = getProperDateTaken,
+        getProperLastModified = getProperLastModified,
+        getProperFileSize = getProperFileSize,
+        favoritePaths = favoritePaths,
+        getVideoDurations = false,
+        lastModifieds = lastModifieds,
+        dateTakens = dateTakens,
+        android11Files = null
     )
-    val directory = createDirectoryFromMedia(path, curMedia, albumCovers, hiddenString, includedFolders, getProperFileSize, noMediaFolders)
+    val directory = createDirectoryFromMedia(
+        path = path,
+        curMedia = curMedia,
+        albumCovers = albumCovers,
+        hiddenString = hiddenString,
+        includedFolders = includedFolders,
+        getProperFileSize = getProperFileSize,
+        noMediaFolders = noMediaFolders
+    )
     updateDBDirectory(directory)
 }
 
@@ -1115,7 +1324,13 @@ fun Context.getFileDateTaken(path: String): Long {
     val selectionArgs = arrayOf(path)
 
     try {
-        val cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)
+        val cursor = contentResolver.query(
+            /* uri = */ uri,
+            /* projection = */ projection,
+            /* selection = */ selection,
+            /* selectionArgs = */ selectionArgs,
+            /* sortOrder = */ null
+        )
         cursor?.use {
             if (cursor.moveToFirst()) {
                 return cursor.getLongValue(Images.Media.DATE_TAKEN)

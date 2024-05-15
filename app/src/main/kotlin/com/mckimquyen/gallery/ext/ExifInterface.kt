@@ -49,10 +49,10 @@ private class ExifInterfaceAttributes {
                 field.name.startsWith("TAG_")
         }
 
-        private const val publicStaticFinal = Modifier.PUBLIC or Modifier.STATIC or Modifier.FINAL
+        private const val PUBLIC_STATIC_FINAL = Modifier.PUBLIC or Modifier.STATIC or Modifier.FINAL
 
         private fun isPublicStaticFinal(modifiers: Int): Boolean {
-            return modifiers and publicStaticFinal > 0
+            return modifiers and PUBLIC_STATIC_FINAL > 0
         }
     }
 }
