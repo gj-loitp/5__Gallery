@@ -8,9 +8,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 import com.mckimquyen.gallery.activities.ViewPagerActivity
-import com.mckimquyen.gallery.fragments.PhotoFragment
-import com.mckimquyen.gallery.fragments.VideoFragment
-import com.mckimquyen.gallery.fragments.ViewPagerFragment
+import com.mckimquyen.gallery.frm.PhotoFragment
+import com.mckimquyen.gallery.frm.VideoFragment
+import com.mckimquyen.gallery.frm.ViewPagerFragment
 import com.mckimquyen.gallery.helper.MEDIUM
 import com.mckimquyen.gallery.helper.SHOULD_INIT_FRAGMENT
 import com.mckimquyen.gallery.model.Medium

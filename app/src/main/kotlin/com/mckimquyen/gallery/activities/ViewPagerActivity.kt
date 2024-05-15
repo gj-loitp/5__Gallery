@@ -46,9 +46,9 @@ import com.mckimquyen.gallery.dialogs.DeleteWithRememberDialog
 import com.mckimquyen.gallery.dialogs.SaveAsDialog
 import com.mckimquyen.gallery.dialogs.SlideshowDialog
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.fragments.PhotoFragment
-import com.mckimquyen.gallery.fragments.VideoFragment
-import com.mckimquyen.gallery.fragments.ViewPagerFragment
+import com.mckimquyen.gallery.frm.PhotoFragment
+import com.mckimquyen.gallery.frm.VideoFragment
+import com.mckimquyen.gallery.frm.ViewPagerFragment
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem

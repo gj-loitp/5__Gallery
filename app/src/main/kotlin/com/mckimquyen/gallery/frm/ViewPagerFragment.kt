@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.fragments
+package com.mckimquyen.gallery.frm
 
 import android.provider.MediaStore
 import android.provider.MediaStore.Files
