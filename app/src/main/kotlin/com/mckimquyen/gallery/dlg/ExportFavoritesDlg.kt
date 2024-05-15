@@ -9,9 +9,11 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgExportFavoritesBinding
 import com.mckimquyen.gallery.ext.config
 
-class ExportFavoritesDialog(
-    val activity: BaseSimpleActivity, val defaultFilename: String, val hidePath: Boolean,
-    callback: (path: String, filename: String) -> Unit
+class ExportFavoritesDlg(
+    val activity: BaseSimpleActivity,
+    val defaultFilename: String,
+    val hidePath: Boolean,
+    callback: (path: String, filename: String) -> Unit,
 ) {
     init {
         val lastUsedFolder = activity.config.lastExportedFavoritesFolder

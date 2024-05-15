@@ -204,7 +204,7 @@ class SettingsActivity : SimpleActivity() {
 
         binding.settingsManageIncludedFoldersHolder.setOnClickListener {
             if (isRPlus() && !isExternalStorageManager()) {
-                GrantAllFilesDialog(this)
+                GrantAllFilesDlg(this)
             } else {
                 startActivity(Intent(this, IncludedFoldersActivity::class.java))
             }
@@ -239,7 +239,7 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsShowHiddenItems.isChecked = config.showHiddenMedia
         binding.settingsShowHiddenItemsHolder.setOnClickListener {
             if (isRPlus() && !isExternalStorageManager()) {
-                GrantAllFilesDialog(this)
+                GrantAllFilesDlg(this)
             } else if (config.showHiddenMedia) {
                 toggleHiddenItems()
             } else {
@@ -587,7 +587,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupManageExtendedDetails() {
         binding.settingsManageExtendedDetailsHolder.setOnClickListener {
-            ManageExtendedDetailsDialog(this) {
+            ManageExtendedDetailsDlg(this) {
                 if (config.extendedDetails == 0) {
                     binding.settingsShowExtendedDetailsHolder.callOnClick()
                 }
@@ -644,7 +644,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupManageBottomActions() {
         binding.settingsManageBottomActionsHolder.setOnClickListener {
-            ManageBottomActionsDialog(this) {
+            ManageBottomActionsDlg(this) {
                 if (config.visibleBottomActions == 0) {
                     binding.settingsBottomActionsCheckboxHolder.callOnClick()
                     config.bottomActions = false
@@ -744,7 +744,7 @@ class SettingsActivity : SimpleActivity() {
     private fun setupExportFavorites() {
         binding.settingsExportFavoritesHolder.setOnClickListener {
             if (isQPlus()) {
-                ExportFavoritesDialog(this, getExportFavoritesFilename(), true) { path, filename ->
+                ExportFavoritesDlg(this, getExportFavoritesFilename(), true) { path, filename ->
                     Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                         type = "text/plain"
                         putExtra(Intent.EXTRA_TITLE, filename)
@@ -762,7 +762,7 @@ class SettingsActivity : SimpleActivity() {
             } else {
                 handlePermission(PERMISSION_WRITE_STORAGE) {
                     if (it) {
-                        ExportFavoritesDialog(this, getExportFavoritesFilename(), false) { path, filename ->
+                        ExportFavoritesDlg(this, getExportFavoritesFilename(), false) { path, filename ->
                             val file = File(path)
                             getFileOutputStream(file.toFileDirItem(this), true) {
                                 exportFavoritesTo(it)

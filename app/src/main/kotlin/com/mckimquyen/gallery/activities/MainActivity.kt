@@ -30,8 +30,8 @@ import com.mckimquyen.gallery.databases.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMainBinding
 import com.mckimquyen.gallery.dlg.ChangeSortingDialog
 import com.mckimquyen.gallery.dlg.ChangeViewTypeDialog
-import com.mckimquyen.gallery.dlg.FilterMediaDialog
-import com.mckimquyen.gallery.dlg.GrantAllFilesDialog
+import com.mckimquyen.gallery.dlg.FilterMediaDlg
+import com.mckimquyen.gallery.dlg.GrantAllFilesDlg
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
@@ -568,7 +568,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
     }
 
     private fun showFilterMediaDialog() {
-        FilterMediaDialog(this) {
+        FilterMediaDlg(this) {
             mShouldStopFetching = true
             binding.directoriesRefreshLayout.isRefreshing = true
             binding.directoriesGrid.adapter = null
@@ -605,7 +605,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
             toggleTemporarilyShowHidden(false)
         } else {
             if (isRPlus() && !isExternalStorageManager()) {
-                GrantAllFilesDialog(this)
+                GrantAllFilesDlg(this)
             } else {
                 handleHiddenFolderPasswordProtection {
                     toggleTemporarilyShowHidden(true)

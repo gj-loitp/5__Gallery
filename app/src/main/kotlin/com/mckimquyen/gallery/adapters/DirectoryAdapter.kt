@@ -35,7 +35,7 @@ import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBindin
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
 import com.mckimquyen.gallery.dlg.ConfirmDeleteFolderDialog
-import com.mckimquyen.gallery.dlg.ExcludeFolderDialog
+import com.mckimquyen.gallery.dlg.ExcludeFolderDlg
 import com.mckimquyen.gallery.dlg.PickMediumDlg
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
@@ -419,7 +419,7 @@ class DirectoryAdapter(
         }
 
         if (paths.size == 1) {
-            ExcludeFolderDialog(activity, paths.toMutableList()) {
+            ExcludeFolderDlg(activity, paths.toMutableList()) {
                 listener?.refreshItems()
                 finishActMode()
             }

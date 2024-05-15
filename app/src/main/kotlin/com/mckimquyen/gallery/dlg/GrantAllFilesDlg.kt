@@ -8,16 +8,16 @@ import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgGrantAllFilesBinding
 import com.mckimquyen.gallery.ext.launchGrantAllFilesIntent
 
-class GrantAllFilesDialog(val activity: BaseSimpleActivity) {
+class GrantAllFilesDlg(val activity: BaseSimpleActivity) {
     init {
         val binding = DlgGrantAllFilesBinding.inflate(activity.layoutInflater)
         binding.grantAllFilesImage.applyColorFilter(activity.getProperTextColor())
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok) { dialog, which -> activity.launchGrantAllFilesIntent() }
+            .setPositiveButton(org.fossify.commons.R.string.ok) { _, _ -> activity.launchGrantAllFilesIntent() }
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this) { alertDialog -> }
+                activity.setupDialogStuff(binding.root, this) { }
             }
     }
 }

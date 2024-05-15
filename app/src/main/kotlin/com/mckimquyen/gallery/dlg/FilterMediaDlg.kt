@@ -8,7 +8,10 @@ import com.mckimquyen.gallery.databinding.DlgFilterMediaBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.*
 
-class FilterMediaDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
+class FilterMediaDlg(
+    val activity: BaseSimpleActivity,
+    val callback: (result: Int) -> Unit,
+) {
     private val binding = DlgFilterMediaBinding.inflate(activity.layoutInflater)
 
     init {
@@ -23,10 +26,14 @@ class FilterMediaDialog(val activity: BaseSimpleActivity, val callback: (result:
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok) { dialog, which -> dialogConfirmed() }
+            .setPositiveButton(org.fossify.commons.R.string.ok) { _, _ -> dialogConfirmed() }
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this, R.string.filter_media)
+                activity.setupDialogStuff(
+                    view = binding.root,
+                    dialog = this,
+                    titleId = R.string.filter_media
+                )
             }
     }
 

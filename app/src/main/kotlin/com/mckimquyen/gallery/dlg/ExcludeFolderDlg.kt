@@ -11,7 +11,11 @@ import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgExcludeFolderBinding
 import com.mckimquyen.gallery.ext.config
 
-class ExcludeFolderDialog(val activity: BaseSimpleActivity, val selectedPaths: List<String>, val callback: () -> Unit) {
+class ExcludeFolderDlg(
+    val activity: BaseSimpleActivity,
+    private val selectedPaths: List<String>,
+    val callback: () -> Unit,
+) {
     private val alternativePaths = getAlternativePathsList()
     private var radioGroup: RadioGroup? = null
 
@@ -23,17 +27,20 @@ class ExcludeFolderDialog(val activity: BaseSimpleActivity, val selectedPaths: L
             excludeFolderRadioGroup.beVisibleIf(alternativePaths.size > 1)
         }
 
-        alternativePaths.forEachIndexed { index, value ->
+        alternativePaths.forEachIndexed { index, _ ->
             val radioButton = RadioButtonBinding.inflate(activity.layoutInflater).root.apply {
                 text = alternativePaths[index]
                 isChecked = index == 0
                 id = index
             }
-            radioGroup!!.addView(radioButton, RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+            radioGroup?.addView(
+                /* child = */ radioButton,
+                /* params = */ RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            )
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok) { dialog, which -> dialogConfirmed() }
+            .setPositiveButton(org.fossify.commons.R.string.ok) { _, _ -> dialogConfirmed() }
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this)

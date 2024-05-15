@@ -38,7 +38,7 @@ import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.FiltersAdapter
 import com.mckimquyen.gallery.databinding.AEditBinding
-import com.mckimquyen.gallery.dlg.OtherAspectRatioDialog
+import com.mckimquyen.gallery.dlg.OtherAspectRatioDlg
 import com.mckimquyen.gallery.dlg.ResizeDlg
 import com.mckimquyen.gallery.dlg.SaveAsDlg
 import com.mckimquyen.gallery.ext.config
@@ -556,7 +556,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         }
 
         binding.bottomAspectRatios.bottomAspectRatioOther.setOnClickListener {
-            OtherAspectRatioDialog(this, lastOtherAspectRatio) {
+            OtherAspectRatioDlg(this, lastOtherAspectRatio) {
                 lastOtherAspectRatio = it
                 config.lastEditorCropOtherAspectRatioX = it.first
                 config.lastEditorCropOtherAspectRatioY = it.second

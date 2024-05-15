@@ -7,7 +7,10 @@ import com.mckimquyen.gallery.databinding.DlgManageExtendedDetailsBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.*
 
-class ManageExtendedDetailsDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
+class ManageExtendedDetailsDlg(
+    val activity: BaseSimpleActivity,
+    val callback: (result: Int) -> Unit,
+) {
     private val binding = DlgManageExtendedDetailsBinding.inflate(activity.layoutInflater)
 
     init {
@@ -25,7 +28,7 @@ class ManageExtendedDetailsDialog(val activity: BaseSimpleActivity, val callback
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok) { dialog, which -> dialogConfirmed() }
+            .setPositiveButton(org.fossify.commons.R.string.ok) { _, _ -> dialogConfirmed() }
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this)

@@ -478,7 +478,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
     }
 
     private fun showFilterMediaDialog() {
-        FilterMediaDialog(this) {
+        FilterMediaDlg(this) {
             mLoadedInitialPhotos = false
             binding.mediaRefreshLayout.isRefreshing = true
             binding.mediaGrid.adapter = null
@@ -652,7 +652,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
             toggleTemporarilyShowHidden(false)
         } else {
             if (isRPlus() && !isExternalStorageManager()) {
-                GrantAllFilesDialog(this)
+                GrantAllFilesDlg(this)
             } else {
                 handleHiddenFolderPasswordProtection {
                     toggleTemporarilyShowHidden(true)

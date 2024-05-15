@@ -6,29 +6,54 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgOtherAspectRatioBinding
 
-class OtherAspectRatioDialog(
+class OtherAspectRatioDlg(
     val activity: BaseSimpleActivity,
-    val lastOtherAspectRatio: Pair<Float, Float>?,
+    private val lastOtherAspectRatio: Pair<Float, Float>?,
     val callback: (aspectRatio: Pair<Float, Float>) -> Unit,
 ) {
     private var dialog: AlertDialog? = null
 
     init {
         val binding = DlgOtherAspectRatioBinding.inflate(activity.layoutInflater).apply {
-            otherAspectRatio21.setOnClickListener { ratioPicked(Pair(2f, 1f)) }
-            otherAspectRatio32.setOnClickListener { ratioPicked(Pair(3f, 2f)) }
-            otherAspectRatio43.setOnClickListener { ratioPicked(Pair(4f, 3f)) }
-            otherAspectRatio53.setOnClickListener { ratioPicked(Pair(5f, 3f)) }
-            otherAspectRatio169.setOnClickListener { ratioPicked(Pair(16f, 9f)) }
-            otherAspectRatio199.setOnClickListener { ratioPicked(Pair(19f, 9f)) }
-            otherAspectRatioCustom.setOnClickListener { customRatioPicked() }
-
-            otherAspectRatio12.setOnClickListener { ratioPicked(Pair(1f, 2f)) }
-            otherAspectRatio23.setOnClickListener { ratioPicked(Pair(2f, 3f)) }
-            otherAspectRatio34.setOnClickListener { ratioPicked(Pair(3f, 4f)) }
-            otherAspectRatio35.setOnClickListener { ratioPicked(Pair(3f, 5f)) }
-            otherAspectRatio916.setOnClickListener { ratioPicked(Pair(9f, 16f)) }
-            otherAspectRatio919.setOnClickListener { ratioPicked(Pair(9f, 19f)) }
+            otherAspectRatio21.setOnClickListener {
+                ratioPicked(Pair(2f, 1f))
+            }
+            otherAspectRatio32.setOnClickListener {
+                ratioPicked(Pair(3f, 2f))
+            }
+            otherAspectRatio43.setOnClickListener {
+                ratioPicked(Pair(4f, 3f))
+            }
+            otherAspectRatio53.setOnClickListener {
+                ratioPicked(Pair(5f, 3f))
+            }
+            otherAspectRatio169.setOnClickListener {
+                ratioPicked(Pair(16f, 9f))
+            }
+            otherAspectRatio199.setOnClickListener {
+                ratioPicked(Pair(19f, 9f))
+            }
+            otherAspectRatioCustom.setOnClickListener {
+                customRatioPicked()
+            }
+            otherAspectRatio12.setOnClickListener {
+                ratioPicked(Pair(1f, 2f))
+            }
+            otherAspectRatio23.setOnClickListener {
+                ratioPicked(Pair(2f, 3f))
+            }
+            otherAspectRatio34.setOnClickListener {
+                ratioPicked(Pair(3f, 4f))
+            }
+            otherAspectRatio35.setOnClickListener {
+                ratioPicked(Pair(3f, 5f))
+            }
+            otherAspectRatio916.setOnClickListener {
+                ratioPicked(Pair(9f, 16f))
+            }
+            otherAspectRatio919.setOnClickListener {
+                ratioPicked(Pair(9f, 19f))
+            }
 
             val radio1SelectedItemId = when (lastOtherAspectRatio) {
                 Pair(2f, 1f) -> otherAspectRatio21.id
@@ -60,14 +85,14 @@ class OtherAspectRatioDialog(
         activity.getAlertDialogBuilder()
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this) { alertDialog ->
+                activity.setupDialogStuff(view = binding.root, dialog = this) { alertDialog ->
                     dialog = alertDialog
                 }
             }
     }
 
     private fun customRatioPicked() {
-        CustomAspectRatioDialog(activity, lastOtherAspectRatio) {
+        CustomAspectRatioDialog(activity = activity, defaultCustomAspectRatio = lastOtherAspectRatio) {
             callback(it)
             dialog?.dismiss()
         }

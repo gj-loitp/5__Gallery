@@ -7,7 +7,10 @@ import com.mckimquyen.gallery.databinding.DlgManageBottomActionsBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.*
 
-class ManageBottomActionsDialog(val activity: BaseSimpleActivity, val callback: (result: Int) -> Unit) {
+class ManageBottomActionsDlg(
+    val activity: BaseSimpleActivity,
+    val callback: (result: Int) -> Unit,
+) {
     private val binding = DlgManageBottomActionsBinding.inflate(activity.layoutInflater)
 
     init {
@@ -34,7 +37,7 @@ class ManageBottomActionsDialog(val activity: BaseSimpleActivity, val callback: 
             .setPositiveButton(org.fossify.commons.R.string.ok) { dialog, which -> dialogConfirmed() }
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this)
+                activity.setupDialogStuff(view = binding.root, dialog = this)
             }
     }
 
