@@ -17,18 +17,18 @@ import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.FrmHolderBinding
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.frm.PhotoFragment
-import com.mckimquyen.gallery.frm.VideoFragment
-import com.mckimquyen.gallery.frm.ViewPagerFragment
+import com.mckimquyen.gallery.frm.PhotoFrm
+import com.mckimquyen.gallery.frm.VideoFrm
+import com.mckimquyen.gallery.frm.ViewPagerFrm
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import java.io.File
 
-open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentListener {
+open class PhotoVideoActivity : SimpleActivity(), ViewPagerFrm.FragmentListener {
     private var mMedium: Medium? = null
     private var mIsFullScreen = false
     private var mIsFromGallery = false
-    private var mFragment: ViewPagerFragment? = null
+    private var mFragment: ViewPagerFrm? = null
     private var mUri: Uri? = null
 
     var mIsVideo = false
@@ -226,7 +226,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFragment.FragmentList
         bundle.putSerializable(MEDIUM, mMedium)
 
         if (savedInstanceState == null) {
-            mFragment = if (mIsVideo) VideoFragment() else PhotoFragment()
+            mFragment = if (mIsVideo) VideoFrm() else PhotoFrm()
             mFragment!!.listener = this
             mFragment!!.arguments = bundle
             supportFragmentManager.beginTransaction().replace(R.id.fragmentPlaceholder, mFragment!!).commit()

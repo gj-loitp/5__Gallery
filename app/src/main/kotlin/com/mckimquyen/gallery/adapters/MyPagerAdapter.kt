@@ -8,15 +8,15 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 import com.mckimquyen.gallery.activities.ViewPagerActivity
-import com.mckimquyen.gallery.frm.PhotoFragment
-import com.mckimquyen.gallery.frm.VideoFragment
-import com.mckimquyen.gallery.frm.ViewPagerFragment
+import com.mckimquyen.gallery.frm.PhotoFrm
+import com.mckimquyen.gallery.frm.VideoFrm
+import com.mckimquyen.gallery.frm.ViewPagerFrm
 import com.mckimquyen.gallery.helper.MEDIUM
 import com.mckimquyen.gallery.helper.SHOULD_INIT_FRAGMENT
 import com.mckimquyen.gallery.model.Medium
 
 class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val media: MutableList<Medium>) : FragmentStatePagerAdapter(fm) {
-    private val fragments = HashMap<Int, ViewPagerFragment>()
+    private val fragments = HashMap<Int, ViewPagerFrm>()
     var shouldInitFragment = true
 
     override fun getCount() = media.size
@@ -27,9 +27,9 @@ class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val m
         bundle.putSerializable(MEDIUM, medium)
         bundle.putBoolean(SHOULD_INIT_FRAGMENT, shouldInitFragment)
         val fragment = if (medium.isVideo()) {
-            VideoFragment()
+            VideoFrm()
         } else {
-            PhotoFragment()
+            PhotoFrm()
         }
 
         fragment.arguments = bundle
@@ -40,7 +40,7 @@ class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val m
     override fun getItemPosition(item: Any) = PagerAdapter.POSITION_NONE
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val fragment = super.instantiateItem(container, position) as ViewPagerFragment
+        val fragment = super.instantiateItem(container, position) as ViewPagerFrm
         fragments[position] = fragment
         return fragment
     }

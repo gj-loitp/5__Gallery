@@ -40,7 +40,7 @@ import java.io.File
 import java.io.FileInputStream
 
 @UnstableApi
-class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, SeekBar.OnSeekBarChangeListener {
+class VideoFrm : ViewPagerFrm(), TextureView.SurfaceTextureListener, SeekBar.OnSeekBarChangeListener {
     private val PROGRESS = "progress"
 
     private var mIsFullscreen = false
@@ -110,7 +110,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
             }
 
             mSeekBar = bottomVideoTimeHolder.videoSeekbar
-            mSeekBar.setOnSeekBarChangeListener(this@VideoFragment)
+            mSeekBar.setOnSeekBarChangeListener(this@VideoFrm)
             // adding an empty click listener just to avoid ripple animation at toggling fullscreen
             mSeekBar.setOnClickListener { }
 
@@ -119,7 +119,7 @@ class VideoFragment : ViewPagerFragment(), TextureView.SurfaceTextureListener, S
             mBrightnessSideScroll = videoBrightnessController
             mVolumeSideScroll = videoVolumeController
             mTextureView = videoSurface
-            mTextureView.surfaceTextureListener = this@VideoFragment
+            mTextureView.surfaceTextureListener = this@VideoFrm
 
             val gestureDetector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent): Boolean {

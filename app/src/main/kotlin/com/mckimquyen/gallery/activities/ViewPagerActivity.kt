@@ -46,9 +46,9 @@ import com.mckimquyen.gallery.dialogs.DeleteWithRememberDialog
 import com.mckimquyen.gallery.dialogs.SaveAsDialog
 import com.mckimquyen.gallery.dialogs.SlideshowDialog
 import com.mckimquyen.gallery.extensions.*
-import com.mckimquyen.gallery.frm.PhotoFragment
-import com.mckimquyen.gallery.frm.VideoFragment
-import com.mckimquyen.gallery.frm.ViewPagerFragment
+import com.mckimquyen.gallery.frm.PhotoFrm
+import com.mckimquyen.gallery.frm.VideoFrm
+import com.mckimquyen.gallery.frm.ViewPagerFrm
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
@@ -56,7 +56,7 @@ import java.io.File
 import kotlin.math.min
 
 @Suppress("UNCHECKED_CAST")
-class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, ViewPagerFragment.FragmentListener {
+class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, ViewPagerFrm.FragmentListener {
     companion object {
         private const val REQUEST_VIEW_VIDEO = 1
         private const val SAVED_PATH = "current_path"
@@ -616,7 +616,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
                     }
                 }, mSlideshowInterval * 1000L)
             } else {
-                (getCurrentFragment() as? VideoFragment)!!.playVideo()
+                (getCurrentFragment() as? VideoFrm)!!.playVideo()
             }
         }
     }
@@ -791,7 +791,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         }
     }
 
-    private fun getCurrentPhotoFragment() = getCurrentFragment() as? PhotoFragment
+    private fun getCurrentPhotoFragment() = getCurrentFragment() as? PhotoFrm
 
     private fun getPortraitPath() = intent.getStringExtra(PORTRAIT_PATH) ?: ""
 
@@ -1222,7 +1222,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
             return
         }
 
-        val isPlaying = (getCurrentFragment() as? VideoFragment)?.mIsPlaying == true
+        val isPlaying = (getCurrentFragment() as? VideoFrm)?.mIsPlaying == true
         if (!ignorePlayingVideos && isPlaying && !isExternalIntent()) {
             return
         }

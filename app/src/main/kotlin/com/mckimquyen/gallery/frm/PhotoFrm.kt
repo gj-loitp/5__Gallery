@@ -64,7 +64,7 @@ import java.io.FileOutputStream
 import java.util.Locale
 import kotlin.math.ceil
 
-class PhotoFragment : ViewPagerFragment() {
+class PhotoFrm : ViewPagerFrm() {
     private val DEFAULT_DOUBLE_TAP_ZOOM = 2f
     private val ZOOMABLE_VIEW_LOAD_DELAY = 100L
     private val SAME_ASPECT_RATIO_THRESHOLD = 0.01
