@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.frm
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -12,6 +13,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -37,15 +39,6 @@ import com.davemorrissey.labs.subscaleview.ImageRegionDecoder
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.github.penfeizhou.animation.apng.APNGDrawable
 import com.github.penfeizhou.animation.webp.WebPDrawable
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
-import it.sephiroth.android.library.exif2.ExifInterface
-import org.apache.sanselan.common.byteSources.ByteSourceInputStream
-import org.apache.sanselan.formats.jpeg.JpegImageParser
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isRPlus
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.PhotoActivity
 import com.mckimquyen.gallery.activities.PhotoVideoActivity
@@ -58,6 +51,13 @@ import com.mckimquyen.gallery.extensions.sendFakeClick
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.svg.SvgSoftwareLayerSetter
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import it.sephiroth.android.library.exif2.ExifInterface
+import org.fossify.commons.activities.BaseSimpleActivity
+import org.fossify.commons.extensions.*
+import org.fossify.commons.helpers.ensureBackgroundThread
+import org.fossify.commons.helpers.isRPlus
 import pl.droidsonroids.gif.InputSource
 import java.io.File
 import java.io.FileOutputStream
@@ -65,12 +65,12 @@ import java.util.Locale
 import kotlin.math.ceil
 
 class PhotoFrm : ViewPagerFrm() {
-    private val DEFAULT_DOUBLE_TAP_ZOOM = 2f
-    private val ZOOMABLE_VIEW_LOAD_DELAY = 100L
-    private val SAME_ASPECT_RATIO_THRESHOLD = 0.01
+    private val defaultDoubleTapZoom = 2f
+    private val zoomableViewLoadDelay = 100L
+    private val sameAspectRatioThreshold = 0.01
 
     // devices with good displays, but the rest of the hardware not good enough for them
-    private val WEIRD_DEVICES = arrayListOf(
+    private val weirdDevices = arrayListOf(
         "motorola xt1685",
         "google nexus 5x"
     )
@@ -85,11 +85,10 @@ class PhotoFrm : ViewPagerFrm() {
     private var mCurrentPortraitPhotoPath = ""
     private var mOriginalPath = ""
     private var mImageOrientation = -1
-    private var mLoadZoomableViewHandler = Handler()
+    private var mLoadZoomableViewHandler = Handler(Looper.getMainLooper())
     private var mScreenWidth = 0
     private var mScreenHeight = 0
     private var mCurrentGestureViewZoom = 1f
-
     private var mStoredShowExtendedDetails = false
     private var mStoredHideExtendedDetails = false
     private var mStoredAllowDeepZoomableImages = false
@@ -100,12 +99,21 @@ class PhotoFrm : ViewPagerFrm() {
     private lateinit var binding: VPagerPhotoItemBinding
     private lateinit var mMedium: Medium
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    @SuppressLint("ClickableViewAccessibility", "WrongThread")
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         val context = requireContext()
         val activity = requireActivity()
         val arguments = requireArguments()
 
-        binding = VPagerPhotoItemBinding.inflate(inflater, container, false)
+        binding = VPagerPhotoItemBinding.inflate(
+            /* inflater = */ inflater,
+            /* parent = */ container,
+            /* attachToParent = */ false
+        )
         mView = binding.root
         if (!arguments.getBoolean(SHOULD_INIT_FRAGMENT, true)) {
             return mView
@@ -115,25 +123,43 @@ class PhotoFrm : ViewPagerFrm() {
         mOriginalPath = mMedium.path
 
         binding.apply {
-            subSamplingView.setOnClickListener { photoClicked() }
-            gesturesView.setOnClickListener { photoClicked() }
-            gifView.setOnClickListener { photoClicked() }
-            instantPrevItem.setOnClickListener { listener?.goToPrevItem() }
-            instantNextItem.setOnClickListener { listener?.goToNextItem() }
-            panoramaOutline.setOnClickListener { openPanorama() }
+            subSamplingView.setOnClickListener {
+                photoClicked()
+            }
+            gesturesView.setOnClickListener {
+                photoClicked()
+            }
+            gifView.setOnClickListener {
+                photoClicked()
+            }
+            instantPrevItem.setOnClickListener {
+                listener?.goToPrevItem()
+            }
+            instantNextItem.setOnClickListener {
+                listener?.goToNextItem()
+            }
+            panoramaOutline.setOnClickListener {
+                openPanorama()
+            }
 
             instantPrevItem.parentView = container
             instantNextItem.parentView = container
 
-            photoBrightnessController.initialize(activity, slideInfo, true, container, singleTap = { x, y ->
-                mView.apply {
-                    if (subSamplingView.isVisible()) {
-                        subSamplingView.sendFakeClick(x, y)
-                    } else {
-                        gesturesView.sendFakeClick(x, y)
+            photoBrightnessController.initialize(
+                activity = activity,
+                slideInfoView = slideInfo,
+                isBrightness = true,
+                parentView = container,
+                singleTap = { x, y ->
+                    mView.apply {
+                        if (subSamplingView.isVisible()) {
+                            subSamplingView.sendFakeClick(x, y)
+                        } else {
+                            gesturesView.sendFakeClick(x, y)
+                        }
                     }
                 }
-            })
+            )
 
             if (context.config.allowDownGesture) {
                 gifView.setOnTouchListener { v, event ->
@@ -191,10 +217,16 @@ class PhotoFrm : ViewPagerFrm() {
                     exif.setTagValue(ExifInterface.TAG_ORIENTATION, 1)
                     exif.removeCompressedThumbnail()
 
-                    val file = File(requireContext().externalCacheDir, Uri.parse(mOriginalPath).lastPathSegment)
+                    val file = Uri.parse(mOriginalPath).lastPathSegment?.let {
+                        File(requireContext().externalCacheDir, it)
+                    }
                     out = FileOutputStream(file)
-                    rotated.compress(Bitmap.CompressFormat.JPEG, 100, out)
-                    mMedium.path = file.absolutePath
+                    rotated.compress(
+                        /* format = */ Bitmap.CompressFormat.JPEG,
+                        /* quality = */ 100,
+                        /* stream = */ out
+                    )
+                    mMedium.path = file?.absolutePath.toString()
                 } catch (e: Exception) {
                     requireActivity().toast(org.fossify.commons.R.string.unknown_error_occurred)
                     return mView
@@ -274,7 +306,12 @@ class PhotoFrm : ViewPagerFrm() {
         if (mCurrentRotationDegrees != 0) {
             ensureBackgroundThread {
                 val path = mMedium.path
-                (activity as? BaseSimpleActivity)?.saveRotatedImageToFile(path, path, mCurrentRotationDegrees, false) {}
+                (activity as? BaseSimpleActivity)?.saveRotatedImageToFile(
+                    oldPath = path,
+                    newPath = path,
+                    degrees = mCurrentRotationDegrees,
+                    showToasts = false
+                ) {}
             }
         }
     }
@@ -290,7 +327,7 @@ class PhotoFrm : ViewPagerFrm() {
             mView.onGlobalLayout {
                 if (activity != null) {
                     measureScreen()
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         binding.gifViewFrame.controller.resetState()
                         loadGif()
                     }, 50)
@@ -362,7 +399,15 @@ class PhotoFrm : ViewPagerFrm() {
         } else {
             val matrix = Matrix()
             matrix.setRotate(degrees)
-            Bitmap.createBitmap(original, 0, 0, original.width, original.height, matrix, true)
+            Bitmap.createBitmap(
+                /* source = */ original,
+                /* x = */ 0,
+                /* y = */ 0,
+                /* width = */ original.width,
+                /* height = */ original.height,
+                /* m = */ matrix,
+                /* filter = */ true
+            )
         }
     }
 
@@ -435,7 +480,10 @@ class PhotoFrm : ViewPagerFrm() {
         if (path.isWebP()) {
             val drawable = WebPDrawable.fromFile(path)
             if (drawable.intrinsicWidth == 0) {
-                loadWithGlide(path, addZoomableView)
+                loadWithGlide(
+                    path = path,
+                    addZoomableView = addZoomableView
+                )
             } else {
                 binding.gesturesView.setImageDrawable(drawable)
             }
@@ -444,7 +492,11 @@ class PhotoFrm : ViewPagerFrm() {
         }
     }
 
-    private fun loadWithGlide(path: String, addZoomableView: Boolean) {
+    @SuppressLint("CheckResult")
+    private fun loadWithGlide(
+        path: String,
+        addZoomableView: Boolean,
+    ) {
         val priority = if (mIsFragmentVisible) Priority.IMMEDIATE else Priority.NORMAL
         val options = RequestOptions()
             .signature(mMedium.getKey())
@@ -462,7 +514,12 @@ class PhotoFrm : ViewPagerFrm() {
             .load(path)
             .apply(options)
             .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean,
+                ): Boolean {
                     if (activity != null && !activity!!.isDestroyed && !activity!!.isFinishing) {
                         tryLoadingWithPicasso(addZoomableView)
                     }
@@ -474,7 +531,7 @@ class PhotoFrm : ViewPagerFrm() {
                     model: Any,
                     target: Target<Drawable>,
                     dataSource: DataSource,
-                    isFirstResource: Boolean
+                    isFirstResource: Boolean,
                 ): Boolean {
                     val allowZoomingImages = context?.config?.allowZoomingImages ?: true
                     binding.gesturesView.controller.settings.isZoomEnabled = mMedium.isRaw() || mCurrentRotationDegrees != 0 || allowZoomingImages == false
@@ -542,7 +599,11 @@ class PhotoFrm : ViewPagerFrm() {
             }
 
             val sideElementWidth = curWidth - screenWidth
-            val adapter = PortraitPhotosAdapter(requireContext(), paths, sideElementWidth) { position, x ->
+            val adapter = PortraitPhotosAdapter(
+                context = requireContext(),
+                photos = paths,
+                sideElementWidth = sideElementWidth
+            ) { position, x ->
                 if (mIsFullscreen) {
                     return@PortraitPhotosAdapter
                 }
@@ -575,7 +636,10 @@ class PhotoFrm : ViewPagerFrm() {
         }
     }
 
-    private fun fillPhotoPaths(files: ArrayList<File>, fakeItemsCnt: Int): ArrayList<String> {
+    private fun fillPhotoPaths(
+        files: ArrayList<File>,
+        fakeItemsCnt: Int,
+    ): ArrayList<String> {
         val paths = ArrayList<String>()
         for (i in 0 until fakeItemsCnt) {
             paths.add("")
@@ -617,6 +681,7 @@ class PhotoFrm : ViewPagerFrm() {
         return coverIndex
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupStripeUpListener(adapter: PortraitPhotosAdapter, screenWidth: Int, itemWidth: Int) {
         binding.photoPortraitStripe.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
@@ -631,7 +696,7 @@ class PhotoFrm : ViewPagerFrm() {
                     }
                 }
 
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     adapter.performClickOn(closestIndex)
                 }, 100)
             }
@@ -651,7 +716,7 @@ class PhotoFrm : ViewPagerFrm() {
             if (mIsFragmentVisible && context?.config?.allowZoomingImages == true && (mMedium.isImage() || mMedium.isPortrait()) && !mIsSubsamplingVisible) {
                 addZoomableView()
             }
-        }, ZOOMABLE_VIEW_LOAD_DELAY)
+        }, zoomableViewLoadDelay)
     }
 
     private fun addZoomableView() {
@@ -662,11 +727,19 @@ class PhotoFrm : ViewPagerFrm() {
         val minTileDpi = if (showHighestQuality) -1 else getMinTileDpi()
 
         val bitmapDecoder = object : DecoderFactory<ImageDecoder> {
-            override fun make() = DecoderMyGlideImage(rotation, mMedium.getKey())
+            override fun make() = DecoderMyGlideImage(
+                degrees = rotation,
+                signature = mMedium.getKey()
+            )
         }
 
         val regionDecoder = object : DecoderFactory<ImageRegionDecoder> {
-            override fun make() = DecoderPicassoRegion(showHighestQuality, mScreenWidth, mScreenHeight, minTileDpi)
+            override fun make() = DecoderPicassoRegion(
+                showHighestQuality = showHighestQuality,
+                screenWidth = mScreenWidth,
+                screenHeight = mScreenHeight,
+                minTileDpi = minTileDpi
+            )
         }
 
         var newOrientation = (rotation + mCurrentRotationDegrees) % 360
@@ -734,39 +807,39 @@ class PhotoFrm : ViewPagerFrm() {
         val averageDpi = (metrics.xdpi + metrics.ydpi) / 2
         val device = "${Build.BRAND} ${Build.MODEL}".lowercase(Locale.getDefault())
         return when {
-            WEIRD_DEVICES.contains(device) -> WEIRD_TILE_DPI
+            weirdDevices.contains(device) -> WEIRD_TILE_DPI
             averageDpi > 400 -> HIGH_TILE_DPI
             averageDpi > 300 -> NORMAL_TILE_DPI
             else -> LOW_TILE_DPI
         }
     }
 
-    private fun checkIfPanorama() {
-        mIsPanorama = try {
-            if (mMedium.path.startsWith("content:/")) {
-                requireContext().contentResolver.openInputStream(Uri.parse(mMedium.path))
-            } else {
-                File(mMedium.path).inputStream()
-            }.use {
-                val imageParser = JpegImageParser().getXmpXml(ByteSourceInputStream(it, mMedium.name), HashMap<String, Any>())
-                imageParser.contains("GPano:UsePanoramaViewer=\"True\"", true) ||
-                    imageParser.contains("<GPano:UsePanoramaViewer>True</GPano:UsePanoramaViewer>", true) ||
-                    imageParser.contains("GPano:FullPanoWidthPixels=") ||
-                    imageParser.contains("GPano:ProjectionType>Equirectangular")
-            }
-        } catch (e: Exception) {
-            false
-        } catch (e: OutOfMemoryError) {
-            false
-        }
-
-        activity?.runOnUiThread {
-            binding.panoramaOutline.beVisibleIf(mIsPanorama)
-            if (mIsFullscreen) {
-                binding.panoramaOutline.alpha = 0f
-            }
-        }
-    }
+//    private fun checkIfPanorama() {
+//        mIsPanorama = try {
+//            if (mMedium.path.startsWith("content:/")) {
+//                requireContext().contentResolver.openInputStream(Uri.parse(mMedium.path))
+//            } else {
+//                File(mMedium.path).inputStream()
+//            }.use {
+//                val imageParser = JpegImageParser().getXmpXml(ByteSourceInputStream(it, mMedium.name), HashMap<String, Any>())
+//                imageParser.contains("GPano:UsePanoramaViewer=\"True\"", true) ||
+//                    imageParser.contains("<GPano:UsePanoramaViewer>True</GPano:UsePanoramaViewer>", true) ||
+//                    imageParser.contains("GPano:FullPanoWidthPixels=") ||
+//                    imageParser.contains("GPano:ProjectionType>Equirectangular")
+//            }
+//        } catch (e: Exception) {
+//            false
+//        } catch (e: OutOfMemoryError) {
+//            false
+//        }
+//
+//        activity?.runOnUiThread {
+//            binding.panoramaOutline.beVisibleIf(mIsPanorama)
+//            if (mIsFullscreen) {
+//                binding.panoramaOutline.alpha = 0f
+//            }
+//        }
+//    }
 
     private fun getImageOrientation(): Int {
         val defaultOrientation = -1
@@ -802,8 +875,8 @@ class PhotoFrm : ViewPagerFrm() {
         val bitmapAspectRatio = height / width.toFloat()
         val screenAspectRatio = mScreenHeight / mScreenWidth.toFloat()
 
-        return if (context == null || Math.abs(bitmapAspectRatio - screenAspectRatio) < SAME_ASPECT_RATIO_THRESHOLD) {
-            DEFAULT_DOUBLE_TAP_ZOOM
+        return if (context == null || Math.abs(bitmapAspectRatio - screenAspectRatio) < sameAspectRatioThreshold) {
+            defaultDoubleTapZoom
         } else if (requireContext().portrait && bitmapAspectRatio <= screenAspectRatio) {
             mScreenHeight / height.toFloat()
         } else if (requireContext().portrait && bitmapAspectRatio > screenAspectRatio) {
@@ -813,7 +886,7 @@ class PhotoFrm : ViewPagerFrm() {
         } else if (!requireContext().portrait && bitmapAspectRatio < screenAspectRatio) {
             mScreenHeight / height.toFloat()
         } else {
-            DEFAULT_DOUBLE_TAP_ZOOM
+            defaultDoubleTapZoom
         }
     }
 
