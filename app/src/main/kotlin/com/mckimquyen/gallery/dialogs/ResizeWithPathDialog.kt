@@ -9,7 +9,7 @@ import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgResizeImageWithPathBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 
 class ResizeWithPathDialog(val activity: BaseSimpleActivity, val size: Point, val path: String, val callback: (newSize: Point, newPath: String) -> Unit) {
     init {

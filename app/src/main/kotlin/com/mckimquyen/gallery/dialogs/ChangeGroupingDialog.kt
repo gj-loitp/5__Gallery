@@ -7,7 +7,7 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgChangeGroupingBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.*
 
 class ChangeGroupingDialog(val activity: BaseSimpleActivity, val path: String = "", val callback: () -> Unit) :

@@ -7,7 +7,7 @@ import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.helpers.VIEW_TYPE_GRID
 import org.fossify.commons.helpers.VIEW_TYPE_LIST
 import com.mckimquyen.gallery.databinding.DlgChangeViewTypeBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.SHOW_ALL
 
 class ChangeViewTypeDialog(val activity: BaseSimpleActivity, val fromFoldersView: Boolean, val path: String = "", val callback: () -> Unit) {

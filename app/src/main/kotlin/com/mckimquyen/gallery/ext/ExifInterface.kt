@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.extensions
+package com.mckimquyen.gallery.ext
 
 import androidx.exifinterface.media.ExifInterface
 import java.lang.reflect.Field

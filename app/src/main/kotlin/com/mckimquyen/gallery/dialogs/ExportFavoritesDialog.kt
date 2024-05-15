@@ -7,7 +7,7 @@ import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgExportFavoritesBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 
 class ExportFavoritesDialog(
     val activity: BaseSimpleActivity, val defaultFilename: String, val hidePath: Boolean,

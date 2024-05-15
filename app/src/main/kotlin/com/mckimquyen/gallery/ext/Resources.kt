@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.extensions
+package com.mckimquyen.gallery.ext
 
 import android.content.Context
 import android.content.res.Resources

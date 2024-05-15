@@ -9,7 +9,7 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.getBasePath
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgExcludeFolderBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 
 class ExcludeFolderDialog(val activity: BaseSimpleActivity, val selectedPaths: List<String>, val callback: () -> Unit) {
     private val alternativePaths = getAlternativePathsList()

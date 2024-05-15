@@ -45,7 +45,7 @@ import com.mckimquyen.gallery.databinding.AMediumBinding
 import com.mckimquyen.gallery.dialogs.DeleteWithRememberDialog
 import com.mckimquyen.gallery.dialogs.SaveAsDialog
 import com.mckimquyen.gallery.dialogs.SlideshowDialog
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.frm.PhotoFrm
 import com.mckimquyen.gallery.frm.VideoFrm
 import com.mckimquyen.gallery.frm.ViewPagerFrm

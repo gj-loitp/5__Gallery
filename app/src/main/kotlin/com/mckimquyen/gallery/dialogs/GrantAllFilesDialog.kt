@@ -6,7 +6,7 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.getProperTextColor
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgGrantAllFilesBinding
-import com.mckimquyen.gallery.extensions.launchGrantAllFilesIntent
+import com.mckimquyen.gallery.ext.launchGrantAllFilesIntent
 
 class GrantAllFilesDialog(val activity: BaseSimpleActivity) {
     init {

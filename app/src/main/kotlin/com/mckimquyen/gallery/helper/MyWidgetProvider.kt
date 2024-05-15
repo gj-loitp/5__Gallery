@@ -18,10 +18,10 @@ import org.fossify.commons.extensions.setVisibleIf
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.directoryDB
-import com.mckimquyen.gallery.extensions.getFolderNameFromPath
-import com.mckimquyen.gallery.extensions.widgetsDB
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.directoryDB
+import com.mckimquyen.gallery.ext.getFolderNameFromPath
+import com.mckimquyen.gallery.ext.widgetsDB
 import com.mckimquyen.gallery.model.Widget
 import kotlin.math.max
 

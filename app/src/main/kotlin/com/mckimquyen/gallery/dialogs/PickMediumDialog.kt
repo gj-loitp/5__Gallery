@@ -12,8 +12,8 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.DlgMediumPickerBinding
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.getCachedMedia
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.getCachedMedia
 import com.mckimquyen.gallery.helper.DecorationGridSpacingItem
 import com.mckimquyen.gallery.helper.SHOW_ALL
 import com.mckimquyen.gallery.model.Medium

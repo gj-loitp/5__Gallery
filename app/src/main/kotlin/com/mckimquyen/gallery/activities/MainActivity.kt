@@ -32,7 +32,7 @@ import com.mckimquyen.gallery.dialogs.ChangeSortingDialog
 import com.mckimquyen.gallery.dialogs.ChangeViewTypeDialog
 import com.mckimquyen.gallery.dialogs.FilterMediaDialog
 import com.mckimquyen.gallery.dialogs.GrantAllFilesDialog
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
 import com.mckimquyen.gallery.job.NewPhotoFetcher

@@ -10,7 +10,7 @@ import org.fossify.commons.extensions.value
 import org.fossify.commons.models.RadioItem
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgSlideshowBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.SLIDESHOW_ANIMATION_FADE
 import com.mckimquyen.gallery.helper.SLIDESHOW_ANIMATION_NONE
 import com.mckimquyen.gallery.helper.SLIDESHOW_ANIMATION_SLIDE

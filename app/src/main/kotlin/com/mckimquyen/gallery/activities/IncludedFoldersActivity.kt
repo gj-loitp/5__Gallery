@@ -9,7 +9,7 @@ import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.ManageFoldersAdapter
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 
 class IncludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
 

@@ -10,7 +10,7 @@ import org.fossify.commons.extensions.setupViewBackground
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.databinding.VItemManageFolderBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 
 class ManageFoldersAdapter(
     activity: BaseSimpleActivity, var folders: ArrayList<String>, val isShowingExcludedFolders: Boolean, val listener: RefreshRecyclerViewListener?,

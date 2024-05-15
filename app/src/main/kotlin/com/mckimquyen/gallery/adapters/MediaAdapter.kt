@@ -26,7 +26,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.ViewPagerActivity
 import com.mckimquyen.gallery.databinding.*
 import com.mckimquyen.gallery.dialogs.DeleteWithRememberDialog
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerMediaOperations
 import com.mckimquyen.gallery.model.Medium

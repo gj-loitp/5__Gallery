@@ -11,9 +11,9 @@ import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.ManageHiddenFoldersAdapter
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
-import com.mckimquyen.gallery.extensions.addNoMedia
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.getNoMediaFolders
+import com.mckimquyen.gallery.ext.addNoMedia
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.getNoMediaFolders
 
 class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
 

@@ -30,8 +30,8 @@ import com.bumptech.glide.Glide
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.VideoActivity
 import com.mckimquyen.gallery.databinding.VPagerVideoItemBinding
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.hasNavBar
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.hasNavBar
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.view.MediaSideScroll

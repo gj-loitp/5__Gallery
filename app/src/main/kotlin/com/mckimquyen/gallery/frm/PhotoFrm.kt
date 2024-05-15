@@ -45,9 +45,9 @@ import com.mckimquyen.gallery.activities.PhotoVideoActivity
 import com.mckimquyen.gallery.activities.ViewPagerActivity
 import com.mckimquyen.gallery.adapters.PortraitPhotosAdapter
 import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.saveRotatedImageToFile
-import com.mckimquyen.gallery.extensions.sendFakeClick
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.saveRotatedImageToFile
+import com.mckimquyen.gallery.ext.sendFakeClick
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.svg.SvgSoftwareLayerSetter

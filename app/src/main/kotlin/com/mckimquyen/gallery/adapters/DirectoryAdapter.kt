@@ -37,7 +37,7 @@ import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
 import com.mckimquyen.gallery.dialogs.ConfirmDeleteFolderDialog
 import com.mckimquyen.gallery.dialogs.ExcludeFolderDialog
 import com.mckimquyen.gallery.dialogs.PickMediumDialog
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
 import com.mckimquyen.gallery.model.AlbumCover

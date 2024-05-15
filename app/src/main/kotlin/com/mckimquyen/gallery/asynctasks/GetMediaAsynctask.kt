@@ -6,8 +6,8 @@ import org.fossify.commons.helpers.FAVORITES
 import org.fossify.commons.helpers.SORT_BY_DATE_MODIFIED
 import org.fossify.commons.helpers.SORT_BY_DATE_TAKEN
 import org.fossify.commons.helpers.SORT_BY_SIZE
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.getFavoritePaths
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.getFavoritePaths
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem

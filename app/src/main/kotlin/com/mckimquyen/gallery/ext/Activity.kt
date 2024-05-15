@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.extensions
+package com.mckimquyen.gallery.ext
 
 import android.annotation.TargetApi
 import android.app.Activity

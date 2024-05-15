@@ -12,7 +12,7 @@ import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.VItemManageFolderBinding
-import com.mckimquyen.gallery.extensions.removeNoMedia
+import com.mckimquyen.gallery.ext.removeNoMedia
 
 class ManageHiddenFoldersAdapter(
     activity: BaseSimpleActivity, var folders: ArrayList<String>, val listener: RefreshRecyclerViewListener?,

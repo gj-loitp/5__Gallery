@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.extensions
+package com.mckimquyen.gallery.ext
 
 import android.os.Environment
 import org.fossify.commons.extensions.isExternalStorageManager

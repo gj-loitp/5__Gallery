@@ -13,9 +13,9 @@ import org.fossify.commons.extensions.scanPathRecursively
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.helpers.isPiePlus
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.extensions.addPathToDB
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.updateDirectoryPath
+import com.mckimquyen.gallery.ext.addPathToDB
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.updateDirectoryPath
 
 open class SimpleActivity : BaseSimpleActivity() {
     val observer = object : ContentObserver(null) {

@@ -15,7 +15,7 @@ import org.fossify.commons.views.MySearchMenu
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.DirectoryAdapter
 import com.mckimquyen.gallery.databinding.DlgDirectoryPickerBinding
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.model.Directory
 
 class PickDirectoryDialog(

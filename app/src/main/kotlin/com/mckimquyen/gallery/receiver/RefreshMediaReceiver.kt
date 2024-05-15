@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import org.fossify.commons.helpers.REFRESH_PATH
-import com.mckimquyen.gallery.extensions.addPathToDB
+import com.mckimquyen.gallery.ext.addPathToDB
 
 class RefreshMediaReceiver : BroadcastReceiver() {
     override fun onReceive(

@@ -14,7 +14,7 @@ import android.text.format.DateFormat
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 import com.mckimquyen.gallery.model.ThumbnailSection

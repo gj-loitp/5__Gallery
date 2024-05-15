@@ -15,7 +15,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.ASearchBinding
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.DecorationGridSpacingItem
 import com.mckimquyen.gallery.helper.MediaFetcher
 import com.mckimquyen.gallery.helper.PATH

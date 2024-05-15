@@ -19,8 +19,8 @@ import android.provider.MediaStore.Video
 import org.fossify.commons.extensions.getParentPath
 import org.fossify.commons.extensions.getStringValue
 import org.fossify.commons.helpers.ensureBackgroundThread
-import com.mckimquyen.gallery.extensions.addPathToDB
-import com.mckimquyen.gallery.extensions.updateDirectoryPath
+import com.mckimquyen.gallery.ext.addPathToDB
+import com.mckimquyen.gallery.ext.updateDirectoryPath
 
 // based on https://developer.android.com/reference/android/app/job/JobInfo.Builder.html#addTriggerContentUri(android.app.job.JobInfo.TriggerContentUri)
 @TargetApi(Build.VERSION_CODES.N)

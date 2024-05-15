@@ -16,7 +16,7 @@ import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.FrmHolderBinding
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.frm.PhotoFrm
 import com.mckimquyen.gallery.frm.VideoFrm
 import com.mckimquyen.gallery.frm.ViewPagerFrm

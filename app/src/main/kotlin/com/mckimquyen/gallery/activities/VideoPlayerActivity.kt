@@ -29,7 +29,7 @@ import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.AVideoPlayerBinding
-import com.mckimquyen.gallery.extensions.*
+import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 
 @UnstableApi

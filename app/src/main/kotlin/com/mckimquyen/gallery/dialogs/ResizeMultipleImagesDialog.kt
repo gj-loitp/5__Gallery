@@ -7,9 +7,9 @@ import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgResizeMultipleImagesBinding
-import com.mckimquyen.gallery.extensions.ensureWriteAccess
-import com.mckimquyen.gallery.extensions.rescanPathsAndUpdateLastModified
-import com.mckimquyen.gallery.extensions.resizeImage
+import com.mckimquyen.gallery.ext.ensureWriteAccess
+import com.mckimquyen.gallery.ext.rescanPathsAndUpdateLastModified
+import com.mckimquyen.gallery.ext.resizeImage
 import java.io.File
 import kotlin.math.roundToInt
 

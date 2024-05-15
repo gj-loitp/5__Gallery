@@ -6,7 +6,7 @@ import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.DlgChangeSortingBinding
-import com.mckimquyen.gallery.extensions.config
+import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.SHOW_ALL
 
 class ChangeSortingDialog(

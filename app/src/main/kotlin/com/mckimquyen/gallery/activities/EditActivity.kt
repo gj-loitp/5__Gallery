@@ -41,10 +41,10 @@ import com.mckimquyen.gallery.databinding.AEditBinding
 import com.mckimquyen.gallery.dialogs.OtherAspectRatioDialog
 import com.mckimquyen.gallery.dialogs.ResizeDialog
 import com.mckimquyen.gallery.dialogs.SaveAsDialog
-import com.mckimquyen.gallery.extensions.config
-import com.mckimquyen.gallery.extensions.copyNonDimensionAttributesTo
-import com.mckimquyen.gallery.extensions.fixDateTaken
-import com.mckimquyen.gallery.extensions.openEditor
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.copyNonDimensionAttributesTo
+import com.mckimquyen.gallery.ext.fixDateTaken
+import com.mckimquyen.gallery.ext.openEditor
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.FilterItem
 import java.io.*
