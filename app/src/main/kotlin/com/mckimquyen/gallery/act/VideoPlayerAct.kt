@@ -37,7 +37,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 @UnstableApi
-open class VideoPlayerAct : SimpleActivity(), SeekBar.OnSeekBarChangeListener, TextureView.SurfaceTextureListener {
+open class VideoPlayerAct : SimpleAct(), SeekBar.OnSeekBarChangeListener, TextureView.SurfaceTextureListener {
     private val playWhenReadyDragDelay = 100L
     private var mIsFullscreen = false
     private var mIsPlaying = false

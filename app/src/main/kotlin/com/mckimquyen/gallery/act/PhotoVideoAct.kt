@@ -24,7 +24,7 @@ import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
 import java.io.File
 
-open class PhotoVideoActivity : SimpleActivity(), ViewPagerFrm.FragmentListener {
+open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
     private var mMedium: Medium? = null
     private var mIsFullScreen = false
     private var mIsFromGallery = false
@@ -129,7 +129,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFrm.FragmentListener 
     private fun checkIntent(savedInstanceState: Bundle? = null) {
         if (intent.data == null && intent.action == Intent.ACTION_VIEW) {
             hideKeyboard()
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainAct::class.java))
             finish()
             return
         }
@@ -286,7 +286,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFrm.FragmentListener 
 
     private fun openViewPager(path: String) {
         if (!intent.getBooleanExtra(IS_FROM_GALLERY, false)) {
-            MediaActivityMediaOperations.mMedia.clear()
+            MediaActMediaOperations.mMedia.clear()
         }
         runOnUiThread {
             hideKeyboard()

@@ -11,7 +11,7 @@ import com.mckimquyen.gallery.adt.ManageFoldersAdt
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.ext.config
 
-class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
+class ExcludedFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
 
     private val binding by viewBinding(AManageFoldersBinding::inflate)
 

@@ -2,10 +2,9 @@ package com.mckimquyen.gallery.act
 
 import android.os.Bundle
 
-class VideoActivity : PhotoVideoActivity() {
-
+class PhotoAct : PhotoVideoAct() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        mIsVideo = true
+        mIsVideo = false
         super.onCreate(savedInstanceState)
     }
 }

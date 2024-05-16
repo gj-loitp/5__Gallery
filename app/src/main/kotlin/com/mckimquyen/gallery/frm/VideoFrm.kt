@@ -28,7 +28,7 @@ import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import com.bumptech.glide.Glide
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.act.VideoActivity
+import com.mckimquyen.gallery.act.VideoAct
 import com.mckimquyen.gallery.databinding.VPagerVideoItemBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.hasNavBar
@@ -180,7 +180,7 @@ class VideoFrm : ViewPagerFrm(), TextureView.SurfaceTextureListener, SeekBar.OnS
         Glide.with(context).load(mMedium.path).into(binding.videoPreview)
 
         // setMenuVisibility is not called at VideoActivity (third party intent)
-        if (!mIsFragmentVisible && activity is VideoActivity) {
+        if (!mIsFragmentVisible && activity is VideoAct) {
             mIsFragmentVisible = true
         }
 

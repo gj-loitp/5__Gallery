@@ -15,7 +15,7 @@ import com.mckimquyen.gallery.ext.addNoMedia
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.getNoMediaFolders
 
-class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
+class HiddenFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
 
     private val binding by viewBinding(AManageFoldersBinding::inflate)
     override fun onCreate(savedInstanceState: Bundle?) {

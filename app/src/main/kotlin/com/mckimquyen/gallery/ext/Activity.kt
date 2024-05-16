@@ -36,9 +36,9 @@ import org.fossify.commons.models.FAQItem
 import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.act.MediaActivityMediaOperations
-import com.mckimquyen.gallery.act.SettingsActivity
-import com.mckimquyen.gallery.act.SimpleActivity
+import com.mckimquyen.gallery.act.MediaActMediaOperations
+import com.mckimquyen.gallery.act.SettingsAct
+import com.mckimquyen.gallery.act.SimpleAct
 import com.mckimquyen.gallery.dlg.AllFilesPermissionDlg
 import com.mckimquyen.gallery.dlg.PickDirectoryDlg
 import com.mckimquyen.gallery.dlg.ResizeMultipleImagesDlg
@@ -100,12 +100,12 @@ fun Activity.launchCamera() {
     launchActivityIntent(intent)
 }
 
-fun SimpleActivity.launchSettings() {
+fun SimpleAct.launchSettings() {
     hideKeyboard()
-    startActivity(Intent(applicationContext, SettingsActivity::class.java))
+    startActivity(Intent(applicationContext, SettingsAct::class.java))
 }
 
-fun SimpleActivity.launchAbout() {
+fun SimpleAct.launchAbout() {
     val licenses = LICENSE_GLIDE or LICENSE_CROPPER or LICENSE_RTL or LICENSE_SUBSAMPLING or LICENSE_PATTERN or LICENSE_REPRINT or LICENSE_GIF_DRAWABLE or
         LICENSE_PICASSO or LICENSE_EXOPLAYER or LICENSE_SANSELAN or LICENSE_FILTERS or LICENSE_GESTURE_VIEWS or LICENSE_APNG
 
@@ -1071,7 +1071,7 @@ fun Activity.handleExcludedFolderPasswordProtection(callback: () -> Unit) {
 }
 
 fun Activity.openRecycleBin() {
-    Intent(this, MediaActivityMediaOperations::class.java).apply {
+    Intent(this, MediaActMediaOperations::class.java).apply {
         putExtra(DIRECTORY, RECYCLE_BIN)
         startActivity(this)
     }

@@ -17,7 +17,7 @@ import org.fossify.commons.extensions.setText
 import org.fossify.commons.extensions.setVisibleIf
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.act.MediaActivityMediaOperations
+import com.mckimquyen.gallery.act.MediaActMediaOperations
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.directoryDB
 import com.mckimquyen.gallery.ext.getFolderNameFromPath
@@ -32,7 +32,7 @@ class MyWidgetProvider : AppWidgetProvider() {
         id: Int,
         widget: Widget,
     ) {
-        val intent = Intent(context, MediaActivityMediaOperations::class.java).apply {
+        val intent = Intent(context, MediaActMediaOperations::class.java).apply {
             putExtra(
                 /* name = */ DIRECTORY,
                 /* value = */ widget.folderPath

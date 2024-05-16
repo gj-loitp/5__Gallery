@@ -40,8 +40,8 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.github.penfeizhou.animation.apng.APNGDrawable
 import com.github.penfeizhou.animation.webp.WebPDrawable
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.act.PhotoActivity
-import com.mckimquyen.gallery.act.PhotoVideoActivity
+import com.mckimquyen.gallery.act.PhotoAct
+import com.mckimquyen.gallery.act.PhotoVideoAct
 import com.mckimquyen.gallery.act.ViewPagerAct
 import com.mckimquyen.gallery.adt.PortraitPhotosAdt
 import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
@@ -193,7 +193,7 @@ class PhotoFrm : ViewPagerFrm() {
 
         checkScreenDimensions()
         storeStateVariables()
-        if (!mIsFragmentVisible && activity is PhotoActivity) {
+        if (!mIsFragmentVisible && activity is PhotoAct) {
             mIsFragmentVisible = true
         }
 
@@ -792,7 +792,7 @@ class PhotoFrm : ViewPagerFrm() {
 
                     // ugly, but it works
                     (activity as? ViewPagerAct)?.refreshMenuItems()
-                    (activity as? PhotoVideoActivity)?.refreshMenuItems()
+                    (activity as? PhotoVideoAct)?.refreshMenuItems()
                 }
 
                 override fun onUpEvent() {

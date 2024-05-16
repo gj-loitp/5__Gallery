@@ -25,7 +25,7 @@ import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 import java.io.File
 
-class SearchActivity : SimpleActivity(), ListenerMediaOperations {
+class SearchAct : SimpleAct(), ListenerMediaOperations {
     private var mLastSearchedText = ""
 
     private var mCurrAsyncTask: GetMediaAsynctask? = null

@@ -38,7 +38,7 @@ import com.mckimquyen.gallery.model.ThumbnailSection
 import java.io.File
 import java.io.IOException
 
-class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
+class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
     private val LAST_MEDIA_CHECK_PERIOD = 3000L
 
     private var mPath = ""
@@ -520,7 +520,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
     private fun switchToFolderView() {
         hideKeyboard()
         config.showAll = false
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, MainAct::class.java))
         finish()
     }
 

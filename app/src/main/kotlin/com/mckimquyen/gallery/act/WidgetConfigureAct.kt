@@ -21,7 +21,7 @@ import com.mckimquyen.gallery.helper.ROUNDED_CORNERS_NONE
 import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Widget
 
-class WidgetConfigureAct : SimpleActivity() {
+class WidgetConfigureAct : SimpleAct() {
     private var mBgAlpha = 0f
     private var mWidgetId = 0
     private var mBgColor = 0

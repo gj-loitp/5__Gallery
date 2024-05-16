@@ -50,7 +50,7 @@ import com.mckimquyen.gallery.model.FilterItem
 import java.io.*
 import kotlin.math.max
 
-class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener {
+class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
     companion object {
         init {
             System.loadLibrary("NativeImageProcessor")
@@ -254,7 +254,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         binding.editorDrawCanvas.beGone()
         binding.cropImageView.apply {
             beVisible()
-            setOnCropImageCompleteListener(this@EditActivity)
+            setOnCropImageCompleteListener(this@EditAct)
             setImageUriAsync(uri)
             guidelines = CropImageView.Guidelines.ON
 

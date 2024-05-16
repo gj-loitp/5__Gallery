@@ -24,7 +24,7 @@ import java.io.OutputStream
 import java.util.Locale
 import kotlin.system.exitProcess
 
-class SettingsActivity : SimpleActivity() {
+class SettingsAct : SimpleAct() {
     companion object {
         private const val PICK_IMPORT_SOURCE_INTENT = 1
         private const val SELECT_EXPORT_FAVORITES_FILE_INTENT = 2
@@ -179,7 +179,7 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(PRIORITY_VALIDITY, getString(R.string.avoid_showing_invalid_files))
             )
 
-            RadioGroupDialog(this@SettingsActivity, items, config.fileLoadingPriority) {
+            RadioGroupDialog(this@SettingsAct, items, config.fileLoadingPriority) {
                 config.fileLoadingPriority = it as Int
                 binding.settingsFileLoadingPriority.text = getFileLoadingPriorityText()
             }
@@ -206,7 +206,7 @@ class SettingsActivity : SimpleActivity() {
             if (isRPlus() && !isExternalStorageManager()) {
                 GrantAllFilesDlg(this)
             } else {
-                startActivity(Intent(this, IncludedFoldersActivity::class.java))
+                startActivity(Intent(this, IncludedFoldersAct::class.java))
             }
         }
     }
@@ -214,7 +214,7 @@ class SettingsActivity : SimpleActivity() {
     private fun setupManageExcludedFolders() {
         binding.settingsManageExcludedFoldersHolder.setOnClickListener {
             handleExcludedFolderPasswordProtection {
-                startActivity(Intent(this, ExcludedFoldersActivity::class.java))
+                startActivity(Intent(this, ExcludedFoldersAct::class.java))
             }
         }
     }
@@ -223,7 +223,7 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsManageHiddenFoldersHolder.beGoneIf(isQPlus())
         binding.settingsManageHiddenFoldersHolder.setOnClickListener {
             handleHiddenFolderPasswordProtection {
-                startActivity(Intent(this, HiddenFoldersActivity::class.java))
+                startActivity(Intent(this, HiddenFoldersAct::class.java))
             }
         }
     }
@@ -617,7 +617,7 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(ROTATE_BY_ASPECT_RATIO, getString(R.string.screen_rotation_aspect_ratio))
             )
 
-            RadioGroupDialog(this@SettingsActivity, items, config.screenRotation) {
+            RadioGroupDialog(this@SettingsAct, items, config.screenRotation) {
                 config.screenRotation = it as Int
                 binding.settingsScreenRotation.text = getScreenRotationText()
             }

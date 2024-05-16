@@ -9,7 +9,7 @@ import com.mckimquyen.gallery.ext.getFavoriteFromPath
 import com.mckimquyen.gallery.ext.mediaDB
 import com.mckimquyen.gallery.model.Favorite
 
-class SplashActivity : BaseSplashActivity() {
+class SplashAct : BaseSplashActivity() {
     override fun initActivity() {
         // check if previously selected favorite items have been properly migrated into the new Favorites table
         if (config.wereFavoritesMigrated) {
@@ -37,7 +37,7 @@ class SplashActivity : BaseSplashActivity() {
     }
 
     private fun launchActivity() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, MainAct::class.java))
         finish()
     }
 }

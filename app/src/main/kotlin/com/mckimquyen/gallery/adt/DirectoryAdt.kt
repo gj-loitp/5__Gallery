@@ -30,7 +30,7 @@ import org.fossify.commons.interfaces.StartReorderDragListener
 import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.act.MediaActivityMediaOperations
+import com.mckimquyen.gallery.act.MediaActMediaOperations
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
@@ -583,7 +583,7 @@ class DirectoryAdt(
             val drawable = resources.getDrawable(R.drawable.layer_list_shortcut_image).mutate()
             val coverThumbnail = config.parseAlbumCovers().firstOrNull { it.tmb == dir.path }?.tmb ?: dir.tmb
             activity.getShortcutImage(coverThumbnail, drawable) {
-                val intent = Intent(activity, MediaActivityMediaOperations::class.java)
+                val intent = Intent(activity, MediaActMediaOperations::class.java)
                 intent.action = Intent.ACTION_VIEW
                 intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 intent.putExtra(DIRECTORY, path)

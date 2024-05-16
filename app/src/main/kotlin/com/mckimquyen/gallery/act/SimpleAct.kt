@@ -17,8 +17,8 @@ import com.mckimquyen.gallery.ext.addPathToDB
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.updateDirectoryPath
 
-open class SimpleActivity : BaseSimpleActivity() {
-    val observer = object : ContentObserver(null) {
+open class SimpleAct : BaseSimpleActivity() {
+    private val observer = object : ContentObserver(null) {
         override fun onChange(selfChange: Boolean, uri: Uri?) {
             super.onChange(selfChange, uri)
             if (uri != null) {

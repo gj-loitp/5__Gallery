@@ -57,7 +57,7 @@ import java.io.File
 import kotlin.math.min
 
 @Suppress("UNCHECKED_CAST")
-class ViewPagerAct : SimpleActivity(), ViewPager.OnPageChangeListener, ViewPagerFrm.FragmentListener {
+class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.FragmentListener {
     companion object {
         private const val REQUEST_VIEW_VIDEO = 1
         private const val SAVED_PATH = "current_path"
@@ -92,7 +92,7 @@ class ViewPagerAct : SimpleActivity(), ViewPager.OnPageChangeListener, ViewPager
         window.decorView.setBackgroundColor(getProperBackgroundColor())
         binding.topShadow.layoutParams.height = statusBarHeight + actionBarHeight
         checkNotchSupport()
-        (MediaActivityMediaOperations.mMedia.clone() as ArrayList<ThumbnailItem>).filterIsInstanceTo(mMediaFiles, Medium::class.java)
+        (MediaActMediaOperations.mMedia.clone() as ArrayList<ThumbnailItem>).filterIsInstanceTo(mMediaFiles, Medium::class.java)
 
         handlePermission(getPermissionToRequest()) {
             if (it) {

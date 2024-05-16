@@ -40,7 +40,7 @@ import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Medium
 import java.io.*
 
-class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
+class MainAct : SimpleAct(), ListenerDirectoryOperations {
     companion object {
         private const val PICK_MEDIA = 2
         private const val PICK_WALLPAPER = 3
@@ -543,7 +543,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
 
     private fun launchSearchActivity() {
         hideKeyboard()
-        Intent(this, SearchActivity::class.java).apply {
+        Intent(this, SearchAct::class.java).apply {
             startActivity(this)
         }
 
@@ -578,7 +578,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
 
     private fun showAllMedia() {
         config.showAll = true
-        Intent(this, MediaActivityMediaOperations::class.java).apply {
+        Intent(this, MediaActMediaOperations::class.java).apply {
             putExtra(DIRECTORY, "")
 
             if (mIsThirdPartyIntent) {
@@ -889,7 +889,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
     private fun itemClicked(path: String) {
         handleLockedFolderOpening(path) { success ->
             if (success) {
-                Intent(this, MediaActivityMediaOperations::class.java).apply {
+                Intent(this, MediaActMediaOperations::class.java).apply {
                     putExtra(SKIP_AUTHENTICATION, true)
                     putExtra(DIRECTORY, path)
                     handleMediaIntent(this)
@@ -1197,7 +1197,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
             return
         }
 
-        Intent(this, MediaActivityMediaOperations::class.java).apply {
+        Intent(this, MediaActMediaOperations::class.java).apply {
             putExtra(DIRECTORY, config.defaultFolder)
             handleMediaIntent(this)
         }

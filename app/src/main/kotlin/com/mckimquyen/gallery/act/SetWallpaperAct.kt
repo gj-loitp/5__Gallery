@@ -18,7 +18,7 @@ import org.fossify.commons.models.RadioItem
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.ASetWallpaperBinding
 
-class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener {
+class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
     private val RATIO_PORTRAIT = 0
     private val RATIO_LANDSCAPE = 1
     private val RATIO_SQUARE = 2
@@ -43,7 +43,7 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
 
         setupOptionsMenu()
         if (intent.data == null) {
-            val pickIntent = Intent(applicationContext, MainActivity::class.java)
+            val pickIntent = Intent(applicationContext, MainAct::class.java)
             pickIntent.action = Intent.ACTION_PICK
             pickIntent.type = "image/*"
             startActivityForResult(pickIntent, PICK_IMAGE)
@@ -90,7 +90,7 @@ class SetWallpaperActivity : SimpleActivity(), CropImageView.OnCropImageComplete
 
         wallpaperManager = WallpaperManager.getInstance(applicationContext)
         binding.cropImageView.apply {
-            setOnCropImageCompleteListener(this@SetWallpaperActivity)
+            setOnCropImageCompleteListener(this@SetWallpaperAct)
             setImageUriAsync(uri)
         }
 

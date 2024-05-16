@@ -58,7 +58,7 @@
         tools:replace="android:label">
 
         <activity
-            android:name=".act.SplashActivity"
+            android:name=".act.SplashAct"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher"
@@ -71,7 +71,7 @@
         </activity>
 
         <activity
-            android:name=".act.MainActivity"
+            android:name=".act.MainAct"
             android:configChanges="orientation"
             android:exported="true"
             android:resizeableActivity="true">
@@ -100,24 +100,24 @@
         </activity>
 
         <activity
-            android:name=".act.MediaActivityMediaOperations"
+            android:name=".act.MediaActMediaOperations"
             android:configChanges="orientation"
             android:exported="false"
-            android:parentActivityName=".act.MainActivity" />
+            android:parentActivityName=".act.MainAct" />
 
         <activity
-            android:name=".act.SearchActivity"
+            android:name=".act.SearchAct"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/search"
-            android:parentActivityName=".act.MainActivity"
+            android:parentActivityName=".act.MainAct"
             android:resizeableActivity="true" />
 
         <activity
             android:name=".act.ViewPagerAct"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
-            android:parentActivityName=".act.MediaActivityMediaOperations"
+            android:parentActivityName=".act.MediaActMediaOperations"
             android:theme="@style/TranslucentTheme">
 
             <intent-filter>
@@ -136,21 +136,21 @@
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/about"
-            android:parentActivityName=".act.MainActivity" />
+            android:parentActivityName=".act.MainAct" />
 
         <activity
             android:name="org.fossify.commons.activities.CustomizationActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/customize_colors"
-            android:parentActivityName=".act.SettingsActivity" />
+            android:parentActivityName=".act.SettingsAct" />
 
         <activity
-            android:name=".act.SettingsActivity"
+            android:name=".act.SettingsAct"
             android:configChanges="orientation"
             android:exported="true"
             android:label="@string/settings"
-            android:parentActivityName=".act.MainActivity">
+            android:parentActivityName=".act.MainAct">
 
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -159,7 +159,7 @@
         </activity>
 
         <activity
-            android:name=".act.PhotoVideoActivity"
+            android:name=".act.PhotoVideoAct"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/TranslucentTheme" />
@@ -168,32 +168,32 @@
             android:name=".act.VideoPlayerAct"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
-            android:parentActivityName=".act.MediaActivityMediaOperations"
+            android:parentActivityName=".act.MediaActMediaOperations"
             android:theme="@style/TranslucentTheme" />
 
         <activity
-            android:name=".act.IncludedFoldersActivity"
+            android:name=".act.IncludedFoldersAct"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/include_folders"
-            android:parentActivityName=".act.SettingsActivity" />
+            android:parentActivityName=".act.SettingsAct" />
 
         <activity
-            android:name=".act.ExcludedFoldersActivity"
+            android:name=".act.ExcludedFoldersAct"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/excluded_folders"
-            android:parentActivityName=".act.SettingsActivity" />
+            android:parentActivityName=".act.SettingsAct" />
 
         <activity
-            android:name=".act.HiddenFoldersActivity"
+            android:name=".act.HiddenFoldersAct"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/hidden_folders"
-            android:parentActivityName=".act.SettingsActivity" />
+            android:parentActivityName=".act.SettingsAct" />
 
         <activity
-            android:name=".act.PhotoActivity"
+            android:name=".act.PhotoAct"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true">
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -207,7 +207,7 @@
         </activity>
 
         <activity
-            android:name=".act.VideoActivity"
+            android:name=".act.VideoAct"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true">
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -221,7 +221,7 @@
         </activity>
 
         <activity
-            android:name=".act.EditActivity"
+            android:name=".act.EditAct"
             android:configChanges="orientation"
             android:exported="true"
             android:label="@string/basic_editor">
@@ -249,7 +249,7 @@
         </activity>
 
         <activity
-            android:name=".act.SetWallpaperActivity"
+            android:name=".act.SetWallpaperAct"
             android:configChanges="orientation"
             android:exported="true"
             android:label="@string/wallpaper">
