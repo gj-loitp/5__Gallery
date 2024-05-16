@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -14,16 +15,24 @@ import org.fossify.commons.extensions.getFileKey
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.VPortraitPhotoItemBinding
 
-class PortraitPhotosAdapter(val context: Context, val photos: ArrayList<String>, val sideElementWidth: Int, val itemClick: (Int, Int) -> Unit) :
-    RecyclerView.Adapter<PortraitPhotosAdapter.ViewHolder>() {
+class PortraitPhotosAdt(
+    val context: Context,
+    val photos: ArrayList<String>,
+    val sideElementWidth: Int,
+    val itemClick: (Int, Int) -> Unit,
+) :
+    RecyclerView.Adapter<PortraitPhotosAdt.ViewHolder>() {
 
     var currentSelectionIndex = -1
     var views = HashMap<Int, View>()
-    private var strokeBackground = context.resources.getDrawable(R.drawable.selector_stroke_background)
+    private var strokeBackground = ContextCompat.getDrawable(context, R.drawable.selector_stroke_background)
     private val itemWidth = context.resources.getDimension(R.dimen.portrait_photos_stripe_height).toInt()
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(photos[position], position)
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) {
+        holder.bindView(photo = photos[position], position = position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

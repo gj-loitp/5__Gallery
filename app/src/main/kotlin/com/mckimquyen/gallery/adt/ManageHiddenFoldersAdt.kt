@@ -14,10 +14,17 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.VItemManageFolderBinding
 import com.mckimquyen.gallery.ext.removeNoMedia
 
-class ManageHiddenFoldersAdapter(
-    activity: BaseSimpleActivity, var folders: ArrayList<String>, val listener: RefreshRecyclerViewListener?,
-    recyclerView: MyRecyclerView, itemClick: (Any) -> Unit
-) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
+class ManageHiddenFoldersAdt(
+    activity: BaseSimpleActivity,
+    var folders: ArrayList<String>,
+    val listener: RefreshRecyclerViewListener?,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit,
+) : MyRecyclerViewAdapter(
+    activity = activity,
+    recyclerView = recyclerView,
+    itemClick = itemClick
+) {
 
     init {
         setupDragListener(true)
@@ -46,20 +53,32 @@ class ManageHiddenFoldersAdapter(
     override fun onActionModeDestroyed() {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return createViewHolder(VItemManageFolderBinding.inflate(layoutInflater, parent, false).root)
+        return createViewHolder(
+            VItemManageFolderBinding.inflate(
+                /* inflater = */ layoutInflater,
+                /* parent = */ parent,
+                /* attachToParent = */ false
+            ).root
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val folder = folders[position]
-        holder.bindView(folder, true, true) { itemView, adapterPosition ->
-            setupView(itemView, folder)
+        holder.bindView(
+            any = folder,
+            allowSingleClick = true,
+            allowLongClick = true
+        ) { itemView, _ ->
+            setupView(view = itemView, folder = folder)
         }
         bindViewHolder(holder)
     }
 
     override fun getItemCount() = folders.size
 
-    private fun getSelectedItems() = folders.filter { selectedKeys.contains(it.hashCode()) } as ArrayList<String>
+    private fun getSelectedItems() = folders.filter {
+        selectedKeys.contains(it.hashCode())
+    } as ArrayList<String>
 
     private fun setupView(view: View, folder: String) {
         VItemManageFolderBinding.bind(view).apply {

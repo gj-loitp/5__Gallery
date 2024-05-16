@@ -4,16 +4,22 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.VEditorFilterItemBinding
 import com.mckimquyen.gallery.model.FilterItem
 
-class FiltersAdapter(val context: Context, val filterItems: ArrayList<FilterItem>, val itemClick: (Int) -> Unit) :
-    RecyclerView.Adapter<FiltersAdapter.ViewHolder>() {
+class FiltersAdt(
+    val context: Context,
+    private val filterItems: ArrayList<FilterItem>,
+    private val itemClick: (Int) -> Unit,
+) :
+    RecyclerView.Adapter<FiltersAdt.ViewHolder>() {
 
     private var currentSelection = filterItems.first()
-    private var strokeBackground = context.resources.getDrawable(R.drawable.selector_stroke_background)
+//    private var strokeBackground = context.resources.getDrawable(R.drawable.selector_stroke_background)
+    private var strokeBackground = ContextCompat.getDrawable(context, R.drawable.selector_stroke_background)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindView(filterItems[position])

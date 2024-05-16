@@ -15,7 +15,11 @@ import com.mckimquyen.gallery.helper.MEDIUM
 import com.mckimquyen.gallery.helper.SHOULD_INIT_FRAGMENT
 import com.mckimquyen.gallery.model.Medium
 
-class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val media: MutableList<Medium>) : FragmentStatePagerAdapter(fm) {
+class MyPagerAdt(
+    val activity: ViewPagerActivity,
+    fm: FragmentManager,
+    val media: MutableList<Medium>,
+) : FragmentStatePagerAdapter(fm) {
     private val fragments = HashMap<Int, ViewPagerFrm>()
     var shouldInitFragment = true
 
@@ -39,13 +43,20 @@ class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val m
 
     override fun getItemPosition(item: Any) = PagerAdapter.POSITION_NONE
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+    override fun instantiateItem(
+        container: ViewGroup,
+        position: Int,
+    ): Any {
         val fragment = super.instantiateItem(container, position) as ViewPagerFrm
         fragments[position] = fragment
         return fragment
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, any: Any) {
+    override fun destroyItem(
+        container: ViewGroup,
+        position: Int,
+        any: Any,
+    ) {
         fragments.remove(position)
         super.destroyItem(container, position, any)
     }
@@ -53,7 +64,7 @@ class MyPagerAdapter(val activity: ViewPagerActivity, fm: FragmentManager, val m
     fun getCurrentFragment(position: Int) = fragments[position]
 
     fun toggleFullscreen(isFullscreen: Boolean) {
-        for ((pos, fragment) in fragments) {
+        for ((_, fragment) in fragments) {
             fragment.fullscreenToggled(isFullscreen)
         }
     }

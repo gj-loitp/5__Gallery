@@ -24,7 +24,7 @@ import org.fossify.commons.models.RadioItem
 import org.fossify.commons.views.MyGridLayoutManager
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.MediaAdapter
+import com.mckimquyen.gallery.adt.MediaAdt
 import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMediaBinding
@@ -401,7 +401,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
         }
     }
 
-    private fun getMediaAdapter() = binding.mediaGrid.adapter as? MediaAdapter
+    private fun getMediaAdapter() = binding.mediaGrid.adapter as? MediaAdt
 
     private fun setupAdapter() {
         if (!mShowAll && isDirEmpty()) {
@@ -411,7 +411,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
         val currAdapter = binding.mediaGrid.adapter
         if (currAdapter == null) {
             initZoomListener()
-            MediaAdapter(
+            MediaAdt(
                 this, mMedia.clone() as ArrayList<ThumbnailItem>, this, mIsGetImageIntent || mIsGetVideoIntent || mIsGetAnyIntent,
                 mAllowPickingMultiple, mPath, binding.mediaGrid
             ) {
@@ -431,7 +431,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
             setupLayoutManager()
             handleGridSpacing()
         } else if (mLastSearchedText.isEmpty()) {
-            (currAdapter as MediaAdapter).updateMedia(mMedia)
+            (currAdapter as MediaAdt).updateMedia(mMedia)
             handleGridSpacing()
         } else {
             searchQueryChanged(mLastSearchedText)

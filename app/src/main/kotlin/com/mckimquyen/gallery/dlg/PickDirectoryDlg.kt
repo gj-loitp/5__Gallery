@@ -13,7 +13,7 @@ import org.fossify.commons.helpers.VIEW_TYPE_GRID
 import org.fossify.commons.views.MyGridLayoutManager
 import org.fossify.commons.views.MySearchMenu
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.DirectoryAdapter
+import com.mckimquyen.gallery.adt.DirectoryAdt
 import com.mckimquyen.gallery.databinding.DlgDirectoryPickerBinding
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.model.Directory
@@ -125,7 +125,7 @@ class PickDirectoryDlg(
     }
 
     private fun filterFolderListBySearchQuery(query: String) {
-        val adapter = binding.directoriesGrid.adapter as? DirectoryAdapter
+        val adapter = binding.directoriesGrid.adapter as? DirectoryAdt
         var dirsToShow = allDirectories
         if (query.isNotEmpty()) {
             dirsToShow = dirsToShow.filter {
@@ -212,16 +212,16 @@ class PickDirectoryDlg(
         }
 
         shownDirectories = dirs
-        val adapter = DirectoryAdapter(activity, dirs.clone() as ArrayList<Directory>, null, binding.directoriesGrid, true) {
+        val adapter = DirectoryAdt(activity, dirs.clone() as ArrayList<Directory>, null, binding.directoriesGrid, true) {
             val clickedDir = it as Directory
             val path = clickedDir.path
             if (clickedDir.subfoldersCount == 1 || !activity.config.groupDirectSubfolders) {
                 if (isPickingCopyMoveDestination && path.trimEnd('/') == sourcePath) {
                     activity.toast(org.fossify.commons.R.string.source_and_destination_same)
-                    return@DirectoryAdapter
+                    return@DirectoryAdt
                 } else if (isPickingCopyMoveDestination && activity.isRestrictedWithSAFSdk30(path) && !activity.isInDownloadDir(path)) {
                     activity.toast(org.fossify.commons.R.string.system_folder_copy_restriction, Toast.LENGTH_LONG)
-                    return@DirectoryAdapter
+                    return@DirectoryAdt
                 } else {
                     activity.handleLockedFolderOpening(path) { success ->
                         if (success) {

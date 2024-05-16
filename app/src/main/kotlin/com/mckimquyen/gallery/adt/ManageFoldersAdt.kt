@@ -12,10 +12,18 @@ import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.databinding.VItemManageFolderBinding
 import com.mckimquyen.gallery.ext.config
 
-class ManageFoldersAdapter(
-    activity: BaseSimpleActivity, var folders: ArrayList<String>, val isShowingExcludedFolders: Boolean, val listener: RefreshRecyclerViewListener?,
-    recyclerView: MyRecyclerView, itemClick: (Any) -> Unit
-) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
+class ManageFoldersAdt(
+    activity: BaseSimpleActivity,
+    var folders: ArrayList<String>,
+    val isShowingExcludedFolders: Boolean,
+    val listener: RefreshRecyclerViewListener?,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit,
+) : MyRecyclerViewAdapter(
+    activity = activity,
+    recyclerView = recyclerView,
+    itemClick = itemClick
+) {
 
     private val config = activity.config
 
@@ -51,15 +59,21 @@ class ManageFoldersAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val folder = folders[position]
-        holder.bindView(folder, true, true) { itemView, adapterPosition ->
-            setupView(itemView, folder)
+        holder.bindView(
+            any = folder,
+            allowSingleClick = true,
+            allowLongClick = true
+        ) { itemView, _ ->
+            setupView(view = itemView, folder = folder)
         }
         bindViewHolder(holder)
     }
 
     override fun getItemCount() = folders.size
 
-    private fun getSelectedItems() = folders.filter { selectedKeys.contains(it.hashCode()) } as ArrayList<String>
+    private fun getSelectedItems() = folders.filter {
+        selectedKeys.contains(it.hashCode())
+    } as ArrayList<String>
 
     private fun setupView(view: View, folder: String) {
         VItemManageFolderBinding.bind(view).apply {

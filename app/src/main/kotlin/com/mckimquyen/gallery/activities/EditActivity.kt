@@ -36,7 +36,7 @@ import org.fossify.commons.helpers.isNougatPlus
 import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.FiltersAdapter
+import com.mckimquyen.gallery.adt.FiltersAdt
 import com.mckimquyen.gallery.databinding.AEditBinding
 import com.mckimquyen.gallery.dlg.OtherAspectRatioDlg
 import com.mckimquyen.gallery.dlg.ResizeDlg
@@ -439,7 +439,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
         }
     }
 
-    private fun getFiltersAdapter() = binding.bottomEditorFilterActions.bottomActionsFilterList.adapter as? FiltersAdapter
+    private fun getFiltersAdapter() = binding.bottomEditorFilterActions.bottomActionsFilterList.adapter as? FiltersAdt
 
     private fun setupBottomActions() {
         setupPrimaryActionButtons()
@@ -668,7 +668,7 @@ class EditActivity : SimpleActivity(), CropImageView.OnCropImageCompleteListener
                     }
 
                     val filterItems = managerFilterThumbnails.processThumbs()
-                    val adapter = FiltersAdapter(applicationContext, filterItems) {
+                    val adapter = FiltersAdt(applicationContext, filterItems) {
                         val layoutManager = binding.bottomEditorFilterActions.bottomActionsFilterList.layoutManager as LinearLayoutManager
                         applyFilter(filterItems[it])
 

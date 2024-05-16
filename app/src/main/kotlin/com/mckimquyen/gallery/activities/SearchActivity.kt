@@ -12,7 +12,7 @@ import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyGridLayoutManager
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.MediaAdapter
+import com.mckimquyen.gallery.adt.MediaAdt
 import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.ASearchBinding
 import com.mckimquyen.gallery.ext.*
@@ -114,7 +114,7 @@ class SearchActivity : SimpleActivity(), ListenerMediaOperations {
     private fun setupAdapter() {
         val currAdapter = binding.searchGrid.adapter
         if (currAdapter == null) {
-            MediaAdapter(this, mAllMedia, this, false, false, "", binding.searchGrid) {
+            MediaAdt(this, mAllMedia, this, false, false, "", binding.searchGrid) {
                 if (it is Medium) {
                     itemClicked(it.path)
                 }
@@ -124,7 +124,7 @@ class SearchActivity : SimpleActivity(), ListenerMediaOperations {
             setupLayoutManager()
             handleGridSpacing(mAllMedia)
         } else if (mLastSearchedText.isEmpty()) {
-            (currAdapter as MediaAdapter).updateMedia(mAllMedia)
+            (currAdapter as MediaAdt).updateMedia(mAllMedia)
             handleGridSpacing(mAllMedia)
         } else {
             textChanged(mLastSearchedText)
@@ -147,7 +147,7 @@ class SearchActivity : SimpleActivity(), ListenerMediaOperations {
         }
     }
 
-    private fun getMediaAdapter() = binding.searchGrid.adapter as? MediaAdapter
+    private fun getMediaAdapter() = binding.searchGrid.adapter as? MediaAdt
 
     private fun toggleFilenameVisibility() {
         config.displayFileNames = !config.displayFileNames

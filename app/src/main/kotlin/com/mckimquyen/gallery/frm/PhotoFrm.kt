@@ -43,7 +43,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.PhotoActivity
 import com.mckimquyen.gallery.activities.PhotoVideoActivity
 import com.mckimquyen.gallery.activities.ViewPagerActivity
-import com.mckimquyen.gallery.adt.PortraitPhotosAdapter
+import com.mckimquyen.gallery.adt.PortraitPhotosAdt
 import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.saveRotatedImageToFile
@@ -599,13 +599,13 @@ class PhotoFrm : ViewPagerFrm() {
             }
 
             val sideElementWidth = curWidth - screenWidth
-            val adapter = PortraitPhotosAdapter(
+            val adapter = PortraitPhotosAdt(
                 context = requireContext(),
                 photos = paths,
                 sideElementWidth = sideElementWidth
             ) { position, x ->
                 if (mIsFullscreen) {
-                    return@PortraitPhotosAdapter
+                    return@PortraitPhotosAdt
                 }
 
                 binding.photoPortraitStripe.smoothScrollBy((x + itemWidth / 2) - screenWidth / 2, 0)
@@ -682,7 +682,7 @@ class PhotoFrm : ViewPagerFrm() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private fun setupStripeUpListener(adapter: PortraitPhotosAdapter, screenWidth: Int, itemWidth: Int) {
+    private fun setupStripeUpListener(adapter: PortraitPhotosAdt, screenWidth: Int, itemWidth: Int) {
         binding.photoPortraitStripe.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
                 var closestIndex = -1

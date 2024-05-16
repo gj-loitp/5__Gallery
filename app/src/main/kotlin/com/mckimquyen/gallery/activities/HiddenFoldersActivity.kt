@@ -9,7 +9,7 @@ import org.fossify.commons.helpers.NavigationIcon
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.ManageHiddenFoldersAdapter
+import com.mckimquyen.gallery.adt.ManageHiddenFoldersAdt
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.ext.addNoMedia
 import com.mckimquyen.gallery.ext.config
@@ -44,7 +44,7 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
                     setTextColor(getProperTextColor())
                 }
 
-                val adapter = ManageHiddenFoldersAdapter(this, it, this, binding.manageFoldersList) {}
+                val adapter = ManageHiddenFoldersAdt(this, it, this, binding.manageFoldersList) {}
                 binding.manageFoldersList.adapter = adapter
             }
         }

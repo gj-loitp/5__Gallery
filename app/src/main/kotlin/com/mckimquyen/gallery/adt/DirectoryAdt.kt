@@ -45,11 +45,20 @@ import com.mckimquyen.gallery.model.Directory
 import java.io.File
 import java.util.Collections
 
-class DirectoryAdapter(
-    activity: BaseSimpleActivity, var dirs: ArrayList<Directory>, val listener: ListenerDirectoryOperations?, recyclerView: MyRecyclerView,
-    val isPickIntent: Boolean, val swipeRefreshLayout: SwipeRefreshLayout? = null, itemClick: (Any) -> Unit
+class DirectoryAdt(
+    activity: BaseSimpleActivity,
+    var dirs: ArrayList<Directory>,
+    val listener: ListenerDirectoryOperations?,
+    recyclerView: MyRecyclerView,
+    private val isPickIntent: Boolean,
+    private val swipeRefreshLayout: SwipeRefreshLayout? = null,
+    itemClick: (Any) -> Unit,
 ) :
-    MyRecyclerViewAdapter(activity, recyclerView, itemClick), ItemTouchHelperContract, RecyclerViewFastScroller.OnPopupTextUpdate {
+    MyRecyclerViewAdapter(
+        activity = activity,
+        recyclerView = recyclerView,
+        itemClick = itemClick
+    ), ItemTouchHelperContract, RecyclerViewFastScroller.OnPopupTextUpdate {
 
     private val config = activity.config
     private val isListViewType = config.viewTypeFolders == VIEW_TYPE_LIST
@@ -62,7 +71,6 @@ class DirectoryAdapter(
     private var lockedFolderPaths = ArrayList<String>()
     private var isDragAndDropping = false
     private var startReorderDragListener: StartReorderDragListener? = null
-
     private var showMediaCount = config.showFolderMediaCount
     private var folderStyle = config.folderStyle
     private var limitFolderTitle = config.limitFolderTitle
@@ -87,10 +95,13 @@ class DirectoryAdapter(
         return createViewHolder(binding.root)
     }
 
-    override fun onBindViewHolder(holder: MyRecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: MyRecyclerViewAdapter.ViewHolder,
+        position: Int,
+    ) {
         val dir = dirs.getOrNull(position) ?: return
-        holder.bindView(dir, true, !isPickIntent) { itemView, adapterPosition ->
-            setupView(itemView, dir, holder)
+        holder.bindView(dir, true, !isPickIntent) { itemView, _ ->
+            setupView(view = itemView, directory = dir, holder = holder)
         }
         bindViewHolder(holder)
     }
@@ -258,7 +269,12 @@ class DirectoryAdapter(
                             updateDirs(dirs)
                             ensureBackgroundThread {
                                 try {
-                                    activity.directoryDB.updateDirectoryAfterRename(firstDir.tmb, firstDir.name, firstDir.path, sourcePath)
+                                    activity.directoryDB.updateDirectoryAfterRename(
+                                        thumbnail = firstDir.tmb,
+                                        name = firstDir.name,
+                                        newPath = firstDir.path,
+                                        oldPath = sourcePath
+                                    )
                                     listener?.refreshItems()
                                 } catch (e: Exception) {
                                     activity.showErrorToast(e)
@@ -444,7 +460,7 @@ class DirectoryAdapter(
         SecurityDialog(activity, "", SHOW_ALL_TABS) { hash, type, success ->
             if (success) {
                 getSelectedPaths().filter { !config.isFolderProtected(it) }.forEach {
-                    config.addFolderProtection(it, hash, type)
+                    config.addFolderProtection(path = it, hash = hash, type = type)
                     lockedFolderPaths.add(it)
                 }
 
@@ -459,7 +475,7 @@ class DirectoryAdapter(
         val firstPath = paths.first()
         val tabToShow = config.getFolderProtectionType(firstPath)
         val hashToCheck = config.getFolderProtectionHash(firstPath)
-        SecurityDialog(activity, hashToCheck, tabToShow) { hash, type, success ->
+        SecurityDialog(activity, hashToCheck, tabToShow) { _, _, success ->
             if (success) {
                 paths.filter { config.isFolderProtected(it) && config.getFolderProtectionType(it) == tabToShow && config.getFolderProtectionHash(it) == hashToCheck }
                     .forEach {
@@ -491,7 +507,7 @@ class DirectoryAdapter(
         actMode?.invalidate()
 
         if (startReorderDragListener == null) {
-            val touchHelper = ItemTouchHelper(ItemMoveCallback(this, true))
+            val touchHelper = ItemTouchHelper(ItemMoveCallback(mAdapter = this, allowHorizontalDrag = true))
             touchHelper.attachToRecyclerView(recyclerView)
 
             startReorderDragListener = object : StartReorderDragListener {
@@ -504,14 +520,14 @@ class DirectoryAdapter(
 
     private fun copyFilesTo() {
         handleLockedFolderOpeningForFolders(getSelectedPaths()) {
-            copyMoveTo(it, true)
+            copyMoveTo(selectedPaths = it, isCopyOperation = true)
         }
     }
 
     private fun moveFilesTo() {
         activity.handleDeletePasswordProtection {
             handleLockedFolderOpeningForFolders(getSelectedPaths()) {
-                copyMoveTo(it, false)
+                copyMoveTo(selectedPaths = it, isCopyOperation = false)
             }
         }
     }
@@ -578,7 +594,7 @@ class DirectoryAdapter(
                     .setIntent(intent)
                     .build()
 
-                manager.requestPinShortcut(shortcut, null)
+                manager.requestPinShortcut(/* shortcut = */ shortcut, /* resultIntent = */ null)
             }
         }
     }
@@ -594,11 +610,11 @@ class DirectoryAdapter(
                 val itemsCnt = selectedKeys.size
                 if (itemsCnt == 1 && getSelectedItems().first().isRecycleBin()) {
                     ConfirmationDialog(
-                        activity,
-                        "",
-                        org.fossify.commons.R.string.empty_recycle_bin_confirmation,
-                        org.fossify.commons.R.string.yes,
-                        org.fossify.commons.R.string.no
+                        activity = activity,
+                        message = "",
+                        messageId = org.fossify.commons.R.string.empty_recycle_bin_confirmation,
+                        positive = org.fossify.commons.R.string.yes,
+                        negative = org.fossify.commons.R.string.no
                     ) {
                         deleteFolders()
                     }
@@ -621,7 +637,7 @@ class DirectoryAdapter(
 
                 val question = String.format(resources.getString(baseString), items)
                 val warning = resources.getQuantityString(org.fossify.commons.R.plurals.delete_warning, itemsCnt, itemsCnt)
-                ConfirmDeleteFolderDlg(activity, question, warning) {
+                ConfirmDeleteFolderDlg(activity = activity, message = question, warningMessage = warning) {
                     deleteFolders()
                 }
             }
@@ -673,7 +689,10 @@ class DirectoryAdapter(
         }
     }
 
-    private fun handleLockedFolderOpeningForFolders(folders: Collection<String>, callback: (Collection<String>) -> Unit) {
+    private fun handleLockedFolderOpeningForFolders(
+        folders: Collection<String>,
+        callback: (Collection<String>) -> Unit,
+    ) {
         if (folders.size == 1) {
             activity.handleLockedFolderOpening(folders.first()) { success ->
                 if (success) {
@@ -681,7 +700,9 @@ class DirectoryAdapter(
                 }
             }
         } else {
-            val filtered = folders.filter { !config.isFolderProtected(it) }
+            val filtered = folders.filter {
+                !config.isFolderProtected(it)
+            }
             callback(filtered)
         }
     }
@@ -721,7 +742,9 @@ class DirectoryAdapter(
         }
     }
 
-    private fun getAlbumCoversWithout(path: String) = config.parseAlbumCovers().filterNot { it.path == path } as ArrayList
+    private fun getAlbumCoversWithout(path: String) = config.parseAlbumCovers().filterNot {
+        it.path == path
+    } as ArrayList
 
     private fun storeCovers(albumCovers: ArrayList<AlbumCover>) {
         config.albumCovers = Gson().toJson(albumCovers)
@@ -767,7 +790,11 @@ class DirectoryAdapter(
         notifyDataSetChanged()
     }
 
-    private fun setupView(view: View, directory: Directory, holder: ViewHolder) {
+    private fun setupView(
+        view: View,
+        directory: Directory,
+        holder: ViewHolder,
+    ) {
         val isSelected = selectedKeys.contains(directory.path.hashCode())
         bindItem(view).apply {
             dirPath?.text = "${directory.path.substringBeforeLast("/")}/"
@@ -820,14 +847,14 @@ class DirectoryAdapter(
                 }
 
                 activity.loadImage(
-                    thumbnailType,
-                    directory.tmb,
-                    dirThumbnail,
-                    scrollHorizontally,
-                    animateGifs,
-                    cropThumbnails,
-                    roundedCorners,
-                    directory.getKey()
+                    type = thumbnailType,
+                    path = directory.tmb,
+                    target = dirThumbnail,
+                    horizontalScroll = scrollHorizontally,
+                    animateGifs = animateGifs,
+                    cropThumbnails = cropThumbnails,
+                    roundCorners = roundedCorners,
+                    signature = directory.getKey()
                 )
             }
 
@@ -888,11 +915,19 @@ class DirectoryAdapter(
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {
-                Collections.swap(dirs, i, i + 1)
+                Collections.swap(
+                    /* list = */ dirs,
+                    /* i = */ i,
+                    /* j = */ i + 1
+                )
             }
         } else {
             for (i in fromPosition downTo toPosition + 1) {
-                Collections.swap(dirs, i, i - 1)
+                Collections.swap(
+                    /* list = */ dirs,
+                    /* i = */ i,
+                    /* j = */ i - 1
+                )
             }
         }
 

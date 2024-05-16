@@ -7,7 +7,7 @@ import org.fossify.commons.helpers.NavigationIcon
 import org.fossify.commons.helpers.isRPlus
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.ManageFoldersAdapter
+import com.mckimquyen.gallery.adt.ManageFoldersAdt
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.ext.config
 
@@ -47,7 +47,7 @@ class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
             text = placeholderText
         }
 
-        val adapter = ManageFoldersAdapter(this, folders, true, this, binding.manageFoldersList) {}
+        val adapter = ManageFoldersAdt(this, folders, true, this, binding.manageFoldersList) {}
         binding.manageFoldersList.adapter = adapter
     }
 

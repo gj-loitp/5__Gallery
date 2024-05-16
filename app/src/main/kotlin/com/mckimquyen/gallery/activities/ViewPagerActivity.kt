@@ -39,7 +39,7 @@ import org.fossify.commons.helpers.*
 import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.MyPagerAdapter
+import com.mckimquyen.gallery.adt.MyPagerAdt
 import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.AMediumBinding
 import com.mckimquyen.gallery.dlg.DeleteWithRememberDlg
@@ -468,7 +468,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
     }
 
     private fun updatePagerItems(media: MutableList<Medium>) {
-        val pagerAdapter = MyPagerAdapter(this, supportFragmentManager, media)
+        val pagerAdapter = MyPagerAdt(this, supportFragmentManager, media)
         if (!isDestroyed) {
             pagerAdapter.shouldInitFragment = mPos < 5
             binding.viewPager.apply {
@@ -816,7 +816,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         return false
     }
 
-    private fun getCurrentFragment() = (binding.viewPager.adapter as? MyPagerAdapter)?.getCurrentFragment(binding.viewPager.currentItem)
+    private fun getCurrentFragment() = (binding.viewPager.adapter as? MyPagerAdt)?.getCurrentFragment(binding.viewPager.currentItem)
 
     private fun showProperties() {
         if (getCurrentMedium() != null) {
@@ -1368,7 +1368,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
 
     private fun fullscreenToggled() {
         binding.viewPager.adapter?.let {
-            (it as MyPagerAdapter).toggleFullscreen(mIsFullScreen)
+            (it as MyPagerAdt).toggleFullscreen(mIsFullScreen)
             val newAlpha = if (mIsFullScreen) 0f else 1f
             binding.topShadow.animate().alpha(newAlpha).start()
             binding.bottomActions.root.animate().alpha(newAlpha).withStartAction {

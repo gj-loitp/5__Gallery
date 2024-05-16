@@ -25,7 +25,7 @@ import org.fossify.commons.views.MyGridLayoutManager
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.DirectoryAdapter
+import com.mckimquyen.gallery.adt.DirectoryAdt
 import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMainBinding
 import com.mckimquyen.gallery.dlg.ChangeSortingDlg
@@ -431,7 +431,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
         binding.mainMenu.updateColors()
     }
 
-    private fun getRecyclerAdapter() = binding.directoriesGrid.adapter as? DirectoryAdapter
+    private fun getRecyclerAdapter() = binding.directoriesGrid.adapter as? DirectoryAdt
 
     private fun storeStateVariables() {
         mStoredTextColor = getProperTextColor()
@@ -1246,7 +1246,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
         if (currAdapter == null || forceRecreate) {
             mDirsIgnoringSearch = dirs
             initZoomListener()
-            DirectoryAdapter(
+            DirectoryAdt(
                 this,
                 dirsToShow,
                 this,
@@ -1284,7 +1284,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
                 }
                 checkPlaceholderVisibility(dirsToShow)
 
-                (binding.directoriesGrid.adapter as? DirectoryAdapter)?.updateDirs(dirsToShow)
+                (binding.directoriesGrid.adapter as? DirectoryAdt)?.updateDirs(dirsToShow)
             }
         }
 

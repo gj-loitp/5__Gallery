@@ -33,18 +33,27 @@ import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 import com.mckimquyen.gallery.model.ThumbnailSection
 
-class MediaAdapter(
-    activity: BaseSimpleActivity, var media: ArrayList<ThumbnailItem>, val listener: ListenerMediaOperations?, val isAGetIntent: Boolean,
-    val allowMultiplePicks: Boolean, val path: String, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit
+class MediaAdt(
+    activity: BaseSimpleActivity,
+    var media: ArrayList<ThumbnailItem>,
+    val listener: ListenerMediaOperations?,
+    val isAGetIntent: Boolean,
+    val allowMultiplePicks: Boolean,
+    val path: String,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit,
 ) :
-    MyRecyclerViewAdapter(activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
+    MyRecyclerViewAdapter(
+        activity = activity,
+        recyclerView = recyclerView,
+        itemClick = itemClick
+    ), RecyclerViewFastScroller.OnPopupTextUpdate {
 
-    private val INSTANT_LOAD_DURATION = 2000L
+    private val instantLoadDuration = 2000L
     private val IMAGE_LOAD_DELAY = 100L
-    private val ITEM_SECTION = 0
+    private val itemSection = 0
     private val ITEM_MEDIUM_VIDEO_PORTRAIT = 1
     private val ITEM_MEDIUM_PHOTO = 2
-
     private val config = activity.config
     private val viewType = config.getFolderViewType(if (config.showAll) SHOW_ALL else path)
     private val isListViewType = viewType == VIEW_TYPE_LIST
@@ -54,13 +63,11 @@ class MediaAdapter(
     private var delayHandler = Handler(Looper.getMainLooper())
     private var currentMediaHash = media.hashCode()
     private val hasOTGConnected = activity.hasOTGConnected()
-
     private var scrollHorizontally = config.scrollHorizontally
     private var animateGifs = config.animateGifs
     private var cropThumbnails = config.cropThumbnails
     private var displayFilenames = config.displayFileNames
     private var showFileTypes = config.showThumbnailFileTypes
-
     var sorting = config.getFolderSorting(if (config.showAll) SHOW_ALL else path)
     var dateFormat = config.dateFormat
     var timeFormat = activity.getTimeFormat()
@@ -73,20 +80,36 @@ class MediaAdapter(
     override fun getActionMenuId() = R.menu.menu_cab_media
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = if (viewType == ITEM_SECTION) {
+        val binding = if (viewType == itemSection) {
             VThumbnailSectionBinding.inflate(layoutInflater, parent, false)
         } else {
             if (isListViewType) {
                 if (viewType == ITEM_MEDIUM_PHOTO) {
-                    VPhotoItemListBinding.inflate(layoutInflater, parent, false)
+                    VPhotoItemListBinding.inflate(
+                        /* inflater = */ layoutInflater,
+                        /* parent = */ parent,
+                        /* attachToParent = */ false
+                    )
                 } else {
-                    VVideoItemListBinding.inflate(layoutInflater, parent, false)
+                    VVideoItemListBinding.inflate(
+                        /* inflater = */ layoutInflater,
+                        /* parent = */ parent,
+                        /* attachToParent = */ false
+                    )
                 }
             } else {
                 if (viewType == ITEM_MEDIUM_PHOTO) {
-                    VPhotoItemGridBinding.inflate(layoutInflater, parent, false)
+                    VPhotoItemGridBinding.inflate(
+                        /* inflater = */ layoutInflater,
+                        /* parent = */ parent,
+                        /* attachToParent = */ false
+                    )
                 } else {
-                    VVideoItemGridBinding.inflate(layoutInflater, parent, false)
+                    VVideoItemGridBinding.inflate(
+                        /* inflater = */ layoutInflater,
+                        /* parent = */ parent,
+                        /* attachToParent = */ false
+                    )
                 }
             }
         }
@@ -100,11 +123,11 @@ class MediaAdapter(
         }
 
         val allowLongPress = (!isAGetIntent || allowMultiplePicks) && tmbItem is Medium
-        holder.bindView(tmbItem, tmbItem is Medium, allowLongPress) { itemView, adapterPosition ->
+        holder.bindView(tmbItem, tmbItem is Medium, allowLongPress) { itemView, _ ->
             if (tmbItem is Medium) {
-                setupThumbnail(itemView, tmbItem)
+                setupThumbnail(view = itemView, medium = tmbItem)
             } else {
-                setupSection(itemView, tmbItem as ThumbnailSection)
+                setupSection(view = itemView, section = tmbItem as ThumbnailSection)
             }
         }
         bindViewHolder(holder)
@@ -115,7 +138,7 @@ class MediaAdapter(
     override fun getItemViewType(position: Int): Int {
         val tmbItem = media[position]
         return when {
-            tmbItem is ThumbnailSection -> ITEM_SECTION
+            tmbItem is ThumbnailSection -> itemSection
             (tmbItem as Medium).isVideo() || tmbItem.isPortrait() -> ITEM_MEDIUM_VIDEO_PORTRAIT
             else -> ITEM_MEDIUM_PHOTO
         }
@@ -223,10 +246,18 @@ class MediaAdapter(
     private fun showProperties() {
         if (selectedKeys.size <= 1) {
             val path = getFirstSelectedItemPath() ?: return
-            PropertiesDialog(activity, path, config.shouldShowHidden)
+            PropertiesDialog(
+                activity = activity,
+                path = path,
+                countHiddenItems = config.shouldShowHidden
+            )
         } else {
             val paths = getSelectedPaths()
-            PropertiesDialog(activity, paths, config.shouldShowHidden)
+            PropertiesDialog(
+                activity = activity,
+                paths = paths,
+                countHiddenItems = config.shouldShowHidden
+            )
         }
     }
 
@@ -357,7 +388,12 @@ class MediaAdapter(
         ensureBackgroundThread {
             paths.forEach {
                 rotatedImagePaths.add(it)
-                activity.saveRotatedImageToFile(it, it, degrees, true) {
+                activity.saveRotatedImageToFile(
+                    oldPath = it,
+                    newPath = it,
+                    degrees = degrees,
+                    showToasts = true
+                ) {
                     fileCnt--
                     if (fileCnt == 0) {
                         activity.runOnUiThread {
@@ -509,7 +545,11 @@ class MediaAdapter(
         val question = String.format(resources.getString(baseString), itemsAndSize)
         val showSkipRecycleBinOption = config.useRecycleBin && !isRecycleBin
 
-        DeleteWithRememberDlg(activity, question, showSkipRecycleBinOption) { remember, skipRecycleBin ->
+        DeleteWithRememberDlg(
+            activity = activity,
+            message = question,
+            showSkipRecycleBinOption = showSkipRecycleBinOption
+        ) { remember, skipRecycleBin ->
             config.tempSkipDeleteConfirmation = remember
 
             if (remember) {
@@ -557,13 +597,19 @@ class MediaAdapter(
         }
     }
 
-    private fun getSelectedItems() = selectedKeys.mapNotNull { getItemWithKey(it) } as ArrayList<Medium>
+    private fun getSelectedItems() = selectedKeys.mapNotNull {
+        getItemWithKey(it)
+    } as ArrayList<Medium>
 
-    private fun getSelectedPaths() = getSelectedItems().map { it.path } as ArrayList<String>
+    private fun getSelectedPaths() = getSelectedItems().map {
+        it.path
+    } as ArrayList<String>
 
     private fun getFirstSelectedItemPath() = getItemWithKey(selectedKeys.first())?.path
 
-    private fun getItemWithKey(key: Int): Medium? = media.firstOrNull { (it as? Medium)?.path?.hashCode() == key } as? Medium
+    private fun getItemWithKey(key: Int): Medium? = media.firstOrNull {
+        (it as? Medium)?.path?.hashCode() == key
+    } as? Medium
 
     fun updateMedia(newMedia: ArrayList<ThumbnailItem>) {
         val thumbnailItems = newMedia.clone() as ArrayList<ThumbnailItem>
@@ -601,7 +647,7 @@ class MediaAdapter(
         loadImageInstantly = true
         delayHandler.postDelayed({
             loadImageInstantly = false
-        }, INSTANT_LOAD_DURATION)
+        }, instantLoadDuration)
     }
 
     private fun setupThumbnail(view: View, medium: Medium) {
@@ -672,7 +718,15 @@ class MediaAdapter(
 
             if (loadImageInstantly) {
                 activity.loadImage(
-                    medium.type, path, mediumThumbnail, scrollHorizontally, animateGifs, cropThumbnails, roundedCorners, medium.getKey(), rotatedImagePaths
+                    type = medium.type,
+                    path = path,
+                    target = mediumThumbnail,
+                    horizontalScroll = scrollHorizontally,
+                    animateGifs = animateGifs,
+                    cropThumbnails = cropThumbnails,
+                    roundCorners = roundedCorners,
+                    signature = medium.getKey(),
+                    skipMemoryCacheAtPaths = rotatedImagePaths
                 )
             } else {
                 mediumThumbnail.setImageDrawable(null)
@@ -681,8 +735,15 @@ class MediaAdapter(
                     val isVisible = visibleItemPaths.contains(medium.path)
                     if (isVisible) {
                         activity.loadImage(
-                            medium.type, path, mediumThumbnail, scrollHorizontally, animateGifs, cropThumbnails, roundedCorners,
-                            medium.getKey(), rotatedImagePaths
+                            type = medium.type,
+                            path = path,
+                            target = mediumThumbnail,
+                            horizontalScroll = scrollHorizontally,
+                            animateGifs = animateGifs,
+                            cropThumbnails = cropThumbnails,
+                            roundCorners = roundedCorners,
+                            signature = medium.getKey(),
+                            skipMemoryCacheAtPaths = rotatedImagePaths
                         )
                     }
                 }, IMAGE_LOAD_DELAY)
@@ -708,7 +769,12 @@ class MediaAdapter(
             realIndex++
         }
 
-        return (media[realIndex] as? Medium)?.getBubbleText(sorting, activity, dateFormat, timeFormat) ?: ""
+        return (media[realIndex] as? Medium)?.getBubbleText(
+            sorting = sorting,
+            context = activity,
+            dateFormat = dateFormat,
+            timeFormat = timeFormat
+        ) ?: ""
     }
 
     private fun bindItem(view: View, medium: Medium): MediaItemBinding {

@@ -9,7 +9,7 @@ import org.fossify.commons.extensions.setupDialogStuff
 import org.fossify.commons.helpers.VIEW_TYPE_GRID
 import org.fossify.commons.views.MyGridLayoutManager
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.MediaAdapter
+import com.mckimquyen.gallery.adt.MediaAdt
 import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.DlgMediumPickerBinding
 import com.mckimquyen.gallery.ext.config
@@ -93,7 +93,7 @@ class PickMediumDlg(
             return
 
         shownMedia = media
-        val adapter = MediaAdapter(
+        val adapter = MediaAdt(
             activity = activity,
             media = shownMedia.clone() as ArrayList<ThumbnailItem>,
             listener = null,
