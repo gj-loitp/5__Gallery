@@ -12,7 +12,7 @@ import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyGridLayoutManager
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adapters.MediaAdapter
+import com.mckimquyen.gallery.adt.MediaAdapter
 import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.ASearchBinding
 import com.mckimquyen.gallery.ext.*

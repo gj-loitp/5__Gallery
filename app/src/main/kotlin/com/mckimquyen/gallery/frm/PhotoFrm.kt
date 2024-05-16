@@ -43,7 +43,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.PhotoActivity
 import com.mckimquyen.gallery.activities.PhotoVideoActivity
 import com.mckimquyen.gallery.activities.ViewPagerActivity
-import com.mckimquyen.gallery.adapters.PortraitPhotosAdapter
+import com.mckimquyen.gallery.adt.PortraitPhotosAdapter
 import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.saveRotatedImageToFile

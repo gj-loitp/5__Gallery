@@ -1,35 +1,35 @@
-package com.mckimquyen.gallery.adapters
+package com.mckimquyen.gallery.adt
 
-import android.view.*
-import android.widget.PopupMenu
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.adapters.MyRecyclerViewAdapter
-import org.fossify.commons.extensions.getPopupMenuTheme
 import org.fossify.commons.extensions.getProperTextColor
+import org.fossify.commons.extensions.isPathOnSD
 import org.fossify.commons.extensions.setupViewBackground
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import org.fossify.commons.views.MyRecyclerView
+import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.VItemManageFolderBinding
-import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.removeNoMedia
 
-class ManageFoldersAdapter(
-    activity: BaseSimpleActivity, var folders: ArrayList<String>, val isShowingExcludedFolders: Boolean, val listener: RefreshRecyclerViewListener?,
+class ManageHiddenFoldersAdapter(
+    activity: BaseSimpleActivity, var folders: ArrayList<String>, val listener: RefreshRecyclerViewListener?,
     recyclerView: MyRecyclerView, itemClick: (Any) -> Unit
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
-
-    private val config = activity.config
 
     init {
         setupDragListener(true)
     }
 
-    override fun getActionMenuId() = org.fossify.commons.R.menu.cab_remove_only
+    override fun getActionMenuId() = R.menu.menu_cab_hidden_folders
 
     override fun prepareActionMode(menu: Menu) {}
 
     override fun actionItemPressed(id: Int) {
         when (id) {
-            org.fossify.commons.R.id.cab_remove -> removeSelection()
+            R.id.cabUnhide -> tryUnhideFolders()
         }
     }
 
@@ -69,61 +69,39 @@ class ManageFoldersAdapter(
                 text = folder
                 setTextColor(context.getProperTextColor())
             }
-
-            overflowMenuIcon.drawable.apply {
-                mutate()
-                setTint(activity.getProperTextColor())
-            }
-
-            overflowMenuIcon.setOnClickListener {
-                showPopupMenu(overflowMenuAnchor, folder)
-            }
         }
     }
 
-    private fun showPopupMenu(view: View, folder: String) {
-        finishActMode()
-        val theme = activity.getPopupMenuTheme()
-        val contextTheme = ContextThemeWrapper(activity, theme)
-
-        PopupMenu(contextTheme, view, Gravity.END).apply {
-            inflate(getActionMenuId())
-            setOnMenuItemClickListener { item ->
-                val eventTypeId = folder.hashCode()
-                when (item.itemId) {
-                    org.fossify.commons.R.id.cab_remove -> {
-                        executeItemMenuOperation(eventTypeId) {
-                            removeSelection()
-                        }
-                    }
-                }
-                true
-            }
-            show()
-        }
-    }
-
-    private fun executeItemMenuOperation(eventTypeId: Int, callback: () -> Unit) {
-        selectedKeys.clear()
-        selectedKeys.add(eventTypeId)
-        callback()
-    }
-
-    private fun removeSelection() {
+    private fun tryUnhideFolders() {
         val removeFolders = ArrayList<String>(selectedKeys.size)
-        val positions = getSelectedItemPositions()
 
+        val sdCardPaths = ArrayList<String>()
+        getSelectedItems().forEach {
+            if (activity.isPathOnSD(it)) {
+                sdCardPaths.add(it)
+            }
+        }
+
+        if (sdCardPaths.isNotEmpty()) {
+            activity.handleSAFDialog(sdCardPaths.first()) {
+                if (it) {
+                    unhideFolders(removeFolders)
+                }
+            }
+        } else {
+            unhideFolders(removeFolders)
+        }
+    }
+
+    private fun unhideFolders(removeFolders: ArrayList<String>) {
+        val position = getSelectedItemPositions()
         getSelectedItems().forEach {
             removeFolders.add(it)
-            if (isShowingExcludedFolders) {
-                config.removeExcludedFolder(it)
-            } else {
-                config.removeIncludedFolder(it)
-            }
+            activity.removeNoMedia(it)
         }
 
         folders.removeAll(removeFolders)
-        removeSelectedItems(positions)
+        removeSelectedItems(position)
         if (folders.isEmpty()) {
             listener?.refreshItems()
         }

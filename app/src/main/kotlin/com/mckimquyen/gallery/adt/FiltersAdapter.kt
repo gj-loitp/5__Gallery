@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.adapters
+package com.mckimquyen.gallery.adt
 
 import android.content.Context
 import android.view.LayoutInflater

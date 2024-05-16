@@ -10,7 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adapters.toItemBinding
+import com.mckimquyen.gallery.adt.toItemBinding
 import com.mckimquyen.gallery.databinding.DlgChangeFolderThumbnailStyleBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding

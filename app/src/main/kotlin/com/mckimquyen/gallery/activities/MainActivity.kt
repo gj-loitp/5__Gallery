@@ -25,7 +25,7 @@ import org.fossify.commons.views.MyGridLayoutManager
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adapters.DirectoryAdapter
+import com.mckimquyen.gallery.adt.DirectoryAdapter
 import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMainBinding
 import com.mckimquyen.gallery.dlg.ChangeSortingDlg

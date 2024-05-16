@@ -9,7 +9,7 @@ import org.fossify.commons.helpers.NavigationIcon
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adapters.ManageHiddenFoldersAdapter
+import com.mckimquyen.gallery.adt.ManageHiddenFoldersAdapter
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.ext.addNoMedia
 import com.mckimquyen.gallery.ext.config

@@ -7,7 +7,7 @@ import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.NavigationIcon
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adapters.ManageFoldersAdapter
+import com.mckimquyen.gallery.adt.ManageFoldersAdapter
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
 import com.mckimquyen.gallery.ext.config
 

@@ -36,7 +36,7 @@ import org.fossify.commons.helpers.isNougatPlus
 import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adapters.FiltersAdapter
+import com.mckimquyen.gallery.adt.FiltersAdapter
 import com.mckimquyen.gallery.databinding.AEditBinding
 import com.mckimquyen.gallery.dlg.OtherAspectRatioDlg
 import com.mckimquyen.gallery.dlg.ResizeDlg
