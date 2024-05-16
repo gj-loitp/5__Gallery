@@ -39,7 +39,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.activities.SettingsActivity
 import com.mckimquyen.gallery.activities.SimpleActivity
-import com.mckimquyen.gallery.dlg.AllFilesPermissionDialog
+import com.mckimquyen.gallery.dlg.AllFilesPermissionDlg
 import com.mckimquyen.gallery.dlg.PickDirectoryDlg
 import com.mckimquyen.gallery.dlg.ResizeMultipleImagesDlg
 import com.mckimquyen.gallery.dlg.ResizeWithPathDlg
@@ -161,7 +161,7 @@ fun BaseSimpleActivity.handleMediaManagementPrompt(callback: () -> Unit) {
                 "\n\n${getString(R.string.alternative_media_access)}"
             }
 
-            AllFilesPermissionDialog(
+            AllFilesPermissionDlg(
                 activity = this,
                 message = messagePrompt,
                 callback = { success ->

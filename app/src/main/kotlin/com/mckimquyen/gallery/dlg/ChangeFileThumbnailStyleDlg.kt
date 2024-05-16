@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.dlg
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.dialogs.RadioGroupDialog
@@ -9,7 +10,7 @@ import org.fossify.commons.models.RadioItem
 import com.mckimquyen.gallery.databinding.DlgChangeFileThumbnailStyleBinding
 import com.mckimquyen.gallery.ext.config
 
-class ChangeFileThumbnailStyleDialog(val activity: BaseSimpleActivity) : DialogInterface.OnClickListener {
+class ChangeFileThumbnailStyleDlg(val activity: BaseSimpleActivity) : DialogInterface.OnClickListener {
     private var config = activity.config
     private val binding: DlgChangeFileThumbnailStyleBinding
     private var thumbnailSpacing = config.thumbnailSpacing
@@ -21,10 +22,18 @@ class ChangeFileThumbnailStyleDialog(val activity: BaseSimpleActivity) : DialogI
             dialogFileStyleShowThumbnailFileTypes.isChecked = config.showThumbnailFileTypes
             dialogFileStyleMarkFavoriteItems.isChecked = config.markFavoriteItems
 
-            dialogFileStyleRoundedCornersHolder.setOnClickListener { dialogFileStyleRoundedCorners.toggle() }
-            dialogFileStyleShowThumbnailVideoDurationHolder.setOnClickListener { dialogFileStyleShowThumbnailVideoDuration.toggle() }
-            dialogFileStyleShowThumbnailFileTypesHolder.setOnClickListener { dialogFileStyleShowThumbnailFileTypes.toggle() }
-            dialogFileStyleMarkFavoriteItemsHolder.setOnClickListener { dialogFileStyleMarkFavoriteItems.toggle() }
+            dialogFileStyleRoundedCornersHolder.setOnClickListener {
+                dialogFileStyleRoundedCorners.toggle()
+            }
+            dialogFileStyleShowThumbnailVideoDurationHolder.setOnClickListener {
+                dialogFileStyleShowThumbnailVideoDuration.toggle()
+            }
+            dialogFileStyleShowThumbnailFileTypesHolder.setOnClickListener {
+                dialogFileStyleShowThumbnailFileTypes.toggle()
+            }
+            dialogFileStyleMarkFavoriteItemsHolder.setOnClickListener {
+                dialogFileStyleMarkFavoriteItems.toggle()
+            }
 
             dialogFileStyleSpacingHolder.setOnClickListener {
                 val items = arrayListOf(
@@ -51,7 +60,7 @@ class ChangeFileThumbnailStyleDialog(val activity: BaseSimpleActivity) : DialogI
             .setPositiveButton(org.fossify.commons.R.string.ok, this)
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this)
+                activity.setupDialogStuff(view = binding.root, dialog = this)
             }
     }
 
@@ -63,6 +72,7 @@ class ChangeFileThumbnailStyleDialog(val activity: BaseSimpleActivity) : DialogI
         config.thumbnailSpacing = thumbnailSpacing
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateThumbnailSpacingText() {
         binding.dialogFileStyleSpacing.text = "${thumbnailSpacing}x"
     }

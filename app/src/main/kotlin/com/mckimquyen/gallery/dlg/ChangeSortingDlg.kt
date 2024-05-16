@@ -9,9 +9,12 @@ import com.mckimquyen.gallery.databinding.DlgChangeSortingBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.SHOW_ALL
 
-class ChangeSortingDialog(
-    val activity: BaseSimpleActivity, val isDirectorySorting: Boolean, val showFolderCheckbox: Boolean,
-    val path: String = "", val callback: () -> Unit
+class ChangeSortingDlg(
+    val activity: BaseSimpleActivity,
+    val isDirectorySorting: Boolean,
+    val showFolderCheckbox: Boolean,
+    val path: String = "",
+    val callback: () -> Unit,
 ) :
     DialogInterface.OnClickListener {
     private var currSorting = 0
@@ -23,10 +26,8 @@ class ChangeSortingDialog(
         currSorting = if (isDirectorySorting) config.directorySorting else config.getFolderSorting(pathToUse)
         binding = DlgChangeSortingBinding.inflate(activity.layoutInflater).apply {
             sortingDialogOrderDivider.beVisibleIf(showFolderCheckbox || (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
-
             sortingDialogNumericSorting.beVisibleIf(showFolderCheckbox && (currSorting and SORT_BY_NAME != 0 || currSorting and SORT_BY_PATH != 0))
             sortingDialogNumericSorting.isChecked = currSorting and SORT_USE_NUMERIC_VALUE != 0
-
             sortingDialogUseForThisFolder.beVisibleIf(showFolderCheckbox)
             sortingDialogUseForThisFolder.isChecked = config.hasCustomSorting(pathToUse)
             sortingDialogBottomNote.beVisibleIf(!isDirectorySorting)
@@ -37,7 +38,11 @@ class ChangeSortingDialog(
             .setPositiveButton(org.fossify.commons.R.string.ok, this)
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this, org.fossify.commons.R.string.sort_by)
+                activity.setupDialogStuff(
+                    view = binding.root,
+                    dialog = this,
+                    titleId = org.fossify.commons.R.string.sort_by
+                )
             }
 
         setupSortRadio()

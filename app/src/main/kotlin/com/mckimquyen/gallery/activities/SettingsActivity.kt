@@ -489,14 +489,14 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupFileThumbnailStyle() {
         binding.settingsFileThumbnailStyleHolder.setOnClickListener {
-            ChangeFileThumbnailStyleDialog(this)
+            ChangeFileThumbnailStyleDlg(this)
         }
     }
 
     private fun setupFolderThumbnailStyle() {
         binding.settingsFolderThumbnailStyle.text = getFolderStyleText()
         binding.settingsFolderThumbnailStyleHolder.setOnClickListener {
-            ChangeFolderThumbnailStyleDialog(this) {
+            ChangeFolderThumbnailStyleDlg(this) {
                 binding.settingsFolderThumbnailStyle.text = getFolderStyleText()
             }
         }

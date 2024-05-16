@@ -10,7 +10,11 @@ import com.mckimquyen.gallery.databinding.DlgChangeGroupingBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.*
 
-class ChangeGroupingDialog(val activity: BaseSimpleActivity, val path: String = "", val callback: () -> Unit) :
+class ChangeGroupingDlg(
+    val activity: BaseSimpleActivity,
+    val path: String = "",
+    val callback: () -> Unit,
+) :
     DialogInterface.OnClickListener {
     private var currGrouping = 0
     private var config = activity.config
@@ -81,7 +85,7 @@ class ChangeGroupingDialog(val activity: BaseSimpleActivity, val path: String = 
         }
 
         if (binding.groupingDialogUseForThisFolder.isChecked) {
-            config.saveFolderGrouping(pathToUse, grouping)
+            config.saveFolderGrouping(path = pathToUse, value = grouping)
         } else {
             config.removeFolderGrouping(pathToUse)
             config.groupBy = grouping

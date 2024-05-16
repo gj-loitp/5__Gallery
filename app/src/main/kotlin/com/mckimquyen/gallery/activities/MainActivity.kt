@@ -28,7 +28,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.DirectoryAdapter
 import com.mckimquyen.gallery.databases.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMainBinding
-import com.mckimquyen.gallery.dlg.ChangeSortingDialog
+import com.mckimquyen.gallery.dlg.ChangeSortingDlg
 import com.mckimquyen.gallery.dlg.ChangeViewTypeDlg
 import com.mckimquyen.gallery.dlg.FilterMediaDlg
 import com.mckimquyen.gallery.dlg.GrantAllFilesDlg
@@ -553,7 +553,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
     }
 
     private fun showSortingDialog() {
-        ChangeSortingDialog(this, true, false) {
+        ChangeSortingDlg(this, true, false) {
             binding.directoriesGrid.adapter = null
             if (config.directorySorting and SORT_BY_DATE_MODIFIED != 0 || config.directorySorting and SORT_BY_DATE_TAKEN != 0) {
                 getDirectories()

@@ -470,7 +470,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
     }
 
     private fun showSortingDialog() {
-        ChangeSortingDialog(this, false, true, mPath) {
+        ChangeSortingDlg(this, false, true, mPath) {
             mLoadedInitialPhotos = false
             binding.mediaGrid.adapter = null
             getMedia()
@@ -534,7 +534,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
     }
 
     private fun showGroupByDialog() {
-        ChangeGroupingDialog(this, mPath) {
+        ChangeGroupingDlg(this, mPath) {
             mLoadedInitialPhotos = false
             binding.mediaGrid.adapter = null
             getMedia()

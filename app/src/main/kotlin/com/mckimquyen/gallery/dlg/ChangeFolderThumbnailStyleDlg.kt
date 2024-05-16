@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.dlg
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
@@ -16,7 +17,10 @@ import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.*
 
-class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val callback: () -> Unit) : DialogInterface.OnClickListener {
+class ChangeFolderThumbnailStyleDlg(
+    val activity: BaseSimpleActivity,
+    val callback: () -> Unit,
+) : DialogInterface.OnClickListener {
     private var config = activity.config
     private val binding = DlgChangeFolderThumbnailStyleBinding.inflate(activity.layoutInflater).apply {
         dialogFolderLimitTitle.isChecked = config.limitFolderTitle
@@ -27,7 +31,7 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
             .setPositiveButton(org.fossify.commons.R.string.ok, this)
             .setNegativeButton(org.fossify.commons.R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this) {
+                activity.setupDialogStuff(view = binding.root, dialog = this) {
                     setupStyle()
                     setupMediaCount()
                     updateSample()
@@ -37,7 +41,7 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
 
     private fun setupStyle() {
         val styleRadio = binding.dialogRadioFolderStyle
-        styleRadio.setOnCheckedChangeListener { group, checkedId ->
+        styleRadio.setOnCheckedChangeListener { _, _ ->
             updateSample()
         }
 
@@ -51,7 +55,7 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
 
     private fun setupMediaCount() {
         val countRadio = binding.dialogRadioFolderCountHolder
-        countRadio.setOnCheckedChangeListener { group, checkedId ->
+        countRadio.setOnCheckedChangeListener { _, _ ->
             updateSample()
         }
 
@@ -64,6 +68,7 @@ class ChangeFolderThumbnailStyleDialog(val activity: BaseSimpleActivity, val cal
         countBtn.isChecked = true
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateSample() {
         val photoCount = 36
         val folderName = "Camera"
