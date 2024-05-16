@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.databases
+package com.mckimquyen.gallery.db
 
 import android.content.Context
 import androidx.room.Database
@@ -9,7 +9,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.mckimquyen.gallery.itf.*
 import com.mckimquyen.gallery.model.*
 
-@Database(entities = [Directory::class, Medium::class, Widget::class, DateTaken::class, Favorite::class], version = 10)
+@Database(
+    entities = [Directory::class, Medium::class, Widget::class, DateTaken::class, Favorite::class],
+    version = 10
+)
 abstract class GalleryDatabase : RoomDatabase() {
 
     abstract fun DirectoryDao(): DaoDirectory

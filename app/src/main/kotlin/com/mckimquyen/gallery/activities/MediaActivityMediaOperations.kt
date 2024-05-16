@@ -26,7 +26,7 @@ import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
-import com.mckimquyen.gallery.databases.GalleryDatabase
+import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMediaBinding
 import com.mckimquyen.gallery.dlg.*
 import com.mckimquyen.gallery.ext.*

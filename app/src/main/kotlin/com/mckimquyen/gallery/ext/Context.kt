@@ -39,7 +39,7 @@ import org.fossify.commons.helpers.*
 import org.fossify.commons.views.MySquareImageView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
-import com.mckimquyen.gallery.databases.GalleryDatabase
+import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.*
 import com.mckimquyen.gallery.model.*
