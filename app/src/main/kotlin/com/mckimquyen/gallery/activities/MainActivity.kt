@@ -29,7 +29,7 @@ import com.mckimquyen.gallery.adapters.DirectoryAdapter
 import com.mckimquyen.gallery.databases.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMainBinding
 import com.mckimquyen.gallery.dlg.ChangeSortingDialog
-import com.mckimquyen.gallery.dlg.ChangeViewTypeDialog
+import com.mckimquyen.gallery.dlg.ChangeViewTypeDlg
 import com.mckimquyen.gallery.dlg.FilterMediaDlg
 import com.mckimquyen.gallery.dlg.GrantAllFilesDlg
 import com.mckimquyen.gallery.ext.*
@@ -592,7 +592,7 @@ class MainActivity : SimpleActivity(), ListenerDirectoryOperations {
     }
 
     private fun changeViewType() {
-        ChangeViewTypeDialog(this, true) {
+        ChangeViewTypeDlg(this, true) {
             refreshMenuItems()
             setupLayoutManager()
             binding.directoriesGrid.adapter = null

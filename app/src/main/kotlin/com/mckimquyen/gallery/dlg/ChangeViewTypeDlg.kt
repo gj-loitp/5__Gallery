@@ -10,10 +10,15 @@ import com.mckimquyen.gallery.databinding.DlgChangeViewTypeBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.helper.SHOW_ALL
 
-class ChangeViewTypeDialog(val activity: BaseSimpleActivity, val fromFoldersView: Boolean, val path: String = "", val callback: () -> Unit) {
+class ChangeViewTypeDlg(
+    val activity: BaseSimpleActivity,
+    private val fromFoldersView: Boolean,
+    val path: String = "",
+    val callback: () -> Unit,
+) {
     private val binding = DlgChangeViewTypeBinding.inflate(activity.layoutInflater)
     private var config = activity.config
-    private var pathToUse = if (path.isEmpty()) SHOW_ALL else path
+    private var pathToUse = path.ifEmpty { SHOW_ALL }
 
     init {
         binding.apply {
@@ -64,7 +69,7 @@ class ChangeViewTypeDialog(val activity: BaseSimpleActivity, val fromFoldersView
             config.groupDirectSubfolders = binding.changeViewTypeDialogGroupDirectSubfolders.isChecked
         } else {
             if (binding.changeViewTypeDialogUseForThisFolder.isChecked) {
-                config.saveFolderViewType(pathToUse, viewType)
+                config.saveFolderViewType(path = pathToUse, value = viewType)
             } else {
                 config.removeFolderViewType(pathToUse)
                 config.viewTypeFiles = viewType

@@ -6,7 +6,12 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgConfirmDeleteFolderBinding
 
-class ConfirmDeleteFolderDialog(activity: Activity, message: String, warningMessage: String, val callback: () -> Unit) {
+class ConfirmDeleteFolderDlg(
+    activity: Activity,
+    message: String,
+    warningMessage: String,
+    val callback: () -> Unit,
+) {
     private var dialog: AlertDialog? = null
 
     init {

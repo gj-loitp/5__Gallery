@@ -25,7 +25,7 @@ import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.activities.ViewPagerActivity
 import com.mckimquyen.gallery.databinding.*
-import com.mckimquyen.gallery.dlg.DeleteWithRememberDialog
+import com.mckimquyen.gallery.dlg.DeleteWithRememberDlg
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.ListenerMediaOperations
@@ -509,7 +509,7 @@ class MediaAdapter(
         val question = String.format(resources.getString(baseString), itemsAndSize)
         val showSkipRecycleBinOption = config.useRecycleBin && !isRecycleBin
 
-        DeleteWithRememberDialog(activity, question, showSkipRecycleBinOption) { remember, skipRecycleBin ->
+        DeleteWithRememberDlg(activity, question, showSkipRecycleBinOption) { remember, skipRecycleBin ->
             config.tempSkipDeleteConfirmation = remember
 
             if (remember) {

@@ -9,8 +9,10 @@ import org.fossify.commons.extensions.showKeyboard
 import org.fossify.commons.extensions.value
 import com.mckimquyen.gallery.databinding.DlgCustomAspectRatioBinding
 
-class CustomAspectRatioDialog(
-    val activity: BaseSimpleActivity, val defaultCustomAspectRatio: Pair<Float, Float>?, val callback: (aspectRatio: Pair<Float, Float>) -> Unit
+class CustomAspectRatioDlg(
+    val activity: BaseSimpleActivity,
+    val defaultCustomAspectRatio: Pair<Float, Float>?,
+    val callback: (aspectRatio: Pair<Float, Float>) -> Unit,
 ) {
     init {
         val binding = DlgCustomAspectRatioBinding.inflate(activity.layoutInflater).apply {

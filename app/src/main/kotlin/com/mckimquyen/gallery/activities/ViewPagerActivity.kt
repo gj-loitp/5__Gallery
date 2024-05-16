@@ -42,7 +42,7 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MyPagerAdapter
 import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.AMediumBinding
-import com.mckimquyen.gallery.dlg.DeleteWithRememberDialog
+import com.mckimquyen.gallery.dlg.DeleteWithRememberDlg
 import com.mckimquyen.gallery.dlg.SaveAsDlg
 import com.mckimquyen.gallery.dlg.SlideshowDlg
 import com.mckimquyen.gallery.ext.*
@@ -1082,7 +1082,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         val message = String.format(resources.getString(baseString), filenameAndSize)
         val showSkipRecycleBinOption = config.useRecycleBin && !isInRecycleBin
 
-        DeleteWithRememberDialog(this, message, showSkipRecycleBinOption) { remember, skipRecycleBin ->
+        DeleteWithRememberDlg(this, message, showSkipRecycleBinOption) { remember, skipRecycleBin ->
             config.tempSkipDeleteConfirmation = remember
 
             if (remember) {

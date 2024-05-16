@@ -34,7 +34,7 @@ import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding
-import com.mckimquyen.gallery.dlg.ConfirmDeleteFolderDialog
+import com.mckimquyen.gallery.dlg.ConfirmDeleteFolderDlg
 import com.mckimquyen.gallery.dlg.ExcludeFolderDlg
 import com.mckimquyen.gallery.dlg.PickMediumDlg
 import com.mckimquyen.gallery.ext.*
@@ -621,7 +621,7 @@ class DirectoryAdapter(
 
                 val question = String.format(resources.getString(baseString), items)
                 val warning = resources.getQuantityString(org.fossify.commons.R.plurals.delete_warning, itemsCnt, itemsCnt)
-                ConfirmDeleteFolderDialog(activity, question, warning) {
+                ConfirmDeleteFolderDlg(activity, question, warning) {
                     deleteFolders()
                 }
             }

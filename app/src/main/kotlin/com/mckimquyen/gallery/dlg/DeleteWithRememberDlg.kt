@@ -7,11 +7,14 @@ import org.fossify.commons.extensions.getAlertDialogBuilder
 import org.fossify.commons.extensions.setupDialogStuff
 import com.mckimquyen.gallery.databinding.DlgDeleteWithRememberBinding
 
-class DeleteWithRememberDialog(
+class DeleteWithRememberDlg(
     private val activity: Activity,
-    private val message: String,
-    private val showSkipRecycleBinOption: Boolean,
-    private val callback: (remember: Boolean, skipRecycleBin: Boolean) -> Unit
+    message: String,
+    showSkipRecycleBinOption: Boolean,
+    private val callback: (
+        remember: Boolean,
+        skipRecycleBin: Boolean,
+    ) -> Unit,
 ) {
 
     private var dialog: AlertDialog? = null
@@ -21,7 +24,9 @@ class DeleteWithRememberDialog(
         binding.deleteRememberTitle.text = message
         binding.skipTheRecycleBinCheckbox.beGoneIf(!showSkipRecycleBinOption)
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.yes) { dialog, which -> dialogConfirmed() }
+            .setPositiveButton(org.fossify.commons.R.string.yes) { _, _ ->
+                dialogConfirmed()
+            }
             .setNegativeButton(org.fossify.commons.R.string.no, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this) { alertDialog ->
@@ -32,6 +37,9 @@ class DeleteWithRememberDialog(
 
     private fun dialogConfirmed() {
         dialog?.dismiss()
-        callback(binding.deleteRememberCheckbox.isChecked, binding.skipTheRecycleBinCheckbox.isChecked)
+        callback(
+            binding.deleteRememberCheckbox.isChecked,
+            binding.skipTheRecycleBinCheckbox.isChecked
+        )
     }
 }

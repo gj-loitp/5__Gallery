@@ -92,7 +92,7 @@ class OtherAspectRatioDlg(
     }
 
     private fun customRatioPicked() {
-        CustomAspectRatioDialog(activity = activity, defaultCustomAspectRatio = lastOtherAspectRatio) {
+        CustomAspectRatioDlg(activity = activity, defaultCustomAspectRatio = lastOtherAspectRatio) {
             callback(it)
             dialog?.dismiss()
         }

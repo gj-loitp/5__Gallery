@@ -525,7 +525,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
     }
 
     private fun changeViewType() {
-        ChangeViewTypeDialog(this, false, mPath) {
+        ChangeViewTypeDlg(this, false, mPath) {
             refreshMenuItems()
             setupLayoutManager()
             binding.mediaGrid.adapter = null
