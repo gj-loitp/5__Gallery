@@ -259,7 +259,7 @@ open class PhotoVideoActivity : SimpleActivity(), ViewPagerFrm.FragmentListener 
 
         hideKeyboard()
         val mimeType = getUriMimeType(mUri.toString(), newUri)
-        Intent(applicationContext, VideoPlayerActivity::class.java).apply {
+        Intent(applicationContext, VideoPlayerAct::class.java).apply {
             setDataAndType(newUri, mimeType)
             addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
             if (intent.extras != null) {
