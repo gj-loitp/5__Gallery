@@ -28,7 +28,7 @@ import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import com.bumptech.glide.Glide
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.VideoActivity
+import com.mckimquyen.gallery.act.VideoActivity
 import com.mckimquyen.gallery.databinding.VPagerVideoItemBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.hasNavBar

@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.activities
+package com.mckimquyen.gallery.act
 
 import android.os.Bundle
 import org.fossify.commons.extensions.beVisibleIf

@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.activities
+package com.mckimquyen.gallery.act
 
 import android.app.Activity
 import android.content.ActivityNotFoundException

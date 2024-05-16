@@ -30,7 +30,7 @@ import org.fossify.commons.interfaces.StartReorderDragListener
 import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
+import com.mckimquyen.gallery.act.MediaActivityMediaOperations
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridRoundedCornersBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemGridSquareBinding
 import com.mckimquyen.gallery.databinding.VDirectoryItemListBinding

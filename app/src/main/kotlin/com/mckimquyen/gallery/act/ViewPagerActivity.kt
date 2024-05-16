@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.activities
+package com.mckimquyen.gallery.act
 
 import android.animation.Animator
 import android.animation.ValueAnimator

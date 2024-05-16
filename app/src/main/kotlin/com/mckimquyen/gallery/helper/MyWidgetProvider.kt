@@ -17,7 +17,7 @@ import org.fossify.commons.extensions.setText
 import org.fossify.commons.extensions.setVisibleIf
 import org.fossify.commons.helpers.ensureBackgroundThread
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
+import com.mckimquyen.gallery.act.MediaActivityMediaOperations
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.directoryDB
 import com.mckimquyen.gallery.ext.getFolderNameFromPath

@@ -1,30 +1,27 @@
-package com.mckimquyen.gallery.activities
+package com.mckimquyen.gallery.act
 
 import android.os.Bundle
 import org.fossify.commons.dialogs.FilePickerDialog
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.viewBinding
+import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.ensureBackgroundThread
+import org.fossify.commons.helpers.isRPlus
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.ManageHiddenFoldersAdt
+import com.mckimquyen.gallery.adt.ManageFoldersAdt
 import com.mckimquyen.gallery.databinding.AManageFoldersBinding
-import com.mckimquyen.gallery.ext.addNoMedia
 import com.mckimquyen.gallery.ext.config
-import com.mckimquyen.gallery.ext.getNoMediaFolders
 
-class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
+class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
 
     private val binding by viewBinding(AManageFoldersBinding::inflate)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         updateFolders()
         setupOptionsMenu()
-        binding.manageFoldersToolbar.title = getString(R.string.hidden_folders)
+        binding.manageFoldersToolbar.title = getString(org.fossify.commons.R.string.excluded_folders)
 
         updateMaterialActivityViews(binding.manageFoldersCoordinator, binding.manageFoldersList, useTransparentNavigation = true, useTopSearchMenu = false)
         setupMaterialScrollListener(binding.manageFoldersList, binding.manageFoldersToolbar)
@@ -36,18 +33,22 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     }
 
     private fun updateFolders() {
-        getNoMediaFolders {
-            runOnUiThread {
-                binding.manageFoldersPlaceholder.apply {
-                    text = getString(R.string.hidden_folders_placeholder)
-                    beVisibleIf(it.isEmpty())
-                    setTextColor(getProperTextColor())
-                }
+        val folders = ArrayList<String>()
+        config.excludedFolders.mapTo(folders) { it }
+        var placeholderText = getString(R.string.excluded_activity_placeholder)
+        binding.manageFoldersPlaceholder.apply {
+            beVisibleIf(folders.isEmpty())
+            setTextColor(getProperTextColor())
 
-                val adapter = ManageHiddenFoldersAdt(this, it, this, binding.manageFoldersList) {}
-                binding.manageFoldersList.adapter = adapter
+            if (isRPlus() && !isExternalStorageManager()) {
+                placeholderText = placeholderText.substringBefore("\n")
             }
+
+            text = placeholderText
         }
+
+        val adapter = ManageFoldersAdt(this, folders, true, this, binding.manageFoldersList) {}
+        binding.manageFoldersList.adapter = adapter
     }
 
     private fun setupOptionsMenu() {
@@ -65,13 +66,18 @@ class HiddenFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     }
 
     private fun addFolder() {
-        FilePickerDialog(this, config.lastFilepickerPath, false, config.shouldShowHidden, false, true) {
+        FilePickerDialog(
+            activity = this,
+            internalStoragePath,
+            pickFile = false,
+            config.shouldShowHidden,
+            showFAB = false,
+            canAddShowHiddenButton = true,
+            enforceStorageRestrictions = false,
+        ) {
             config.lastFilepickerPath = it
-            ensureBackgroundThread {
-                addNoMedia(it) {
-                    updateFolders()
-                }
-            }
+            config.addExcludedFolder(it)
+            updateFolders()
         }
     }
 }

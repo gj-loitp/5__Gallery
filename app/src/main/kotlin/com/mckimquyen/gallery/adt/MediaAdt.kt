@@ -23,7 +23,7 @@ import org.fossify.commons.helpers.*
 import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.ViewPagerActivity
+import com.mckimquyen.gallery.act.ViewPagerActivity
 import com.mckimquyen.gallery.databinding.*
 import com.mckimquyen.gallery.dlg.DeleteWithRememberDlg
 import com.mckimquyen.gallery.ext.*

@@ -36,9 +36,9 @@ import org.fossify.commons.models.FAQItem
 import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.MediaActivityMediaOperations
-import com.mckimquyen.gallery.activities.SettingsActivity
-import com.mckimquyen.gallery.activities.SimpleActivity
+import com.mckimquyen.gallery.act.MediaActivityMediaOperations
+import com.mckimquyen.gallery.act.SettingsActivity
+import com.mckimquyen.gallery.act.SimpleActivity
 import com.mckimquyen.gallery.dlg.AllFilesPermissionDlg
 import com.mckimquyen.gallery.dlg.PickDirectoryDlg
 import com.mckimquyen.gallery.dlg.ResizeMultipleImagesDlg

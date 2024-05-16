@@ -40,9 +40,9 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.github.penfeizhou.animation.apng.APNGDrawable
 import com.github.penfeizhou.animation.webp.WebPDrawable
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.activities.PhotoActivity
-import com.mckimquyen.gallery.activities.PhotoVideoActivity
-import com.mckimquyen.gallery.activities.ViewPagerActivity
+import com.mckimquyen.gallery.act.PhotoActivity
+import com.mckimquyen.gallery.act.PhotoVideoActivity
+import com.mckimquyen.gallery.act.ViewPagerActivity
 import com.mckimquyen.gallery.adt.PortraitPhotosAdt
 import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
 import com.mckimquyen.gallery.ext.config
