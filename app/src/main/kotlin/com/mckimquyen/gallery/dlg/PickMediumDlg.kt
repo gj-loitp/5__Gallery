@@ -10,7 +10,7 @@ import org.fossify.commons.helpers.VIEW_TYPE_GRID
 import org.fossify.commons.views.MyGridLayoutManager
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
-import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
+import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.DlgMediumPickerBinding
 import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.getCachedMedia

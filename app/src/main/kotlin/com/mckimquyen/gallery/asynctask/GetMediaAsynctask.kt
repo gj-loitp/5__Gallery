@@ -1,4 +1,4 @@
-package com.mckimquyen.gallery.asynctasks
+package com.mckimquyen.gallery.asynctask
 
 import android.content.Context
 import android.os.AsyncTask
@@ -13,12 +13,17 @@ import com.mckimquyen.gallery.model.Medium
 import com.mckimquyen.gallery.model.ThumbnailItem
 
 class GetMediaAsynctask(
-    val context: Context, val mPath: String, val isPickImage: Boolean = false, val isPickVideo: Boolean = false,
-    val showAll: Boolean, val callback: (media: ArrayList<ThumbnailItem>) -> Unit
+    val context: Context,
+    val mPath: String,
+    val isPickImage: Boolean = false,
+    val isPickVideo: Boolean = false,
+    val showAll: Boolean,
+    val callback: (media: ArrayList<ThumbnailItem>) -> Unit,
 ) :
     AsyncTask<Void, Void, ArrayList<ThumbnailItem>>() {
     private val mediaFetcher = MediaFetcher(context)
 
+    @Deprecated("Deprecated in Java")
     override fun doInBackground(vararg params: Void): ArrayList<ThumbnailItem> {
         val pathToUse = if (showAll) SHOW_ALL else mPath
         val folderGrouping = context.config.getFolderGrouping(pathToUse)
@@ -42,8 +47,17 @@ class GetMediaAsynctask(
             val media = ArrayList<Medium>()
             foldersToScan.forEach {
                 val newMedia = mediaFetcher.getFilesFrom(
-                    it, isPickImage, isPickVideo, getProperDateTaken, getProperLastModified, getProperFileSize,
-                    favoritePaths, getVideoDurations, lastModifieds, dateTakens.clone() as HashMap<String, Long>, null
+                    curPath = it,
+                    isPickImage = isPickImage,
+                    isPickVideo = isPickVideo,
+                    getProperDateTaken = getProperDateTaken,
+                    getProperLastModified = getProperLastModified,
+                    getProperFileSize = getProperFileSize,
+                    favoritePaths = favoritePaths,
+                    getVideoDurations = getVideoDurations,
+                    lastModifieds = lastModifieds,
+                    dateTakens = dateTakens.clone() as HashMap<String, Long>,
+                    android11Files = null
                 )
                 media.addAll(newMedia)
             }
@@ -52,14 +66,24 @@ class GetMediaAsynctask(
             media
         } else {
             mediaFetcher.getFilesFrom(
-                mPath, isPickImage, isPickVideo, getProperDateTaken, getProperLastModified, getProperFileSize, favoritePaths,
-                getVideoDurations, lastModifieds, dateTakens, null
+                curPath = mPath,
+                isPickImage = isPickImage,
+                isPickVideo = isPickVideo,
+                getProperDateTaken = getProperDateTaken,
+                getProperLastModified = getProperLastModified,
+                getProperFileSize = getProperFileSize,
+                favoritePaths = favoritePaths,
+                getVideoDurations = getVideoDurations,
+                lastModifieds = lastModifieds,
+                dateTakens = dateTakens,
+                android11Files = null
             )
         }
 
         return mediaFetcher.groupMedia(media, pathToUse)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onPostExecute(media: ArrayList<ThumbnailItem>) {
         super.onPostExecute(media)
         callback(media)

@@ -13,7 +13,7 @@ import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyGridLayoutManager
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MediaAdapter
-import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
+import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.ASearchBinding
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.DecorationGridSpacingItem

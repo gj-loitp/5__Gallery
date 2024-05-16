@@ -38,7 +38,7 @@ import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
 import org.fossify.commons.views.MySquareImageView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
+import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.itf.*
@@ -61,15 +61,15 @@ fun Context.getHumanizedFilename(path: String): String {
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
-val Context.widgetsDB: DaoWidgets get() = GalleryDatabase.getInstance(applicationContext).WidgetsDao()
+val Context.widgetsDB: DaoWidgets get() = GalleryDatabase.getInstance(applicationContext).widgetsDao()
 
-val Context.mediaDB: DaoMedium get() = GalleryDatabase.getInstance(applicationContext).MediumDao()
+val Context.mediaDB: DaoMedium get() = GalleryDatabase.getInstance(applicationContext).mediumDao()
 
-val Context.directoryDB: DaoDirectory get() = GalleryDatabase.getInstance(applicationContext).DirectoryDao()
+val Context.directoryDB: DaoDirectory get() = GalleryDatabase.getInstance(applicationContext).directoryDao()
 
-val Context.favoritesDB: DaoFavorites get() = GalleryDatabase.getInstance(applicationContext).FavoritesDao()
+val Context.favoritesDB: DaoFavorites get() = GalleryDatabase.getInstance(applicationContext).favoritesDao()
 
-val Context.dateTakensDB: DaoDateTakens get() = GalleryDatabase.getInstance(applicationContext).DateTakensDao()
+val Context.dateTakensDB: DaoDateTakens get() = GalleryDatabase.getInstance(applicationContext).dateTakensDao()
 
 val Context.recycleBin: File get() = filesDir
 

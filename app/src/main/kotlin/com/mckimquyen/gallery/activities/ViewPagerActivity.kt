@@ -40,7 +40,7 @@ import org.fossify.commons.models.FileDirItem
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adapters.MyPagerAdapter
-import com.mckimquyen.gallery.asynctasks.GetMediaAsynctask
+import com.mckimquyen.gallery.asynctask.GetMediaAsynctask
 import com.mckimquyen.gallery.databinding.AMediumBinding
 import com.mckimquyen.gallery.dlg.DeleteWithRememberDlg
 import com.mckimquyen.gallery.dlg.SaveAsDlg
