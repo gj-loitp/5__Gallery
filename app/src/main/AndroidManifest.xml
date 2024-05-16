@@ -114,7 +114,7 @@
             android:resizeableActivity="true" />
 
         <activity
-            android:name=".act.ViewPagerActivity"
+            android:name=".act.ViewPagerAct"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:parentActivityName=".act.MediaActivityMediaOperations"
@@ -269,7 +269,7 @@
         </activity>
 
         <activity
-            android:name=".act.WidgetConfigureActivity"
+            android:name=".act.WidgetConfigureAct"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/MyWidgetConfigTheme">

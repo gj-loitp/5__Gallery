@@ -21,7 +21,7 @@ import com.mckimquyen.gallery.helper.ROUNDED_CORNERS_NONE
 import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Widget
 
-class WidgetConfigureActivity : SimpleActivity() {
+class WidgetConfigureAct : SimpleActivity() {
     private var mBgAlpha = 0f
     private var mWidgetId = 0
     private var mBgColor = 0
@@ -29,7 +29,6 @@ class WidgetConfigureActivity : SimpleActivity() {
     private var mTextColor = 0
     private var mFolderPath = ""
     private var mDirectories = ArrayList<Directory>()
-
     private val binding by viewBinding(AWidgetConfigBinding::inflate)
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +44,21 @@ class WidgetConfigureActivity : SimpleActivity() {
             finish()
         }
 
-        binding.configSave.setOnClickListener { saveConfig() }
-        binding.configBgColor.setOnClickListener { pickBackgroundColor() }
-        binding.configTextColor.setOnClickListener { pickTextColor() }
-        binding.folderPickerValue.setOnClickListener { changeSelectedFolder() }
-        binding.configImageHolder.setOnClickListener { changeSelectedFolder() }
+        binding.configSave.setOnClickListener {
+            saveConfig()
+        }
+        binding.configBgColor.setOnClickListener {
+            pickBackgroundColor()
+        }
+        binding.configTextColor.setOnClickListener {
+            pickTextColor()
+        }
+        binding.folderPickerValue.setOnClickListener {
+            changeSelectedFolder()
+        }
+        binding.configImageHolder.setOnClickListener {
+            changeSelectedFolder()
+        }
 
         updateTextColors(binding.folderPickerHolder)
         val primaryColor = getProperPrimaryColor()
@@ -63,7 +72,7 @@ class WidgetConfigureActivity : SimpleActivity() {
             handleFolderNameDisplay()
         }
 
-        getCachedDirectories(false, false) {
+        getCachedDirectories(getVideosOnly = false, getImagesOnly = false) {
             mDirectories = it
             val path = it.firstOrNull()?.path
             if (path != null) {
@@ -76,7 +85,11 @@ class WidgetConfigureActivity : SimpleActivity() {
         mBgColor = config.widgetBgColor
         mBgAlpha = Color.alpha(mBgColor) / 255f
 
-        mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
+        mBgColorWithoutTransparency = Color.rgb(
+            /* red = */ Color.red(mBgColor),
+            /* green = */ Color.green(mBgColor),
+            /* blue = */ Color.blue(mBgColor)
+        )
         binding.configBgSeekbar.apply {
             progress = (mBgAlpha * 100).toInt()
 
@@ -88,7 +101,9 @@ class WidgetConfigureActivity : SimpleActivity() {
         updateBackgroundColor()
 
         mTextColor = config.widgetTextColor
-        if (mTextColor == resources.getColor(org.fossify.commons.R.color.default_widget_text_color) && config.isUsingSystemTheme) {
+        if (mTextColor == resources.getColor(org.fossify.commons.R.color.default_widget_text_color)
+            && config.isUsingSystemTheme
+        ) {
             mTextColor = resources.getColor(org.fossify.commons.R.color.you_primary_color, theme)
         }
 
@@ -96,11 +111,18 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun saveConfig() {
-        val views = RemoteViews(packageName, R.layout.widget)
+        val views = RemoteViews(
+            /* packageName = */ packageName,
+            /* layoutId = */ R.layout.widget
+        )
         views.setBackgroundColor(R.id.widgetHolder, mBgColor)
         AppWidgetManager.getInstance(this)?.updateAppWidget(mWidgetId, views) ?: return
         config.showWidgetFolderName = binding.folderPickerShowFolderName.isChecked
-        val widget = Widget(null, mWidgetId, mFolderPath)
+        val widget = Widget(
+            id = null,
+            widgetId = mWidgetId,
+            folderPath = mFolderPath
+        )
         ensureBackgroundThread {
             widgetsDB.insertOrUpdate(widget)
         }
@@ -161,7 +183,14 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun changeSelectedFolder() {
-        PickDirectoryDlg(this, "", false, true, false, true) {
+        PickDirectoryDlg(
+            activity = this,
+            sourcePath = "",
+            showOtherFolderButton = false,
+            showFavoritesBin = true,
+            isPickingCopyMoveDestination = false,
+            isPickingFolderForWidget = true
+        ) {
             updateFolderImage(it)
         }
     }
@@ -178,7 +207,13 @@ class WidgetConfigureActivity : SimpleActivity() {
             if (path != null) {
                 runOnUiThread {
                     val signature = ObjectKey(System.currentTimeMillis().toString())
-                    loadImageBase(path, binding.configImage, config.cropThumbnails, ROUNDED_CORNERS_NONE, signature)
+                    loadImageBase(
+                        path = path,
+                        target = binding.configImage,
+                        cropThumbnails = config.cropThumbnails,
+                        roundCorners = ROUNDED_CORNERS_NONE,
+                        signature = signature
+                    )
                 }
             }
         }

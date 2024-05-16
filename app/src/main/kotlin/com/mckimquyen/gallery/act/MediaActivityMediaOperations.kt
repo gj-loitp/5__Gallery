@@ -313,7 +313,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
     private fun startSlideshow() {
         if (mMedia.isNotEmpty()) {
             hideKeyboard()
-            Intent(this, ViewPagerActivity::class.java).apply {
+            Intent(this, ViewPagerAct::class.java).apply {
                 val item = mMedia.firstOrNull { it is Medium } as? Medium ?: return
                 putExtra(SKIP_AUTHENTICATION, shouldSkipAuthentication())
                 putExtra(PATH, item.path)
@@ -841,7 +841,7 @@ class MediaActivityMediaOperations : SimpleActivity(), ListenerMediaOperations {
                 }
                 openPath(path, false, extras)
             } else {
-                Intent(this, ViewPagerActivity::class.java).apply {
+                Intent(this, ViewPagerAct::class.java).apply {
                     putExtra(SKIP_AUTHENTICATION, shouldSkipAuthentication())
                     putExtra(PATH, path)
                     putExtra(SHOW_ALL, mShowAll)

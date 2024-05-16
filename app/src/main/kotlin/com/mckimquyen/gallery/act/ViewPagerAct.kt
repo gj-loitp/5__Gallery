@@ -16,6 +16,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
@@ -56,7 +57,7 @@ import java.io.File
 import kotlin.math.min
 
 @Suppress("UNCHECKED_CAST")
-class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, ViewPagerFrm.FragmentListener {
+class ViewPagerAct : SimpleActivity(), ViewPager.OnPageChangeListener, ViewPagerFrm.FragmentListener {
     companion object {
         private const val REQUEST_VIEW_VIDEO = 1
         private const val SAVED_PATH = "current_path"
@@ -69,20 +70,16 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
     private var mShowAll = false
     private var mIsSlideshowActive = false
     private var mPrevHashcode = 0
-
-    private var mSlideshowHandler = Handler()
+    private var mSlideshowHandler = Handler(Looper.getMainLooper())
     private var mSlideshowInterval = SLIDESHOW_DEFAULT_INTERVAL
     private var mSlideshowMoveBackwards = false
     private var mSlideshowMedia = mutableListOf<Medium>()
     private var mAreSlideShowMediaVisible = false
     private var mRandomSlideshowStopped = false
-
     private var mIsOrientationLocked = false
-
     private var mMediaFiles = ArrayList<Medium>()
     private var mFavoritePaths = ArrayList<String>()
     private var mIgnoredPaths = ArrayList<String>()
-
     private val binding by viewBinding(AMediumBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -264,6 +261,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         if (requestCode == REQUEST_EDIT_IMAGE && resultCode == Activity.RESULT_OK && resultData != null) {
             mPos = -1
@@ -278,7 +276,11 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
                 goToPrevItem()
             }
         }
-        super.onActivityResult(requestCode, resultCode, resultData)
+        super.onActivityResult(
+            requestCode = requestCode,
+            resultCode = resultCode,
+            resultData = resultData
+        )
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -289,7 +291,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(SAVED_PATH, getCurrentPath())
+        outState.putString(/* key = */ SAVED_PATH, /* value = */ getCurrentPath())
     }
 
     private fun initViewPager(savedPath: String) {
@@ -320,7 +322,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         }
 
         if (mPath.isPortrait() && getPortraitPath() == "") {
-            val newIntent = Intent(this, ViewPagerActivity::class.java)
+            val newIntent = Intent(this, ViewPagerAct::class.java)
             newIntent.putExtras(intent!!.extras!!)
             newIntent.putExtra(PORTRAIT_PATH, mPath)
             newIntent.putExtra(PATH, "${mPath.getParentPath().getParentPath()}/${mPath.getFilenameFromPath()}")
@@ -373,7 +375,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         binding.viewPager.onGlobalLayout {
             if (!isDestroyed) {
                 if (mMediaFiles.isNotEmpty()) {
-                    gotMedia(mMediaFiles as ArrayList<ThumbnailItem>, refetchViewPagerPosition = true)
+                    gotMedia(thumbnailItems = mMediaFiles as ArrayList<ThumbnailItem>, refetchViewPagerPosition = true)
                     checkSlideshowOnEnter()
                 }
             }
@@ -384,7 +386,20 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
             val filename = mPath.getFilenameFromPath()
             val folder = mPath.getParentPath()
             val type = getTypeFromPath(mPath)
-            val medium = Medium(null, filename, mPath, folder, 0, 0, 0, type, 0, false, 0L, 0L)
+            val medium = Medium(
+                id = null,
+                name = filename,
+                path = mPath,
+                parentPath = folder,
+                modified = 0,
+                taken = 0,
+                size = 0,
+                type = type,
+                videoDuration = 0,
+                isFavorite = false,
+                deletedTS = 0L,
+                mediaStoreId = 0L
+            )
             mMediaFiles.add(medium)
             gotMedia(mMediaFiles as ArrayList<ThumbnailItem>, refetchViewPagerPosition = true)
         }
@@ -398,7 +413,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
 
         if (config.hideSystemUI) {
             binding.viewPager.onGlobalLayout {
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     fragmentClicked()
                 }, HIDE_SYSTEM_UI_DELAY)
             }
@@ -428,7 +443,20 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
                     val isFavorite = favoritesDB.isFavorite(mPath)
                     val duration = if (type == TYPE_VIDEOS) getDuration(mPath) ?: 0 else 0
                     val ts = System.currentTimeMillis()
-                    val medium = Medium(null, filename, mPath, parent, ts, ts, File(mPath).length(), type, duration, isFavorite, 0, 0L)
+                    val medium = Medium(
+                        id = null,
+                        name = filename,
+                        path = mPath,
+                        parentPath = parent,
+                        modified = ts,
+                        taken = ts,
+                        size = File(mPath).length(),
+                        type = type,
+                        videoDuration = duration,
+                        isFavorite = isFavorite,
+                        deletedTS = 0,
+                        mediaStoreId = 0L
+                    )
                     mediaDB.insert(medium)
                 }
             }
@@ -473,10 +501,10 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
             pagerAdapter.shouldInitFragment = mPos < 5
             binding.viewPager.apply {
                 // must remove the listener before changing adapter, otherwise it might cause `mPos` to be set to 0
-                removeOnPageChangeListener(this@ViewPagerActivity)
+                removeOnPageChangeListener(this@ViewPagerAct)
                 adapter = pagerAdapter
                 pagerAdapter.shouldInitFragment = true
-                addOnPageChangeListener(this@ViewPagerActivity)
+                addOnPageChangeListener(this@ViewPagerAct)
                 currentItem = mPos
             }
         }
@@ -520,7 +548,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         if (newPosition == -1 || newPosition > binding.viewPager.adapter!!.count - 1) {
             slideshowEnded(forward)
         } else {
-            binding.viewPager.setCurrentItem(newPosition, false)
+            binding.viewPager.setCurrentItem(/* position = */ newPosition, /* smoothScroll = */ false)
         }
     }
 
@@ -581,9 +609,15 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
     private fun slideshowEnded(forward: Boolean) {
         if (config.loopSlideshow) {
             if (forward) {
-                binding.viewPager.setCurrentItem(0, false)
+                binding.viewPager.setCurrentItem(
+                    /* position = */ 0,
+                    /* smoothScroll = */ false
+                )
             } else {
-                binding.viewPager.setCurrentItem(binding.viewPager.adapter!!.count - 1, false)
+                binding.viewPager.setCurrentItem(
+                    /* position = */ binding.viewPager.adapter!!.count - 1,
+                    /* smoothScroll = */ false
+                )
             }
         } else {
             stopSlideshow()
@@ -771,7 +805,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
             val path = medium.path
             val drawable = resources.getDrawable(R.drawable.layer_list_shortcut_image).mutate()
             getShortcutImage(path, drawable) {
-                val intent = Intent(this, ViewPagerActivity::class.java).apply {
+                val intent = Intent(this, ViewPagerAct::class.java).apply {
                     putExtra(PATH, path)
                     putExtra(SHOW_ALL, config.showAll)
                     putExtra(SHOW_FAVORITES, path == FAVORITES)
@@ -820,7 +854,11 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
 
     private fun showProperties() {
         if (getCurrentMedium() != null) {
-            PropertiesDialog(this, getCurrentPath(), false)
+            PropertiesDialog(
+                activity = this,
+                path = getCurrentPath(),
+                countHiddenItems = false
+            )
         }
     }
 
@@ -833,9 +871,19 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         }
 
         if (!portrait && navigationBarOnSide && navigationBarWidth > 0) {
-            binding.mediumViewerToolbar.setPadding(0, 0, navigationBarWidth, 0)
+            binding.mediumViewerToolbar.setPadding(
+                /* left = */ 0,
+                /* top = */ 0,
+                /* right = */ navigationBarWidth,
+                /* bottom = */ 0
+            )
         } else {
-            binding.mediumViewerToolbar.setPadding(0, 0, 0, 0)
+            binding.mediumViewerToolbar.setPadding(
+                /* left = */ 0,
+                /* top = */ 0,
+                /* right = */ 0,
+                /* bottom = */ 0
+            )
         }
     }
 
@@ -1017,7 +1065,12 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
                 .load(path)
                 .apply(options)
                 .listener(object : RequestListener<Bitmap> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>, isFirstResource: Boolean): Boolean {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Bitmap>,
+                        isFirstResource: Boolean,
+                    ): Boolean {
                         showErrorToast(e?.localizedMessage ?: "")
                         return false
                     }
@@ -1034,6 +1087,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
                     }
                 }).submit(requestedWidth, requestedHeight)
         } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -1082,7 +1136,11 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
         val message = String.format(resources.getString(baseString), filenameAndSize)
         val showSkipRecycleBinOption = config.useRecycleBin && !isInRecycleBin
 
-        DeleteWithRememberDlg(this, message, showSkipRecycleBinOption) { remember, skipRecycleBin ->
+        DeleteWithRememberDlg(
+            activity = this,
+            message = message,
+            showSkipRecycleBinOption = showSkipRecycleBinOption
+        ) { remember, skipRecycleBin ->
             config.tempSkipDeleteConfirmation = remember
 
             if (remember) {
@@ -1207,13 +1265,23 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
     private fun refreshViewPager(refetchPosition: Boolean = false) {
         val isRandomSorting = config.getFolderSorting(mDirectory) and SORT_BY_RANDOM != 0
         if (!isRandomSorting || isExternalIntent()) {
-            GetMediaAsynctask(applicationContext, mDirectory, isPickImage = false, isPickVideo = false, showAll = mShowAll) {
+            GetMediaAsynctask(
+                context = applicationContext,
+                mPath = mDirectory,
+                isPickImage = false,
+                isPickVideo = false,
+                showAll = mShowAll
+            ) {
                 gotMedia(it, refetchViewPagerPosition = refetchPosition)
             }.execute()
         }
     }
 
-    private fun gotMedia(thumbnailItems: ArrayList<ThumbnailItem>, ignorePlayingVideos: Boolean = false, refetchViewPagerPosition: Boolean = false) {
+    private fun gotMedia(
+        thumbnailItems: ArrayList<ThumbnailItem>,
+        ignorePlayingVideos: Boolean = false,
+        refetchViewPagerPosition: Boolean = false,
+    ) {
         val media = thumbnailItems.asSequence().filter {
             it is Medium && !mIgnoredPaths.contains(it.path)
         }.map { it as Medium }.toMutableList() as ArrayList<Medium>
@@ -1274,8 +1342,15 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
             val fileDirItem = FileDirItem(mDirectory, mDirectory.getFilenameFromPath(), File(mDirectory).isDirectory)
             if (!fileDirItem.isDownloadsFolder() && fileDirItem.isDirectory) {
                 ensureBackgroundThread {
-                    if (fileDirItem.getProperFileCount(this, true) == 0) {
-                        tryDeleteFileDirItem(fileDirItem, true, true)
+                    if (fileDirItem.getProperFileCount(
+                            context = this,
+                            countHidden = true
+                        ) == 0) {
+                        tryDeleteFileDirItem(
+                            fileDirItem = fileDirItem,
+                            allowDeleteFolder = true,
+                            deleteFromDatabase = true
+                        )
                         scanPathRecursively(mDirectory)
                     }
                 }
@@ -1293,6 +1368,7 @@ class ViewPagerActivity : SimpleActivity(), ViewPager.OnPageChangeListener, View
                 val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1)
                 flipSides = orientation == ExifInterface.ORIENTATION_ROTATE_90 || orientation == ExifInterface.ORIENTATION_ROTATE_270
             } catch (e: Exception) {
+                e.printStackTrace()
             }
             val resolution = applicationContext.getResolution(getCurrentPath()) ?: return
             val width = if (flipSides) resolution.y else resolution.x

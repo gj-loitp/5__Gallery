@@ -42,7 +42,7 @@ import com.github.penfeizhou.animation.webp.WebPDrawable
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.act.PhotoActivity
 import com.mckimquyen.gallery.act.PhotoVideoActivity
-import com.mckimquyen.gallery.act.ViewPagerActivity
+import com.mckimquyen.gallery.act.ViewPagerAct
 import com.mckimquyen.gallery.adt.PortraitPhotosAdt
 import com.mckimquyen.gallery.databinding.VPagerPhotoItemBinding
 import com.mckimquyen.gallery.ext.config
@@ -791,7 +791,7 @@ class PhotoFrm : ViewPagerFrm() {
                     loadBitmap(false)
 
                     // ugly, but it works
-                    (activity as? ViewPagerActivity)?.refreshMenuItems()
+                    (activity as? ViewPagerAct)?.refreshMenuItems()
                     (activity as? PhotoVideoActivity)?.refreshMenuItems()
                 }
 

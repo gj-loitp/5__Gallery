@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
-import com.mckimquyen.gallery.act.ViewPagerActivity
+import com.mckimquyen.gallery.act.ViewPagerAct
 import com.mckimquyen.gallery.frm.PhotoFrm
 import com.mckimquyen.gallery.frm.VideoFrm
 import com.mckimquyen.gallery.frm.ViewPagerFrm
@@ -16,7 +16,7 @@ import com.mckimquyen.gallery.helper.SHOULD_INIT_FRAGMENT
 import com.mckimquyen.gallery.model.Medium
 
 class MyPagerAdt(
-    val activity: ViewPagerActivity,
+    val activity: ViewPagerAct,
     fm: FragmentManager,
     val media: MutableList<Medium>,
 ) : FragmentStatePagerAdapter(fm) {

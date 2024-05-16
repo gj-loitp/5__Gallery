@@ -23,7 +23,7 @@ import org.fossify.commons.helpers.*
 import org.fossify.commons.models.FileDirItem
 import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.act.ViewPagerActivity
+import com.mckimquyen.gallery.act.ViewPagerAct
 import com.mckimquyen.gallery.databinding.*
 import com.mckimquyen.gallery.dlg.DeleteWithRememberDlg
 import com.mckimquyen.gallery.ext.*
@@ -476,7 +476,7 @@ class MediaAdt(
             val path = getSelectedPaths().first()
             val drawable = resources.getDrawable(R.drawable.layer_list_shortcut_image).mutate()
             activity.getShortcutImage(path, drawable) {
-                val intent = Intent(activity, ViewPagerActivity::class.java).apply {
+                val intent = Intent(activity, ViewPagerAct::class.java).apply {
                     putExtra(PATH, path)
                     putExtra(SHOW_ALL, config.showAll)
                     putExtra(SHOW_FAVORITES, path == FAVORITES)

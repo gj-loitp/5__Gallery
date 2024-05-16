@@ -159,7 +159,7 @@ class SearchActivity : SimpleActivity(), ListenerMediaOperations {
         if (isVideo) {
             openPath(path, false)
         } else {
-            Intent(this, ViewPagerActivity::class.java).apply {
+            Intent(this, ViewPagerAct::class.java).apply {
                 putExtra(PATH, path)
                 putExtra(SHOW_ALL, false)
                 startActivity(this)
