@@ -19,17 +19,14 @@ import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.ASetWallpaperBinding
 
 class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
-    private val RATIO_PORTRAIT = 0
-    private val RATIO_LANDSCAPE = 1
-    private val RATIO_SQUARE = 2
-
-    private val PICK_IMAGE = 1
-    private var aspectRatio = RATIO_PORTRAIT
+    private val ratioPortrait = 0
+    private val ratioLandscape = 1
+    private val ratioSquare = 2
+    private val pickImage = 1
+    private var aspectRatio = ratioPortrait
     private var wallpaperFlag = -1
-
     lateinit var uri: Uri
-    lateinit var wallpaperManager: WallpaperManager
-
+    private lateinit var wallpaperManager: WallpaperManager
     private val binding by viewBinding(ASetWallpaperBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +43,7 @@ class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
             val pickIntent = Intent(applicationContext, MainAct::class.java)
             pickIntent.action = Intent.ACTION_PICK
             pickIntent.type = "image/*"
-            startActivityForResult(pickIntent, PICK_IMAGE)
+            startActivityForResult(pickIntent, pickImage)
             return
         }
 
@@ -55,11 +52,19 @@ class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.setWallpaperToolbar, NavigationIcon.Arrow)
+        setupToolbar(
+            toolbar = binding.setWallpaperToolbar,
+            toolbarNavigationIcon = NavigationIcon.Arrow
+        )
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
-        if (requestCode == PICK_IMAGE) {
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        resultData: Intent?,
+    ) {
+        if (requestCode == pickImage) {
             if (resultCode == Activity.RESULT_OK && resultData != null) {
                 handleImage(resultData)
             } else {
@@ -115,14 +120,14 @@ class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         }
 
         when (aspectRatio) {
-            RATIO_PORTRAIT -> binding.cropImageView.setAspectRatio(heightToUse, widthToUse)
-            RATIO_LANDSCAPE -> binding.cropImageView.setAspectRatio(widthToUse, heightToUse)
-            else -> binding.cropImageView.setAspectRatio(widthToUse, widthToUse)
+            ratioPortrait -> binding.cropImageView.setAspectRatio(aspectRatioX = heightToUse, aspectRatioY = widthToUse)
+            ratioLandscape -> binding.cropImageView.setAspectRatio(aspectRatioX = widthToUse, aspectRatioY = heightToUse)
+            else -> binding.cropImageView.setAspectRatio(aspectRatioX = widthToUse, aspectRatioY = widthToUse)
         }
     }
 
     private fun changeAspectRatio() {
-        aspectRatio = ++aspectRatio % (RATIO_SQUARE + 1)
+        aspectRatio = ++aspectRatio % (ratioSquare + 1)
         setupAspectRatio()
     }
 
@@ -143,7 +148,10 @@ class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         }
     }
 
-    override fun onCropImageComplete(view: CropImageView, result: CropImageView.CropResult) {
+    override fun onCropImageComplete(
+        view: CropImageView,
+        result: CropImageView.CropResult,
+    ) {
         if (isDestroyed)
             return
 
@@ -155,9 +163,19 @@ class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                 val ratio = wantedHeight / bitmap.height.toFloat()
                 val wantedWidth = (bitmap.width * ratio).toInt()
                 try {
-                    val scaledBitmap = Bitmap.createScaledBitmap(bitmap, wantedWidth, wantedHeight, true)
+                    val scaledBitmap = Bitmap.createScaledBitmap(
+                        /* src = */ bitmap,
+                        /* dstWidth = */ wantedWidth,
+                        /* dstHeight = */ wantedHeight,
+                        /* filter = */ true
+                    )
                     if (isNougatPlus()) {
-                        wallpaperManager.setBitmap(scaledBitmap, null, true, wallpaperFlag)
+                        wallpaperManager.setBitmap(
+                            /* fullImage = */ scaledBitmap,
+                            /* visibleCropHint = */ null,
+                            /* allowBackup = */ true,
+                            /* which = */ wallpaperFlag
+                        )
                     } else {
                         wallpaperManager.setBitmap(scaledBitmap)
                     }

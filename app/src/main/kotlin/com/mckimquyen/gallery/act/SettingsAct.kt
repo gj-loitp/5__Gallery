@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.act
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -39,8 +40,16 @@ class SettingsAct : SimpleAct() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        updateMaterialActivityViews(binding.settingsCoordinator, binding.settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsToolbar)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.settingsCoordinator,
+            nestedView = binding.settingsHolder,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
+        setupMaterialScrollListener(
+            scrollingView = binding.settingsNestedScrollview,
+            toolbar = binding.settingsToolbar
+        )
     }
 
     override fun onResume() {
@@ -125,7 +134,12 @@ class SettingsAct : SimpleAct() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        resultData: Intent?,
+    ) {
         super.onActivityResult(requestCode, resultCode, resultData)
         if (requestCode == PICK_IMPORT_SOURCE_INTENT && resultCode == Activity.RESULT_OK && resultData != null && resultData.data != null) {
             val inputStream = contentResolver.openInputStream(resultData.data!!)
@@ -194,6 +208,7 @@ class SettingsAct : SimpleAct() {
         }
     )
 
+    @SuppressLint("SetTextI18n")
     private fun setupManageIncludedFolders() {
         if (isRPlus() && !isExternalStorageManager()) {
             binding.settingsManageIncludedFolders.text =
@@ -228,6 +243,7 @@ class SettingsAct : SimpleAct() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupShowHiddenItems() {
         if (isRPlus() && !isExternalStorageManager()) {
             binding.settingsShowHiddenItems.text =
@@ -353,7 +369,11 @@ class SettingsAct : SimpleAct() {
         binding.settingsHiddenItemPasswordProtection.isChecked = config.isHiddenPasswordProtectionOn
         binding.settingsHiddenItemPasswordProtectionHolder.setOnClickListener {
             val tabToShow = if (config.isHiddenPasswordProtectionOn) config.hiddenProtectionType else SHOW_ALL_TABS
-            SecurityDialog(this, config.hiddenPasswordHash, tabToShow) { hash, type, success ->
+            SecurityDialog(
+                activity = this,
+                requiredHash = config.hiddenPasswordHash,
+                showTabIndex = tabToShow
+            ) { hash, type, success ->
                 if (success) {
                     val hasPasswordProtection = config.isHiddenPasswordProtectionOn
                     binding.settingsHiddenItemPasswordProtection.isChecked = !hasPasswordProtection
@@ -364,7 +384,13 @@ class SettingsAct : SimpleAct() {
                     if (config.isHiddenPasswordProtectionOn) {
                         val confirmationTextId = if (config.hiddenProtectionType == PROTECTION_FINGERPRINT)
                             org.fossify.commons.R.string.fingerprint_setup_successfully else org.fossify.commons.R.string.protection_setup_successfully
-                        ConfirmationDialog(this, "", confirmationTextId, org.fossify.commons.R.string.ok, 0) { }
+                        ConfirmationDialog(
+                            activity = this,
+                            message = "",
+                            messageId = confirmationTextId,
+                            positive = org.fossify.commons.R.string.ok,
+                            negative = 0
+                        ) { }
                     }
                 }
             }
@@ -387,7 +413,13 @@ class SettingsAct : SimpleAct() {
                     if (config.isExcludedPasswordProtectionOn) {
                         val confirmationTextId = if (config.excludedProtectionType == PROTECTION_FINGERPRINT)
                             org.fossify.commons.R.string.fingerprint_setup_successfully else org.fossify.commons.R.string.protection_setup_successfully
-                        ConfirmationDialog(this, "", confirmationTextId, org.fossify.commons.R.string.ok, 0) { }
+                        ConfirmationDialog(
+                            activity = this,
+                            message = "",
+                            messageId = confirmationTextId,
+                            positive = org.fossify.commons.R.string.ok,
+                            negative = 0
+                        ) { }
                     }
                 }
             }
@@ -409,7 +441,13 @@ class SettingsAct : SimpleAct() {
                     if (config.isAppPasswordProtectionOn) {
                         val confirmationTextId = if (config.appProtectionType == PROTECTION_FINGERPRINT)
                             org.fossify.commons.R.string.fingerprint_setup_successfully else org.fossify.commons.R.string.protection_setup_successfully
-                        ConfirmationDialog(this, "", confirmationTextId, org.fossify.commons.R.string.ok, 0) { }
+                        ConfirmationDialog(
+                            activity = this,
+                            message = "",
+                            messageId = confirmationTextId,
+                            positive = org.fossify.commons.R.string.ok,
+                            negative = 0
+                        ) { }
                     }
                 }
             }
@@ -431,7 +469,13 @@ class SettingsAct : SimpleAct() {
                     if (config.isDeletePasswordProtectionOn) {
                         val confirmationTextId = if (config.deleteProtectionType == PROTECTION_FINGERPRINT)
                             org.fossify.commons.R.string.fingerprint_setup_successfully else org.fossify.commons.R.string.protection_setup_successfully
-                        ConfirmationDialog(this, "", confirmationTextId, org.fossify.commons.R.string.ok, 0) { }
+                        ConfirmationDialog(
+                            activity = this,
+                            message = "",
+                            messageId = confirmationTextId,
+                            positive = org.fossify.commons.R.string.ok,
+                            negative = 0
+                        ) { }
                     }
                 }
             }
@@ -744,7 +788,11 @@ class SettingsAct : SimpleAct() {
     private fun setupExportFavorites() {
         binding.settingsExportFavoritesHolder.setOnClickListener {
             if (isQPlus()) {
-                ExportFavoritesDlg(this, getExportFavoritesFilename(), true) { path, filename ->
+                ExportFavoritesDlg(
+                    activity = this,
+                    defaultFilename = getExportFavoritesFilename(),
+                    hidePath = true
+                ) { _, filename ->
                     Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                         type = "text/plain"
                         putExtra(Intent.EXTRA_TITLE, filename)
@@ -762,9 +810,16 @@ class SettingsAct : SimpleAct() {
             } else {
                 handlePermission(PERMISSION_WRITE_STORAGE) {
                     if (it) {
-                        ExportFavoritesDlg(this, getExportFavoritesFilename(), false) { path, filename ->
+                        ExportFavoritesDlg(
+                            activity = this,
+                            defaultFilename = getExportFavoritesFilename(),
+                            hidePath = false
+                        ) { path, _ ->
                             val file = File(path)
-                            getFileOutputStream(file.toFileDirItem(this), true) {
+                            getFileOutputStream(
+                                fileDirItem = file.toFileDirItem(this),
+                                allowCreatingNewFile = true
+                            ) {
                                 exportFavoritesTo(it)
                             }
                         }
