@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,8 +40,7 @@ import java.io.File
 import java.io.IOException
 
 class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
-    private val LAST_MEDIA_CHECK_PERIOD = 3000L
-
+    private val lastMediaCheckPeriod = 3000L
     private var mPath = ""
     private var mIsGetImageIntent = false
     private var mIsGetVideoIntent = false
@@ -54,11 +54,10 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
     private var mLastSearchedText = ""
     private var mLatestMediaId = 0L
     private var mLatestMediaDateId = 0L
-    private var mLastMediaHandler = Handler()
-    private var mTempShowHiddenHandler = Handler()
+    private var mLastMediaHandler = Handler(Looper.getMainLooper())
+    private var mTempShowHiddenHandler = Handler(Looper.getMainLooper())
     private var mCurrAsyncTask: GetMediaAsynctask? = null
     private var mZoomListener: MyRecyclerView.MyZoomListener? = null
-
     private var mStoredAnimateGifs = true
     private var mStoredCropThumbnails = true
     private var mStoredScrollHorizontally = true
@@ -99,7 +98,12 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
         setupOptionsMenu()
         refreshMenuItems()
         storeStateVariables()
-        updateMaterialActivityViews(binding.mediaCoordinator, binding.mediaGrid, useTransparentNavigation = !config.scrollHorizontally, useTopSearchMenu = true)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.mediaCoordinator,
+            nestedView = binding.mediaGrid,
+            useTransparentNavigation = !config.scrollHorizontally,
+            useTopSearchMenu = true
+        )
 
         if (mShowAll) {
             registerFileUpdateListener()
@@ -193,7 +197,7 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
         storeStateVariables()
         mLastMediaHandler.removeCallbacksAndMessages(null)
 
-        if (!mMedia.isEmpty()) {
+        if (mMedia.isNotEmpty()) {
             mCurrAsyncTask?.stopFetching()
         }
     }
@@ -225,6 +229,7 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
         mTempShowHiddenHandler.removeCallbacksAndMessages(null)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.mediaMenu.isSearchOpen) {
             binding.mediaMenu.closeSearch()
@@ -233,7 +238,12 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        resultData: Intent?,
+    ) {
         if (requestCode == REQUEST_EDIT_IMAGE) {
             if (resultCode == Activity.RESULT_OK && resultData != null) {
                 mMedia.clear()
@@ -244,7 +254,7 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
     }
 
     private fun refreshMenuItems() {
-        val isDefaultFolder = !config.defaultFolder.isEmpty() && File(config.defaultFolder).compareTo(File(mPath)) == 0
+        val isDefaultFolder = config.defaultFolder.isNotEmpty() && File(config.defaultFolder).compareTo(File(mPath)) == 0
 
         binding.mediaMenu.getToolbar().menu.apply {
             findItem(R.id.group).isVisible = !config.scrollHorizontally
@@ -347,7 +357,9 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
     private fun searchQueryChanged(text: String) {
         ensureBackgroundThread {
             try {
-                val filtered = mMedia.filter { it is Medium && it.name.contains(text, true) } as ArrayList
+                val filtered = mMedia.filter {
+                    it is Medium && it.name.contains(text, true)
+                } as ArrayList
                 filtered.sortBy { it is Medium && !it.name.startsWith(text, true) }
                 val grouped = MediaFetcher(applicationContext).groupMedia(filtered as ArrayList<Medium>, mPath)
                 runOnUiThread {
@@ -371,10 +383,10 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
     private fun tryLoadGallery() {
         handlePermission(getPermissionToRequest()) {
             if (it) {
-                val dirName = when {
-                    mPath == FAVORITES -> getString(org.fossify.commons.R.string.favorites)
-                    mPath == RECYCLE_BIN -> getString(org.fossify.commons.R.string.recycle_bin)
-                    mPath == config.OTGPath -> getString(org.fossify.commons.R.string.usb)
+                val dirName = when (mPath) {
+                    FAVORITES -> getString(org.fossify.commons.R.string.favorites)
+                    RECYCLE_BIN -> getString(org.fossify.commons.R.string.recycle_bin)
+                    config.OTGPath -> getString(org.fossify.commons.R.string.usb)
                     else -> getHumanizedFilename(mPath)
                 }
 
@@ -412,8 +424,13 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
         if (currAdapter == null) {
             initZoomListener()
             MediaAdt(
-                this, mMedia.clone() as ArrayList<ThumbnailItem>, this, mIsGetImageIntent || mIsGetVideoIntent || mIsGetAnyIntent,
-                mAllowPickingMultiple, mPath, binding.mediaGrid
+                activity = this,
+                media = mMedia.clone() as ArrayList<ThumbnailItem>,
+                listener = this,
+                isAGetIntent = mIsGetImageIntent || mIsGetVideoIntent || mIsGetAnyIntent,
+                allowMultiplePicks = mAllowPickingMultiple,
+                path = mPath,
+                recyclerView = binding.mediaGrid
             ) {
                 if (it is Medium && !isFinishing) {
                     itemClicked(it.path)
@@ -466,11 +483,16 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
                     checkLastMediaChanged()
                 }
             }
-        }, LAST_MEDIA_CHECK_PERIOD)
+        }, lastMediaCheckPeriod)
     }
 
     private fun showSortingDialog() {
-        ChangeSortingDlg(this, false, true, mPath) {
+        ChangeSortingDlg(
+            activity = this,
+            isDirectorySorting = false,
+            showFolderCheckbox = true,
+            path = mPath
+        ) {
             mLoadedInitialPhotos = false
             binding.mediaGrid.adapter = null
             getMedia()
@@ -503,7 +525,9 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
     }
 
     private fun restoreAllFiles() {
-        val paths = mMedia.filter { it is Medium }.map { (it as Medium).path } as ArrayList<String>
+        val paths = mMedia.filter {
+            it is Medium
+        }.map { (it as Medium).path } as ArrayList<String>
         restoreRecycleBinPaths(paths) {
             ensureBackgroundThread {
                 directoryDB.deleteDirPath(RECYCLE_BIN)
@@ -525,7 +549,11 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
     }
 
     private fun changeViewType() {
-        ChangeViewTypeDlg(this, false, mPath) {
+        ChangeViewTypeDlg(
+            activity = this,
+            fromFoldersView = false,
+            path = mPath
+        ) {
             refreshMenuItems()
             setupLayoutManager()
             binding.mediaGrid.adapter = null
@@ -547,7 +575,11 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
             if (!fileDirItem.isDownloadsFolder() && fileDirItem.isDirectory) {
                 ensureBackgroundThread {
                     if (fileDirItem.getProperFileCount(this, true) == 0) {
-                        tryDeleteFileDirItem(fileDirItem, true, true)
+                        tryDeleteFileDirItem(
+                            fileDirItem = fileDirItem,
+                            allowDeleteFolder = true,
+                            deleteFromDatabase = true
+                        )
                     }
                 }
             }
@@ -580,7 +612,13 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
 
     private fun startAsyncTask() {
         mCurrAsyncTask?.stopFetching()
-        mCurrAsyncTask = GetMediaAsynctask(applicationContext, mPath, mIsGetImageIntent, mIsGetVideoIntent, mShowAll) {
+        mCurrAsyncTask = GetMediaAsynctask(
+            context = applicationContext,
+            mPath = mPath,
+            isPickImage = mIsGetImageIntent,
+            isPickVideo = mIsGetVideoIntent,
+            showAll = mShowAll
+        ) {
             ensureBackgroundThread {
                 val oldMedia = mMedia.clone() as ArrayList<ThumbnailItem>
                 val newMedia = it
@@ -598,11 +636,12 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
                         }
                     }
                 } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
         }
 
-        mCurrAsyncTask!!.execute()
+        mCurrAsyncTask?.execute()
     }
 
     private fun isDirEmpty(): Boolean {
@@ -879,6 +918,7 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
                 try {
                     mediaDB.insertAll(mediaToInsert)
                 } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }.start()
         }

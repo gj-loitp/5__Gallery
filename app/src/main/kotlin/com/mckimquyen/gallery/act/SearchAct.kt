@@ -27,10 +27,8 @@ import java.io.File
 
 class SearchAct : SimpleAct(), ListenerMediaOperations {
     private var mLastSearchedText = ""
-
     private var mCurrAsyncTask: GetMediaAsynctask? = null
     private var mAllMedia = ArrayList<ThumbnailItem>()
-
     private val binding by viewBinding(ASearchBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +36,12 @@ class SearchAct : SimpleAct(), ListenerMediaOperations {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupOptionsMenu()
-        updateMaterialActivityViews(binding.searchCoordinator, binding.searchGrid, useTransparentNavigation = true, useTopSearchMenu = true)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.searchCoordinator,
+            nestedView = binding.searchGrid,
+            useTransparentNavigation = true,
+            useTopSearchMenu = true
+        )
         binding.searchEmptyTextPlaceholder.setTextColor(getProperTextColor())
         getAllMedia()
         binding.searchFastscroller.updateColors(getProperPrimaryColor())
@@ -114,7 +117,15 @@ class SearchAct : SimpleAct(), ListenerMediaOperations {
     private fun setupAdapter() {
         val currAdapter = binding.searchGrid.adapter
         if (currAdapter == null) {
-            MediaAdt(this, mAllMedia, this, false, false, "", binding.searchGrid) {
+            MediaAdt(
+                activity = this,
+                media = mAllMedia,
+                listener = this,
+                isAGetIntent = false,
+                allowMultiplePicks = false,
+                path = "",
+                recyclerView = binding.searchGrid
+            ) {
                 if (it is Medium) {
                     itemClicked(it.path)
                 }
@@ -142,7 +153,14 @@ class SearchAct : SimpleAct(), ListenerMediaOperations {
 
             val spanCount = config.mediaColumnCnt
             val spacing = config.thumbnailSpacing
-            val decoration = DecorationGridSpacingItem(spanCount, spacing, config.scrollHorizontally, config.fileRoundedCorners, media, true)
+            val decoration = DecorationGridSpacingItem(
+                spanCount = spanCount,
+                spacing = spacing,
+                isScrollingHorizontally = config.scrollHorizontally,
+                addSideSpacing = config.fileRoundedCorners,
+                items = media,
+                useGridPosition = true
+            )
             binding.searchGrid.addItemDecoration(decoration)
         }
     }
@@ -180,10 +198,16 @@ class SearchAct : SimpleAct(), ListenerMediaOperations {
         val layoutManager = binding.searchGrid.layoutManager as MyGridLayoutManager
         if (config.scrollHorizontally) {
             layoutManager.orientation = RecyclerView.HORIZONTAL
-            binding.searchGrid.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            binding.searchGrid.layoutParams = RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
         } else {
             layoutManager.orientation = RecyclerView.VERTICAL
-            binding.searchGrid.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            binding.searchGrid.layoutParams = RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
         }
 
         layoutManager.spanCount = config.mediaColumnCnt
@@ -225,7 +249,7 @@ class SearchAct : SimpleAct(), ListenerMediaOperations {
 
     private fun startAsyncTask(updateItems: Boolean) {
         mCurrAsyncTask?.stopFetching()
-        mCurrAsyncTask = GetMediaAsynctask(applicationContext, "", showAll = true) {
+        mCurrAsyncTask = GetMediaAsynctask(context = applicationContext, mPath = "", showAll = true) {
             mAllMedia = it.clone() as ArrayList<ThumbnailItem>
             if (updateItems) {
                 textChanged(mLastSearchedText)

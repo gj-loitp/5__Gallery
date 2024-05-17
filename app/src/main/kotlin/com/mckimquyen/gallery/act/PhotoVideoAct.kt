@@ -77,9 +77,19 @@ open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
         binding.topShadow.layoutParams.height = statusBarHeight + actionBarHeight
         (binding.fragmentViewerAppbar.layoutParams as RelativeLayout.LayoutParams).topMargin = statusBarHeight
         if (!portrait && navigationBarOnSide && navigationBarWidth > 0) {
-            binding.fragmentViewerToolbar.setPadding(0, 0, navigationBarWidth, 0)
+            binding.fragmentViewerToolbar.setPadding(
+                /* left = */ 0,
+                /* top = */ 0,
+                /* right = */ navigationBarWidth,
+                /* bottom = */ 0
+            )
         } else {
-            binding.fragmentViewerToolbar.setPadding(0, 0, 0, 0)
+            binding.fragmentViewerToolbar.setPadding(
+                /* left = */ 0,
+                /* top = */ 0,
+                /* right = */ 0,
+                /* bottom = */ 0
+            )
         }
     }
 
@@ -201,9 +211,19 @@ open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
 
         binding.topShadow.layoutParams.height = statusBarHeight + actionBarHeight
         if (!portrait && navigationBarOnSide && navigationBarWidth > 0) {
-            binding.fragmentViewerToolbar.setPadding(0, 0, navigationBarWidth, 0)
+            binding.fragmentViewerToolbar.setPadding(
+                /* left = */ 0,
+                /* top = */ 0,
+                /* right = */ navigationBarWidth,
+                /* bottom = */ 0
+            )
         } else {
-            binding.fragmentViewerToolbar.setPadding(0, 0, 0, 0)
+            binding.fragmentViewerToolbar.setPadding(
+                /* left = */ 0,
+                /* top = */ 0,
+                /* right = */ 0,
+                /* bottom = */ 0
+            )
         }
 
         checkNotchSupport()
@@ -251,7 +271,7 @@ open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
     }
 
     private fun launchVideoPlayer() {
-        val newUri = getFinalUriFromPath(mUri.toString(), BuildConfig.APPLICATION_ID)
+        val newUri = getFinalUriFromPath(path = mUri.toString(), applicationId = BuildConfig.APPLICATION_ID)
         if (newUri == null) {
             toast(org.fossify.commons.R.string.unknown_error_occurred)
             return
@@ -307,11 +327,18 @@ open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
         val selectionArgs = arrayOf(path)
 
         try {
-            val cursor = contentResolver.query(uri, null, selection, selectionArgs, null)
+            val cursor = contentResolver.query(
+                /* uri = */ uri,
+                /* projection = */ null,
+                /* selection = */ selection,
+                /* selectionArgs = */ selectionArgs,
+                /* sortOrder = */ null
+            )
             cursor?.use {
                 return cursor.moveToFirst()
             }
         } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         return false
