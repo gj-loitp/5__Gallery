@@ -23,8 +23,16 @@ class IncludedFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
         setupOptionsMenu()
         binding.manageFoldersToolbar.title = getString(R.string.include_folders)
 
-        updateMaterialActivityViews(binding.manageFoldersCoordinator, binding.manageFoldersList, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(binding.manageFoldersList, binding.manageFoldersToolbar)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.manageFoldersCoordinator,
+            nestedView = binding.manageFoldersList,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
+        setupMaterialScrollListener(
+            scrollingView = binding.manageFoldersList,
+            toolbar = binding.manageFoldersToolbar
+        )
     }
 
     override fun onResume() {
@@ -41,7 +49,13 @@ class IncludedFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
             setTextColor(getProperTextColor())
         }
 
-        val adapter = ManageFoldersAdt(this, folders, false, this, binding.manageFoldersList) {}
+        val adapter = ManageFoldersAdt(
+            activity = this,
+            folders = folders,
+            isShowingExcludedFolders = false,
+            listener = this,
+            recyclerView = binding.manageFoldersList
+        ) {}
         binding.manageFoldersList.adapter = adapter
     }
 

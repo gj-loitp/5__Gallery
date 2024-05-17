@@ -23,8 +23,16 @@ class ExcludedFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
         setupOptionsMenu()
         binding.manageFoldersToolbar.title = getString(org.fossify.commons.R.string.excluded_folders)
 
-        updateMaterialActivityViews(binding.manageFoldersCoordinator, binding.manageFoldersList, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(binding.manageFoldersList, binding.manageFoldersToolbar)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.manageFoldersCoordinator,
+            nestedView = binding.manageFoldersList,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
+        setupMaterialScrollListener(
+            scrollingView = binding.manageFoldersList,
+            toolbar = binding.manageFoldersToolbar
+        )
     }
 
     override fun onResume() {
@@ -47,7 +55,13 @@ class ExcludedFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
             text = placeholderText
         }
 
-        val adapter = ManageFoldersAdt(this, folders, true, this, binding.manageFoldersList) {}
+        val adapter = ManageFoldersAdt(
+            activity = this,
+            folders = folders,
+            isShowingExcludedFolders = true,
+            listener = this,
+            recyclerView = binding.manageFoldersList
+        ) {}
         binding.manageFoldersList.adapter = adapter
     }
 
@@ -68,9 +82,9 @@ class ExcludedFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
     private fun addFolder() {
         FilePickerDialog(
             activity = this,
-            internalStoragePath,
+            currPath = internalStoragePath,
             pickFile = false,
-            config.shouldShowHidden,
+            showHidden = config.shouldShowHidden,
             showFAB = false,
             canAddShowHiddenButton = true,
             enforceStorageRestrictions = false,

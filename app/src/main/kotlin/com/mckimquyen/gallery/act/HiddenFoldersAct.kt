@@ -26,13 +26,24 @@ class HiddenFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
         setupOptionsMenu()
         binding.manageFoldersToolbar.title = getString(R.string.hidden_folders)
 
-        updateMaterialActivityViews(binding.manageFoldersCoordinator, binding.manageFoldersList, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(binding.manageFoldersList, binding.manageFoldersToolbar)
+        updateMaterialActivityViews(
+            mainCoordinatorLayout = binding.manageFoldersCoordinator,
+            nestedView = binding.manageFoldersList,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
+        setupMaterialScrollListener(
+            scrollingView = binding.manageFoldersList,
+            toolbar = binding.manageFoldersToolbar
+        )
     }
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.manageFoldersToolbar, NavigationIcon.Arrow)
+        setupToolbar(
+            toolbar = binding.manageFoldersToolbar,
+            toolbarNavigationIcon = NavigationIcon.Arrow
+        )
     }
 
     private fun updateFolders() {
@@ -44,7 +55,12 @@ class HiddenFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
                     setTextColor(getProperTextColor())
                 }
 
-                val adapter = ManageHiddenFoldersAdt(this, it, this, binding.manageFoldersList) {}
+                val adapter = ManageHiddenFoldersAdt(
+                    activity = this,
+                    folders = it,
+                    listener = this,
+                    recyclerView = binding.manageFoldersList
+                ) {}
                 binding.manageFoldersList.adapter = adapter
             }
         }
@@ -65,7 +81,14 @@ class HiddenFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
     }
 
     private fun addFolder() {
-        FilePickerDialog(this, config.lastFilepickerPath, false, config.shouldShowHidden, false, true) {
+        FilePickerDialog(
+            activity = this,
+            currPath = config.lastFilepickerPath,
+            pickFile = false,
+            showHidden = config.shouldShowHidden,
+            showFAB = false,
+            canAddShowHiddenButton = true
+        ) {
             config.lastFilepickerPath = it
             ensureBackgroundThread {
                 addNoMedia(it) {

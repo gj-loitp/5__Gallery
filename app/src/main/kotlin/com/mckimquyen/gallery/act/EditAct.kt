@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.act
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -78,10 +80,8 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
     private var resizeHeight = 0
     private var drawColor = 0
     private var lastOtherAspectRatio: Pair<Float, Float>? = null
-    private var currPrimaryAction =
-        PRIMARY_ACTION_NONE
-    private var currCropRotateAction =
-        CROP_ROTATE_ASPECT_RATIO
+    private var currPrimaryAction = PRIMARY_ACTION_NONE
+    private var currCropRotateAction = CROP_ROTATE_ASPECT_RATIO
     private var currAspectRatio = ASPECT_RATIO_FREE
     private var isCropIntent = false
     private var isEditingWithThirdParty = false
@@ -113,8 +113,15 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
     override fun onResume() {
         super.onResume()
         isEditingWithThirdParty = false
-        binding.bottomEditorDrawActions.bottomDrawWidth.setColors(getProperTextColor(), getProperPrimaryColor(), getProperBackgroundColor())
-        setupToolbar(binding.editorToolbar, NavigationIcon.Arrow)
+        binding.bottomEditorDrawActions.bottomDrawWidth.setColors(
+            getProperTextColor(),
+            getProperPrimaryColor(),
+            getProperBackgroundColor()
+        )
+        setupToolbar(
+            toolbar = binding.editorToolbar,
+            toolbarNavigationIcon = NavigationIcon.Arrow
+        )
     }
 
     override fun onStop() {
@@ -208,10 +215,15 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
             .load(uri)
             .apply(options)
             .listener(object : RequestListener<Bitmap> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>, isFirstResource: Boolean): Boolean {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Bitmap>,
+                    isFirstResource: Boolean,
+                ): Boolean {
                     if (uri != originalUri) {
                         uri = originalUri
-                        Handler().post {
+                        Handler(Looper.getMainLooper()).post {
                             loadDefaultImageView()
                         }
                     }
@@ -223,7 +235,7 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                     model: Any,
                     target: Target<Bitmap>,
                     dataSource: DataSource,
-                    isFirstResource: Boolean
+                    isFirstResource: Boolean,
                 ): Boolean {
                     val currentFilter = getFiltersAdapter()?.getCurrentFilter()
                     if (filterInitialBitmap == null) {
@@ -295,7 +307,10 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                 .asBitmap()
                 .load(uri)
                 .apply(options)
-                .into(binding.editorDrawCanvas.width, binding.editorDrawCanvas.height)
+                .into(
+                    /* width = */ binding.editorDrawCanvas.width,
+                    /* height = */ binding.editorDrawCanvas.height
+                )
 
             val bitmap = builder.get()
             runOnUiThread {
@@ -326,14 +341,22 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                 }
             } else if (saveUri.scheme == "content") {
                 val filePathGetter = getNewFilePath()
-                SaveAsDlg(this, filePathGetter.first, filePathGetter.second) {
+                SaveAsDlg(
+                    activity = this,
+                    path = filePathGetter.first,
+                    appendFilename = filePathGetter.second
+                ) {
                     saveBitmapToFile(bitmap, it, true)
                 }
             }
         } else {
             val currentFilter = getFiltersAdapter()?.getCurrentFilter() ?: return
             val filePathGetter = getNewFilePath()
-            SaveAsDlg(this, filePathGetter.first, filePathGetter.second) {
+            SaveAsDlg(
+                activity = this,
+                path = filePathGetter.first,
+                appendFilename = filePathGetter.second
+            ) {
                 toast(org.fossify.commons.R.string.saving)
 
                 // clean up everything to free as much memory as possible
@@ -364,6 +387,7 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                 oldExif = ExifInterface(inputStream!!)
             }
         } catch (e: Exception) {
+            e.printStackTrace()
         } finally {
             inputStream?.close()
         }
@@ -401,8 +425,8 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         bitmap.compress(CompressFormat.PNG, 0, bytes)
 
         val folder = File(
-            cacheDir,
-            TEMP_FOLDER_NAME
+            /* parent = */ cacheDir,
+            /* child = */ TEMP_FOLDER_NAME
         )
         if (!folder.exists()) {
             if (!folder.mkdir()) {
@@ -420,6 +444,7 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                     it.write(bytes.toByteArray())
                     callback(newPath)
                 } catch (e: Exception) {
+                    e.printStackTrace()
                 } finally {
                     it.close()
                 }
@@ -573,7 +598,7 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         updateBrushSize(config.lastEditorBrushSize)
 
         binding.bottomEditorDrawActions.bottomDrawColorClickable.setOnClickListener {
-            ColorPickerDialog(this, drawColor) { wasPositivePressed, color ->
+            ColorPickerDialog(activity = this, color = drawColor) { wasPositivePressed, color ->
                 if (wasPositivePressed) {
                     updateDrawColor(color)
                 }
@@ -597,6 +622,7 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         binding.bottomEditorDrawActions.bottomDrawColor.scaleY = scale
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun updatePrimaryActionButtons() {
         if (binding.cropImageView.isGone() && currPrimaryAction == PRIMARY_ACTION_CROP_ROTATE) {
             loadCropImageView()
@@ -634,7 +660,12 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                     Glide.with(this)
                         .asBitmap()
                         .load(uri).listener(object : RequestListener<Bitmap> {
-                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>, isFirstResource: Boolean): Boolean {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Bitmap>,
+                                isFirstResource: Boolean,
+                            ): Boolean {
                                 showErrorToast(e.toString())
                                 return false
                             }
@@ -644,7 +675,7 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                                 model: Any,
                                 target: Target<Bitmap>,
                                 dataSource: DataSource,
-                                isFirstResource: Boolean
+                                isFirstResource: Boolean,
                             ) = false
                         })
                         .submit(thumbnailSize, thumbnailSize)
@@ -694,8 +725,10 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
     }
 
     private fun applyFilter(filterItem: FilterItem) {
-        val newBitmap = Bitmap.createBitmap(filterInitialBitmap!!)
-        binding.defaultImageView.setImageBitmap(filterItem.filter.processFilter(newBitmap))
+        filterInitialBitmap?.let {
+            val newBitmap = Bitmap.createBitmap(it)
+            binding.defaultImageView.setImageBitmap(filterItem.filter.processFilter(newBitmap))
+        }
     }
 
     private fun updateAspectRatio(aspectRatio: Int) {
@@ -714,7 +747,10 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                     else -> Pair(lastOtherAspectRatio!!.first, lastOtherAspectRatio!!.second)
                 }
 
-                setAspectRatio(newAspectRatio.first.toInt(), newAspectRatio.second.toInt())
+                setAspectRatio(
+                    aspectRatioX = newAspectRatio.first.toInt(),
+                    aspectRatioY = newAspectRatio.second.toInt()
+                )
             }
         }
     }
@@ -879,7 +915,11 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         return Pair(newPath, shouldAppendFilename)
     }
 
-    private fun saveBitmapToFile(bitmap: Bitmap, path: String, showSavingToast: Boolean) {
+    private fun saveBitmapToFile(
+        bitmap: Bitmap,
+        path: String,
+        showSavingToast: Boolean,
+    ) {
         try {
             ensureBackgroundThread {
                 val file = File(path)
@@ -888,9 +928,17 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                     val out = FileOutputStream(file)
                     saveBitmap(file, bitmap, out, showSavingToast)
                 } catch (e: Exception) {
-                    getFileOutputStream(fileDirItem, true) {
+                    getFileOutputStream(
+                        fileDirItem = fileDirItem,
+                        allowCreatingNewFile = true
+                    ) {
                         if (it != null) {
-                            saveBitmap(file, bitmap, it, showSavingToast)
+                            saveBitmap(
+                                file = file,
+                                bitmap = bitmap,
+                                out = it,
+                                showSavingToast = showSavingToast
+                            )
                         } else {
                             toast(R.string.image_editing_failed)
                         }
@@ -905,16 +953,29 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    private fun saveBitmap(file: File, bitmap: Bitmap, out: OutputStream, showSavingToast: Boolean) {
+    private fun saveBitmap(
+        file: File,
+        bitmap: Bitmap,
+        out: OutputStream,
+        showSavingToast: Boolean,
+    ) {
         if (showSavingToast) {
             toast(org.fossify.commons.R.string.saving)
         }
 
         if (resizeWidth > 0 && resizeHeight > 0) {
             val resized = Bitmap.createScaledBitmap(bitmap, resizeWidth, resizeHeight, false)
-            resized.compress(file.absolutePath.getCompressionFormat(), 90, out)
+            resized.compress(
+                /* format = */ file.absolutePath.getCompressionFormat(),
+                /* quality = */ 90,
+                /* stream = */ out
+            )
         } else {
-            bitmap.compress(file.absolutePath.getCompressionFormat(), 90, out)
+            bitmap.compress(
+                /* format = */ file.absolutePath.getCompressionFormat(),
+                /* quality = */ 90,
+                /* stream = */ out
+            )
         }
 
         try {
@@ -923,6 +984,7 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
                 oldExif?.copyNonDimensionAttributesTo(newExif)
             }
         } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         setResult(Activity.RESULT_OK, intent)
