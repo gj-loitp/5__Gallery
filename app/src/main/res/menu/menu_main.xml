@@ -7,12 +7,17 @@
         android:id="@+id/openCamera"
         android:icon="@drawable/ic_camera_vector"
         android:title="@string/open_camera"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_cog_vector"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/showAll"
         android:icon="@drawable/ic_files_vector"
         android:title="@string/show_all"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/sort"
         android:icon="@drawable/ic_sort_vector"
@@ -68,19 +73,29 @@
         android:icon="@drawable/ic_column_count_vector"
         android:title="@string/column_count"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_settings_cog_vector"
-        android:title="@string/settings"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/about"
-        android:icon="@drawable/ic_info_vector"
-        android:title="@string/about"
-        app:showAsAction="ifRoom" />
+    <!--    <item-->
+    <!--        android:id="@+id/about"-->
+    <!--        android:icon="@drawable/ic_info_vector"-->
+    <!--        android:title="@string/about"-->
+    <!--        app:showAsAction="ifRoom" />-->
     <item
         android:id="@+id/moreAppsFromUs"
         android:icon="@drawable/ic_google_play_vector"
         android:title="@string/more_apps_from_us"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/rateApp"
+        android:icon="@drawable/ic_google_play_vector"
+        android:title="@string/rate_this_app"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/shareApp"
+        android:icon="@drawable/ic_google_play_vector"
+        android:title="@string/share_this_app"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/policy"
+        android:icon="@drawable/ic_google_play_vector"
+        android:title="@string/privacy_policy"
         app:showAsAction="ifRoom" />
 </menu>

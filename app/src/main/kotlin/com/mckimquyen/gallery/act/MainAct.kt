@@ -358,7 +358,7 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                 findItem(R.id.columnCount).isVisible = config.viewTypeFolders == VIEW_TYPE_GRID
                 findItem(R.id.setAsDefaultFolder).isVisible = config.defaultFolder.isNotEmpty()
                 findItem(R.id.openRecycleBin).isVisible = config.useRecycleBin && !config.showRecycleBinAtFolders
-                findItem(R.id.moreAppsFromUs).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
+//                findItem(R.id.moreAppsFromUs).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
             }
         }
 
@@ -409,7 +409,22 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                 R.id.openRecycleBin -> openRecycleBin()
                 R.id.columnCount -> changeColumnCount()
                 R.id.setAsDefaultFolder -> setAsDefaultFolder()
-                R.id.moreAppsFromUs -> launchMoreAppsFromUsIntent()
+                R.id.moreAppsFromUs -> {
+                    //TODO roy93~
+                }
+
+                R.id.rateApp -> {
+                    //TODO roy93~
+                }
+
+                R.id.shareApp -> {
+                    //TODO roy93~
+                }
+
+                R.id.policy -> {
+                    //TODO roy93~
+                }
+
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
