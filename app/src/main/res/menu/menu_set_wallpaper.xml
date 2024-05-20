@@ -9,5 +9,5 @@
     <item
         android:id="@+id/allowChangingAspectRatio"
         android:title="@string/allow_changing_aspect_ratio"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>
