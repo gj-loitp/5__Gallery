@@ -5,5 +5,5 @@
         android:id="@+id/addFolder"
         android:icon="@drawable/ic_plus_vector"
         android:title="@string/add_folder"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

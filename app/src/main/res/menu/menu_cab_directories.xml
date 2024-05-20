@@ -8,19 +8,19 @@
         android:icon="@drawable/ic_delete_vector"
         android:showAsAction="always"
         android:title="@string/delete"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cabProperties"
         android:icon="@drawable/ic_info_vector"
         android:showAsAction="always"
         android:title="@string/properties"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cabPin"
         android:icon="@drawable/ic_pin_filled_vector"
         android:showAsAction="always"
         android:title="@string/pin_to_the_top"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cabUnpin"
         android:icon="@drawable/ic_pin_vector"

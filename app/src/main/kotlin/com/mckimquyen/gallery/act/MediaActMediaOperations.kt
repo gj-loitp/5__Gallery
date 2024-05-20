@@ -265,7 +265,7 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
 
             findItem(R.id.folderView).isVisible = mShowAll
             findItem(R.id.openCamera).isVisible = mShowAll
-            findItem(R.id.about).isVisible = mShowAll
+//            findItem(R.id.about).isVisible = mShowAll
             findItem(R.id.createNewFolder).isVisible = !mShowAll && mPath != RECYCLE_BIN && mPath != FAVORITES
             findItem(R.id.openRecycleBin).isVisible = config.useRecycleBin && mPath != RECYCLE_BIN
 
@@ -313,7 +313,7 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
                 R.id.unsetAsDefaultFolder -> unsetAsDefaultFolder()
                 R.id.slideshow -> startSlideshow()
                 R.id.settings -> launchSettings()
-                R.id.about -> launchAbout()
+//                R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true

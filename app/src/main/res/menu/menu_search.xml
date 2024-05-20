@@ -5,5 +5,5 @@
         android:id="@+id/toggleFilename"
         android:icon="@drawable/ic_label_vector"
         android:title="@string/toggle_filename"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

@@ -8,19 +8,19 @@
         android:icon="@drawable/ic_check_vector"
         android:showAsAction="always"
         android:title="@string/confirm_selection"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cabDelete"
         android:icon="@drawable/ic_delete_vector"
         android:showAsAction="always"
         android:title="@string/delete"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cabShare"
         android:icon="@drawable/ic_share_vector"
         android:showAsAction="always"
         android:title="@string/share"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:icon="@drawable/ic_rotate_right_vector"
         android:title="@string/rotate"

@@ -426,7 +426,7 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                 }
 
                 R.id.settings -> launchSettings()
-                R.id.about -> launchAbout()
+//                R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
