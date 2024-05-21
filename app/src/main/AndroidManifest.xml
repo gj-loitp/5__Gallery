@@ -51,7 +51,7 @@
         android:label="@string/app_launcher_name"
         android:localeConfig="@xml/locale_config"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute"
@@ -61,7 +61,7 @@
             android:name=".act.SplashAct"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
-            android:roundIcon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
             android:targetActivity=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
