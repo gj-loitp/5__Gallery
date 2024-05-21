@@ -118,5 +118,9 @@ dependencies {
     ksp(libs.glide.compiler)
     api(libs.zjupure.webpdecoder)
     api(libs.bundles.room)
+    //noinspection UseTomlInstead
+    api("com.applovin:applovin-sdk:12.4.2")
     ksp(libs.androidx.room.compiler)
+    //noinspection UseTomlInstead
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
 }
