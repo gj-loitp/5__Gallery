@@ -107,7 +107,7 @@ class ChangeFolderThumbnailStyleDlg(
 
             val options = RequestOptions().centerCrop()
             var builder = Glide.with(activity)
-                .load(R.drawable.sample_logo)
+                .load(R.drawable.ic_launcher_web)
                 .apply(options)
 
             if (useRoundedCornersLayout) {
