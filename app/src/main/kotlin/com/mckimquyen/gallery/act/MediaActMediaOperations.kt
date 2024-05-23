@@ -312,7 +312,8 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
                 R.id.setAsDefaultFolder -> setAsDefaultFolder()
                 R.id.unsetAsDefaultFolder -> unsetAsDefaultFolder()
                 R.id.slideshow -> startSlideshow()
-                R.id.settings -> launchSettings()
+//                TODO roy93~ open in next release
+//                R.id.settings -> launchSettings()
 //                R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
             }

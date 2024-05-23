@@ -7,12 +7,13 @@
         android:id="@+id/openCamera"
         android:icon="@drawable/ic_camera_vector"
         android:title="@string/open_camera"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_settings_cog_vector"
-        android:title="@string/settings"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
+<!--    TODO roy93~ open in next release-->
+<!--    <item-->
+<!--        android:id="@+id/settings"-->
+<!--        android:icon="@drawable/ic_settings_cog_vector"-->
+<!--        android:title="@string/settings"-->
+<!--        app:showAsAction="never" />-->
     <item
         android:id="@+id/folderView"
         android:icon="@drawable/ic_folders_vector"
