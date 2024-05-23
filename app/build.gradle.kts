@@ -8,11 +8,11 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-val keystorePropertiesFile: File = rootProject.file("keystore.properties")
-val keystoreProperties = Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-}
+//val keystorePropertiesFile: File = rootProject.file("keystore.properties")
+//val keystoreProperties = Properties()
+//if (keystorePropertiesFile.exists()) {
+//    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+//}
 
 android {
     namespace = "com.mckimquyen.gallery"
@@ -27,14 +27,22 @@ android {
         setProperty("archivesBaseName", "Cat Gallery-$versionCode")
     }
 
+//    signingConfigs {
+//        if (keystorePropertiesFile.exists()) {
+//            register("release") {
+//                keyAlias = keystoreProperties.getProperty("keyAlias")
+//                keyPassword = keystoreProperties.getProperty("keyPassword")
+//                storeFile = file(keystoreProperties.getProperty("storeFile"))
+//                storePassword = keystoreProperties.getProperty("storePassword")
+//            }
+//        }
+//    }
     signingConfigs {
-        if (keystorePropertiesFile.exists()) {
-            register("release") {
-                keyAlias = keystoreProperties.getProperty("keyAlias")
-                keyPassword = keystoreProperties.getProperty("keyPassword")
-                storeFile = file(keystoreProperties.getProperty("storeFile"))
-                storePassword = keystoreProperties.getProperty("storePassword")
-            }
+        register("release") {
+            storeFile = file("keystores.jks")
+            storePassword = "27072000"
+            keyAlias = "mckimquyen"
+            keyPassword = "27072000"
         }
     }
 
@@ -51,9 +59,10 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            if (keystorePropertiesFile.exists()) {
-                signingConfig = signingConfigs.getByName("release")
-            }
+//            if (keystorePropertiesFile.exists()) {
+//                signingConfig = signingConfigs.getByName("release")
+//            }
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

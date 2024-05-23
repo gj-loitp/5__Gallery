@@ -14,8 +14,6 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO vung bi mat de show applovin config
 //TODO UI ios switch
 
-//TODO keystore
-
 //done mckimquyen
 //rename app
 //proguard
@@ -24,6 +22,7 @@ import org.fossify.commons.extensions.checkUseEnglish
 //license
 //rate, more app, share app
 //github
+//keystore
 
 class RApp : Application() {
     override fun onCreate() {
