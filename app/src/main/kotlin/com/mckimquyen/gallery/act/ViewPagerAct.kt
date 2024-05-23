@@ -250,7 +250,8 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
                 R.id.menuSaveAs -> saveImageAs()
                 R.id.menuCreateShortcut -> createShortcut()
                 R.id.menuResize -> resizeImage()
-                R.id.menuSettings -> launchSettings()
+                //TODO roy93~ open in next release
+//                R.id.menuSettings -> launchSettings()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true

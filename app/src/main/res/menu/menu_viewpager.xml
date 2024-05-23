@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource">
-    <item
-        android:id="@+id/menuSettings"
-        android:icon="@drawable/ic_settings_cog_vector"
-        android:title="@string/settings"
-        app:showAsAction="ifRoom" />
+
+    <!--    TODO roy93~ open in next release-->
+<!--    <item-->
+<!--        android:id="@+id/menuSettings"-->
+<!--        android:icon="@drawable/ic_settings_cog_vector"-->
+<!--        android:title="@string/settings"-->
+<!--        app:showAsAction="ifRoom" />-->
     <item
         android:id="@+id/menuProperties"
         android:icon="@drawable/ic_info_vector"
