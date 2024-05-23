@@ -13,8 +13,6 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO ad applovin
 //TODO vung bi mat de show applovin config
 
-//TODO license
-//TODO rate, more app, share app
 //TODO github
 //TODO UI ios switch
 //TODO keystore
@@ -24,6 +22,8 @@ import org.fossify.commons.extensions.checkUseEnglish
 //proguard
 //leak canary
 //gen ic_launcher https://easyappicon.com/
+//license
+//rate, more app, share app
 
 class RApp : Application() {
     override fun onCreate() {

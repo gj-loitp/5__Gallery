@@ -410,19 +410,19 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                 R.id.columnCount -> changeColumnCount()
                 R.id.setAsDefaultFolder -> setAsDefaultFolder()
                 R.id.moreAppsFromUs -> {
-                    //TODO roy93~
+                    moreApp()
                 }
 
                 R.id.rateApp -> {
-                    //TODO roy93~
+                    rateApp(packageName)
                 }
 
                 R.id.shareApp -> {
-                    //TODO roy93~
+                    shareApp()
                 }
 
                 R.id.policy -> {
-                    //TODO roy93~
+                    openBrowserPolicy()
                 }
 
                 //TODO roy93~ open in next release

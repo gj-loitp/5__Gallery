@@ -4,7 +4,9 @@ import android.annotation.TargetApi
 import android.app.Activity
 import android.content.ContentProviderOperation
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -1074,5 +1076,114 @@ fun Activity.openRecycleBin() {
     Intent(this, MediaActMediaOperations::class.java).apply {
         putExtra(DIRECTORY, RECYCLE_BIN)
         startActivity(this)
+    }
+}
+
+fun Activity.rateApp(
+    packageName: String? = null,
+) {
+    if (packageName.isNullOrEmpty()) {
+        return
+    }
+    try {
+        this.startActivity(
+            Intent(
+                Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")
+            )
+        )
+    } catch (e: android.content.ActivityNotFoundException) {
+        e.printStackTrace()
+        this.startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://play.google.com/store/apps/details?id=$packageName")
+            )
+        )
+    }
+}
+
+fun Activity.moreApp(
+    nameOfDeveloper: String = "McKimQuyen",
+) {
+    val uri = "https://play.google.com/store/apps/developer?id=$nameOfDeveloper"
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+    this.startActivity(intent)
+}
+
+fun Activity.shareApp(
+) {
+    try {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_SUBJECT, this.getString(R.string.app_name))
+        var sAux = "\nỨng dụng này rất bổ ích, thân mời bạn tải về cài đặt để trải nghiệm\n\n"
+        sAux = sAux + "https://play.google.com/store/apps/details?id=" + this.packageName
+        intent.putExtra(Intent.EXTRA_TEXT, sAux)
+        this.startActivity(Intent.createChooser(intent, "Vui lòng chọn"))
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+
+fun Context.isDefaultLauncher(): Boolean {
+    val intent = Intent(Intent.ACTION_MAIN)
+    intent.addCategory(Intent.CATEGORY_HOME)
+    val resolveInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        packageManager.resolveActivity(
+            /* intent = */ intent,
+            /* flags = */ PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_DEFAULT_ONLY.toLong())
+        )
+    } else {
+        @Suppress("DEPRECATION")
+        packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+    }
+
+    val currentLauncherName = resolveInfo?.activityInfo?.packageName
+    if (currentLauncherName == packageName) {
+        return true
+    }
+    return false
+}
+
+//mo app setting default cua device
+fun Context.launchSystemSetting(
+    packageName: String,
+) {
+    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+    intent.data = Uri.parse("package:$packageName")
+    this.startActivity(intent)
+}
+
+/*
+         * send email support
+         */
+fun Context?.sendEmail(
+) {
+    val emailIntent = Intent(Intent.ACTION_SENDTO)
+    emailIntent.data = Uri.parse("mailto: roy.mobile.dev@gmail.com")
+    this?.startActivity(Intent.createChooser(emailIntent, "Send feedback"))
+}
+
+const val URL_POLICY_NOTION = "https://loitp.notion.site/loitp/Privacy-Policy-319b1cd8783942fa8923d2a3c9bce60f/"
+
+//const val URL_LICENSE = "https://raw.githubusercontent.com/gj-loitp/PocketPlan/master/LICENSE"
+
+fun Context.openBrowserPolicy(
+) {
+    this.openUrlInBrowser(url = URL_POLICY_NOTION)
+}
+
+fun Context?.openUrlInBrowser(
+    url: String?,
+) {
+    if (this == null || url.isNullOrEmpty()) {
+        return
+    }
+    try {
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        this.startActivity(i)
+    } catch (e: Exception) {
+        e.printStackTrace()
     }
 }
