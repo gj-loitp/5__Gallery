@@ -283,6 +283,7 @@
     <string name="_16_9">16:9</string>
     <string name="rate_this_app">Rate this app</string>
     <string name="share_this_app">Share this app</string>
+    <string name="github">Github</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res

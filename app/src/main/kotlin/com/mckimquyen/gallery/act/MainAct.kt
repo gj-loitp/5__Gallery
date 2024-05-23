@@ -425,6 +425,10 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                     openBrowserPolicy()
                 }
 
+                R.id.github -> {
+                    openUrlInBrowser("https://github.com/gj-loitp/5__Gallery")
+                }
+
                 //TODO roy93~ open in next release
 //                R.id.settings -> launchSettings()
 //                R.id.about -> launchAbout()

@@ -12,9 +12,8 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO why you see ad
 //TODO ad applovin
 //TODO vung bi mat de show applovin config
-
-//TODO github
 //TODO UI ios switch
+
 //TODO keystore
 
 //done mckimquyen
@@ -24,6 +23,7 @@ import org.fossify.commons.extensions.checkUseEnglish
 //gen ic_launcher https://easyappicon.com/
 //license
 //rate, more app, share app
+//github
 
 class RApp : Application() {
     override fun onCreate() {

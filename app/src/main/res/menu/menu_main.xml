@@ -8,12 +8,12 @@
         android:icon="@drawable/ic_camera_vector"
         android:title="@string/open_camera"
         app:showAsAction="ifRoom" />
-<!--    TODO roy93~ open in next release-->
-<!--    <item-->
-<!--        android:id="@+id/settings"-->
-<!--        android:icon="@drawable/ic_settings_cog_vector"-->
-<!--        android:title="@string/settings"-->
-<!--        app:showAsAction="never" />-->
+    <!--    TODO roy93~ open in next release-->
+    <!--    <item-->
+    <!--        android:id="@+id/settings"-->
+    <!--        android:icon="@drawable/ic_settings_cog_vector"-->
+    <!--        android:title="@string/settings"-->
+    <!--        app:showAsAction="never" />-->
     <item
         android:id="@+id/showAll"
         android:icon="@drawable/ic_files_vector"
@@ -98,5 +98,10 @@
         android:id="@+id/policy"
         android:icon="@drawable/ic_google_play_vector"
         android:title="@string/privacy_policy"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/github"
+        android:icon="@drawable/ic_google_play_vector"
+        android:title="@string/github"
         app:showAsAction="never" />
 </menu>
