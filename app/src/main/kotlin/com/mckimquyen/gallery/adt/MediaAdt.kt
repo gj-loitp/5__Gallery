@@ -262,9 +262,10 @@ class MediaAdt(
     }
 
     private fun checkMediaManagementAndRename() {
-        activity.handleMediaManagementPrompt {
-            renameFile()
-        }
+//        activity.handleMediaManagementPrompt {
+//            renameFile()
+//        }
+        renameFile()
     }
 
     private fun renameFile() {
@@ -427,9 +428,10 @@ class MediaAdt(
     }
 
     private fun checkMediaManagementAndCopy(isCopyOperation: Boolean) {
-        activity.handleMediaManagementPrompt {
-            copyMoveTo(isCopyOperation)
-        }
+//        activity.handleMediaManagementPrompt {
+//            copyMoveTo(isCopyOperation)
+//        }
+        copyMoveTo(isCopyOperation)
     }
 
     private fun copyMoveTo(isCopyOperation: Boolean) {
@@ -506,16 +508,25 @@ class MediaAdt(
     }
 
     private fun checkDeleteConfirmation() {
-        activity.handleMediaManagementPrompt {
-            if (config.isDeletePasswordProtectionOn) {
-                activity.handleDeletePasswordProtection {
-                    deleteFiles(config.tempSkipRecycleBin)
-                }
-            } else if (config.tempSkipDeleteConfirmation || config.skipDeleteConfirmation) {
+//        activity.handleMediaManagementPrompt {
+//            if (config.isDeletePasswordProtectionOn) {
+//                activity.handleDeletePasswordProtection {
+//                    deleteFiles(config.tempSkipRecycleBin)
+//                }
+//            } else if (config.tempSkipDeleteConfirmation || config.skipDeleteConfirmation) {
+//                deleteFiles(config.tempSkipRecycleBin)
+//            } else {
+//                askConfirmDelete()
+//            }
+//        }
+        if (config.isDeletePasswordProtectionOn) {
+            activity.handleDeletePasswordProtection {
                 deleteFiles(config.tempSkipRecycleBin)
-            } else {
-                askConfirmDelete()
             }
+        } else if (config.tempSkipDeleteConfirmation || config.skipDeleteConfirmation) {
+            deleteFiles(config.tempSkipRecycleBin)
+        } else {
+            askConfirmDelete()
         }
     }
 

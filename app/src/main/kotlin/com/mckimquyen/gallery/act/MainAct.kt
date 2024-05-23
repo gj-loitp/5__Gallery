@@ -177,7 +177,7 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
 
                 if (!mWasMediaManagementPromptShown) {
                     mWasMediaManagementPromptShown = true
-                    handleMediaManagementPrompt { }
+//                    handleMediaManagementPrompt { }
                 }
             }
         }
@@ -363,8 +363,8 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
         }
 
         binding.mainMenu.getToolbar().menu.apply {
-            findItem(R.id.temporarilyShowHidden).isVisible = !config.shouldShowHidden
-            findItem(R.id.stopShowingHidden).isVisible = (!isRPlus() || isExternalStorageManager()) && config.temporarilyShowHidden
+//            findItem(R.id.temporarilyShowHidden).isVisible = !config.shouldShowHidden
+//            findItem(R.id.stopShowingHidden).isVisible = (!isRPlus() || isExternalStorageManager()) && config.temporarilyShowHidden
 
             findItem(R.id.temporarilyShowExcluded).isVisible = !config.temporarilyShowExcluded
             findItem(R.id.stopShowingExcluded).isVisible = config.temporarilyShowExcluded
@@ -401,8 +401,8 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                 R.id.openCamera -> launchCamera()
                 R.id.showAll -> showAllMedia()
                 R.id.changeViewType -> changeViewType()
-                R.id.temporarilyShowHidden -> tryToggleTemporarilyShowHidden()
-                R.id.stopShowingHidden -> tryToggleTemporarilyShowHidden()
+//                R.id.temporarilyShowHidden -> tryToggleTemporarilyShowHidden()
+//                R.id.stopShowingHidden -> tryToggleTemporarilyShowHidden()
                 R.id.temporarilyShowExcluded -> tryToggleTemporarilyShowExcluded()
                 R.id.stopShowingExcluded -> tryToggleTemporarilyShowExcluded()
                 R.id.createNewFolder -> createNewFolder()

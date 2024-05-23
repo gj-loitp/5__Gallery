@@ -34,16 +34,17 @@
         android:showAsAction="never"
         android:title="@string/change_view_type"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/temporarilyShowHidden"
-        android:showAsAction="never"
-        android:title="@string/temporarily_show_hidden"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/stopShowingHidden"
-        android:showAsAction="never"
-        android:title="@string/stop_showing_hidden"
-        app:showAsAction="never" />
+<!--    TODO roy93~ open in next release-->
+<!--    <item-->
+<!--        android:id="@+id/temporarilyShowHidden"-->
+<!--        android:showAsAction="never"-->
+<!--        android:title="@string/temporarily_show_hidden"-->
+<!--        app:showAsAction="never" />-->
+<!--    <item-->
+<!--        android:id="@+id/stopShowingHidden"-->
+<!--        android:showAsAction="never"-->
+<!--        android:title="@string/stop_showing_hidden"-->
+<!--        app:showAsAction="never" />-->
     <item
         android:id="@+id/temporarilyShowExcluded"
         android:showAsAction="never"

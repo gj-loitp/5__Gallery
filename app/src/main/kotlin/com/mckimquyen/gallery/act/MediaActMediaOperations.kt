@@ -269,8 +269,8 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
             findItem(R.id.createNewFolder).isVisible = !mShowAll && mPath != RECYCLE_BIN && mPath != FAVORITES
             findItem(R.id.openRecycleBin).isVisible = config.useRecycleBin && mPath != RECYCLE_BIN
 
-            findItem(R.id.temporarilyShowHidden).isVisible = !config.shouldShowHidden
-            findItem(R.id.stopShowingHidden).isVisible = (!isRPlus() || isExternalStorageManager()) && config.temporarilyShowHidden
+//            findItem(R.id.temporarilyShowHidden).isVisible = !config.shouldShowHidden
+//            findItem(R.id.stopShowingHidden).isVisible = (!isRPlus() || isExternalStorageManager()) && config.temporarilyShowHidden
 
             findItem(R.id.setAsDefaultFolder).isVisible = !isDefaultFolder
             findItem(R.id.unsetAsDefaultFolder).isVisible = isDefaultFolder
@@ -306,12 +306,12 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
                 R.id.group -> showGroupByDialog()
                 R.id.createNewFolder -> createNewFolder()
                 R.id.openRecycleBin -> openRecycleBin()
-                R.id.temporarilyShowHidden -> tryToggleTemporarilyShowHidden()
-                R.id.stopShowingHidden -> tryToggleTemporarilyShowHidden()
+//                R.id.temporarilyShowHidden -> tryToggleTemporarilyShowHidden()
+//                R.id.stopShowingHidden -> tryToggleTemporarilyShowHidden()
                 R.id.columnCount -> changeColumnCount()
                 R.id.setAsDefaultFolder -> setAsDefaultFolder()
                 R.id.unsetAsDefaultFolder -> unsetAsDefaultFolder()
-                R.id.slideshow -> startSlideshow()
+//                R.id.slideshow -> startSlideshow()
 //                TODO roy93~ open in next release
 //                R.id.settings -> launchSettings()
 //                R.id.about -> launchAbout()

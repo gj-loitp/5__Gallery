@@ -556,10 +556,12 @@ class SettingsAct : SimpleAct() {
     private fun setupKeepLastModified() {
         binding.settingsKeepLastModified.isChecked = config.keepLastModified
         binding.settingsKeepLastModifiedHolder.setOnClickListener {
-            handleMediaManagementPrompt {
-                binding.settingsKeepLastModified.toggle()
-                config.keepLastModified = binding.settingsKeepLastModified.isChecked
-            }
+//            handleMediaManagementPrompt {
+//                binding.settingsKeepLastModified.toggle()
+//                config.keepLastModified = binding.settingsKeepLastModified.isChecked
+//            }
+            binding.settingsKeepLastModified.toggle()
+            config.keepLastModified = binding.settingsKeepLastModified.isChecked
         }
     }
 

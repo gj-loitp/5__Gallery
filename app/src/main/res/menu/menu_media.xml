@@ -34,16 +34,17 @@
         android:showAsAction="never"
         android:title="@string/change_view_type"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/temporarilyShowHidden"
-        android:showAsAction="never"
-        android:title="@string/temporarily_show_hidden"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/stopShowingHidden"
-        android:showAsAction="never"
-        android:title="@string/stop_showing_hidden"
-        app:showAsAction="never" />
+<!--    TODO roy93~ open in next release-->
+<!--    <item-->
+<!--        android:id="@+id/temporarilyShowHidden"-->
+<!--        android:showAsAction="never"-->
+<!--        android:title="@string/temporarily_show_hidden"-->
+<!--        app:showAsAction="never" />-->
+<!--    <item-->
+<!--        android:id="@+id/stopShowingHidden"-->
+<!--        android:showAsAction="never"-->
+<!--        android:title="@string/stop_showing_hidden"-->
+<!--        app:showAsAction="never" />-->
     <item
         android:id="@+id/emptyRecycleBin"
         android:showAsAction="never"
@@ -89,11 +90,11 @@
         android:icon="@drawable/ic_column_count_vector"
         android:title="@string/column_count"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/slideshow"
-        android:showAsAction="never"
-        android:title="@string/slideshow"
-        app:showAsAction="never" />
+<!--    <item-->
+<!--        android:id="@+id/slideshow"-->
+<!--        android:showAsAction="never"-->
+<!--        android:title="@string/slideshow"-->
+<!--        app:showAsAction="never" />-->
     <!--    <item-->
     <!--        android:id="@+id/about"-->
     <!--        android:icon="@drawable/ic_info_vector"-->

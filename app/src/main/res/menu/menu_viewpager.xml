@@ -140,9 +140,10 @@
         android:showAsAction="never"
         android:title="@string/show_on_map"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/menuSlideshow"
-        android:icon="@drawable/ic_slideshow_vector"
-        android:title="@string/slideshow"
-        app:showAsAction="never" />
+<!--    TODO roy93~ open in next release-->
+<!--    <item-->
+<!--        android:id="@+id/menuSlideshow"-->
+<!--        android:icon="@drawable/ic_slideshow_vector"-->
+<!--        android:title="@string/slideshow"-->
+<!--        app:showAsAction="never" />-->
 </menu>

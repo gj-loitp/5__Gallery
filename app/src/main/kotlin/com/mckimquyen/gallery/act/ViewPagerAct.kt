@@ -165,7 +165,7 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
             val rotationDegrees = getCurrentPhotoFragment()?.mCurrentRotationDegrees ?: 0
             binding.mediumViewerToolbar.menu.apply {
                 findItem(R.id.menuShowOnMap).isVisible = visibleBottomActions and BOTTOM_ACTION_SHOW_ON_MAP == 0
-                findItem(R.id.menuSlideshow).isVisible = visibleBottomActions and BOTTOM_ACTION_SLIDESHOW == 0
+//                findItem(R.id.menuSlideshow).isVisible = visibleBottomActions and BOTTOM_ACTION_SLIDESHOW == 0
                 findItem(R.id.menuProperties).isVisible = visibleBottomActions and BOTTOM_ACTION_PROPERTIES == 0
                 findItem(R.id.menuDelete).isVisible = visibleBottomActions and BOTTOM_ACTION_DELETE == 0
                 findItem(R.id.menuShare).isVisible = visibleBottomActions and BOTTOM_ACTION_SHARE == 0
@@ -225,7 +225,7 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
 
             when (menuItem.itemId) {
                 R.id.menuSetAs -> setAs(getCurrentPath())
-                R.id.menuSlideshow -> initSlideshow()
+//                R.id.menuSlideshow -> initSlideshow()
                 R.id.menuCopyTo -> checkMediaManagementAndCopy(true)
                 R.id.menuMoveTo -> moveFileTo()
                 R.id.menuOpenWith -> openPath(getCurrentPath(), true)
@@ -651,7 +651,7 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
                     }
                 }, mSlideshowInterval * 1000L)
             } else {
-                (getCurrentFragment() as? VideoFrm)!!.playVideo()
+                (getCurrentFragment() as? VideoFrm)?.playVideo()
             }
         }
     }
@@ -694,9 +694,10 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
     }
 
     private fun checkMediaManagementAndCopy(isCopyOperation: Boolean) {
-        handleMediaManagementPrompt {
-            copyMoveTo(isCopyOperation)
-        }
+//        handleMediaManagementPrompt {
+//            copyMoveTo(isCopyOperation)
+//        }
+        copyMoveTo(isCopyOperation)
     }
 
     private fun copyMoveTo(isCopyOperation: Boolean) {
@@ -1108,16 +1109,25 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
             return
         }
 
-        handleMediaManagementPrompt {
-            if (config.isDeletePasswordProtectionOn) {
-                handleDeletePasswordProtection {
-                    deleteConfirmed(config.tempSkipRecycleBin)
-                }
-            } else if (config.tempSkipDeleteConfirmation || config.skipDeleteConfirmation) {
+//        handleMediaManagementPrompt {
+//            if (config.isDeletePasswordProtectionOn) {
+//                handleDeletePasswordProtection {
+//                    deleteConfirmed(config.tempSkipRecycleBin)
+//                }
+//            } else if (config.tempSkipDeleteConfirmation || config.skipDeleteConfirmation) {
+//                deleteConfirmed(config.tempSkipRecycleBin)
+//            } else {
+//                askConfirmDelete()
+//            }
+//        }
+        if (config.isDeletePasswordProtectionOn) {
+            handleDeletePasswordProtection {
                 deleteConfirmed(config.tempSkipRecycleBin)
-            } else {
-                askConfirmDelete()
             }
+        } else if (config.tempSkipDeleteConfirmation || config.skipDeleteConfirmation) {
+            deleteConfirmed(config.tempSkipRecycleBin)
+        } else {
+            askConfirmDelete()
         }
     }
 
@@ -1236,9 +1246,10 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
     }
 
     private fun checkMediaManagementAndRename() {
-        handleMediaManagementPrompt {
-            renameFile()
-        }
+//        handleMediaManagementPrompt {
+//            renameFile()
+//        }
+        renameFile()
     }
 
     private fun renameFile() {

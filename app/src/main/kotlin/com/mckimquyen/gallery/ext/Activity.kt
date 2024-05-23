@@ -149,41 +149,42 @@ fun SimpleAct.launchAbout() {
     startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
 }
 
-fun BaseSimpleActivity.handleMediaManagementPrompt(callback: () -> Unit) {
-    if (canManageMedia() || isExternalStorageManager()) {
-        callback()
-    } else if (isRPlus() && resources.getBoolean(R.bool.require_all_files_access) && !config.avoidShowingAllFilesPrompt) {
-        if (Environment.isExternalStorageManager()) {
-            callback()
-        } else {
-            var messagePrompt = getString(org.fossify.commons.R.string.access_storage_prompt)
-            messagePrompt += if (isSPlus()) {
-                "\n\n${getString(R.string.media_management_alternative)}"
-            } else {
-                "\n\n${getString(R.string.alternative_media_access)}"
-            }
-
-            AllFilesPermissionDlg(
-                activity = this,
-                message = messagePrompt,
-                callback = { success ->
-                    if (success) {
-                        launchGrantAllFilesIntent()
-                    }
-                },
-                neutralPressed = {
-                    if (isSPlus()) {
-                        launchMediaManagementIntent(callback)
-                    } else {
-                        config.avoidShowingAllFilesPrompt = true
-                    }
-                }
-            )
-        }
-    } else {
-        callback()
-    }
-}
+//TODO roy93 enable later
+//fun BaseSimpleActivity.handleMediaManagementPrompt(callback: () -> Unit) {
+//    if (canManageMedia() || isExternalStorageManager()) {
+//        callback()
+//    } else if (isRPlus() && resources.getBoolean(R.bool.require_all_files_access) && !config.avoidShowingAllFilesPrompt) {
+//        if (Environment.isExternalStorageManager()) {
+//            callback()
+//        } else {
+//            var messagePrompt = getString(org.fossify.commons.R.string.access_storage_prompt)
+//            messagePrompt += if (isSPlus()) {
+//                "\n\n${getString(R.string.media_management_alternative)}"
+//            } else {
+//                "\n\n${getString(R.string.alternative_media_access)}"
+//            }
+//
+//            AllFilesPermissionDlg(
+//                activity = this,
+//                message = messagePrompt,
+//                callback = { success ->
+//                    if (success) {
+//                        launchGrantAllFilesIntent()
+//                    }
+//                },
+//                neutralPressed = {
+//                    if (isSPlus()) {
+//                        launchMediaManagementIntent(callback)
+//                    } else {
+//                        config.avoidShowingAllFilesPrompt = true
+//                    }
+//                }
+//            )
+//        }
+//    } else {
+//        callback()
+//    }
+//}
 
 fun BaseSimpleActivity.launchGrantAllFilesIntent() {
     try {
