@@ -13,7 +13,6 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO ad applovin
 //TODO vung bi mat de show applovin config
 //TODO UI ios switch
-//TODO 20 tester
 
 //done mckimquyen
 //rename app
@@ -24,6 +23,7 @@ import org.fossify.commons.extensions.checkUseEnglish
 //rate, more app, share app
 //github
 //keystore
+//20 tester https://github.com/gj-loitp/20-TESTER-FOR-CLOSED-TESTING
 
 class RApp : Application() {
     override fun onCreate() {
