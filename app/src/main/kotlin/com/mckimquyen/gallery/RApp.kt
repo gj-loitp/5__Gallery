@@ -13,6 +13,7 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO ad applovin
 //TODO vung bi mat de show applovin config
 //TODO UI ios switch
+//TODO 20 tester
 
 //done mckimquyen
 //rename app
