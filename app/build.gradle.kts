@@ -22,8 +22,8 @@ android {
         applicationId = "com.mckimquyen.gallery"
         minSdk = 23
         targetSdk = 34
-        versionName = "2024.06.05"
-        versionCode = 20240605
+        versionName = "2024.06.06"
+        versionCode = 20240606
         setProperty("archivesBaseName", "Cat Gallery-$versionCode")
     }
 
