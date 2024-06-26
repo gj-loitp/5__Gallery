@@ -8,12 +8,11 @@
         android:icon="@drawable/ic_camera_vector"
         android:title="@string/open_camera"
         app:showAsAction="ifRoom" />
-<!--    TODO roy93~ open in next release-->
-<!--    <item-->
-<!--        android:id="@+id/settings"-->
-<!--        android:icon="@drawable/ic_settings_cog_vector"-->
-<!--        android:title="@string/settings"-->
-<!--        app:showAsAction="never" />-->
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_cog_vector"
+        android:title="@string/settings"
+        app:showAsAction="never" />
     <item
         android:id="@+id/folderView"
         android:icon="@drawable/ic_folders_vector"
@@ -34,17 +33,16 @@
         android:showAsAction="never"
         android:title="@string/change_view_type"
         app:showAsAction="never" />
-<!--    TODO roy93~ open in next release-->
-<!--    <item-->
-<!--        android:id="@+id/temporarilyShowHidden"-->
-<!--        android:showAsAction="never"-->
-<!--        android:title="@string/temporarily_show_hidden"-->
-<!--        app:showAsAction="never" />-->
-<!--    <item-->
-<!--        android:id="@+id/stopShowingHidden"-->
-<!--        android:showAsAction="never"-->
-<!--        android:title="@string/stop_showing_hidden"-->
-<!--        app:showAsAction="never" />-->
+    <item
+        android:id="@+id/temporarilyShowHidden"
+        android:showAsAction="never"
+        android:title="@string/temporarily_show_hidden"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/stopShowingHidden"
+        android:showAsAction="never"
+        android:title="@string/stop_showing_hidden"
+        app:showAsAction="never" />
     <item
         android:id="@+id/emptyRecycleBin"
         android:showAsAction="never"
@@ -90,16 +88,16 @@
         android:icon="@drawable/ic_column_count_vector"
         android:title="@string/column_count"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/slideshow"
+        android:showAsAction="never"
+        android:title="@string/slideshow"
+        app:showAsAction="never" />
 <!--    <item-->
-<!--        android:id="@+id/slideshow"-->
-<!--        android:showAsAction="never"-->
-<!--        android:title="@string/slideshow"-->
-<!--        app:showAsAction="never" />-->
-    <!--    <item-->
-    <!--        android:id="@+id/about"-->
-    <!--        android:icon="@drawable/ic_info_vector"-->
-    <!--        android:title="@string/about"-->
-    <!--        app:showAsAction="ifRoom" />-->
+<!--        android:id="@+id/about"-->
+<!--        android:icon="@drawable/ic_info_vector"-->
+<!--        android:title="@string/about"-->
+<!--        app:showAsAction="ifRoom" />-->
     <item
         android:id="@+id/toggleFilename"
         android:icon="@drawable/ic_label_vector"

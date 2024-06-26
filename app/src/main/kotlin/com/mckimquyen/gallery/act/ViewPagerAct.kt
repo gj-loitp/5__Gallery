@@ -250,8 +250,7 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
                 R.id.menuSaveAs -> saveImageAs()
                 R.id.menuCreateShortcut -> createShortcut()
                 R.id.menuResize -> resizeImage()
-                //TODO roy93~ open in next release
-//                R.id.menuSettings -> launchSettings()
+                R.id.menuSettings -> launchSettings()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
@@ -1357,7 +1356,8 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
                     if (fileDirItem.getProperFileCount(
                             context = this,
                             countHidden = true
-                        ) == 0) {
+                        ) == 0
+                    ) {
                         tryDeleteFileDirItem(
                             fileDirItem = fileDirItem,
                             allowDeleteFolder = true,

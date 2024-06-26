@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+<!--    TODO roy93~-->
     <!--    <uses-permission-->
     <!--        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"-->
     <!--        tools:ignore="ScopedStorage" />-->

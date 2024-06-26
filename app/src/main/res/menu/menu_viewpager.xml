@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource">
 
-    <!--    TODO roy93~ open in next release-->
-<!--    <item-->
-<!--        android:id="@+id/menuSettings"-->
-<!--        android:icon="@drawable/ic_settings_cog_vector"-->
-<!--        android:title="@string/settings"-->
-<!--        app:showAsAction="ifRoom" />-->
+    <item
+        android:id="@+id/menuSettings"
+        android:icon="@drawable/ic_settings_cog_vector"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuProperties"
         android:icon="@drawable/ic_info_vector"
@@ -140,10 +139,9 @@
         android:showAsAction="never"
         android:title="@string/show_on_map"
         app:showAsAction="never" />
-<!--    TODO roy93~ open in next release-->
-<!--    <item-->
-<!--        android:id="@+id/menuSlideshow"-->
-<!--        android:icon="@drawable/ic_slideshow_vector"-->
-<!--        android:title="@string/slideshow"-->
-<!--        app:showAsAction="never" />-->
+    <item
+        android:id="@+id/menuSlideshow"
+        android:icon="@drawable/ic_slideshow_vector"
+        android:title="@string/slideshow"
+        app:showAsAction="never" />
 </menu>

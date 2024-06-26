@@ -3,17 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource">
-<!--    TODO roy93~ open in next release-->
-<!--    <item-->
-<!--        android:id="@+id/temporarilyShowHidden"-->
-<!--        android:showAsAction="never"-->
-<!--        android:title="@string/temporarily_show_hidden"-->
-<!--        app:showAsAction="never" />-->
-<!--    <item-->
-<!--        android:id="@+id/stopShowingHidden"-->
-<!--        android:showAsAction="never"-->
-<!--        android:title="@string/stop_showing_hidden"-->
-<!--        app:showAsAction="never" />-->
+    <item
+        android:id="@+id/temporarilyShowHidden"
+        android:showAsAction="never"
+        android:title="@string/temporarily_show_hidden"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/stopShowingHidden"
+        android:showAsAction="never"
+        android:title="@string/stop_showing_hidden"
+        app:showAsAction="never" />
     <item
         android:id="@+id/temporarilyShowExcluded"
         android:showAsAction="never"

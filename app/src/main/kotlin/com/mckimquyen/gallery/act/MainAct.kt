@@ -433,8 +433,7 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                     openUrlInBrowser("https://github.com/gj-loitp/20-TESTER-FOR-CLOSED-TESTING")
                 }
 
-                //TODO roy93~ open in next release
-//                R.id.settings -> launchSettings()
+                R.id.settings -> launchSettings()
 //                R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
             }

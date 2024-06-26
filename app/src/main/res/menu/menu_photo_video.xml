@@ -9,14 +9,14 @@
         android:title="@string/properties"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menuShare"
-        android:icon="@drawable/ic_share_vector"
-        android:title="@string/share"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/menuEdit"
         android:icon="@drawable/ic_edit_vector"
         android:title="@string/edit"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menuShare"
+        android:icon="@drawable/ic_share_vector"
+        android:title="@string/share"
         app:showAsAction="never" />
     <item
         android:id="@+id/menuSetAs"

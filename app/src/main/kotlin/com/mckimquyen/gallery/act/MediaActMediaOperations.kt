@@ -306,14 +306,13 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
                 R.id.group -> showGroupByDialog()
                 R.id.createNewFolder -> createNewFolder()
                 R.id.openRecycleBin -> openRecycleBin()
-//                R.id.temporarilyShowHidden -> tryToggleTemporarilyShowHidden()
-//                R.id.stopShowingHidden -> tryToggleTemporarilyShowHidden()
+                R.id.temporarilyShowHidden -> tryToggleTemporarilyShowHidden()
+                R.id.stopShowingHidden -> tryToggleTemporarilyShowHidden()
                 R.id.columnCount -> changeColumnCount()
                 R.id.setAsDefaultFolder -> setAsDefaultFolder()
                 R.id.unsetAsDefaultFolder -> unsetAsDefaultFolder()
-//                R.id.slideshow -> startSlideshow()
-//                TODO roy93~ open in next release
-//                R.id.settings -> launchSettings()
+                R.id.slideshow -> startSlideshow()
+                R.id.settings -> launchSettings()
 //                R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
             }
