@@ -22,8 +22,8 @@ android {
         applicationId = "com.mckimquyen.gallery"
         minSdk = 23
         targetSdk = 34
-        versionName = "2024.06.06"
-        versionCode = 20240606
+        versionName = "2024.06.26"
+        versionCode = 20240626
         setProperty("archivesBaseName", "Cat Gallery-$versionCode")
     }
 
@@ -104,6 +104,7 @@ android {
 
 dependencies {
 //    api(libs.fossify.commons)
+    //noinspection UseTomlInstead
     api("com.github.gj-loitp:lib_Commons:1.0.0")
     api(libs.android.image.cropper)
     api(libs.exif)
@@ -128,7 +129,7 @@ dependencies {
     api(libs.zjupure.webpdecoder)
     api(libs.bundles.room)
     //noinspection UseTomlInstead
-    api("com.applovin:applovin-sdk:12.4.2")
+    api("com.applovin:applovin-sdk:12.5.0")
     ksp(libs.androidx.room.compiler)
     //noinspection UseTomlInstead
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
