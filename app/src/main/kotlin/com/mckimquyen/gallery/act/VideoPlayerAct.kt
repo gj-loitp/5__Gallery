@@ -1,6 +1,7 @@
 package com.mckimquyen.gallery.act
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -61,6 +62,13 @@ open class VideoPlayerAct : SimpleAct(), SeekBar.OnSeekBarChangeListener, Textur
     private var mIgnoreCloseDown = false
 
     private val binding by viewBinding(AVideoPlayerBinding::inflate)
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true

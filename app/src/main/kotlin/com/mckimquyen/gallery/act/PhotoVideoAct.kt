@@ -1,5 +1,6 @@
 package com.mckimquyen.gallery.act
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
@@ -34,6 +35,13 @@ open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
     var mIsVideo = false
 
     private val binding by viewBinding(FrmHolderBinding::inflate)
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true

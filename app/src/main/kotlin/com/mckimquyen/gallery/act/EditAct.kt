@@ -3,7 +3,9 @@ package com.mckimquyen.gallery.act
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
 import android.graphics.Color
@@ -73,6 +75,12 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         private const val CROP_ROTATE_ASPECT_RATIO = 1
     }
 
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     private lateinit var saveUri: Uri
     private var uri: Uri? = null

@@ -1,5 +1,7 @@
 package com.mckimquyen.gallery.act
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getProperTextColor
@@ -14,6 +16,13 @@ import com.mckimquyen.gallery.ext.config
 class IncludedFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
 
     private val binding by viewBinding(AManageFoldersBinding::inflate)
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true

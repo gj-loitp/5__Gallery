@@ -14,6 +14,7 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO vung bi mat de show applovin config
 //TODO UI ios switch
 
+//font scale
 //done mckimquyen
 //rename app
 //proguard

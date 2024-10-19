@@ -2,8 +2,10 @@ package com.mckimquyen.gallery.act
 
 import android.app.Activity
 import android.appwidget.AppWidgetManager
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -30,6 +32,13 @@ class WidgetConfigureAct : SimpleAct() {
     private var mFolderPath = ""
     private var mDirectories = ArrayList<Directory>()
     private val binding by viewBinding(AWidgetConfigBinding::inflate)
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false

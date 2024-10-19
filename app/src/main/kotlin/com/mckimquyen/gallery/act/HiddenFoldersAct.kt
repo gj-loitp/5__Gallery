@@ -1,5 +1,7 @@
 package com.mckimquyen.gallery.act
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.beVisibleIf
@@ -16,6 +18,13 @@ import com.mckimquyen.gallery.ext.config
 import com.mckimquyen.gallery.ext.getNoMediaFolders
 
 class HiddenFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     private val binding by viewBinding(AManageFoldersBinding::inflate)
     override fun onCreate(savedInstanceState: Bundle?) {

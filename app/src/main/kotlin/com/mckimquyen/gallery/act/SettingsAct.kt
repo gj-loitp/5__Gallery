@@ -3,7 +3,9 @@ package com.mckimquyen.gallery.act
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -34,6 +36,13 @@ class SettingsAct : SimpleAct() {
 
     private var mRecycleBinContentSize = 0L
     private val binding by viewBinding(ASettingsBinding::inflate)
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true

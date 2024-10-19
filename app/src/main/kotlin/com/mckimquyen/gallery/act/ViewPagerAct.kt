@@ -5,6 +5,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
@@ -81,6 +82,13 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
     private var mFavoritePaths = ArrayList<String>()
     private var mIgnoredPaths = ArrayList<String>()
     private val binding by viewBinding(AMediumBinding::inflate)
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true

@@ -2,7 +2,9 @@ package com.mckimquyen.gallery.act
 
 import android.app.Activity
 import android.app.WallpaperManager
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -72,6 +74,13 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
 
     companion object {
         var mMedia = ArrayList<ThumbnailItem>()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
