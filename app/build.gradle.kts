@@ -22,8 +22,8 @@ android {
         applicationId = "com.mckimquyen.gallery"
         minSdk = 23
         targetSdk = 34
-        versionName = "2024.06.26"
-        versionCode = 20240626
+        versionName = "2024.10.19"
+        versionCode = 20241019
         setProperty("archivesBaseName", "Cat Gallery-$versionCode")
     }
 
@@ -113,6 +113,7 @@ dependencies {
     api(libs.androidx.media3.exoplayer)
     api(libs.sanselan)
     api(libs.imagefilters)
+//    api("info.androidhive:imagefilters:1.0.7")
     api(libs.androidsvg.aar)
     api(libs.gestureviews)
     api(libs.subsamplingscaleimageview)
@@ -129,7 +130,7 @@ dependencies {
     api(libs.zjupure.webpdecoder)
     api(libs.bundles.room)
     //noinspection UseTomlInstead
-    api("com.applovin:applovin-sdk:12.5.0")
+    api("com.applovin:applovin-sdk:13.0.0")
     ksp(libs.androidx.room.compiler)
     //noinspection UseTomlInstead
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
