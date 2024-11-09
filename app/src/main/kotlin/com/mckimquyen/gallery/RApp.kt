@@ -10,9 +10,10 @@ import org.fossify.commons.extensions.checkUseEnglish
 
 //TODO firebase analytic
 //TODO why you see ad
+//TODO UI ios switch
+
 //TODO ad applovin
 //TODO vung bi mat de show applovin config
-//TODO UI ios switch
 
 //font scale
 //done mckimquyen
