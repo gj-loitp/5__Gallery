@@ -951,10 +951,12 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
     private fun itemClicked(path: String) {
         handleLockedFolderOpening(path) { success ->
             if (success) {
-                Intent(this, MediaActMediaOperations::class.java).apply {
-                    putExtra(SKIP_AUTHENTICATION, true)
-                    putExtra(DIRECTORY, path)
-                    handleMediaIntent(this)
+                showAd {
+                    Intent(this, MediaActMediaOperations::class.java).apply {
+                        putExtra(SKIP_AUTHENTICATION, true)
+                        putExtra(DIRECTORY, path)
+                        handleMediaIntent(this)
+                    }
                 }
             }
         }
