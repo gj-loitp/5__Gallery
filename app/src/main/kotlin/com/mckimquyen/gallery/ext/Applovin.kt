@@ -23,7 +23,6 @@ import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import java.util.Collections
 import java.util.concurrent.Executors
-import kotlin.let
 
 //for java, check pj hex viewer
 //for compose, check pj...
@@ -34,11 +33,12 @@ fun Context.setupApplovinAd() {
     val executor = Executors.newSingleThreadExecutor()
     executor.execute {
         val initConfigBuilder = AppLovinSdkInitializationConfiguration.builder(getString(R.string.SDK_KEY), this)
-        AppLovinSdkInitializationConfiguration.Builder.setMediationProvider = AppLovinMediationProvider.MAX
+        initConfigBuilder.mediationProvider = AppLovinMediationProvider.MAX
         // Enable test mode by default for the current device. Cannot be run on the main thread.
         val currentGaid = AdvertisingIdClient.getAdvertisingIdInfo(this).id
-        if (currentGaid equals null) {
-            AppLovinSdkInitializationConfiguration.Builder.setTestDeviceAdvertisingIds = Collections.singletonList(currentGaid)
+        e("Applovin", "currentGaid $currentGaid")
+        if (currentGaid != null) {
+            initConfigBuilder.testDeviceAdvertisingIds = Collections.singletonList(currentGaid)
         }
         // Initialize the AppLovin SDK
         val sdk = AppLovinSdk.getInstance(this)
@@ -76,10 +76,10 @@ fun Activity.createAdBanner(
     isAdaptiveBanner: Boolean,
 ): MaxAdView {
     val log = "$logTag - createAdBanner"
-    val enableAdBanner = this.getString(R.string.EnableAdBanner) equals "true"
+    val enableAdBanner = this.getString(R.string.EnableAdBanner) == "true"
     var id = "1234567890123456" // dummy id
     if (enableAdBanner) {
-        id = this.getStringR.string.BANNER)
+        id = this.getString(R.string.BANNER)
 //        viewGroup?.isVisible = true
     } else {
 //        viewGroup?.isVisible = false

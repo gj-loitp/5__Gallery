@@ -2,6 +2,7 @@ package com.mckimquyen.gallery
 
 import android.app.Application
 import com.github.ajalt.reprint.core.Reprint
+import com.mckimquyen.gallery.ext.setupApplovinAd
 import com.squareup.picasso.Downloader
 import com.squareup.picasso.Picasso
 import okhttp3.Request
@@ -12,9 +13,9 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO why you see ad
 //TODO UI ios switch
 
-//TODO ad applovin
 //TODO vung bi mat de show applovin config
 
+//ad applovin
 //font scale
 //done mckimquyen
 //rename app
@@ -34,6 +35,7 @@ class RApp : Application() {
     }
 
     private fun setupApp() {
+        this.setupApplovinAd()
         checkUseEnglish()
         Reprint.initialize(this)
         Picasso.setSingletonInstance(Picasso.Builder(this).downloader(object : Downloader {

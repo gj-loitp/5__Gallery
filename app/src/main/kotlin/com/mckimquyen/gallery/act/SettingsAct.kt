@@ -9,6 +9,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import com.applovin.mediation.ads.MaxAdView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.fossify.commons.dialogs.*
@@ -36,6 +37,7 @@ class SettingsAct : SimpleAct() {
 
     private var mRecycleBinContentSize = 0L
     private val binding by viewBinding(ASettingsBinding::inflate)
+    private var adView: MaxAdView? = null
 
     override fun attachBaseContext(newBase: Context) {
         val override = Configuration(newBase.resources.configuration)
@@ -59,12 +61,22 @@ class SettingsAct : SimpleAct() {
             scrollingView = binding.settingsNestedScrollview,
             toolbar = binding.settingsToolbar
         )
+        adView = this.createAdBanner(
+            logTag = MainAct::class.simpleName,
+            viewGroup = binding.flAd,
+            isAdaptiveBanner = true,
+        )
     }
 
     override fun onResume() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
         setupSettingItems()
+    }
+
+    override fun onDestroy() {
+        binding.flAd.destroyAdBanner(adView)
+        super.onDestroy()
     }
 
     private fun setupSettingItems() {

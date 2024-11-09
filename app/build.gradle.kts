@@ -66,7 +66,7 @@ android {
         }
     }
 
-    flavorDimensions.add("licensing")
+    flavorDimensions.add("type")
     productFlavors {
         create("dev") {
             dimension = "type"
@@ -82,7 +82,7 @@ android {
             resValue("string", "EnableAdBanner", "true")
         }
 
-        create("production") {
+        create("prod") {
             dimension = "type"
             buildConfigField("Boolean", "build_debug", "false")
             buildConfigField("String", "FLAVOR_buildEnv", "\"prod\"")
