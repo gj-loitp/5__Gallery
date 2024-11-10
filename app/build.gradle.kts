@@ -155,7 +155,7 @@ dependencies {
     api(libs.zjupure.webpdecoder)
     api(libs.bundles.room)
     //noinspection UseTomlInstead
-    api("com.applovin:applovin-sdk:13.0.0")
+    api("com.applovin:applovin-sdk:13.0.1")
     ksp(libs.androidx.room.compiler)
     //noinspection UseTomlInstead
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
