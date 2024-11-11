@@ -46,6 +46,7 @@ import com.mckimquyen.gallery.job.NewPhotoFetcher
 import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Medium
 import java.io.*
+import kotlin.random.Random
 
 class MainAct : SimpleAct(), ListenerDirectoryOperations {
     companion object {
@@ -1684,7 +1685,10 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
 //                            ad.showAd()
 //                            runnable?.run()
 //                        }
-                        ad.showAd()
+                        val randomInt = Random.nextInt(0, 101)
+                        if (randomInt <= 50) {
+                            ad.showAd()
+                        }
                         runnable?.run()
                     } else {
                         runnable?.run()
