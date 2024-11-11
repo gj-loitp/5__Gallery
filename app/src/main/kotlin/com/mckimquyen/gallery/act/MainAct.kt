@@ -101,7 +101,6 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        createAdInter()
         appLaunched(BuildConfig.APPLICATION_ID)
 
         if (savedInstanceState == null) {
@@ -178,6 +177,7 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
                 finish()
             }
         }
+        createAdInter()
     }
 
     private fun handleMediaPermissions(callback: (granted: Boolean) -> Unit) {

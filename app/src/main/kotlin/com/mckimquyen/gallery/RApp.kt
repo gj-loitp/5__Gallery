@@ -13,8 +13,7 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO why you see ad
 //TODO UI ios switch
 
-//TODO vung bi mat de show applovin config
-
+//vung bi mat de show applovin config
 //ad applovin
 //font scale
 //done mckimquyen
@@ -35,7 +34,6 @@ class RApp : Application() {
     }
 
     private fun setupApp() {
-        this.setupApplovinAd()
         checkUseEnglish()
         Reprint.initialize(this)
         Picasso.setSingletonInstance(Picasso.Builder(this).downloader(object : Downloader {
@@ -43,5 +41,6 @@ class RApp : Application() {
 
             override fun shutdown() {}
         }).build())
+        this.setupApplovinAd()
     }
 }

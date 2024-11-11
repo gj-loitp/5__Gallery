@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.konan.properties.Properties
-import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.android)

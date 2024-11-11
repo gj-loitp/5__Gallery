@@ -35,13 +35,13 @@ fun Context.setupApplovinAd() {
         val initConfigBuilder = AppLovinSdkInitializationConfiguration.builder(getString(R.string.SDK_KEY), this)
         initConfigBuilder.mediationProvider = AppLovinMediationProvider.MAX
         // Enable test mode by default for the current device. Cannot be run on the main thread.
-        if (BuildConfig.DEBUG) {
-            val currentGaid = AdvertisingIdClient.getAdvertisingIdInfo(this).id
-            e("Applovin", "currentGaid $currentGaid")
-            if (currentGaid != null) {
-                initConfigBuilder.testDeviceAdvertisingIds = Collections.singletonList(currentGaid)
-            }
-        }
+//        if (BuildConfig.DEBUG) {
+//            val currentGaid = AdvertisingIdClient.getAdvertisingIdInfo(this).id
+//            e("Applovin", "currentGaid $currentGaid")
+//            if (currentGaid != null) {
+//                initConfigBuilder.testDeviceAdvertisingIds = Collections.singletonList(currentGaid)
+//            }
+//        }
         // Initialize the AppLovin SDK
         val sdk = AppLovinSdk.getInstance(this)
         sdk.initialize(initConfigBuilder.build()) {
@@ -77,7 +77,7 @@ fun Activity.createAdBanner(
     viewGroup: ViewGroup?,
     isAdaptiveBanner: Boolean,
 ): MaxAdView {
-    val log = "$logTag - createAdBanner"
+    val log = "$logTag - Applovin createAdBanner"
     val enableAdBanner = this.getString(R.string.EnableAdBanner) == "true"
     var id = "1234567890123456" // dummy id
     if (enableAdBanner) {
@@ -86,7 +86,7 @@ fun Activity.createAdBanner(
     } else {
 //        viewGroup?.isVisible = false
     }
-    i(log, "enableAdBanner $enableAdBanner -> $id")
+    i(log, "Applovin enableAdBanner $enableAdBanner -> $id")
     val adView = MaxAdView(id, this)
     adView.let { ad ->
         ad.setListener(object : MaxAdViewAdListener {
@@ -150,7 +150,6 @@ fun Activity.createAdBanner(
                 /* height = */ heightPx
             )
         }
-
 
         if (enableAdBanner) {
             ad.setBackgroundColor(bkgColor)
