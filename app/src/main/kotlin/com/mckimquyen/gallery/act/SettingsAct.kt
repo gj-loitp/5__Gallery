@@ -16,6 +16,7 @@ import com.applovin.mediation.ads.MaxAdView
 import com.applovin.mediation.ads.MaxInterstitialAd
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mckimquyen.gallery.BuildConfig
 import org.fossify.commons.dialogs.*
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.*
@@ -1050,6 +1051,13 @@ class SettingsAct : SimpleAct() {
                         }
                     }
                 }
+            }
+        }
+        binding.settingApplovin.setOnClickListener {
+            if (BuildConfig.DEBUG) {
+                this.showMediationDebuggerApplovin()
+            } else {
+                this.showErrorToast("This feature is only available in Debug Mode")
             }
         }
     }

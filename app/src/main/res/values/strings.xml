@@ -285,6 +285,7 @@
     <string name="share_this_app">Share this app</string>
     <string name="github">Github</string>
     <string name="service_tester">Service tester</string>
+    <string name="mediation_debugger_applovin">Mediation debugger Applovin</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res
