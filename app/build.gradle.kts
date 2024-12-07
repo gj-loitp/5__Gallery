@@ -157,4 +157,5 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     //noinspection UseTomlInstead
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
+    api("io.github.kakyire:app-review:2.0.1")
 }
