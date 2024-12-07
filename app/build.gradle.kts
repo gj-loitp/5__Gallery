@@ -14,12 +14,12 @@ plugins {
 
 android {
     namespace = "com.mckimquyen.gallery"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.mckimquyen.gallery"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionName = "2024.12.08"
         versionCode = 20241208
         setProperty("archivesBaseName", "Cat Gallery-$versionCode")
