@@ -449,12 +449,12 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putBoolean(WAS_PROTECTION_HANDLED, mWasProtectionHandled)
+        outState.putBoolean("WAS_PROTECTION_HANDLED", mWasProtectionHandled)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        mWasProtectionHandled = savedInstanceState.getBoolean(WAS_PROTECTION_HANDLED, false)
+        mWasProtectionHandled = savedInstanceState.getBoolean("WAS_PROTECTION_HANDLED", false)
     }
 
     private fun updateMenuColors() {

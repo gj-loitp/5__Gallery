@@ -104,7 +104,7 @@ class WidgetConfigureAct : SimpleAct() {
 
         mTextColor = config.widgetTextColor
         if (mTextColor == resources.getColor(org.fossify.commons.R.color.default_widget_text_color)
-            && config.isUsingSystemTheme
+//            && config.isUsingSystemTheme
         ) {
             mTextColor = resources.getColor(org.fossify.commons.R.color.you_primary_color, theme)
         }

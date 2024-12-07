@@ -20,8 +20,8 @@ android {
         applicationId = "com.mckimquyen.gallery"
         minSdk = 23
         targetSdk = 34
-        versionName = "2024.12.07"
-        versionCode = 20241207
+        versionName = "2024.12.08"
+        versionCode = 20241208
         setProperty("archivesBaseName", "Cat Gallery-$versionCode")
     }
 
@@ -128,7 +128,7 @@ android {
 dependencies {
 //    api(libs.fossify.commons)
     //noinspection UseTomlInstead
-    api("com.github.gj-loitp:lib_Commons:1.0.0")
+    api("com.github.gj-loitp:lib_Commons:1.0.1")
     api(libs.android.image.cropper)
     api(libs.exif)
     api(libs.android.gif.drawable)

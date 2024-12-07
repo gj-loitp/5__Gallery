@@ -937,7 +937,7 @@ class SettingsAct : SimpleAct() {
     private fun setupExportSettings() {
         binding.settingsExportHolder.setOnClickListener {
             val configItems = LinkedHashMap<String, Any>().apply {
-                put(IS_USING_SHARED_THEME, config.isUsingSharedTheme)
+//                put(IS_USING_SHARED_THEME, config.isUsingSharedTheme)
                 put(TEXT_COLOR, config.textColor)
                 put(BACKGROUND_COLOR, config.backgroundColor)
                 put(PRIMARY_COLOR, config.primaryColor)
@@ -1082,7 +1082,7 @@ class SettingsAct : SimpleAct() {
 
         for ((key, value) in configValues) {
             when (key) {
-                IS_USING_SHARED_THEME -> config.isUsingSharedTheme = value.toBoolean()
+//                IS_USING_SHARED_THEME -> config.isUsingSharedTheme = value.toBoolean()
                 TEXT_COLOR -> config.textColor = value.toInt()
                 BACKGROUND_COLOR -> config.backgroundColor = value.toInt()
                 PRIMARY_COLOR -> config.primaryColor = value.toInt()

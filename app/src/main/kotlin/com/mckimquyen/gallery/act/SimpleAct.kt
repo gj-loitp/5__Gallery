@@ -54,8 +54,7 @@ open class SimpleAct : BaseSimpleActivity() {
         val display: Display? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             display // Sử dụng API mới
         } else {
-            @Suppress("DEPRECATION")
-            wm.defaultDisplay // Fallback cho API thấp hơn
+            @Suppress("DEPRECATION") wm.defaultDisplay // Fallback cho API thấp hơn
         }
 
         if (display != null) {
@@ -95,6 +94,10 @@ open class SimpleAct : BaseSimpleActivity() {
     )
 
     override fun getAppLauncherName() = getString(R.string.app_launcher_name)
+
+    override fun getRepositoryName(): String? {
+        return null
+    }
 
     protected fun checkNotchSupport() {
         if (isPiePlus()) {
