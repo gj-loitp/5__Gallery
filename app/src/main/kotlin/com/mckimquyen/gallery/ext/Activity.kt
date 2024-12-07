@@ -21,6 +21,7 @@ import android.provider.MediaStore.Files
 import android.provider.MediaStore.Images
 import android.provider.Settings
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.exifinterface.media.ExifInterface
@@ -28,6 +29,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.play.core.review.ReviewException
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.model.ReviewErrorCode
 import com.squareup.picasso.Picasso
 import org.fossify.commons.activities.BaseSimpleActivity
 import org.fossify.commons.dialogs.ConfirmationDialog
@@ -50,6 +55,7 @@ import com.mckimquyen.gallery.helper.RECYCLE_BIN
 import com.mckimquyen.gallery.model.DateTaken
 import java.io.*
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 fun Activity.sharePath(path: String) {
@@ -1103,6 +1109,40 @@ fun Activity.rateApp(
     }
 }
 
+fun Activity.rateAppInApp(forceRateInApp: Boolean = false) {
+    //import gradle app
+//    implementation("com.google.android.play:review:2.0.2")
+//    implementation("com.google.android.play:review-ktx:2.0.2")
+
+    val sharedPreferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+    val lastReviewTime = sharedPreferences.getLong("last_review_time", 0L)
+    Log.d("roy93~", "requestReview lastReviewTime $lastReviewTime")
+    val currentTime = Calendar.getInstance().timeInMillis
+    val daysSinceLastReview = (currentTime - lastReviewTime) / (1000 * 60 * 60 * 24)
+    Log.d("roy93~", "requestReview forceRateInApp $forceRateInApp")
+    Log.d("roy93~", "requestReview daysSinceLastReview $daysSinceLastReview")
+    if (daysSinceLastReview >= 30 || forceRateInApp) {
+//    if (daysSinceLastReview >= 30) {
+        val reviewManager = ReviewManagerFactory.create(this)
+        val request = reviewManager.requestReviewFlow()
+        request.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val reviewInfo: ReviewInfo = task.result
+                reviewManager.launchReviewFlow(this, reviewInfo)
+                sharedPreferences.edit().putLong("last_review_time", currentTime).apply()
+                Log.d("roy93~", "requestReview result ${task.result}")
+                Log.d("roy93~", "requestReview isSuccessful ${task.isSuccessful}")
+                Log.d("roy93~", "requestReview isCanceled ${task.isCanceled}")
+                Log.d("roy93~", "requestReview isComplete ${task.isComplete}")
+                Log.d("roy93~", "requestReview exception ${task.exception}")
+            } else {
+                @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
+                Log.e("roy93~", "requestReview error $reviewErrorCode")
+            }
+        }
+    }
+}
+
 fun Activity.moreApp(
     nameOfDeveloper: String = "McKimQuyen",
 ) {
@@ -1188,3 +1228,4 @@ fun Context?.openUrlInBrowser(
         e.printStackTrace()
     }
 }
+

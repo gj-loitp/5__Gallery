@@ -16,7 +16,6 @@ import com.applovin.mediation.ads.MaxAdView
 import com.applovin.mediation.ads.MaxInterstitialAd
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.kakyiretechnologies.appreview.reviewApp
 import com.mckimquyen.gallery.BuildConfig
 import org.fossify.commons.dialogs.*
 import org.fossify.commons.extensions.*
@@ -72,11 +71,11 @@ class SettingsAct : SimpleAct() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
         setupSettingItems()
-        reviewApp()
     }
 
     override fun onDestroy() {
         binding.flAd.destroyAdBanner(adView)
+        rateAppInApp(BuildConfig.DEBUG)
         super.onDestroy()
     }
 

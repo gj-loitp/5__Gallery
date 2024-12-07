@@ -20,7 +20,7 @@ android {
         applicationId = "com.mckimquyen.gallery"
         minSdk = 23
         targetSdk = 35
-        versionName = "2024.12.08"
+        versionName = "2024.12.09"
         versionCode = 20241208
         setProperty("archivesBaseName", "Cat Gallery-$versionCode")
     }
@@ -157,5 +157,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     //noinspection UseTomlInstead
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
-    api("io.github.kakyire:app-review:2.0.1")
+//    api("io.github.kakyire:app-review:2.0.1")
+    implementation("com.google.android.play:review:2.0.2")
+    implementation("com.google.android.play:review-ktx:2.0.2")
 }
