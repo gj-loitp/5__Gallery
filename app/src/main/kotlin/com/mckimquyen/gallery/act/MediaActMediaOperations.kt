@@ -76,13 +76,6 @@ class MediaActMediaOperations : SimpleAct(), ListenerMediaOperations {
         var mMedia = ArrayList<ThumbnailItem>()
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)

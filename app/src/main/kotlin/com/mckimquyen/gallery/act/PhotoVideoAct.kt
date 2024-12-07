@@ -1,6 +1,5 @@
 package com.mckimquyen.gallery.act
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
@@ -11,9 +10,6 @@ import android.provider.MediaStore
 import android.text.Html
 import android.view.View
 import android.widget.RelativeLayout
-import org.fossify.commons.dialogs.PropertiesDialog
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.*
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.FrmHolderBinding
@@ -23,6 +19,9 @@ import com.mckimquyen.gallery.frm.VideoFrm
 import com.mckimquyen.gallery.frm.ViewPagerFrm
 import com.mckimquyen.gallery.helper.*
 import com.mckimquyen.gallery.model.Medium
+import org.fossify.commons.dialogs.PropertiesDialog
+import org.fossify.commons.extensions.*
+import org.fossify.commons.helpers.*
 import java.io.File
 
 open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
@@ -35,13 +34,6 @@ open class PhotoVideoAct : SimpleAct(), ViewPagerFrm.FragmentListener {
     var mIsVideo = false
 
     private val binding by viewBinding(FrmHolderBinding::inflate)
-
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true

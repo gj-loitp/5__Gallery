@@ -75,13 +75,6 @@ class EditAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
         private const val CROP_ROTATE_ASPECT_RATIO = 1
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
-
     private lateinit var saveUri: Uri
     private var uri: Uri? = null
     private var resizeWidth = 0

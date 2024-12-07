@@ -31,13 +31,6 @@ class SetWallpaperAct : SimpleAct(), CropImageView.OnCropImageCompleteListener {
     private lateinit var wallpaperManager: WallpaperManager
     private val binding by viewBinding(ASetWallpaperBinding::inflate)
 
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

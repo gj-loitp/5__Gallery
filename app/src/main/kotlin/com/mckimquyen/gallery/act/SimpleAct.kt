@@ -1,5 +1,7 @@
 package com.mckimquyen.gallery.act
 
+import android.content.Context
+import android.content.res.Configuration
 import android.database.ContentObserver
 import android.net.Uri
 import android.provider.MediaStore.Images
@@ -29,6 +31,13 @@ open class SimpleAct : BaseSimpleActivity() {
                 }
             }
         }
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val override = Configuration(newBase.resources.configuration)
+        override.fontScale = 1.0f
+        applyOverrideConfiguration(override)
+        super.attachBaseContext(newBase)
     }
 
     override fun getAppIconIDs() = arrayListOf(

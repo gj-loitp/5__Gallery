@@ -83,13 +83,6 @@ class ViewPagerAct : SimpleAct(), ViewPager.OnPageChangeListener, ViewPagerFrm.F
     private var mIgnoredPaths = ArrayList<String>()
     private val binding by viewBinding(AMediumBinding::inflate)
 
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true
         super.onCreate(savedInstanceState)

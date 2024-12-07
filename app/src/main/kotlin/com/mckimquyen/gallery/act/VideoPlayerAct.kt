@@ -1,7 +1,6 @@
 package com.mckimquyen.gallery.act
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -28,11 +27,11 @@ import androidx.media3.exoplayer.SeekParameters
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
-import org.fossify.commons.extensions.*
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.databinding.AVideoPlayerBinding
 import com.mckimquyen.gallery.ext.*
 import com.mckimquyen.gallery.helper.*
+import org.fossify.commons.extensions.*
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -62,13 +61,6 @@ open class VideoPlayerAct : SimpleAct(), SeekBar.OnSeekBarChangeListener, Textur
     private var mIgnoreCloseDown = false
 
     private val binding by viewBinding(AVideoPlayerBinding::inflate)
-
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true

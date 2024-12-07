@@ -1,8 +1,12 @@
 package com.mckimquyen.gallery.act
 
-import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
+import com.mckimquyen.gallery.R
+import com.mckimquyen.gallery.adt.ManageHiddenFoldersAdt
+import com.mckimquyen.gallery.databinding.AManageFoldersBinding
+import com.mckimquyen.gallery.ext.addNoMedia
+import com.mckimquyen.gallery.ext.config
+import com.mckimquyen.gallery.ext.getNoMediaFolders
 import org.fossify.commons.dialogs.FilePickerDialog
 import org.fossify.commons.extensions.beVisibleIf
 import org.fossify.commons.extensions.getProperTextColor
@@ -10,21 +14,8 @@ import org.fossify.commons.extensions.viewBinding
 import org.fossify.commons.helpers.NavigationIcon
 import org.fossify.commons.helpers.ensureBackgroundThread
 import org.fossify.commons.interfaces.RefreshRecyclerViewListener
-import com.mckimquyen.gallery.R
-import com.mckimquyen.gallery.adt.ManageHiddenFoldersAdt
-import com.mckimquyen.gallery.databinding.AManageFoldersBinding
-import com.mckimquyen.gallery.ext.addNoMedia
-import com.mckimquyen.gallery.ext.config
-import com.mckimquyen.gallery.ext.getNoMediaFolders
 
 class HiddenFoldersAct : SimpleAct(), RefreshRecyclerViewListener {
-
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
 
     private val binding by viewBinding(AManageFoldersBinding::inflate)
     override fun onCreate(savedInstanceState: Bundle?) {

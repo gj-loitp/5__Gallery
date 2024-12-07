@@ -2,9 +2,7 @@ package com.mckimquyen.gallery.act
 
 import android.app.Activity
 import android.content.ClipData
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -20,21 +18,11 @@ import com.applovin.mediation.MaxAd
 import com.applovin.mediation.MaxAdListener
 import com.applovin.mediation.MaxError
 import com.applovin.mediation.ads.MaxInterstitialAd
-import org.fossify.commons.dialogs.CreateNewFolderDialog
-import org.fossify.commons.dialogs.FilePickerDialog
-import org.fossify.commons.dialogs.RadioGroupDialog
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.*
-import org.fossify.commons.models.FileDirItem
-import org.fossify.commons.models.RadioItem
-import org.fossify.commons.models.Release
-import org.fossify.commons.views.MyGridLayoutManager
-import org.fossify.commons.views.MyRecyclerView
 import com.mckimquyen.gallery.BuildConfig
 import com.mckimquyen.gallery.R
 import com.mckimquyen.gallery.adt.DirectoryAdt
-import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.databinding.AMainBinding
+import com.mckimquyen.gallery.db.GalleryDatabase
 import com.mckimquyen.gallery.dlg.ChangeSortingDlg
 import com.mckimquyen.gallery.dlg.ChangeViewTypeDlg
 import com.mckimquyen.gallery.dlg.FilterMediaDlg
@@ -45,6 +33,16 @@ import com.mckimquyen.gallery.itf.ListenerDirectoryOperations
 import com.mckimquyen.gallery.job.NewPhotoFetcher
 import com.mckimquyen.gallery.model.Directory
 import com.mckimquyen.gallery.model.Medium
+import org.fossify.commons.dialogs.CreateNewFolderDialog
+import org.fossify.commons.dialogs.FilePickerDialog
+import org.fossify.commons.dialogs.RadioGroupDialog
+import org.fossify.commons.extensions.*
+import org.fossify.commons.helpers.*
+import org.fossify.commons.models.FileDirItem
+import org.fossify.commons.models.RadioItem
+import org.fossify.commons.models.Release
+import org.fossify.commons.views.MyGridLayoutManager
+import org.fossify.commons.views.MyRecyclerView
 import java.io.*
 import kotlin.random.Random
 
@@ -53,13 +51,6 @@ class MainAct : SimpleAct(), ListenerDirectoryOperations {
         private const val PICK_MEDIA = 2
         private const val PICK_WALLPAPER = 3
         private const val LAST_MEDIA_CHECK_PERIOD = 3000L
-    }
-
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
     }
 
     private var mIsPickImageIntent = false

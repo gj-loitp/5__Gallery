@@ -33,13 +33,6 @@ class WidgetConfigureAct : SimpleAct() {
     private var mDirectories = ArrayList<Directory>()
     private val binding by viewBinding(AWidgetConfigBinding::inflate)
 
-    override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
-        super.attachBaseContext(newBase)
-    }
-
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
