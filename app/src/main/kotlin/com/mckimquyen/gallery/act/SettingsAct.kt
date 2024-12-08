@@ -71,11 +71,11 @@ class SettingsAct : SimpleAct() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
         setupSettingItems()
+        rateAppInApp(BuildConfig.DEBUG)
     }
 
     override fun onDestroy() {
         binding.flAd.destroyAdBanner(adView)
-        rateAppInApp(BuildConfig.DEBUG)
         super.onDestroy()
     }
 
