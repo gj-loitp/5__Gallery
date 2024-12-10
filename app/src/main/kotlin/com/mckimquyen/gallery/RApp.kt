@@ -12,9 +12,9 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO firebase analytic
 //TODO why you see ad
 //TODO UI ios switch
-//TODO in app review, da impl, ko biet work ko
 
 //120hz
+//in app review
 //vung bi mat de show applovin config
 //ad applovin
 //font scale
