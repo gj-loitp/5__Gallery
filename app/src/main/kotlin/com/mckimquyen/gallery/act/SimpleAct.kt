@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore.Images
 import android.provider.MediaStore.Video
+import android.util.Log
 import android.view.Display
 import android.view.WindowManager
 import org.fossify.commons.activities.BaseSimpleActivity
@@ -36,9 +37,15 @@ open class SimpleAct : BaseSimpleActivity() {
     }
 
     override fun attachBaseContext(newBase: Context) {
-        val override = Configuration(newBase.resources.configuration)
-        override.fontScale = 1.0f
-        applyOverrideConfiguration(override)
+        try {
+            val override = Configuration(newBase.resources.configuration)
+            override.fontScale = 1.0f
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                applyOverrideConfiguration(override)
+            }
+        } catch (e: Exception) {
+            Log.e("AttachBaseContext", "Error applying override configuration: ${e.message}")
+        }
         super.attachBaseContext(newBase)
     }
 
