@@ -1121,8 +1121,8 @@ fun Activity.rateAppInApp(forceRateInApp: Boolean = false) {
     val daysSinceLastReview = (currentTime - lastReviewTime) / (1000 * 60 * 60 * 24)
     Log.d("roy93~", "requestReview forceRateInApp $forceRateInApp")
     Log.d("roy93~", "requestReview daysSinceLastReview $daysSinceLastReview")
-    if (daysSinceLastReview >= 30 || forceRateInApp) {
-//    if (daysSinceLastReview >= 30) {
+    if (daysSinceLastReview >= 7 || forceRateInApp) {
+//    if (daysSinceLastReview >= 7) {
         val reviewManager = ReviewManagerFactory.create(this)
         val request = reviewManager.requestReviewFlow()
         request.addOnCompleteListener { task ->
