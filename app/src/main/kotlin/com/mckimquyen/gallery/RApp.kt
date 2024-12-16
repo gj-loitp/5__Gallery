@@ -14,7 +14,7 @@ import org.fossify.commons.extensions.checkUseEnglish
 //TODO UI ios switch
 
 //120hz
-//in app review
+//in app review bingo
 //vung bi mat de show applovin config
 //ad applovin
 //font scale
