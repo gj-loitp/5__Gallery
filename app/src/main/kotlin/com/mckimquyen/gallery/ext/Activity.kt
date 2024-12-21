@@ -1144,7 +1144,7 @@ fun Activity.rateAppInApp(forceRateInApp: Boolean = false) {
 }
 
 fun Activity.moreApp(
-    nameOfDeveloper: String = "McKimQuyen",
+    nameOfDeveloper: String = "SAIGON PHANTOM LABS",
 ) {
     val uri = "https://play.google.com/store/apps/developer?id=$nameOfDeveloper"
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
